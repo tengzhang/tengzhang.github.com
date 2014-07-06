@@ -3,9 +3,9 @@
   <title><![CDATA[Zhang Teng'Bolg]]></title>
   
   <link href="/atom.xml" rel="self"/>
-  <link href="http://yoursite.com/"/>
-  <updated>2014-07-06T13:40:58.373Z</updated>
-  <id>http://yoursite.com/</id>
+  <link href="//"/>
+  <updated>2014-07-06T13:43:55.227Z</updated>
+  <id>//</id>
   
   <author>
     <name><![CDATA[Zhang Teng]]></name>
@@ -16,8 +16,8 @@
   
   <entry>
     <title><![CDATA[新博客的第一篇博文]]></title>
-    <link href="http://yoursite.com/2014/07/06/new-blog-first-post/"/>
-    <id>http://yoursite.com/2014/07/06/new-blog-first-post/</id>
+    <link href="/2014/07/06/new-blog-first-post/"/>
+    <id>/2014/07/06/new-blog-first-post/</id>
     <published>2014-07-06T12:59:23.000Z</published>
     <updated>2014-07-06T13:08:55.000Z</updated>
     <content type="html"><![CDATA[<p>以前在github上用octopress挂了一个博客，但是用它还得装ruby，感觉比较麻烦（主要还是不懂ruby）。<br>前段时间，看到有人用hexo搭建博客，我也试了试。hexo是基于node，比octopress方便多了，就转了过来。<br>这是他的官网<a href="http://hexo.io/" target="_blank" rel="external">http://hexo.io/</a>，关于具体怎么搭建，我就不多说了，官网写得和详细，直接上官方文档的链接<a href="http://hexo.io/docs/index.html" target="_blank" rel="external">http://hexo.io/docs/index.html</a>。<br>说说我遇到的问题吧，按照官网说的做了，我用<code>hexo deploy</code>，一直deploy上去，也不知道为啥，可能主要还是我对node和git都不熟悉吧。<br>最后我是手动deploy的。具体命令如下：</p>
@@ -37,8 +37,8 @@ $ git push -u origin master
   
   <entry>
     <title><![CDATA[jquery使用笔记]]></title>
-    <link href="http://yoursite.com/2013/11/01/2013-11-01-jquery-study/"/>
-    <id>http://yoursite.com/2013/11/01/2013-11-01-jquery-study/</id>
+    <link href="/2013/11/01/2013-11-01-jquery-study/"/>
+    <id>/2013/11/01/2013-11-01-jquery-study/</id>
     <published>2013-11-01T02:43:00.000Z</published>
     <updated>2014-07-06T13:28:18.000Z</updated>
     <content type="html"><![CDATA[<ol>
@@ -126,14 +126,14 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
 ]]></content>
     
     
-      <category term="jquery" scheme="http://yoursite.com/categories/jquery/"/>
+      <category term="jquery" scheme="/categories/jquery/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[structs2返回json]]></title>
-    <link href="http://yoursite.com/2013/10/30/2013-10-30-struts2-json/"/>
-    <id>http://yoursite.com/2013/10/30/2013-10-30-struts2-json/</id>
+    <link href="/2013/10/30/2013-10-30-struts2-json/"/>
+    <id>/2013/10/30/2013-10-30-struts2-json/</id>
     <published>2013-10-30T01:28:00.000Z</published>
     <updated>2014-07-06T13:32:28.000Z</updated>
     <content type="html"><![CDATA[<p>structs2返回本身支持返回json，只需要配置即可，我们也可以自己把json串写入servlet输出流中。<br>1.structs2本身对json的支持<br>在action中对需要返回的值进行设置，实体、java自带类型都可以。<br>如：</p>
@@ -225,8 +225,8 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
   
   <entry>
     <title><![CDATA[sublime利用snippet生成代码模版]]></title>
-    <link href="http://yoursite.com/2013/10/23/2013-10-23-sublime-snippet/"/>
-    <id>http://yoursite.com/2013/10/23/2013-10-23-sublime-snippet/</id>
+    <link href="/2013/10/23/2013-10-23-sublime-snippet/"/>
+    <id>/2013/10/23/2013-10-23-sublime-snippet/</id>
     <published>2013-10-23T06:20:00.000Z</published>
     <updated>2013-11-01T03:04:38.000Z</updated>
     <content type="html"><![CDATA[<p><code>tools-&gt;New Snippet</code>新建一个snippet，保存为**.sublime-snippet。<br>内容如下：  </p>
@@ -277,14 +277,14 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
     <summary type="html"><![CDATA[<p><code>tools-&gt;New Snippet</code>新建一个snippet，保存为**.sublime-snippet。<br>内容如下：  </p>
 ]]></summary>
     
-      <category term="sublime" scheme="http://yoursite.com/categories/sublime/"/>
+      <category term="sublime" scheme="/categories/sublime/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[struts2文件上传]]></title>
-    <link href="http://yoursite.com/2013/10/23/2013-10-23-struts-uploadfile/"/>
-    <id>http://yoursite.com/2013/10/23/2013-10-23-struts-uploadfile/</id>
+    <link href="/2013/10/23/2013-10-23-struts-uploadfile/"/>
+    <id>/2013/10/23/2013-10-23-struts-uploadfile/</id>
     <published>2013-10-23T01:02:00.000Z</published>
     <updated>2013-10-23T01:02:56.000Z</updated>
     <content type="html"><![CDATA[<p>注意保持action中File的变量和jsp中input的name名相同。<br>action中定义变量：</p>
@@ -367,14 +367,14 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
 ]]></content>
     
     
-      <category term="struts" scheme="http://yoursite.com/categories/struts/"/>
+      <category term="struts" scheme="/categories/struts/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[JSON和bean互转]]></title>
-    <link href="http://yoursite.com/2013/10/21/2013-10-21-json-to-bean/"/>
-    <id>http://yoursite.com/2013/10/21/2013-10-21-json-to-bean/</id>
+    <link href="/2013/10/21/2013-10-21-json-to-bean/"/>
+    <id>/2013/10/21/2013-10-21-json-to-bean/</id>
     <published>2013-10-21T01:32:00.000Z</published>
     <updated>2014-07-06T13:33:46.000Z</updated>
     <content type="html"><![CDATA[<p>需要用到的类：</p>
@@ -399,14 +399,14 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
 </code></pre>]]></content>
     
     
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+      <category term="java" scheme="/categories/java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[删除Java集合中元素]]></title>
-    <link href="http://yoursite.com/2013/10/13/2013-10-13-remove-elemetns/"/>
-    <id>http://yoursite.com/2013/10/13/2013-10-13-remove-elemetns/</id>
+    <link href="/2013/10/13/2013-10-13-remove-elemetns/"/>
+    <id>/2013/10/13/2013-10-13-remove-elemetns/</id>
     <published>2013-10-13T13:42:00.000Z</published>
     <updated>2014-07-06T13:34:47.000Z</updated>
     <content type="html"><![CDATA[<p>有时候我们需要删除list中的某个元素，最开始我会这样写：</p>
@@ -525,14 +525,14 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
 ]]></content>
     
     
-      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+      <category term="java" scheme="/categories/java/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[命令行修复MBR]]></title>
-    <link href="http://yoursite.com/2013/10/09/2013-10-09-minglinghangmbr/"/>
-    <id>http://yoursite.com/2013/10/09/2013-10-09-minglinghangmbr/</id>
+    <link href="/2013/10/09/2013-10-09-minglinghangmbr/"/>
+    <id>/2013/10/09/2013-10-09-minglinghangmbr/</id>
     <published>2013-10-09T08:22:00.000Z</published>
     <updated>2014-07-06T13:37:06.000Z</updated>
     <content type="html"><![CDATA[<p>命令行修复MBR  </p>
@@ -552,8 +552,8 @@ select disk 0
   
   <entry>
     <title><![CDATA[项目发布]]></title>
-    <link href="http://yoursite.com/2013/10/09/2013-10-09-xiangmufabu/"/>
-    <id>http://yoursite.com/2013/10/09/2013-10-09-xiangmufabu/</id>
+    <link href="/2013/10/09/2013-10-09-xiangmufabu/"/>
+    <id>/2013/10/09/2013-10-09-xiangmufabu/</id>
     <published>2013-10-09T01:40:00.000Z</published>
     <updated>2014-07-06T13:38:37.000Z</updated>
     <content type="html"><![CDATA[<ol>
@@ -670,8 +670,8 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
   
   <entry>
     <title><![CDATA[找数字分析（出现一次的数字）]]></title>
-    <link href="http://yoursite.com/2013/10/07/2013-10-07-zhaoshuzi/"/>
-    <id>http://yoursite.com/2013/10/07/2013-10-07-zhaoshuzi/</id>
+    <link href="/2013/10/07/2013-10-07-zhaoshuzi/"/>
+    <id>/2013/10/07/2013-10-07-zhaoshuzi/</id>
     <published>2013-10-07T15:15:00.000Z</published>
     <updated>2014-07-06T13:39:26.000Z</updated>
     <content type="html"><![CDATA[<h2 id="原题">原题</h2>
@@ -752,14 +752,14 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
 </pre></td></tr></table></figure>]]></content>
     
     
-      <category term="面试题" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+      <category term="面试题" scheme="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
   </entry>
   
   <entry>
     <title><![CDATA[括号匹配]]></title>
-    <link href="http://yoursite.com/2013/10/07/2013-10-07-kuohaopipei/"/>
-    <id>http://yoursite.com/2013/10/07/2013-10-07-kuohaopipei/</id>
+    <link href="/2013/10/07/2013-10-07-kuohaopipei/"/>
+    <id>/2013/10/07/2013-10-07-kuohaopipei/</id>
     <published>2013-10-07T08:36:00.000Z</published>
     <updated>2013-10-12T12:44:32.000Z</updated>
     <content type="html"><![CDATA[<h2 id="原题">原题</h2>
@@ -848,7 +848,7 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要求必须用递归写，整个实现不可以出现一个循环语句.</p>
 ]]></summary>
     
-      <category term="面试题" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+      <category term="面试题" scheme="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     
   </entry>
   
