@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>项目发布 | Hexo</title>
+    <title>项目发布 | Zhang Teng&#39;Bolg</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
-    <meta name="author" content="John Doe">
+    <meta name="author" content="Zhang Teng">
     
     <meta name="description" content="去发布目录下建立相应的文件夹  
 更改发布脚本  
@@ -28,10 +28,12 @@
 14
 15
 server {
-	listen       192.168">
+truelisten       192.">
     
     
     
+    
+    <link rel="alternative" href="/atom.xml" title="Zhang Teng&#39;Bolg" type="application/atom+xml">
     
     
     <link rel="icon" href="/img/favicon.ico">
@@ -48,11 +50,11 @@ server {
       <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="Hexo" title="Hexo"/></a>
+				<a href="/"><img src="/img/logo.svg" alt="Zhang Teng&#39;Bolg" title="Zhang Teng&#39;Bolg"/></a>
 			</div>
 			
 			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Hexo">Hexo</a></h1>
+				<h1 class="site-name"><a href="/" title="Zhang Teng&#39;Bolg">Zhang Teng&#39;Bolg</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
 			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
@@ -65,9 +67,7 @@ server {
 					
 						<li><a href="/archives">Archives</a></li>
 					
-						<li><a href="/testpage">testpage</a></li>
-					
-						<li><a href="/tags">tags</a></li>
+						<li><a href="/testpage">About me</a></li>
 					
 					<li>
 					
@@ -93,7 +93,7 @@ server {
   </h1>
   <p class="article-author">By
     
-      <a href="http://yoursite.com" title="John Doe">John Doe</a>
+      <a href="http://yoursite.com" title="Zhang Teng">Zhang Teng</a>
     </p>
   <p class="article-time">
     <time datetime="2013-10-09T01:40:00.000Z" itemprop="datePublished">Oct 9 2013</time>
@@ -129,19 +129,19 @@ server {
 14
 15
 </pre></td><td class="code"><pre>server {
-	listen       192.168.1.xx:80;
-	server_name  xxx.net;
-	charset utf-8;
+truelisten       <span class="number">192.168</span><span class="number">.1</span>.xx:<span class="number">80</span>;
+trueserver_name  xxx.net;
+truecharset utf-<span class="number">8</span>;
 
-	location / {
-		root   /leave/xx/deploy/xx;
+truelocation / {
+truetrueroot   /leave/xx/deploy/xx;
 
-		autoindex on;
-		autoindex_exact_size off;
-		autoindex_localtime on;
+truetrueautoindex <span class="function_start"><span class="keyword">on</span></span>;
+truetrueautoindex_exact_size off;
+truetrueautoindex_localtime <span class="function_start"><span class="keyword">on</span></span>;
 
-		index  index.html;
-	}
+truetrueindex  index.html;
+<span class="constant">true</span>}
 }
 </pre></td></tr></table></figure><br> #ps:xx根据实际情况修改<br>4.2. java web网站<br>(1)修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
@@ -168,35 +168,35 @@ server {
 23
 24
 </pre></td><td class="code"><pre>server {
-	listen       192.168.1.x:80;
-	server_name  xxx.net;
-	charset utf-8;
+truelisten       <span class="number">192.168</span><span class="number">.1</span><span class="built_in">.</span>x:<span class="number">80</span>;
+trueserver_name  xxx<span class="built_in">.</span>net;
+truecharset utf<span class="subst">-</span><span class="number">8</span>;
 
-	location / {
-		proxy_set_header   Host             $host;
-		proxy_set_header   X-Real-IP        $remote_addr;
-		proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
-		client_max_body_size       1024m;
-		client_body_buffer_size    128k;
-		client_body_temp_path      data/client_body_temp;
-		proxy_connect_timeout      90;
-		proxy_send_timeout         90;
-		proxy_read_timeout         90;
-		proxy_buffer_size          4k;
-		proxy_buffers              4 32k;
-		proxy_busy_buffers_size    64k;
-		proxy_temp_file_write_size 64k;
-		proxy_temp_path            data/proxy_temp;
-		proxy_pass http://127.0.0.1:8080;
-	}
+truelocation <span class="subst">/</span> {
+truetrueproxy_set_header   Host             <span class="variable">$host</span>;
+truetrueproxy_set_header   X<span class="attribute">-Real</span><span class="attribute">-IP</span>        <span class="variable">$remote_addr</span>;
+truetrueproxy_set_header  X<span class="attribute">-Forwarded</span><span class="attribute">-For</span>  <span class="variable">$proxy_add_x_forwarded_for</span>;
+truetrueclient_max_body_size       <span class="number">1024</span>m;
+truetrueclient_body_buffer_size    <span class="number">128</span>k;
+truetrueclient_body_temp_path      <span class="built_in">data</span>/client_body_temp;
+truetrueproxy_connect_timeout      <span class="number">90</span>;
+truetrueproxy_send_timeout         <span class="number">90</span>;
+truetrueproxy_read_timeout         <span class="number">90</span>;
+truetrueproxy_buffer_size          <span class="number">4</span>k;
+truetrueproxy_buffers              <span class="number">4</span> <span class="number">32</span>k;
+truetrueproxy_busy_buffers_size    <span class="number">64</span>k;
+truetrueproxy_temp_file_write_size <span class="number">64</span>k;
+truetrueproxy_temp_path            <span class="built_in">data</span>/proxy_temp;
+truetrueproxy_pass http:<span class="comment">//127.0.0.1:8080;</span>
+<span class="literal">true</span>}
 }
-<span class="comment">#ps:xx根据实际情况修改</span>
+<span class="variable">#ps</span>:xx根据实际情况修改
 </pre></td></tr></table></figure><br>(2)修改tomcat配置文件server.xml<br>加上如下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">Host</span> <span class="attribute">name</span>=<span class="value">"xxx.net"</span>  <span class="attribute">appBase</span>=<span class="value">"webapps"</span> <span class="attribute">unpackWARs</span>=<span class="value">"true"</span> <span class="attribute">autoDeploy</span>=<span class="value">"true"</span>&gt;</span>
-	<span class="tag">&lt;<span class="title">Context</span> <span class="attribute">path</span>=<span class="value">""</span> <span class="attribute">docBase</span>=<span class="value">"/xxx/deploy/xxx"</span> <span class="attribute">debug</span>=<span class="value">"0"</span> <span class="attribute">reloadable</span>=<span class="value">"true"</span> <span class="attribute">crossContext</span>=<span class="value">"true"</span> /&gt;</span>
+true<span class="tag">&lt;<span class="title">Context</span> <span class="attribute">path</span>=<span class="value">""</span> <span class="attribute">docBase</span>=<span class="value">"/xxx/deploy/xxx"</span> <span class="attribute">debug</span>=<span class="value">"0"</span> <span class="attribute">reloadable</span>=<span class="value">"true"</span> <span class="attribute">crossContext</span>=<span class="value">"true"</span> /&gt;</span>
 <span class="tag">&lt;/<span class="title">Host</span>&gt;</span>
 #ps:xx根据实际情况修改
 </pre></td></tr></table></figure></li>
@@ -223,7 +223,7 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2013/10/09/2013-10-09-xiangmufabu/" data-title="项目发布 | Hexo" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2013/10/09/2013-10-09-xiangmufabu/" data-title="项目发布 | Zhang Teng&#39;Bolg" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -268,6 +268,10 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
   
 <div class="categorieslist">
 	<p class="asidetitle">Categories</p>
@@ -288,10 +292,24 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
 
 
   
-
-  <div class="rsspart">
-	<a href="null" target="_blank" title="rss">RSS</a>
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
+		
+		</ul>
 </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">Tag Cloud</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/java/" style="font-size: NaNpx;">java</a>
+    </div>
+  </div>
+
 
   <div class="linkslist">
   <p class="asidetitle">Links</p>
@@ -300,8 +318,6 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
       <li><a href="http://zespia.tw/hexo" target="_blank" title="Hexo">Hexo</a></li>
     </ul>
 </div>
-
-  
 
 </aside>
 </div>
@@ -327,7 +343,7 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
 	</div>
 		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
 		
-		<a href="http://yoursite.com" target="_blank" title="John Doe">John Doe</a>
+		<a href="http://yoursite.com" target="_blank" title="Zhang Teng">Zhang Teng</a>
 		
 		</p>
 </div>

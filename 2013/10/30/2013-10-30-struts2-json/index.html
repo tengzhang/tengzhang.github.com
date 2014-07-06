@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>structs2返回json | Hexo</title>
+    <title>structs2返回json | Zhang Teng&#39;Bolg</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
-    <meta name="author" content="John Doe">
+    <meta name="author" content="Zhang Teng">
     
     <meta name="description" content="structs2返回本身支持返回json，只需要配置即可，我们也可以自己把json串写入servlet输出流中。1.structs2本身对json的支持在action中对需要返回的值进行设置，实体、java自带类型都可以。如：
 1
@@ -24,6 +24,8 @@ private User user;">
     
     
     
+    <link rel="alternative" href="/atom.xml" title="Zhang Teng&#39;Bolg" type="application/atom+xml">
+    
     
     <link rel="icon" href="/img/favicon.ico">
     
@@ -39,11 +41,11 @@ private User user;">
       <div>
 		
 			<div id="imglogo">
-				<a href="/"><img src="/img/logo.svg" alt="Hexo" title="Hexo"/></a>
+				<a href="/"><img src="/img/logo.svg" alt="Zhang Teng&#39;Bolg" title="Zhang Teng&#39;Bolg"/></a>
 			</div>
 			
 			<div id="textlogo">
-				<h1 class="site-name"><a href="/" title="Hexo">Hexo</a></h1>
+				<h1 class="site-name"><a href="/" title="Zhang Teng&#39;Bolg">Zhang Teng&#39;Bolg</a></h1>
 				<h2 class="blog-motto"></h2>
 			</div>
 			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
@@ -56,9 +58,7 @@ private User user;">
 					
 						<li><a href="/archives">Archives</a></li>
 					
-						<li><a href="/testpage">testpage</a></li>
-					
-						<li><a href="/tags">tags</a></li>
+						<li><a href="/testpage">About me</a></li>
 					
 					<li>
 					
@@ -84,7 +84,7 @@ private User user;">
   </h1>
   <p class="article-author">By
     
-      <a href="http://yoursite.com" title="John Doe">John Doe</a>
+      <a href="http://yoursite.com" title="Zhang Teng">Zhang Teng</a>
     </p>
   <p class="article-time">
     <time datetime="2013-10-30T01:28:00.000Z" itemprop="datePublished">Oct 30 2013</time>
@@ -163,21 +163,21 @@ private User user;">
     PrintWriter out = <span class="keyword">null</span>;
     <span class="keyword">try</span> {
         out = response.getWriter();
-	User user = <span class="keyword">new</span> User();
-	user.setUsername(<span class="string">"iris"</span>);
-	user.setPassword(<span class="string">"iris"</span>);
-	JSONObject jsonObject = JSONObject.fromObject(user);
-	out.print(jsonObject.toString());
-	out.flush();
+trueUser user = <span class="keyword">new</span> User();
+trueuser.setUsername(<span class="string">"iris"</span>);
+trueuser.setPassword(<span class="string">"iris"</span>);
+trueJSONObject jsonObject = JSONObject.fromObject(user);
+trueout.print(jsonObject.toString());
+trueout.flush();
     } <span class="keyword">catch</span> (IOException e) {
-	e.printStackTrace();
+truee.printStackTrace();
     } <span class="keyword">finally</span> {
-	<span class="keyword">if</span>(out != <span class="keyword">null</span>) {
-	    <span class="keyword">try</span> {
+trueif(out != <span class="keyword">null</span>) {
+<span class="keyword">true</span>    <span class="keyword">try</span> {
     	        out.close();
     	    } <span class="keyword">catch</span> (Exception e) {
-	        e.printStackTrace();
-	    }
+<span class="keyword">true</span>        e.printStackTrace();
+<span class="keyword">true</span>    }
         }
     }
 }
@@ -191,7 +191,7 @@ private User user;">
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2013/10/30/2013-10-30-struts2-json/" data-title="structs2返回json | Hexo" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2013/10/30/2013-10-30-struts2-json/" data-title="structs2返回json | Zhang Teng&#39;Bolg" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -236,6 +236,10 @@ private User user;">
 <div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
 <aside class="clearfix">
 
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
   
 <div class="categorieslist">
 	<p class="asidetitle">Categories</p>
@@ -256,10 +260,24 @@ private User user;">
 
 
   
-
-  <div class="rsspart">
-	<a href="null" target="_blank" title="rss">RSS</a>
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
+		
+		</ul>
 </div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">Tag Cloud</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/java/" style="font-size: NaNpx;">java</a>
+    </div>
+  </div>
+
 
   <div class="linkslist">
   <p class="asidetitle">Links</p>
@@ -268,8 +286,6 @@ private User user;">
       <li><a href="http://zespia.tw/hexo" target="_blank" title="Hexo">Hexo</a></li>
     </ul>
 </div>
-
-  
 
 </aside>
 </div>
@@ -295,7 +311,7 @@ private User user;">
 	</div>
 		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
 		
-		<a href="http://yoursite.com" target="_blank" title="John Doe">John Doe</a>
+		<a href="http://yoursite.com" target="_blank" title="Zhang Teng">Zhang Teng</a>
 		
 		</p>
 </div>

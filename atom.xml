@@ -1,0 +1,830 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[Zhang Teng'Bolg]]></title>
+  
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2014-07-06T12:56:33.535Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name><![CDATA[Zhang Teng]]></name>
+    
+  </author>
+  
+  <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[deploy test]]></title>
+    <link href="http://yoursite.com/2014/07/06/deploy-test/"/>
+    <id>http://yoursite.com/2014/07/06/deploy-test/</id>
+    <published>2014-07-06T10:43:09.000Z</published>
+    <updated>2014-07-06T10:54:35.000Z</updated>
+    <content type="html"><![CDATA[<p>deploy test</p>
+]]></content>
+    
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[postTest]]></title>
+    <link href="http://yoursite.com/2014/07/06/postTest/"/>
+    <id>http://yoursite.com/2014/07/06/postTest/</id>
+    <published>2014-07-06T09:16:14.000Z</published>
+    <updated>2014-07-06T09:17:15.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="markdownTest">markdownTest</h3>
+<figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> {</span>
+truepublic <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
+truetruesystem.out.println(<span class="string">"Hello World"</span>!);
+<span class="keyword">true</span>}
+}
+</pre></td></tr></table></figure>]]></content>
+    
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <link href="http://yoursite.com/2014/07/06/hello-world/"/>
+    <id>http://yoursite.com/2014/07/06/hello-world/</id>
+    <published>2014-07-06T08:43:59.000Z</published>
+    <updated>2014-07-06T08:54:23.000Z</updated>
+    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/tommy351/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2>
+<h3 id="Create_a_new_post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ hexo new <span class="string">"My New Post"</span>
+</pre></td></tr></table></figure>
+
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ hexo server
+</pre></td></tr></table></figure>
+
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ hexo generate
+</pre></td></tr></table></figure>
+
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ hexo deploy
+</pre></td></tr></table></figure>
+
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+]]></content>
+    
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[jquery使用笔记]]></title>
+    <link href="http://yoursite.com/2013/11/01/2013-11-01-jquery-study/"/>
+    <id>http://yoursite.com/2013/11/01/2013-11-01-jquery-study/</id>
+    <published>2013-11-01T02:43:00.000Z</published>
+    <updated>2013-12-13T15:06:37.000Z</updated>
+    <content type="html"><![CDATA[<ol>
+<li><p>ajax请求，注意最后一个值的地方没有逗号</p>
+<p> $.ajax({  </p>
+<pre><code> type: <span class="string">"POST"</span>,  
+ url: <span class="string">"mystructs/hello_jsonTest.action"</span>,  
+ data: {  
+     number: $(<span class="string">"#number"</span>).val(),  
+     userId: $(<span class="string">'#userId'</span>).val()  
+ },
+ dataType: <span class="string">"text"</span>,  <span class="comment">//ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）</span>
+ success: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
+     <span class="keyword">var</span> res = $.parseJSON(json);
+     alert(res.result);
+ },
+ error: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
+     alert(json);
+ }
+</code></pre><p> });</p>
+</li>
+<li><p>jquery改变值</p>
+<p> $(‘#id’).val(‘value’);<br> $(‘#id’).html(‘value’);</p>
+</li>
+<li><p>jquery获取radio中被选中的那个元素</p>
+<p> var val = $(‘input:radio[name=”ra”]:checked’).val();<br> if(val != null) {</p>
+<pre><code> alert(<span class="keyword">val</span>);
+</code></pre><p> } else {<br> }<br>判读radio是否被选中</p>
+<p> $(‘input:radio[name=”ra”]’).each(function() {</p>
+<pre><code> <span class="comment">//alert($(this).val());</span>
+ <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) {
+     alert($(<span class="keyword">this</span>).val());
+ }
+</code></pre><p> });</p>
+</li>
+<li><p>获取选中的checkbox</p>
+<p> $(‘input[name=”chk”]:checked’).each(function(){</p>
+<pre><code> alert($(<span class="keyword">this</span>).val());
+</code></pre><p> });<br>判读checkbox是否被选中</p>
+<p> $(‘input:checkbox[name=”chk”]’).each(function() {</p>
+<pre><code> <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) {
+     alert($(<span class="keyword">this</span>).val());
+ }
+</code></pre><p> });</p>
+</li>
+</ol>
+]]></content>
+    
+    
+      <category term="jquery" scheme="http://yoursite.com/categories/jquery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[structs2返回json]]></title>
+    <link href="http://yoursite.com/2013/10/30/2013-10-30-struts2-json/"/>
+    <id>http://yoursite.com/2013/10/30/2013-10-30-struts2-json/</id>
+    <published>2013-10-30T01:28:00.000Z</published>
+    <updated>2013-10-31T09:31:00.000Z</updated>
+    <content type="html"><![CDATA[<p>structs2返回本身支持返回json，只需要配置即可，我们也可以自己把json串写入servlet输出流中。<br>1.structs2本身对json的支持<br>在action中对需要返回的值进行设置，实体、java自带类型都可以。<br>如：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre><span class="keyword">private</span> User user;
+<span class="keyword">private</span> result result;
+
+<span class="comment">/*   setter and getter   */</span>
+<span class="keyword">public</span> String <span class="title">json</span>() {
+    user.setUserName(<span class="string">"iris"</span>);
+    result = <span class="string">"success"</span>;
+    <span class="keyword">return</span> SUCCESS;
+}
+</pre></td></tr></table></figure><br>在配置文件中配置result的type为json</p>
+<p><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>&lt;<span class="constant">result</span>-types&gt;
+    &lt;<span class="constant">result</span>-type <span class="property">name</span>=<span class="string">"json"</span> <span class="type">class</span>=<span class="string">"org.apache.struts2.json.JSONResult"</span>/&gt;
+&lt;/<span class="constant">result</span>-types&gt;
+
+&lt;action <span class="property">name</span>=<span class="string">"hello_*"</span> <span class="type">class</span>=<span class="string">"action.FirstAction"</span> method=<span class="string">"{1}"</span>&gt;
+    &lt;<span class="constant">result</span> <span class="property">name</span>=<span class="string">"success"</span> type=<span class="string">"json"</span>&gt;&lt;/<span class="constant">result</span>&gt;
+&lt;/action&gt;
+</pre></td></tr></table></figure><br>注意result-types那段一定要加上，不加那个的就必须让action所在的package继承<code>json-default</code><br>2.把json数据写入servlet输出流中<br>在action中讲json数据直接写入servlet输出流中，action中的方法返回void<br>如：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">newjsontest</span>() {
+    HttpServletResponse response = ServletActionContext.getResponse();
+    PrintWriter out = <span class="keyword">null</span>;
+    <span class="keyword">try</span> {
+        out = response.getWriter();
+trueUser user = <span class="keyword">new</span> User();
+trueuser.setUsername(<span class="string">"iris"</span>);
+trueuser.setPassword(<span class="string">"iris"</span>);
+trueJSONObject jsonObject = JSONObject.fromObject(user);
+trueout.print(jsonObject.toString());
+trueout.flush();
+    } <span class="keyword">catch</span> (IOException e) {
+truee.printStackTrace();
+    } <span class="keyword">finally</span> {
+trueif(out != <span class="keyword">null</span>) {
+<span class="keyword">true</span>    <span class="keyword">try</span> {
+    	        out.close();
+    	    } <span class="keyword">catch</span> (Exception e) {
+<span class="keyword">true</span>        e.printStackTrace();
+<span class="keyword">true</span>    }
+        }
+    }
+}
+</pre></td></tr></table></figure><br>这里用到了<code>net.sf.json.JSONObject</code>这个包，将实体直接转换成json，也可以不用这个包，直接手动拼json串，然后<code>out.write(jsonStr)</code>。</p>
+]]></content>
+    
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[sublime利用snippet生成代码模版]]></title>
+    <link href="http://yoursite.com/2013/10/23/2013-10-23-sublime-snippet/"/>
+    <id>http://yoursite.com/2013/10/23/2013-10-23-sublime-snippet/</id>
+    <published>2013-10-23T06:20:00.000Z</published>
+    <updated>2013-11-01T03:04:38.000Z</updated>
+    <content type="html"><![CDATA[<p><code>tools-&gt;New Snippet</code>新建一个snippet，保存为**.sublime-snippet。<br>内容如下：  </p>
+<a id="more"></a>
+
+<p><figure class="highlight html"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">snippet</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">content</span>&gt;</span>
+    <span class="cdata">&lt;![CDATA[
+&lt;!DOCTYPE HTML&gt; 
+&lt;html&gt; 
+&lt;head&gt; 
+    &lt;meta charset="utf-8"&gt; 
+    &lt;title&gt;${1}&lt;/title&gt; 
+&lt;/head&gt;
+&lt;body&gt;
+    ${1}
+&lt;/body&gt;
+&lt;/html&gt;
+    ]]&gt;</span>
+    <span class="tag">&lt;/<span class="title">content</span>&gt;</span>
+    <span class="comment">&lt;!-- Optional: Set a tabTrigger to define how to trigger the snippet --&gt;</span>
+    <span class="tag">&lt;<span class="title">tabTrigger</span>&gt;</span>myhtml<span class="tag">&lt;/<span class="title">tabTrigger</span>&gt;</span>
+    <span class="comment">&lt;!-- Optional: Set a scope to limit where the snippet will trigger --&gt;</span>
+    <span class="comment">&lt;!-- &lt;scope&gt;source.python&lt;/scope&gt; --&gt;</span>
+<span class="tag">&lt;/<span class="title">snippet</span>&gt;</span>sublime-snippet
+</pre></td></tr></table></figure><br>重启sublime，新建文件输入myhtml，然后按<code>tab</code>。</p>
+]]></content>
+    <summary type="html"><![CDATA[<p><code>tools-&gt;New Snippet</code>新建一个snippet，保存为**.sublime-snippet。<br>内容如下：  </p>
+]]></summary>
+    
+      <category term="sublime" scheme="http://yoursite.com/categories/sublime/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[struts2文件上传]]></title>
+    <link href="http://yoursite.com/2013/10/23/2013-10-23-struts-uploadfile/"/>
+    <id>http://yoursite.com/2013/10/23/2013-10-23-struts-uploadfile/</id>
+    <published>2013-10-23T01:02:00.000Z</published>
+    <updated>2013-10-23T01:02:56.000Z</updated>
+    <content type="html"><![CDATA[<p>注意保持action中File的变量和jsp中input的name名相同。<br>action中定义变量：</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre></td><td class="code"><pre><span class="keyword">package</span> action;
+<span class="keyword">import</span> java.io.File;
+<span class="keyword">import</span> java.io.FileInputStream;
+<span class="keyword">import</span> java.io.FileOutputStream;
+<span class="keyword">import</span> com.opensymphony.xwork2.ActionSupport;
+<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UploadFileAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> {</span>
+    
+    <span class="comment">// 上传的文件</span>
+    <span class="keyword">private</span> File upload;
+    
+    <span class="comment">// 上传的文件名</span>
+    <span class="keyword">private</span> String uploadFileName;
+    
+    <span class="comment">// 上传的文件类型</span>
+    <span class="keyword">private</span> String uploadContentType;
+    
+    <span class="keyword">public</span> String <span class="title">execute</span>() <span class="keyword">throws</span> Exception {
+        FileInputStream fis = <span class="keyword">new</span> FileInputStream(upload);
+        File file = <span class="keyword">new</span> File(<span class="string">"E:/dsideal/upload/"</span> +  uploadFileName);
+        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(file);
+        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8912</span>];
+        <span class="keyword">int</span> count = <span class="number">0</span>;
+        <span class="keyword">while</span>((count = fis.read(buffer)) != -<span class="number">1</span>) {
+            fos.write(buffer, <span class="number">0</span>, count);
+        }
+        fos.close();
+        fis.close();
+        <span class="keyword">return</span> SUCCESS;
+    }
+    
+    <span class="comment">/* set、get method */</span>
+}
+</pre></td></tr></table></figure><br>jsp页面:</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>&lt;s:form action="mystruts/uploadFile.action" enctype="multipart/form-data"&gt;
+    &lt;s:file name="upload" label="输入要上传的文件名字" /&gt;
+    &lt;s:submit value="上传" /&gt;
+    &lt;/s:form&gt;
+&lt;/body&gt;
+</pre></td></tr></table></figure><br>使用了struts标签，也可以直接使用html表单标签form、input</p>
+]]></content>
+    
+    
+      <category term="struts" scheme="http://yoursite.com/categories/struts/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[JSON和bean互转]]></title>
+    <link href="http://yoursite.com/2013/10/21/2013-10-21-json-to-bean/"/>
+    <id>http://yoursite.com/2013/10/21/2013-10-21-json-to-bean/</id>
+    <published>2013-10-21T01:32:00.000Z</published>
+    <updated>2013-12-17T02:45:16.000Z</updated>
+    <content type="html"><![CDATA[<p>需要用到的类：</p>
+<pre><code>net<span class="preprocessor">.sf</span><span class="preprocessor">.json</span><span class="preprocessor">.JSONObject</span>  
+</code></pre><p>在包<code>json-lib-2.3-jdk15</code>中<br>maven依赖：</p>
+<pre><code>    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>net.sf.json-lib<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>json-lib<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">classifier</span>&gt;</span>jdk15<span class="tag">&lt;/<span class="title">classifier</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</code></pre><p>将bean转换成JSONObject，调用<code>JSONObject.fromObject(object)</code><br>如：</p>
+<pre><code><span class="attribute">JSONObject jsonObject </span>=<span class="string"> JSONObject.fromObject(user);</span>
+</code></pre><p>将JSONObject转换成bean，调用<code>JSONObject.toBean(jsonObject, beanClass)</code><br>如：</p>
+<p>User user = (User) JSONObject.toBean(jsonObject, User.class);</p>
+]]></content>
+    
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[删除Java集合中元素]]></title>
+    <link href="http://yoursite.com/2013/10/13/2013-10-13-remove-elemetns/"/>
+    <id>http://yoursite.com/2013/10/13/2013-10-13-remove-elemetns/</id>
+    <published>2013-10-13T13:42:00.000Z</published>
+    <updated>2013-12-13T14:59:31.000Z</updated>
+    <content type="html"><![CDATA[<p>有时候我们需要删除list中的某个元素，最开始我会这样写：</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> ListTest {
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
+        List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) {
+            numbers.add(i);
+        }
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>; ++i) {
+            <span class="keyword">if</span>(numbers.<span class="keyword">get</span>(i) == <span class="number">5</span>) {
+                numbers.remove(i);
+            }
+        }
+
+        System.<span class="keyword">out</span>.println(numbers);
+    }
+}
+</code></pre><p>这样写之后，会报错。因为list在循环中的时候是不可以删除它的元素的。<br>对上面的代码进行一点下改进就可以删除list中的元素了，就是在<code>remove</code>之后加个<code>break</code>就可以了。</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> ListTest {
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
+        List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) {
+            numbers.add(i);
+        }
+
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>; ++i) {
+            <span class="keyword">if</span>(numbers.<span class="keyword">get</span>(i) == <span class="number">5</span>) {
+                numbers.remove(i);
+                <span class="keyword">break</span>;
+            }
+        }
+
+        System.<span class="keyword">out</span>.println(numbers);
+    }
+}
+</code></pre><p>上面的方法适用于只删除一个元素，可有的时候我们需要删除多个元素，上面的方法虽可行，但需要为每个需要删除的元素写个for循环，这样效率太低了。<br>使用<code>Iterator</code>可以完成上面的操作。</p>
+<pre><code><span class="keyword">public</span> <span class="keyword">class</span> ListTest {
+    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
+        List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();
+        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) {
+            numbers.add(i);
+        }
+
+        <span class="keyword">for</span>(Iterator it=numbers.iterator() ;it.hasNext(); ) {
+            Integer tmp = (Integer) it.next();
+            <span class="keyword">if</span>(tmp == <span class="number">5</span>) {
+                it.remove();
+            }
+            <span class="keyword">if</span>(tmp == <span class="number">7</span>) {
+                it.remove();
+            }
+        }
+
+        System.<span class="keyword">out</span>.println(numbers);
+    }
+}
+</code></pre><p>上面的方法虽都可以删除元素，但都需要for循环，效率不高，但没有找到更好的方法。感觉java的Iterator没有c++的那么只能，用起来没有c++顺手。</p>
+<blockquote>
+<p>对Java的基础知识了解越多，代码就会写得越简洁</p>
+</blockquote>
+]]></content>
+    
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[命令行修复MBR]]></title>
+    <link href="http://yoursite.com/2013/10/09/2013-10-09-minglinghangmbr/"/>
+    <id>http://yoursite.com/2013/10/09/2013-10-09-minglinghangmbr/</id>
+    <published>2013-10-09T08:22:00.000Z</published>
+    <updated>2013-12-13T14:55:29.000Z</updated>
+    <content type="html"><![CDATA[<p>命令行修复MBR  </p>
+<pre><code><span class="bullet">1. </span>shift+F10打开命令行
+<span class="bullet">2. </span>输入：diskpart
+<span class="bullet">3. </span>输入：list disk 查看磁盘信息
+<span class="bullet">4. </span>选择你要操作的磁盘：
+select disk 0
+<span class="bullet">5. </span>输入：clean,清除分区
+<span class="bullet">6. </span>输入：convert mbr 转换为MBR分区
+<span class="bullet">7. </span>退出，重新分区OK
+</code></pre><p>注意：在做以上操作的时候先备份文件</p>
+]]></content>
+    
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[项目发布]]></title>
+    <link href="http://yoursite.com/2013/10/09/2013-10-09-xiangmufabu/"/>
+    <id>http://yoursite.com/2013/10/09/2013-10-09-xiangmufabu/</id>
+    <published>2013-10-09T01:40:00.000Z</published>
+    <updated>2014-07-06T10:40:15.000Z</updated>
+    <content type="html"><![CDATA[<ol>
+<li>去发布目录下建立相应的文件夹  </li>
+<li>更改发布脚本  </li>
+<li>执行脚本  </li>
+<li>接下来就分两种情况了<br>4.1.静态网站<br>修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：  <figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre>server {
+truelisten       <span class="number">192.168</span><span class="number">.1</span>.xx:<span class="number">80</span>;
+trueserver_name  xxx.net;
+truecharset utf-<span class="number">8</span>;
+
+truelocation / {
+truetrueroot   /leave/xx/deploy/xx;
+
+truetrueautoindex <span class="function_start"><span class="keyword">on</span></span>;
+truetrueautoindex_exact_size off;
+truetrueautoindex_localtime <span class="function_start"><span class="keyword">on</span></span>;
+
+truetrueindex  index.html;
+<span class="constant">true</span>}
+}
+</pre></td></tr></table></figure><br> #ps:xx根据实际情况修改<br>4.2. java web网站<br>(1)修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="code"><pre>server {
+truelisten       <span class="number">192.168</span><span class="number">.1</span><span class="built_in">.</span>x:<span class="number">80</span>;
+trueserver_name  xxx<span class="built_in">.</span>net;
+truecharset utf<span class="subst">-</span><span class="number">8</span>;
+
+truelocation <span class="subst">/</span> {
+truetrueproxy_set_header   Host             <span class="variable">$host</span>;
+truetrueproxy_set_header   X<span class="attribute">-Real</span><span class="attribute">-IP</span>        <span class="variable">$remote_addr</span>;
+truetrueproxy_set_header  X<span class="attribute">-Forwarded</span><span class="attribute">-For</span>  <span class="variable">$proxy_add_x_forwarded_for</span>;
+truetrueclient_max_body_size       <span class="number">1024</span>m;
+truetrueclient_body_buffer_size    <span class="number">128</span>k;
+truetrueclient_body_temp_path      <span class="built_in">data</span>/client_body_temp;
+truetrueproxy_connect_timeout      <span class="number">90</span>;
+truetrueproxy_send_timeout         <span class="number">90</span>;
+truetrueproxy_read_timeout         <span class="number">90</span>;
+truetrueproxy_buffer_size          <span class="number">4</span>k;
+truetrueproxy_buffers              <span class="number">4</span> <span class="number">32</span>k;
+truetrueproxy_busy_buffers_size    <span class="number">64</span>k;
+truetrueproxy_temp_file_write_size <span class="number">64</span>k;
+truetrueproxy_temp_path            <span class="built_in">data</span>/proxy_temp;
+truetrueproxy_pass http:<span class="comment">//127.0.0.1:8080;</span>
+<span class="literal">true</span>}
+}
+<span class="variable">#ps</span>:xx根据实际情况修改
+</pre></td></tr></table></figure><br>(2)修改tomcat配置文件server.xml<br>加上如下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">Host</span> <span class="attribute">name</span>=<span class="value">"xxx.net"</span>  <span class="attribute">appBase</span>=<span class="value">"webapps"</span> <span class="attribute">unpackWARs</span>=<span class="value">"true"</span> <span class="attribute">autoDeploy</span>=<span class="value">"true"</span>&gt;</span>
+true<span class="tag">&lt;<span class="title">Context</span> <span class="attribute">path</span>=<span class="value">""</span> <span class="attribute">docBase</span>=<span class="value">"/xxx/deploy/xxx"</span> <span class="attribute">debug</span>=<span class="value">"0"</span> <span class="attribute">reloadable</span>=<span class="value">"true"</span> <span class="attribute">crossContext</span>=<span class="value">"true"</span> /&gt;</span>
+<span class="tag">&lt;/<span class="title">Host</span>&gt;</span>
+#ps:xx根据实际情况修改
+</pre></td></tr></table></figure></li>
+<li>平滑重启nginx<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>ps <span class="attribute">-aux</span> <span class="subst">|</span> grep nginx
+<span class="comment">// 找到nginx master的pid</span>
+kill <span class="attribute">-HUP</span> pid
+</pre></td></tr></table></figure></li>
+<li>如果是java web，还需重启tomcat</li>
+<li>更改路由<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>system-view
+ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</span><span class="number">.1</span><span class="preprocessor">.xx</span>
+</pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+    
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[找数字分析（出现一次的数字）]]></title>
+    <link href="http://yoursite.com/2013/10/07/2013-10-07-zhaoshuzi/"/>
+    <id>http://yoursite.com/2013/10/07/2013-10-07-zhaoshuzi/</id>
+    <published>2013-10-07T15:15:00.000Z</published>
+    <updated>2014-07-06T09:46:08.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="原题">原题</h2>
+<p>数组A中，除了某一个数字X之外，其他数字都出现了三次，而X出现了一次。请给出最快的方法找到X。</p>
+<h2 id="分析">分析</h2>
+<p>乍一看这个题目，不少同学立马给出了答案：异或。但举个例子，就会发现，异或是行不通的，一般的方法是利用异或的的如下特性：  </p>
+<p>A xor A = 0<br>A xor 0 = A</p>
+<p>但是这个题目中，数字都是奇数个的，直接采用之前类似题目的异或方法，已经不合适了。<br>除此之外，我们还可能想到如下的方法：  </p>
+<p>采用hashmap，时间复杂度O(n)，空间复杂度O(n)  </p>
+<p>对数组A进行排序，然后在遍历一次，时间复杂度O(nlogn)，空间复杂度O(1)  </p>
+<p>是否还有一些效果更好的方法呢？这一类的题目，即使简单的异或不能解决，也可以从二进制位、位操作方面去考虑，总之这样的大方向是不会错的。  </p>
+<p>题目中，如果数组中的元素都是三个三个出现的，那么从二进制表示的角度，每个位上的1加起来，应该可以整除3。如果有一个数x只出现一次，会是什么情况呢？  </p>
+<p>如果某个特定位上的1加起来，可以被3整除，说明对应x的那位是0，因为如果是1，不可能被3整除<br>如果某个特定位上的1加起来，不可以被3整除，说明对应x的那位是1  </p>
+<p>根据上面的描述，我们可以开辟一个大小为32的数组，第0个元素表示，A中所有元素的二进制表示的最低位的和，依次类推。最后，再转换为十进制数即可。这里要说明的是，用一个大小为32的整数数组表示，同样空间是O(1)的。<br>不过这里申请了一个数组的空间，如果这个是不被允许的呢？请大家开动脑筋，我们会在后续的文章中分享。  </p>
+<p>代码：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="code"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;string.h&gt;</span>
+<span class="preprocessor">#include &lt;iostream&gt;</span>
+<span class="preprocessor">#include &lt;string&gt;</span>
+<span class="preprocessor">#include &lt;algorithm&gt;</span>
+<span class="preprocessor">#include &lt;map&gt;</span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="keyword">int</span> a[<span class="number">1000</span>];
+<span class="keyword">int</span> main() {
+    <span class="keyword">int</span> n,i,j,k,cnt,ans;
+    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &n);
+    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; n; ++i) {
+        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &a[i]);
+    }
+    <span class="keyword">long</span> tmp = <span class="number">1</span>;
+    ans = <span class="number">0</span>;
+    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; <span class="number">32</span>; ++i) {
+        cnt = <span class="number">0</span>;
+        <span class="keyword">for</span>(j = <span class="number">0</span>;j &lt; n; ++j) {
+            cnt += a[j] & tmp;
+        }
+        <span class="keyword">if</span>(cnt % <span class="number">3</span> == <span class="number">0</span>) {
+            ans = ans | (<span class="number">0</span>&lt;&lt;i);
+        } <span class="keyword">else</span> {
+            ans = ans | (<span class="number">1</span>&lt;&lt;i);
+        }
+        tmp = tmp &lt;&lt; <span class="number">1</span>;
+    }
+    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>]]></content>
+    
+    
+      <category term="面试题" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[括号匹配]]></title>
+    <link href="http://yoursite.com/2013/10/07/2013-10-07-kuohaopipei/"/>
+    <id>http://yoursite.com/2013/10/07/2013-10-07-kuohaopipei/</id>
+    <published>2013-10-07T08:36:00.000Z</published>
+    <updated>2013-10-12T12:44:32.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="原题">原题</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给定字符串，输出括号是否匹配，例如:  </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.”()” yes；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.”)(“ no；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.”(abcd(e)” no；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.”(a)(b)” yes。  </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要求必须用递归写，整个实现不可以出现一个循环语句.</p>
+<a id="more"></a>
+
+<h2 id="分析">分析</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个题目很多同学都见过了，如果没有后面的条件，会张口就说就来用栈来实现，时间复杂度O(n)，空间复杂度O(n)。这个是很好的一个解答，没有 问题的。但是我们在做面试题，准备面试的过程中，每一个题目都不应该仅仅局限于某一个方法。应该尝试更多的思路，尽管有些思路的时间、空间复杂度并不是很 好，但是可以带来变化，举一反三，这才是真正的收获。  </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个题要求了，只目能使用递归并且不能出现循环语句。这个时候，我们应该如何处理呢？其实告诉了大家递归，就比较好想了：怎么定义好问题和子问题。  </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果字符串中的括号是匹配的，则’(‘的数量和’)’的数量是相等的，反之是不相等的。这样，在递归的过程中，可以保存一个变量，用来记录’(‘的 数量和’)’的数量是否匹配。这样定义递归问题f(p,count)，表示当前字符p之前的字符串中’(‘的数量和’)’的数量的匹配情况，p表示指向当 前字符的指针。初始的时候，f(p, 0)，递归的过程如下：  </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果p为空，则考察count是否为0，如果为0，则匹配；如果不为0，则不匹配；  </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果不为空，则考察当前字符p，如果p=’(‘，则递归调用f(p++, count++);如果p=’)’，则递归调用f(p++, count—)。如果p是其他的字符，并不是’(‘和’)’，则递归调用f(p++, count)，count不变，继续考虑下一次字符。其中需要检查和保证count&gt;=0.  </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实，递归的问题有的时候不是那么好像的，需要大家不断的练习。如果不采用count来记录括号匹配的情况，这个题目的递归也不好想。<br>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+</pre></td><td class="code"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
+<span class="preprocessor">#include &lt;string.h&gt;</span>
+<span class="preprocessor">#include &lt;iostream&gt;</span>
+<span class="preprocessor">#include &lt;string&gt;</span>
+<span class="preprocessor">#include &lt;algorithm&gt;</span>
+<span class="preprocessor">#include &lt;map&gt;</span>
+<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
+<span class="keyword">char</span> s[<span class="number">10000</span>];
+<span class="keyword">bool</span> match(<span class="keyword">char</span> *s,<span class="keyword">int</span> count) {
+    <span class="keyword">if</span>(!*s && count==<span class="number">0</span>)
+        <span class="keyword">return</span> <span class="keyword">true</span>;
+    <span class="keyword">else</span> <span class="keyword">if</span>(!*s && count!=<span class="number">0</span>)
+        <span class="keyword">return</span> <span class="keyword">false</span>;
+    <span class="keyword">if</span>(count &lt; <span class="number">0</span>)
+        <span class="keyword">return</span> <span class="keyword">false</span>;
+    <span class="keyword">if</span>(*s == <span class="string">'('</span>)
+        match(s+<span class="number">1</span>,count+<span class="number">1</span>);
+    <span class="keyword">else</span> <span class="keyword">if</span>(*s == <span class="string">')'</span>)
+        match(s+<span class="number">1</span>,count-<span class="number">1</span>);
+    <span class="keyword">else</span>
+        match(s+<span class="number">1</span>,count);
+}
+<span class="keyword">int</span> main() {
+    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s)) {
+        <span class="keyword">if</span>(match(s,<span class="number">0</span>)) {
+            <span class="built_in">printf</span>(<span class="string">"yes!\n"</span>);
+        }
+        <span class="keyword">else</span> {
+            <span class="built_in">printf</span>(<span class="string">"no!\n"</span>);
+        }
+    }
+    <span class="keyword">return</span> <span class="number">0</span>;
+}
+</pre></td></tr></table></figure>]]></content>
+    <summary type="html"><![CDATA[<h2 id="原题">原题</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给定字符串，输出括号是否匹配，例如:  </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.”()” yes；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.”)(“ no；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.”(abcd(e)” no；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.”(a)(b)” yes。  </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要求必须用递归写，整个实现不可以出现一个循环语句.</p>
+]]></summary>
+    
+      <category term="面试题" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[第一篇博文]]></title>
+    <link href="http://yoursite.com/2013/10/07/2013-10-07-first-blog/"/>
+    <id>http://yoursite.com/2013/10/07/2013-10-07-first-blog/</id>
+    <published>2013-10-07T08:13:00.000Z</published>
+    <updated>2013-10-13T14:18:52.000Z</updated>
+    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个博客的第一篇博文。  </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以前用过wordpress，不过基本没有去维护它，上面也没有东西。这次选择了Octopress，他是基于markdown的，挂在github上，无限流量。最主要的还是喜欢它那句宣传语。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个博客来得不易啊，前前后后折腾了好多。主要还是太菜了，啥也不会。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;搭的时候看了很多网上的教材，都大同小异，开始的时候也不是很细心，不是这出错就是那出错。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后还是看了官网教程，上面说的肯定是对的，虽然是英文，还是能看懂的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以后要学生么东西，最好还是看看官方说明吧，虽说网上好多都和官方说的差不多，但有时候还是会有一些差异的。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个博客来的不易，也希望自己以后能多写点东西，多做点记录。也是对所学东西的总结。</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后，贴上octopress的官网：<a href="http://octopress.org/" target="_blank" rel="external">http://octopress.org/</a></p>
+<blockquote>
+<p>像黑客一样写博客。</p>
+</blockquote>
+]]></content>
+    
+    
+  </entry>
+  
+</feed>
