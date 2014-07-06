@@ -1,0 +1,403 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>项目发布 | Hexo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="John Doe">
+    
+    <meta name="description" content="去发布目录下建立相应的文件夹  
+更改发布脚本  
+执行脚本  
+接下来就分两种情况了4.1.静态网站修改nginx配置文件nginx.conf在最后加上如下代码：  
+ server {
+     listen       192.168.1.xx:80;
+     server_name  xx">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Hexo" title="Hexo"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Hexo">Hexo</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/testpage">testpage</a></li>
+					
+						<li><a href="/tags">tags</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2013/10/09/2013-10-09-xiangmufabu/" title="项目发布" itemprop="url">项目发布</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="John Doe">John Doe</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2013-10-09T01:40:00.000Z" itemprop="datePublished">Oct 9 2013</time>
+    Updated:<time datetime="2013-12-17T02:45:11.000Z" itemprop="dateModified">Dec 17 2013</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ps:xx根据实际情况修改"><span class="toc-number">1.</span> <span class="toc-text">ps:xx根据实际情况修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ps:xx根据实际情况修改-1"><span class="toc-number">2.</span> <span class="toc-text">ps:xx根据实际情况修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ps:xx根据实际情况修改-2"><span class="toc-number">3.</span> <span class="toc-text">ps:xx根据实际情况修改</span></a></li></ol>
+		</div>
+		
+		<ol>
+<li>去发布目录下建立相应的文件夹  </li>
+<li>更改发布脚本  </li>
+<li>执行脚本  </li>
+<li><p>接下来就分两种情况了<br>4.1.静态网站<br>修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：  </p>
+<p> server {</p>
+<pre><code>     listen       <span class="number">192.168</span><span class="number">.1</span>.xx:<span class="number">80</span>;
+     server_name  xxx.net;
+     charset utf-<span class="number">8</span>;
+
+     location / {
+         root   /leave/xx/deploy/xx;
+
+         autoindex <span class="function_start"><span class="keyword">on</span></span>;
+         autoindex_exact_size off;
+         autoindex_localtime <span class="function_start"><span class="keyword">on</span></span>;
+
+         index  index.html;
+     }
+}
+</code></pre><h1 id="ps:xx根据实际情况修改">ps:xx根据实际情况修改</h1>
+<p>4.2. java web网站<br>(1)修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：</p>
+<p> server {</p>
+<pre><code>     listen       <span class="number">192.168</span><span class="number">.1</span><span class="built_in">.</span>x:<span class="number">80</span>;
+     server_name  xxx<span class="built_in">.</span>net;
+     charset utf<span class="subst">-</span><span class="number">8</span>;
+
+     location <span class="subst">/</span> {
+             proxy_set_header   Host             <span class="variable">$host</span>;
+             proxy_set_header   X<span class="attribute">-Real</span><span class="attribute">-IP</span>        <span class="variable">$remote_addr</span>;
+             proxy_set_header  X<span class="attribute">-Forwarded</span><span class="attribute">-For</span>  <span class="variable">$proxy_add_x_forwarded_for</span>;
+             client_max_body_size       <span class="number">1024</span>m;
+             client_body_buffer_size    <span class="number">128</span>k;
+             client_body_temp_path      <span class="built_in">data</span>/client_body_temp;
+             proxy_connect_timeout      <span class="number">90</span>;
+             proxy_send_timeout         <span class="number">90</span>;
+             proxy_read_timeout         <span class="number">90</span>;
+             proxy_buffer_size          <span class="number">4</span>k;
+             proxy_buffers              <span class="number">4</span> <span class="number">32</span>k;
+             proxy_busy_buffers_size    <span class="number">64</span>k;
+             proxy_temp_file_write_size <span class="number">64</span>k;
+             proxy_temp_path            <span class="built_in">data</span>/proxy_temp;
+             proxy_pass http:<span class="comment">//127.0.0.1:8080;</span>
+     }
+}
+</code></pre><h1 id="ps:xx根据实际情况修改-1">ps:xx根据实际情况修改</h1>
+<p>(2)修改tomcat配置文件server.xml<br>加上如下代码：</p>
+<p> <host name="xxx.net" appbase="webapps" unpackwars="true" autodeploy="true"></host></p>
+<pre><code> &lt;Context path=<span class="string">""</span> docBase=<span class="string">"/xxx/deploy/xxx"</span> <span class="built_in">debug</span>=<span class="string">"0"</span> reloadable=<span class="string">"true"</span> crossContext=<span class="string">"true"</span> /&gt;
+</code></pre><p> </p>
+<h1 id="ps:xx根据实际情况修改-2">ps:xx根据实际情况修改</h1>
+</li>
+<li><p>平滑重启nginx</p>
+<p> ps -aux | grep nginx<br> // 找到nginx master的pid<br> kill -HUP pid</p>
+</li>
+<li>如果是java web，还需重启tomcat</li>
+<li>更改路由</li>
+</ol>
+<p>system-view<br>ip host xxx.net 192.168.1.xx</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2013/10/09/2013-10-09-xiangmufabu/" data-title="项目发布 | Hexo" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2013/10/09/2013-10-09-minglinghangmbr/" title="命令行修复MBR">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  命令行修复MBR</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2013/10/07/2013-10-07-zhaoshuzi/"  title="找数字分析（出现一次的数字）">
+ <strong>NEXT:</strong><br/> 
+ <span>找数字分析（出现一次的数字）
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ps:xx根据实际情况修改"><span class="toc-number">1.</span> <span class="toc-text">ps:xx根据实际情况修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ps:xx根据实际情况修改-1"><span class="toc-number">2.</span> <span class="toc-text">ps:xx根据实际情况修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ps:xx根据实际情况修改-2"><span class="toc-number">3.</span> <span class="toc-text">ps:xx根据实际情况修改</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/java/" title="java">java<sup>2</sup></a></li>
+		
+			<li><a href="/categories/jquery/" title="jquery">jquery<sup>1</sup></a></li>
+		
+			<li><a href="/categories/struts/" title="struts">struts<sup>1</sup></a></li>
+		
+			<li><a href="/categories/sublime/" title="sublime">sublime<sup>1</sup></a></li>
+		
+			<li><a href="/categories/面试题/" title="面试题">面试题<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://zespia.tw/hexo" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+  
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m zhangteng <br/>
+			This is my blog</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="http://yoursite.com" target="_blank" title="John Doe">John Doe</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+  </body>
+</html>
