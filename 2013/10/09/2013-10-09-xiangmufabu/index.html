@@ -12,10 +12,23 @@
     <meta name="description" content="去发布目录下建立相应的文件夹  
 更改发布脚本  
 执行脚本  
-接下来就分两种情况了4.1.静态网站修改nginx配置文件nginx.conf在最后加上如下代码：  
- server {
-     listen       192.168.1.xx:80;
-     server_name  xx">
+接下来就分两种情况了4.1.静态网站修改nginx配置文件nginx.conf在最后加上如下代码：  1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+server {
+	listen       192.168">
     
     
     
@@ -84,7 +97,7 @@
     </p>
   <p class="article-time">
     <time datetime="2013-10-09T01:40:00.000Z" itemprop="datePublished">Oct 9 2013</time>
-    Updated:<time datetime="2013-12-17T02:45:11.000Z" itemprop="dateModified">Dec 17 2013</time>
+    Updated:<time datetime="2014-07-06T10:40:15.000Z" itemprop="dateModified">Jul 6 2014</time>
     
   </p>
 </header>
@@ -93,68 +106,114 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ps:xx根据实际情况修改"><span class="toc-number">1.</span> <span class="toc-text">ps:xx根据实际情况修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ps:xx根据实际情况修改-1"><span class="toc-number">2.</span> <span class="toc-text">ps:xx根据实际情况修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ps:xx根据实际情况修改-2"><span class="toc-number">3.</span> <span class="toc-text">ps:xx根据实际情况修改</span></a></li></ol>
+		
 		</div>
 		
 		<ol>
 <li>去发布目录下建立相应的文件夹  </li>
 <li>更改发布脚本  </li>
 <li>执行脚本  </li>
-<li><p>接下来就分两种情况了<br>4.1.静态网站<br>修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：  </p>
-<p> server {</p>
-<pre><code>     listen       <span class="number">192.168</span><span class="number">.1</span>.xx:<span class="number">80</span>;
-     server_name  xxx.net;
-     charset utf-<span class="number">8</span>;
+<li>接下来就分两种情况了<br>4.1.静态网站<br>修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：  <figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td><td class="code"><pre>server {
+	listen       192.168.1.xx:80;
+	server_name  xxx.net;
+	charset utf-8;
 
-     location / {
-         root   /leave/xx/deploy/xx;
+	location / {
+		root   /leave/xx/deploy/xx;
 
-         autoindex <span class="function_start"><span class="keyword">on</span></span>;
-         autoindex_exact_size off;
-         autoindex_localtime <span class="function_start"><span class="keyword">on</span></span>;
+		autoindex on;
+		autoindex_exact_size off;
+		autoindex_localtime on;
 
-         index  index.html;
-     }
+		index  index.html;
+	}
 }
-</code></pre><h1 id="ps:xx根据实际情况修改">ps:xx根据实际情况修改</h1>
-<p>4.2. java web网站<br>(1)修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：</p>
-<p> server {</p>
-<pre><code>     listen       <span class="number">192.168</span><span class="number">.1</span><span class="built_in">.</span>x:<span class="number">80</span>;
-     server_name  xxx<span class="built_in">.</span>net;
-     charset utf<span class="subst">-</span><span class="number">8</span>;
+</pre></td></tr></table></figure><br> #ps:xx根据实际情况修改<br>4.2. java web网站<br>(1)修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+</pre></td><td class="code"><pre>server {
+	listen       192.168.1.x:80;
+	server_name  xxx.net;
+	charset utf-8;
 
-     location <span class="subst">/</span> {
-             proxy_set_header   Host             <span class="variable">$host</span>;
-             proxy_set_header   X<span class="attribute">-Real</span><span class="attribute">-IP</span>        <span class="variable">$remote_addr</span>;
-             proxy_set_header  X<span class="attribute">-Forwarded</span><span class="attribute">-For</span>  <span class="variable">$proxy_add_x_forwarded_for</span>;
-             client_max_body_size       <span class="number">1024</span>m;
-             client_body_buffer_size    <span class="number">128</span>k;
-             client_body_temp_path      <span class="built_in">data</span>/client_body_temp;
-             proxy_connect_timeout      <span class="number">90</span>;
-             proxy_send_timeout         <span class="number">90</span>;
-             proxy_read_timeout         <span class="number">90</span>;
-             proxy_buffer_size          <span class="number">4</span>k;
-             proxy_buffers              <span class="number">4</span> <span class="number">32</span>k;
-             proxy_busy_buffers_size    <span class="number">64</span>k;
-             proxy_temp_file_write_size <span class="number">64</span>k;
-             proxy_temp_path            <span class="built_in">data</span>/proxy_temp;
-             proxy_pass http:<span class="comment">//127.0.0.1:8080;</span>
-     }
+	location / {
+		proxy_set_header   Host             $host;
+		proxy_set_header   X-Real-IP        $remote_addr;
+		proxy_set_header  X-Forwarded-For  $proxy_add_x_forwarded_for;
+		client_max_body_size       1024m;
+		client_body_buffer_size    128k;
+		client_body_temp_path      data/client_body_temp;
+		proxy_connect_timeout      90;
+		proxy_send_timeout         90;
+		proxy_read_timeout         90;
+		proxy_buffer_size          4k;
+		proxy_buffers              4 32k;
+		proxy_busy_buffers_size    64k;
+		proxy_temp_file_write_size 64k;
+		proxy_temp_path            data/proxy_temp;
+		proxy_pass http://127.0.0.1:8080;
+	}
 }
-</code></pre><h1 id="ps:xx根据实际情况修改-1">ps:xx根据实际情况修改</h1>
-<p>(2)修改tomcat配置文件server.xml<br>加上如下代码：</p>
-<p> <host name="xxx.net" appbase="webapps" unpackwars="true" autodeploy="true"></host></p>
-<pre><code> &lt;Context path=<span class="string">""</span> docBase=<span class="string">"/xxx/deploy/xxx"</span> <span class="built_in">debug</span>=<span class="string">"0"</span> reloadable=<span class="string">"true"</span> crossContext=<span class="string">"true"</span> /&gt;
-</code></pre><p> </p>
-<h1 id="ps:xx根据实际情况修改-2">ps:xx根据实际情况修改</h1>
-</li>
-<li><p>平滑重启nginx</p>
-<p> ps -aux | grep nginx<br> // 找到nginx master的pid<br> kill -HUP pid</p>
-</li>
+<span class="comment">#ps:xx根据实际情况修改</span>
+</pre></td></tr></table></figure><br>(2)修改tomcat配置文件server.xml<br>加上如下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">Host</span> <span class="attribute">name</span>=<span class="value">"xxx.net"</span>  <span class="attribute">appBase</span>=<span class="value">"webapps"</span> <span class="attribute">unpackWARs</span>=<span class="value">"true"</span> <span class="attribute">autoDeploy</span>=<span class="value">"true"</span>&gt;</span>
+	<span class="tag">&lt;<span class="title">Context</span> <span class="attribute">path</span>=<span class="value">""</span> <span class="attribute">docBase</span>=<span class="value">"/xxx/deploy/xxx"</span> <span class="attribute">debug</span>=<span class="value">"0"</span> <span class="attribute">reloadable</span>=<span class="value">"true"</span> <span class="attribute">crossContext</span>=<span class="value">"true"</span> /&gt;</span>
+<span class="tag">&lt;/<span class="title">Host</span>&gt;</span>
+#ps:xx根据实际情况修改
+</pre></td></tr></table></figure></li>
+<li>平滑重启nginx<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>ps <span class="attribute">-aux</span> <span class="subst">|</span> grep nginx
+<span class="comment">// 找到nginx master的pid</span>
+kill <span class="attribute">-HUP</span> pid
+</pre></td></tr></table></figure></li>
 <li>如果是java web，还需重启tomcat</li>
-<li>更改路由</li>
+<li>更改路由<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>system-view
+ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</span><span class="number">.1</span><span class="preprocessor">.xx</span>
+</pre></td></tr></table></figure></li>
 </ol>
-<p>system-view<br>ip host xxx.net 192.168.1.xx</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -202,7 +261,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ps:xx根据实际情况修改"><span class="toc-number">1.</span> <span class="toc-text">ps:xx根据实际情况修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ps:xx根据实际情况修改-1"><span class="toc-number">2.</span> <span class="toc-text">ps:xx根据实际情况修改</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ps:xx根据实际情况修改-2"><span class="toc-number">3.</span> <span class="toc-text">ps:xx根据实际情况修改</span></a></li></ol>
+  
   </div>
 
 <div id="asidepart">
