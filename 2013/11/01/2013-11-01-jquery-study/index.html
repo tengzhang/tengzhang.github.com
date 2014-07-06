@@ -9,13 +9,27 @@
     
     <meta name="author" content="Zhang Teng">
     
-    <meta name="description" content="ajax请求，注意最后一个值的地方没有逗号
- $.ajax({  
- type: &quot;POST&quot;,  
- url: &quot;mystructs/hello_jsonTest.action&quot;,  
- data: {  
-     number: $(&quot;#number&quot;).val(),  
-     userI">
+    <meta name="description" content="ajax请求，注意最后一个值的地方没有逗号1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+$.ajax({  
+    type: &quot;POST&quot;,
+    url: &quot;mystructs/hello_jsonTest.action&quot;,
+    data: {
+     ">
     
     
     
@@ -84,7 +98,7 @@
     </p>
   <p class="article-time">
     <time datetime="2013-11-01T02:43:00.000Z" itemprop="datePublished">Nov 1 2013</time>
-    Updated:<time datetime="2013-12-13T15:06:37.000Z" itemprop="dateModified">Dec 13 2013</time>
+    Updated:<time datetime="2014-07-06T13:28:18.000Z" itemprop="dateModified">Jul 6 2014</time>
     
   </p>
 </header>
@@ -97,48 +111,86 @@
 		</div>
 		
 		<ol>
-<li><p>ajax请求，注意最后一个值的地方没有逗号</p>
-<p> $.ajax({  </p>
-<pre><code> type: <span class="string">"POST"</span>,  
- url: <span class="string">"mystructs/hello_jsonTest.action"</span>,  
- data: {  
-     number: $(<span class="string">"#number"</span>).val(),  
-     userId: $(<span class="string">'#userId'</span>).val()  
- },
- dataType: <span class="string">"text"</span>,  <span class="comment">//ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）</span>
- success: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
-     <span class="keyword">var</span> res = $.parseJSON(json);
-     alert(res.result);
- },
- error: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
-     alert(json);
- }
-</code></pre><p> });</p>
-</li>
-<li><p>jquery改变值</p>
-<p> $(‘#id’).val(‘value’);<br> $(‘#id’).html(‘value’);</p>
-</li>
-<li><p>jquery获取radio中被选中的那个元素</p>
-<p> var val = $(‘input:radio[name=”ra”]:checked’).val();<br> if(val != null) {</p>
-<pre><code> alert(<span class="keyword">val</span>);
-</code></pre><p> } else {<br> }<br>判读radio是否被选中</p>
-<p> $(‘input:radio[name=”ra”]’).each(function() {</p>
-<pre><code> <span class="comment">//alert($(this).val());</span>
- <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) {
-     alert($(<span class="keyword">this</span>).val());
- }
-</code></pre><p> });</p>
-</li>
-<li><p>获取选中的checkbox</p>
-<p> $(‘input[name=”chk”]:checked’).each(function(){</p>
-<pre><code> alert($(<span class="keyword">this</span>).val());
-</code></pre><p> });<br>判读checkbox是否被选中</p>
-<p> $(‘input:checkbox[name=”chk”]’).each(function() {</p>
-<pre><code> <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) {
-     alert($(<span class="keyword">this</span>).val());
- }
-</code></pre><p> });</p>
-</li>
+<li>ajax请求，注意最后一个值的地方没有逗号<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre>$.ajax({  
+    type: <span class="string">"POST"</span>,
+    url: <span class="string">"mystructs/hello_jsonTest.action"</span>,
+    data: {
+        number: $(<span class="string">"#number"</span>).val(),
+        userId: $(<span class="string">'#userId'</span>).val() 
+    },
+    dataType: <span class="string">"text"</span>,  <span class="comment">//ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）</span>
+    success: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
+        <span class="keyword">var</span> res = $.parseJSON(json);
+        alert(res.result);
+    },
+    error: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
+        alert(json);
+    }
+});
+</pre></td></tr></table></figure></li>
+<li>jquery改变值<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>$(<span class="string">'#id'</span>).val(<span class="string">'value'</span>);
+$(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
+</pre></td></tr></table></figure></li>
+<li>jquery获取radio中被选中的那个元素<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="keyword">var</span> val = $(<span class="string">'input:radio[name="ra"]:checked'</span>).val();
+<span class="keyword">if</span>(val != <span class="literal">null</span>) {
+    alert(val);
+} <span class="keyword">else</span> {        
+    ...
+}
+</pre></td></tr></table></figure><br>判读radio是否被选中<br><figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>$(<span class="string">'input:radio[name="ra"]'</span>).each(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="comment">//alert($(this).val());</span>
+    <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) {
+        alert($(<span class="keyword">this</span>).val());
+    }
+});
+</pre></td></tr></table></figure></li>
+<li>获取选中的checkbox<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>$(<span class="string">'input[name="chk"]:checked'</span>).each(<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+    alert($(<span class="keyword">this</span>).val());
+});
+</pre></td></tr></table></figure><br>判读checkbox是否被选中<br><figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>$(<span class="string">'input:checkbox[name="chk"]'</span>).each(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) {
+        alert($(<span class="keyword">this</span>).val());
+    }
+});
+</pre></td></tr></table></figure></li>
 </ol>
   
 	</div>
@@ -164,10 +216,10 @@
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/07/06/hello-world/" title="Hello World">
+ <a href="/2014/07/06/new-blog-first-post/" title="新博客的第一篇博文">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  Hello World</span>
+  新博客的第一篇博文</span>
 </a>
 </div>
 
@@ -223,24 +275,8 @@
 
 
   
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
-		
-		</ul>
-</div>
-
 
   
-  <div class="tagcloudlist">
-    <p class="asidetitle">Tag Cloud</p>
-    <div class="tagcloudlist clearfix">
-       <a href="/tags/java/" style="font-size: NaNpx;">java</a>
-    </div>
-  </div>
-
 
   <div class="linkslist">
   <p class="asidetitle">Links</p>

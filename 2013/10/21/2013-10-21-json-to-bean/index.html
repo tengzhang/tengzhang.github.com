@@ -12,9 +12,15 @@
     <meta name="description" content="需要用到的类：
 net.sf.json.JSONObject  
 在包json-lib-2.3-jdk15中maven依赖：
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;net.sf.json-lib&amp;lt;/groupId&amp;gt;
-        &amp;">
+1
+2
+3
+4
+5
+6
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;net.sf.json-lib&amp;lt;/groupId&amp;gt;
+    &amp;">
     
     
     
@@ -83,7 +89,7 @@ net.sf.json.JSONObject
     </p>
   <p class="article-time">
     <time datetime="2013-10-21T01:32:00.000Z" itemprop="datePublished">Oct 21 2013</time>
-    Updated:<time datetime="2013-12-17T02:45:16.000Z" itemprop="dateModified">Dec 17 2013</time>
+    Updated:<time datetime="2014-07-06T13:33:46.000Z" itemprop="dateModified">Jul 6 2014</time>
     
   </p>
 </header>
@@ -98,17 +104,23 @@ net.sf.json.JSONObject
 		<p>需要用到的类：</p>
 <pre><code>net<span class="preprocessor">.sf</span><span class="preprocessor">.json</span><span class="preprocessor">.JSONObject</span>  
 </code></pre><p>在包<code>json-lib-2.3-jdk15</code>中<br>maven依赖：</p>
-<pre><code>    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>net.sf.json-lib<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>json-lib<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">classifier</span>&gt;</span>jdk15<span class="tag">&lt;/<span class="title">classifier</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
-</code></pre><p>将bean转换成JSONObject，调用<code>JSONObject.fromObject(object)</code><br>如：</p>
+<p><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>net.sf.json-lib<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>json-lib<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">classifier</span>&gt;</span>jdk15<span class="tag">&lt;/<span class="title">classifier</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</pre></td></tr></table></figure><br>将bean转换成JSONObject，调用<code>JSONObject.fromObject(object)</code><br>如：</p>
 <pre><code><span class="attribute">JSONObject jsonObject </span>=<span class="string"> JSONObject.fromObject(user);</span>
 </code></pre><p>将JSONObject转换成bean，调用<code>JSONObject.toBean(jsonObject, beanClass)</code><br>如：</p>
-<p>User user = (User) JSONObject.toBean(jsonObject, User.class);</p>
-  
+<pre><code>User user = (User) JSONObject<span class="preprocessor">.toBean</span>(jsonObject, User<span class="preprocessor">.class</span>)<span class="comment">;</span>
+</code></pre>  
 	</div>
 		<footer class="article-footer clearfix">
 
@@ -191,24 +203,8 @@ net.sf.json.JSONObject
 
 
   
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
-		
-		</ul>
-</div>
-
 
   
-  <div class="tagcloudlist">
-    <p class="asidetitle">Tag Cloud</p>
-    <div class="tagcloudlist clearfix">
-       <a href="/tags/java/" style="font-size: NaNpx;">java</a>
-    </div>
-  </div>
-
 
   <div class="linkslist">
   <p class="asidetitle">Links</p>

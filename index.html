@@ -67,53 +67,15 @@
 
   <section class="post" itemscope itemprop="blogPost">
   
-    <a href="/2014/07/06/deploy-test/" title="deploy test" itemprop="url">
+    <a href="/2014/07/06/new-blog-first-post/" title="新博客的第一篇博文" itemprop="url">
   
-    <h1 itemprop="name">deploy test</h1>
+    <h1 itemprop="name">新博客的第一篇博文</h1>
     
      
-           <p itemprop="description" >deploy test</p>
+           <p itemprop="description" >以前在github上用octopress挂了一个博客，但是用它还得装ruby，感觉比较麻烦（主要还是不懂ruby）。前段时间，看到有人用hexo搭建博客，我也试了试。hexo是基于node，比octopress方便多了，就转了过来。这是他的官网http://hexo.io/，关于</p>
         
     
-    <time datetime="2014-07-06T10:43:09.000Z" itemprop="datePublished">Jul 6 2014</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2014/07/06/postTest/" title="postTest" itemprop="url">
-  
-    <h1 itemprop="name">postTest</h1>
-    
-     
-           <p itemprop="description" >markdownTest
-1
-2
-3
-4
-5
-public class Test {
-truepublic static void main(String[] args) {
-truetruesystem.out.println(&quot;Hello World&quot;!);
-true}
-}</p>
-        
-    
-    <time datetime="2014-07-06T09:16:14.000Z" itemprop="datePublished">Jul 6 2014</time>
-  </a>
-</section>
-
-  <section class="post" itemscope itemprop="blogPost">
-  
-    <a href="/2014/07/06/hello-world/" title="Hello World" itemprop="url">
-  
-    <h1 itemprop="name">Hello World</h1>
-    
-     
-           <p itemprop="description" >Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the </p>
-        
-    
-    <time datetime="2014-07-06T08:43:59.000Z" itemprop="datePublished">Jul 6 2014</time>
+    <time datetime="2014-07-06T12:59:23.000Z" itemprop="datePublished">Jul 6 2014</time>
   </a>
 </section>
 
@@ -124,13 +86,26 @@ true}
     <h1 itemprop="name">jquery使用笔记</h1>
     
      
-           <p itemprop="description" >ajax请求，注意最后一个值的地方没有逗号
- $.ajax({  
- type: &quot;POST&quot;,  
- url: &quot;mystructs/hello_jsonTest.action&quot;,  
- data: {  
-     number: $(&quot;#number&quot;).val(),  
-</p>
+           <p itemprop="description" >ajax请求，注意最后一个值的地方没有逗号1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+$.ajax({  
+    type: &quot;POST&quot;,
+    url: &quot;mystructs/hello_jsonTest.action&quot;,
+    dat</p>
         
     
     <time datetime="2013-11-01T02:43:00.000Z" itemprop="datePublished">Nov 1 2013</time>
@@ -232,8 +207,14 @@ pac</p>
            <p itemprop="description" >需要用到的类：
 net.sf.json.JSONObject  
 在包json-lib-2.3-jdk15中maven依赖：
-    &amp;lt;dependency&amp;gt;
-        &amp;lt;groupId&amp;gt;net.sf.json-lib&amp;lt;/groupId&amp;gt;</p>
+1
+2
+3
+4
+5
+6
+&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;net.sf.json-lib&amp;lt;/groupId</p>
         
     
     <time datetime="2013-10-21T01:32:00.000Z" itemprop="datePublished">Oct 21 2013</time>
@@ -248,9 +229,25 @@ net.sf.json.JSONObject
     
      
            <p itemprop="description" >有时候我们需要删除list中的某个元素，最开始我会这样写：
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
 public class ListTest {
     public static void main(String[] args) {
-        List&amp;lt;Integer&amp;gt; numbers = new</p>
+  </p>
         
     
     <time datetime="2013-10-13T13:42:00.000Z" itemprop="datePublished">Oct 13 2013</time>
@@ -276,6 +273,59 @@ select disk 0
         
     
     <time datetime="2013-10-09T08:22:00.000Z" itemprop="datePublished">Oct 9 2013</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2013/10/09/2013-10-09-xiangmufabu/" title="项目发布" itemprop="url">
+  
+    <h1 itemprop="name">项目发布</h1>
+    
+     
+           <p itemprop="description" >去发布目录下建立相应的文件夹  
+更改发布脚本  
+执行脚本  
+接下来就分两种情况了4.1.静态网站修改nginx配置文件nginx.conf在最后加上如下代码：  1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+server {
+        </p>
+        
+    
+    <time datetime="2013-10-09T01:40:00.000Z" itemprop="datePublished">Oct 9 2013</time>
+  </a>
+</section>
+
+  <section class="post" itemscope itemprop="blogPost">
+  
+    <a href="/2013/10/07/2013-10-07-zhaoshuzi/" title="找数字分析（出现一次的数字）" itemprop="url">
+  
+    <h1 itemprop="name">找数字分析（出现一次的数字）</h1>
+    
+     
+           <p itemprop="description" >原题
+数组A中，除了某一个数字X之外，其他数字都出现了三次，而X出现了一次。请给出最快的方法找到X。
+分析
+乍一看这个题目，不少同学立马给出了答案：异或。但举个例子，就会发现，异或是行不通的，一般的方法是利用异或的的如下特性：  
+A xor A = 0A xor 0 = A
+但</p>
+        
+    
+    <time datetime="2013-10-07T15:15:00.000Z" itemprop="datePublished">Oct 7 2013</time>
   </a>
 </section>
 
@@ -315,24 +365,8 @@ select disk 0
 
 
   
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
-		
-		</ul>
-</div>
-
 
   
-  <div class="tagcloudlist">
-    <p class="asidetitle">Tag Cloud</p>
-    <div class="tagcloudlist clearfix">
-       <a href="/tags/java/" style="font-size: NaNpx;">java</a>
-    </div>
-  </div>
-
 
   <div class="linkslist">
   <p class="asidetitle">Links</p>

@@ -27,8 +27,9 @@
 13
 14
 15
+16
 server {
-truelisten       192.">
+        listen    ">
     
     
     
@@ -97,7 +98,7 @@ truelisten       192.">
     </p>
   <p class="article-time">
     <time datetime="2013-10-09T01:40:00.000Z" itemprop="datePublished">Oct 9 2013</time>
-    Updated:<time datetime="2014-07-06T10:40:15.000Z" itemprop="dateModified">Jul 6 2014</time>
+    Updated:<time datetime="2014-07-06T13:38:37.000Z" itemprop="dateModified">Jul 6 2014</time>
     
   </p>
 </header>
@@ -128,22 +129,24 @@ truelisten       192.">
 13
 14
 15
+16
 </pre></td><td class="code"><pre>server {
-truelisten       <span class="number">192.168</span><span class="number">.1</span>.xx:<span class="number">80</span>;
-trueserver_name  xxx.net;
-truecharset utf-<span class="number">8</span>;
+        listen       <span class="number">192.168</span><span class="number">.1</span>.xx:<span class="number">80</span>;
+        server_name  xxx.net;
+        charset utf-<span class="number">8</span>;
 
-truelocation / {
-truetrueroot   /leave/xx/deploy/xx;
+        location / {
+            root   /leave/xx/deploy/xx;
 
-truetrueautoindex <span class="function_start"><span class="keyword">on</span></span>;
-truetrueautoindex_exact_size off;
-truetrueautoindex_localtime <span class="function_start"><span class="keyword">on</span></span>;
+            autoindex <span class="function_start"><span class="keyword">on</span></span>;
+            autoindex_exact_size off;
+            autoindex_localtime <span class="function_start"><span class="keyword">on</span></span>;
 
-truetrueindex  index.html;
-<span class="constant">true</span>}
-}
-</pre></td></tr></table></figure><br> #ps:xx根据实际情况修改<br>4.2. java web网站<br>(1)修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
+            index  index.html;
+        }
+   }
+<span class="comment">#ps:xx根据实际情况修改</span>
+</pre></td></tr></table></figure><br>4.2. java web网站<br>(1)修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -168,35 +171,35 @@ truetrueindex  index.html;
 23
 24
 </pre></td><td class="code"><pre>server {
-truelisten       <span class="number">192.168</span><span class="number">.1</span><span class="built_in">.</span>x:<span class="number">80</span>;
-trueserver_name  xxx<span class="built_in">.</span>net;
-truecharset utf<span class="subst">-</span><span class="number">8</span>;
+        listen       <span class="number">192.168</span><span class="number">.1</span><span class="built_in">.</span>x:<span class="number">80</span>;
+        server_name  xxx<span class="built_in">.</span>net;
+        charset utf<span class="subst">-</span><span class="number">8</span>;
 
-truelocation <span class="subst">/</span> {
-truetrueproxy_set_header   Host             <span class="variable">$host</span>;
-truetrueproxy_set_header   X<span class="attribute">-Real</span><span class="attribute">-IP</span>        <span class="variable">$remote_addr</span>;
-truetrueproxy_set_header  X<span class="attribute">-Forwarded</span><span class="attribute">-For</span>  <span class="variable">$proxy_add_x_forwarded_for</span>;
-truetrueclient_max_body_size       <span class="number">1024</span>m;
-truetrueclient_body_buffer_size    <span class="number">128</span>k;
-truetrueclient_body_temp_path      <span class="built_in">data</span>/client_body_temp;
-truetrueproxy_connect_timeout      <span class="number">90</span>;
-truetrueproxy_send_timeout         <span class="number">90</span>;
-truetrueproxy_read_timeout         <span class="number">90</span>;
-truetrueproxy_buffer_size          <span class="number">4</span>k;
-truetrueproxy_buffers              <span class="number">4</span> <span class="number">32</span>k;
-truetrueproxy_busy_buffers_size    <span class="number">64</span>k;
-truetrueproxy_temp_file_write_size <span class="number">64</span>k;
-truetrueproxy_temp_path            <span class="built_in">data</span>/proxy_temp;
-truetrueproxy_pass http:<span class="comment">//127.0.0.1:8080;</span>
-<span class="literal">true</span>}
-}
+        location <span class="subst">/</span> {
+                proxy_set_header   Host             <span class="variable">$host</span>;
+                proxy_set_header   X<span class="attribute">-Real</span><span class="attribute">-IP</span>        <span class="variable">$remote_addr</span>;
+                proxy_set_header  X<span class="attribute">-Forwarded</span><span class="attribute">-For</span>  <span class="variable">$proxy_add_x_forwarded_for</span>;
+                client_max_body_size       <span class="number">1024</span>m;
+                client_body_buffer_size    <span class="number">128</span>k;
+                client_body_temp_path      <span class="built_in">data</span>/client_body_temp;
+                proxy_connect_timeout      <span class="number">90</span>;
+                proxy_send_timeout         <span class="number">90</span>;
+                proxy_read_timeout         <span class="number">90</span>;
+                proxy_buffer_size          <span class="number">4</span>k;
+                proxy_buffers              <span class="number">4</span> <span class="number">32</span>k;
+                proxy_busy_buffers_size    <span class="number">64</span>k;
+                proxy_temp_file_write_size <span class="number">64</span>k;
+                proxy_temp_path            <span class="built_in">data</span>/proxy_temp;
+                proxy_pass http:<span class="comment">//127.0.0.1:8080;</span>
+        }
+   }
 <span class="variable">#ps</span>:xx根据实际情况修改
 </pre></td></tr></table></figure><br>(2)修改tomcat配置文件server.xml<br>加上如下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">Host</span> <span class="attribute">name</span>=<span class="value">"xxx.net"</span>  <span class="attribute">appBase</span>=<span class="value">"webapps"</span> <span class="attribute">unpackWARs</span>=<span class="value">"true"</span> <span class="attribute">autoDeploy</span>=<span class="value">"true"</span>&gt;</span>
-true<span class="tag">&lt;<span class="title">Context</span> <span class="attribute">path</span>=<span class="value">""</span> <span class="attribute">docBase</span>=<span class="value">"/xxx/deploy/xxx"</span> <span class="attribute">debug</span>=<span class="value">"0"</span> <span class="attribute">reloadable</span>=<span class="value">"true"</span> <span class="attribute">crossContext</span>=<span class="value">"true"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">Context</span> <span class="attribute">path</span>=<span class="value">""</span> <span class="attribute">docBase</span>=<span class="value">"/xxx/deploy/xxx"</span> <span class="attribute">debug</span>=<span class="value">"0"</span> <span class="attribute">reloadable</span>=<span class="value">"true"</span> <span class="attribute">crossContext</span>=<span class="value">"true"</span> /&gt;</span>
 <span class="tag">&lt;/<span class="title">Host</span>&gt;</span>
 #ps:xx根据实际情况修改
 </pre></td></tr></table></figure></li>
@@ -292,24 +295,8 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
 
 
   
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
-		
-		</ul>
-</div>
-
 
   
-  <div class="tagcloudlist">
-    <p class="asidetitle">Tag Cloud</p>
-    <div class="tagcloudlist clearfix">
-       <a href="/tags/java/" style="font-size: NaNpx;">java</a>
-    </div>
-  </div>
-
 
   <div class="linkslist">
   <p class="asidetitle">Links</p>

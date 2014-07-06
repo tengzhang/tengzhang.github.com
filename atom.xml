@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2014-07-06T12:56:33.535Z</updated>
+  <updated>2014-07-06T13:40:58.373Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,73 +15,21 @@
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
   
   <entry>
-    <title><![CDATA[deploy test]]></title>
-    <link href="http://yoursite.com/2014/07/06/deploy-test/"/>
-    <id>http://yoursite.com/2014/07/06/deploy-test/</id>
-    <published>2014-07-06T10:43:09.000Z</published>
-    <updated>2014-07-06T10:54:35.000Z</updated>
-    <content type="html"><![CDATA[<p>deploy test</p>
-]]></content>
-    
-    
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[postTest]]></title>
-    <link href="http://yoursite.com/2014/07/06/postTest/"/>
-    <id>http://yoursite.com/2014/07/06/postTest/</id>
-    <published>2014-07-06T09:16:14.000Z</published>
-    <updated>2014-07-06T09:17:15.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="markdownTest">markdownTest</h3>
-<figure class="highlight java"><table><tr><td class="gutter"><pre>1
+    <title><![CDATA[新博客的第一篇博文]]></title>
+    <link href="http://yoursite.com/2014/07/06/new-blog-first-post/"/>
+    <id>http://yoursite.com/2014/07/06/new-blog-first-post/</id>
+    <published>2014-07-06T12:59:23.000Z</published>
+    <updated>2014-07-06T13:08:55.000Z</updated>
+    <content type="html"><![CDATA[<p>以前在github上用octopress挂了一个博客，但是用它还得装ruby，感觉比较麻烦（主要还是不懂ruby）。<br>前段时间，看到有人用hexo搭建博客，我也试了试。hexo是基于node，比octopress方便多了，就转了过来。<br>这是他的官网<a href="http://hexo.io/" target="_blank" rel="external">http://hexo.io/</a>，关于具体怎么搭建，我就不多说了，官网写得和详细，直接上官方文档的链接<a href="http://hexo.io/docs/index.html" target="_blank" rel="external">http://hexo.io/docs/index.html</a>。<br>说说我遇到的问题吧，按照官网说的做了，我用<code>hexo deploy</code>，一直deploy上去，也不知道为啥，可能主要还是我对node和git都不熟悉吧。<br>最后我是手动deploy的。具体命令如下：</p>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre>1
 2
 3
 4
-5
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> {</span>
-truepublic <span class="keyword">static</span> <span class="keyword">void</span> main(String[] args) {
-truetruesystem.out.println(<span class="string">"Hello World"</span>!);
-<span class="keyword">true</span>}
-}
-</pre></td></tr></table></figure>]]></content>
-    
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <link href="http://yoursite.com/2014/07/06/hello-world/"/>
-    <id>http://yoursite.com/2014/07/06/hello-world/</id>
-    <published>2014-07-06T08:43:59.000Z</published>
-    <updated>2014-07-06T08:54:23.000Z</updated>
-    <content type="html"><![CDATA[<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">trobuleshooting</a> or you can ask me on <a href="https://github.com/tommy351/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick_Start">Quick Start</h2>
-<h3 id="Create_a_new_post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ hexo new <span class="string">"My New Post"</span>
-</pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run_server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ hexo server
-</pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate_static_files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ hexo generate
-</pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ hexo deploy
-</pre></td></tr></table></figure>
-
-<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+</pre></td><td class="code"><pre>$ hexo clean
+$ hexo deploy --generate
+$ <span class="built_in">cd</span> .deploy
+$ git push -u origin master
+</pre></td></tr></table></figure><br>命令都是在hexo博客的目录下执行的。<br>另外奉上我使用的主题地址:<a href="http://yangjian.me/pacman/hello/introducing-pacman-theme/" target="_blank" rel="external">http://yangjian.me/pacman/hello/introducing-pacman-theme/</a></p>
 ]]></content>
     
     
@@ -92,50 +40,88 @@ truetruesystem.out.println(<span class="string">"Hello World"</span>!);
     <link href="http://yoursite.com/2013/11/01/2013-11-01-jquery-study/"/>
     <id>http://yoursite.com/2013/11/01/2013-11-01-jquery-study/</id>
     <published>2013-11-01T02:43:00.000Z</published>
-    <updated>2013-12-13T15:06:37.000Z</updated>
+    <updated>2014-07-06T13:28:18.000Z</updated>
     <content type="html"><![CDATA[<ol>
-<li><p>ajax请求，注意最后一个值的地方没有逗号</p>
-<p> $.ajax({  </p>
-<pre><code> type: <span class="string">"POST"</span>,  
- url: <span class="string">"mystructs/hello_jsonTest.action"</span>,  
- data: {  
-     number: $(<span class="string">"#number"</span>).val(),  
-     userId: $(<span class="string">'#userId'</span>).val()  
- },
- dataType: <span class="string">"text"</span>,  <span class="comment">//ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）</span>
- success: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
-     <span class="keyword">var</span> res = $.parseJSON(json);
-     alert(res.result);
- },
- error: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
-     alert(json);
- }
-</code></pre><p> });</p>
-</li>
-<li><p>jquery改变值</p>
-<p> $(‘#id’).val(‘value’);<br> $(‘#id’).html(‘value’);</p>
-</li>
-<li><p>jquery获取radio中被选中的那个元素</p>
-<p> var val = $(‘input:radio[name=”ra”]:checked’).val();<br> if(val != null) {</p>
-<pre><code> alert(<span class="keyword">val</span>);
-</code></pre><p> } else {<br> }<br>判读radio是否被选中</p>
-<p> $(‘input:radio[name=”ra”]’).each(function() {</p>
-<pre><code> <span class="comment">//alert($(this).val());</span>
- <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) {
-     alert($(<span class="keyword">this</span>).val());
- }
-</code></pre><p> });</p>
-</li>
-<li><p>获取选中的checkbox</p>
-<p> $(‘input[name=”chk”]:checked’).each(function(){</p>
-<pre><code> alert($(<span class="keyword">this</span>).val());
-</code></pre><p> });<br>判读checkbox是否被选中</p>
-<p> $(‘input:checkbox[name=”chk”]’).each(function() {</p>
-<pre><code> <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) {
-     alert($(<span class="keyword">this</span>).val());
- }
-</code></pre><p> });</p>
-</li>
+<li>ajax请求，注意最后一个值的地方没有逗号<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre>$.ajax({  
+    type: <span class="string">"POST"</span>,
+    url: <span class="string">"mystructs/hello_jsonTest.action"</span>,
+    data: {
+        number: $(<span class="string">"#number"</span>).val(),
+        userId: $(<span class="string">'#userId'</span>).val() 
+    },
+    dataType: <span class="string">"text"</span>,  <span class="comment">//ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）</span>
+    success: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
+        <span class="keyword">var</span> res = $.parseJSON(json);
+        alert(res.result);
+    },
+    error: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
+        alert(json);
+    }
+});
+</pre></td></tr></table></figure></li>
+<li>jquery改变值<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>$(<span class="string">'#id'</span>).val(<span class="string">'value'</span>);
+$(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
+</pre></td></tr></table></figure></li>
+<li>jquery获取radio中被选中的那个元素<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="keyword">var</span> val = $(<span class="string">'input:radio[name="ra"]:checked'</span>).val();
+<span class="keyword">if</span>(val != <span class="literal">null</span>) {
+    alert(val);
+} <span class="keyword">else</span> {        
+    ...
+}
+</pre></td></tr></table></figure><br>判读radio是否被选中<br><figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>$(<span class="string">'input:radio[name="ra"]'</span>).each(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="comment">//alert($(this).val());</span>
+    <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) {
+        alert($(<span class="keyword">this</span>).val());
+    }
+});
+</pre></td></tr></table></figure></li>
+<li>获取选中的checkbox<figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre>$(<span class="string">'input[name="chk"]:checked'</span>).each(<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
+    alert($(<span class="keyword">this</span>).val());
+});
+</pre></td></tr></table></figure><br>判读checkbox是否被选中<br><figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>$(<span class="string">'input:checkbox[name="chk"]'</span>).each(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
+    <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) {
+        alert($(<span class="keyword">this</span>).val());
+    }
+});
+</pre></td></tr></table></figure></li>
 </ol>
 ]]></content>
     
@@ -149,7 +135,7 @@ truetruesystem.out.println(<span class="string">"Hello World"</span>!);
     <link href="http://yoursite.com/2013/10/30/2013-10-30-struts2-json/"/>
     <id>http://yoursite.com/2013/10/30/2013-10-30-struts2-json/</id>
     <published>2013-10-30T01:28:00.000Z</published>
-    <updated>2013-10-31T09:31:00.000Z</updated>
+    <updated>2014-07-06T13:32:28.000Z</updated>
     <content type="html"><![CDATA[<p>structs2返回本身支持返回json，只需要配置即可，我们也可以自己把json串写入servlet输出流中。<br>1.structs2本身对json的支持<br>在action中对需要返回的值进行设置，实体、java自带类型都可以。<br>如：</p>
 <p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
 2
@@ -213,21 +199,21 @@ truetruesystem.out.println(<span class="string">"Hello World"</span>!);
     PrintWriter out = <span class="keyword">null</span>;
     <span class="keyword">try</span> {
         out = response.getWriter();
-trueUser user = <span class="keyword">new</span> User();
-trueuser.setUsername(<span class="string">"iris"</span>);
-trueuser.setPassword(<span class="string">"iris"</span>);
-trueJSONObject jsonObject = JSONObject.fromObject(user);
-trueout.print(jsonObject.toString());
-trueout.flush();
+    User user = <span class="keyword">new</span> User();
+    user.setUsername(<span class="string">"iris"</span>);
+    user.setPassword(<span class="string">"iris"</span>);
+    JSONObject jsonObject = JSONObject.fromObject(user);
+    out.print(jsonObject.toString());
+    out.flush();
     } <span class="keyword">catch</span> (IOException e) {
-truee.printStackTrace();
+    e.printStackTrace();
     } <span class="keyword">finally</span> {
-trueif(out != <span class="keyword">null</span>) {
-<span class="keyword">true</span>    <span class="keyword">try</span> {
+    <span class="keyword">if</span>(out != <span class="keyword">null</span>) {
+        <span class="keyword">try</span> {
     	        out.close();
     	    } <span class="keyword">catch</span> (Exception e) {
-<span class="keyword">true</span>        e.printStackTrace();
-<span class="keyword">true</span>    }
+            e.printStackTrace();
+        }
         }
     }
 }
@@ -390,21 +376,27 @@ trueif(out != <span class="keyword">null</span>) {
     <link href="http://yoursite.com/2013/10/21/2013-10-21-json-to-bean/"/>
     <id>http://yoursite.com/2013/10/21/2013-10-21-json-to-bean/</id>
     <published>2013-10-21T01:32:00.000Z</published>
-    <updated>2013-12-17T02:45:16.000Z</updated>
+    <updated>2014-07-06T13:33:46.000Z</updated>
     <content type="html"><![CDATA[<p>需要用到的类：</p>
 <pre><code>net<span class="preprocessor">.sf</span><span class="preprocessor">.json</span><span class="preprocessor">.JSONObject</span>  
 </code></pre><p>在包<code>json-lib-2.3-jdk15</code>中<br>maven依赖：</p>
-<pre><code>    <span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>net.sf.json-lib<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>json-lib<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
-        <span class="tag">&lt;<span class="title">classifier</span>&gt;</span>jdk15<span class="tag">&lt;/<span class="title">classifier</span>&gt;</span>
-    <span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
-</code></pre><p>将bean转换成JSONObject，调用<code>JSONObject.fromObject(object)</code><br>如：</p>
+<p><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>net.sf.json-lib<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>json-lib<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">classifier</span>&gt;</span>jdk15<span class="tag">&lt;/<span class="title">classifier</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
+</pre></td></tr></table></figure><br>将bean转换成JSONObject，调用<code>JSONObject.fromObject(object)</code><br>如：</p>
 <pre><code><span class="attribute">JSONObject jsonObject </span>=<span class="string"> JSONObject.fromObject(user);</span>
 </code></pre><p>将JSONObject转换成bean，调用<code>JSONObject.toBean(jsonObject, beanClass)</code><br>如：</p>
-<p>User user = (User) JSONObject.toBean(jsonObject, User.class);</p>
-]]></content>
+<pre><code>User user = (User) JSONObject<span class="preprocessor">.toBean</span>(jsonObject, User<span class="preprocessor">.class</span>)<span class="comment">;</span>
+</code></pre>]]></content>
     
     
       <category term="java" scheme="http://yoursite.com/categories/java/"/>
@@ -416,9 +408,25 @@ trueif(out != <span class="keyword">null</span>) {
     <link href="http://yoursite.com/2013/10/13/2013-10-13-remove-elemetns/"/>
     <id>http://yoursite.com/2013/10/13/2013-10-13-remove-elemetns/</id>
     <published>2013-10-13T13:42:00.000Z</published>
-    <updated>2013-12-13T14:59:31.000Z</updated>
+    <updated>2014-07-06T13:34:47.000Z</updated>
     <content type="html"><![CDATA[<p>有时候我们需要删除list中的某个元素，最开始我会这样写：</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> ListTest {
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListTest</span> {</span>
     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
         List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) {
@@ -426,16 +434,33 @@ trueif(out != <span class="keyword">null</span>) {
         }
 
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>; ++i) {
-            <span class="keyword">if</span>(numbers.<span class="keyword">get</span>(i) == <span class="number">5</span>) {
+            <span class="keyword">if</span>(numbers.get(i) == <span class="number">5</span>) {
                 numbers.remove(i);
             }
         }
 
-        System.<span class="keyword">out</span>.println(numbers);
+        System.out.println(numbers);
     }
 }
-</code></pre><p>这样写之后，会报错。因为list在循环中的时候是不可以删除它的元素的。<br>对上面的代码进行一点下改进就可以删除list中的元素了，就是在<code>remove</code>之后加个<code>break</code>就可以了。</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> ListTest {
+</pre></td></tr></table></figure><br>这样写之后，会报错。因为list在循环中的时候是不可以删除它的元素的。<br>对上面的代码进行一点下改进就可以删除list中的元素了，就是在<code>remove</code>之后加个<code>break</code>就可以了。</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListTest</span> {</span>
     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
         List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) {
@@ -443,17 +468,37 @@ trueif(out != <span class="keyword">null</span>) {
         }
 
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>; ++i) {
-            <span class="keyword">if</span>(numbers.<span class="keyword">get</span>(i) == <span class="number">5</span>) {
+            <span class="keyword">if</span>(numbers.get(i) == <span class="number">5</span>) {
                 numbers.remove(i);
                 <span class="keyword">break</span>;
             }
         }
 
-        System.<span class="keyword">out</span>.println(numbers);
+        System.out.println(numbers);
     }
 }
-</code></pre><p>上面的方法适用于只删除一个元素，可有的时候我们需要删除多个元素，上面的方法虽可行，但需要为每个需要删除的元素写个for循环，这样效率太低了。<br>使用<code>Iterator</code>可以完成上面的操作。</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> ListTest {
+</pre></td></tr></table></figure><br>上面的方法适用于只删除一个元素，可有的时候我们需要删除多个元素，上面的方法虽可行，但需要为每个需要删除的元素写个for循环，这样效率太低了。<br>使用<code>Iterator</code>可以完成上面的操作。</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListTest</span> {</span>
     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
         List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) {
@@ -470,10 +515,10 @@ trueif(out != <span class="keyword">null</span>) {
             }
         }
 
-        System.<span class="keyword">out</span>.println(numbers);
+        System.out.println(numbers);
     }
 }
-</code></pre><p>上面的方法虽都可以删除元素，但都需要for循环，效率不高，但没有找到更好的方法。感觉java的Iterator没有c++的那么只能，用起来没有c++顺手。</p>
+</pre></td></tr></table></figure><br>上面的方法虽都可以删除元素，但都需要for循环，效率不高，但没有找到更好的方法。感觉java的Iterator没有c++的那么只能，用起来没有c++顺手。</p>
 <blockquote>
 <p>对Java的基础知识了解越多，代码就会写得越简洁</p>
 </blockquote>
@@ -489,7 +534,7 @@ trueif(out != <span class="keyword">null</span>) {
     <link href="http://yoursite.com/2013/10/09/2013-10-09-minglinghangmbr/"/>
     <id>http://yoursite.com/2013/10/09/2013-10-09-minglinghangmbr/</id>
     <published>2013-10-09T08:22:00.000Z</published>
-    <updated>2013-12-13T14:55:29.000Z</updated>
+    <updated>2014-07-06T13:37:06.000Z</updated>
     <content type="html"><![CDATA[<p>命令行修复MBR  </p>
 <pre><code><span class="bullet">1. </span>shift+F10打开命令行
 <span class="bullet">2. </span>输入：diskpart
@@ -510,7 +555,7 @@ select disk 0
     <link href="http://yoursite.com/2013/10/09/2013-10-09-xiangmufabu/"/>
     <id>http://yoursite.com/2013/10/09/2013-10-09-xiangmufabu/</id>
     <published>2013-10-09T01:40:00.000Z</published>
-    <updated>2014-07-06T10:40:15.000Z</updated>
+    <updated>2014-07-06T13:38:37.000Z</updated>
     <content type="html"><![CDATA[<ol>
 <li>去发布目录下建立相应的文件夹  </li>
 <li>更改发布脚本  </li>
@@ -530,22 +575,24 @@ select disk 0
 13
 14
 15
+16
 </pre></td><td class="code"><pre>server {
-truelisten       <span class="number">192.168</span><span class="number">.1</span>.xx:<span class="number">80</span>;
-trueserver_name  xxx.net;
-truecharset utf-<span class="number">8</span>;
+        listen       <span class="number">192.168</span><span class="number">.1</span>.xx:<span class="number">80</span>;
+        server_name  xxx.net;
+        charset utf-<span class="number">8</span>;
 
-truelocation / {
-truetrueroot   /leave/xx/deploy/xx;
+        location / {
+            root   /leave/xx/deploy/xx;
 
-truetrueautoindex <span class="function_start"><span class="keyword">on</span></span>;
-truetrueautoindex_exact_size off;
-truetrueautoindex_localtime <span class="function_start"><span class="keyword">on</span></span>;
+            autoindex <span class="function_start"><span class="keyword">on</span></span>;
+            autoindex_exact_size off;
+            autoindex_localtime <span class="function_start"><span class="keyword">on</span></span>;
 
-truetrueindex  index.html;
-<span class="constant">true</span>}
-}
-</pre></td></tr></table></figure><br> #ps:xx根据实际情况修改<br>4.2. java web网站<br>(1)修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
+            index  index.html;
+        }
+   }
+<span class="comment">#ps:xx根据实际情况修改</span>
+</pre></td></tr></table></figure><br>4.2. java web网站<br>(1)修改<code>nginx</code>配置文件<code>nginx.conf</code><br>在最后加上如下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
@@ -570,35 +617,35 @@ truetrueindex  index.html;
 23
 24
 </pre></td><td class="code"><pre>server {
-truelisten       <span class="number">192.168</span><span class="number">.1</span><span class="built_in">.</span>x:<span class="number">80</span>;
-trueserver_name  xxx<span class="built_in">.</span>net;
-truecharset utf<span class="subst">-</span><span class="number">8</span>;
+        listen       <span class="number">192.168</span><span class="number">.1</span><span class="built_in">.</span>x:<span class="number">80</span>;
+        server_name  xxx<span class="built_in">.</span>net;
+        charset utf<span class="subst">-</span><span class="number">8</span>;
 
-truelocation <span class="subst">/</span> {
-truetrueproxy_set_header   Host             <span class="variable">$host</span>;
-truetrueproxy_set_header   X<span class="attribute">-Real</span><span class="attribute">-IP</span>        <span class="variable">$remote_addr</span>;
-truetrueproxy_set_header  X<span class="attribute">-Forwarded</span><span class="attribute">-For</span>  <span class="variable">$proxy_add_x_forwarded_for</span>;
-truetrueclient_max_body_size       <span class="number">1024</span>m;
-truetrueclient_body_buffer_size    <span class="number">128</span>k;
-truetrueclient_body_temp_path      <span class="built_in">data</span>/client_body_temp;
-truetrueproxy_connect_timeout      <span class="number">90</span>;
-truetrueproxy_send_timeout         <span class="number">90</span>;
-truetrueproxy_read_timeout         <span class="number">90</span>;
-truetrueproxy_buffer_size          <span class="number">4</span>k;
-truetrueproxy_buffers              <span class="number">4</span> <span class="number">32</span>k;
-truetrueproxy_busy_buffers_size    <span class="number">64</span>k;
-truetrueproxy_temp_file_write_size <span class="number">64</span>k;
-truetrueproxy_temp_path            <span class="built_in">data</span>/proxy_temp;
-truetrueproxy_pass http:<span class="comment">//127.0.0.1:8080;</span>
-<span class="literal">true</span>}
-}
+        location <span class="subst">/</span> {
+                proxy_set_header   Host             <span class="variable">$host</span>;
+                proxy_set_header   X<span class="attribute">-Real</span><span class="attribute">-IP</span>        <span class="variable">$remote_addr</span>;
+                proxy_set_header  X<span class="attribute">-Forwarded</span><span class="attribute">-For</span>  <span class="variable">$proxy_add_x_forwarded_for</span>;
+                client_max_body_size       <span class="number">1024</span>m;
+                client_body_buffer_size    <span class="number">128</span>k;
+                client_body_temp_path      <span class="built_in">data</span>/client_body_temp;
+                proxy_connect_timeout      <span class="number">90</span>;
+                proxy_send_timeout         <span class="number">90</span>;
+                proxy_read_timeout         <span class="number">90</span>;
+                proxy_buffer_size          <span class="number">4</span>k;
+                proxy_buffers              <span class="number">4</span> <span class="number">32</span>k;
+                proxy_busy_buffers_size    <span class="number">64</span>k;
+                proxy_temp_file_write_size <span class="number">64</span>k;
+                proxy_temp_path            <span class="built_in">data</span>/proxy_temp;
+                proxy_pass http:<span class="comment">//127.0.0.1:8080;</span>
+        }
+   }
 <span class="variable">#ps</span>:xx根据实际情况修改
 </pre></td></tr></table></figure><br>(2)修改tomcat配置文件server.xml<br>加上如下代码：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
 2
 3
 4
 </pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">Host</span> <span class="attribute">name</span>=<span class="value">"xxx.net"</span>  <span class="attribute">appBase</span>=<span class="value">"webapps"</span> <span class="attribute">unpackWARs</span>=<span class="value">"true"</span> <span class="attribute">autoDeploy</span>=<span class="value">"true"</span>&gt;</span>
-true<span class="tag">&lt;<span class="title">Context</span> <span class="attribute">path</span>=<span class="value">""</span> <span class="attribute">docBase</span>=<span class="value">"/xxx/deploy/xxx"</span> <span class="attribute">debug</span>=<span class="value">"0"</span> <span class="attribute">reloadable</span>=<span class="value">"true"</span> <span class="attribute">crossContext</span>=<span class="value">"true"</span> /&gt;</span>
+    <span class="tag">&lt;<span class="title">Context</span> <span class="attribute">path</span>=<span class="value">""</span> <span class="attribute">docBase</span>=<span class="value">"/xxx/deploy/xxx"</span> <span class="attribute">debug</span>=<span class="value">"0"</span> <span class="attribute">reloadable</span>=<span class="value">"true"</span> <span class="attribute">crossContext</span>=<span class="value">"true"</span> /&gt;</span>
 <span class="tag">&lt;/<span class="title">Host</span>&gt;</span>
 #ps:xx根据实际情况修改
 </pre></td></tr></table></figure></li>
@@ -626,7 +673,7 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
     <link href="http://yoursite.com/2013/10/07/2013-10-07-zhaoshuzi/"/>
     <id>http://yoursite.com/2013/10/07/2013-10-07-zhaoshuzi/</id>
     <published>2013-10-07T15:15:00.000Z</published>
-    <updated>2014-07-06T09:46:08.000Z</updated>
+    <updated>2014-07-06T13:39:26.000Z</updated>
     <content type="html"><![CDATA[<h2 id="原题">原题</h2>
 <p>数组A中，除了某一个数字X之外，其他数字都出现了三次，而X出现了一次。请给出最快的方法找到X。</p>
 <h2 id="分析">分析</h2>
@@ -802,28 +849,6 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
 ]]></summary>
     
       <category term="面试题" scheme="http://yoursite.com/categories/%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[第一篇博文]]></title>
-    <link href="http://yoursite.com/2013/10/07/2013-10-07-first-blog/"/>
-    <id>http://yoursite.com/2013/10/07/2013-10-07-first-blog/</id>
-    <published>2013-10-07T08:13:00.000Z</published>
-    <updated>2013-10-13T14:18:52.000Z</updated>
-    <content type="html"><![CDATA[<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个博客的第一篇博文。  </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以前用过wordpress，不过基本没有去维护它，上面也没有东西。这次选择了Octopress，他是基于markdown的，挂在github上，无限流量。最主要的还是喜欢它那句宣传语。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个博客来得不易啊，前前后后折腾了好多。主要还是太菜了，啥也不会。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;搭的时候看了很多网上的教材，都大同小异，开始的时候也不是很细心，不是这出错就是那出错。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后还是看了官网教程，上面说的肯定是对的，虽然是英文，还是能看懂的。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以后要学生么东西，最好还是看看官方说明吧，虽说网上好多都和官方说的差不多，但有时候还是会有一些差异的。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个博客来的不易，也希望自己以后能多写点东西，多做点记录。也是对所学东西的总结。</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后，贴上octopress的官网：<a href="http://octopress.org/" target="_blank" rel="external">http://octopress.org/</a></p>
-<blockquote>
-<p>像黑客一样写博客。</p>
-</blockquote>
-]]></content>
-    
     
   </entry>
   

@@ -10,9 +10,25 @@
     <meta name="author" content="Zhang Teng">
     
     <meta name="description" content="有时候我们需要删除list中的某个元素，最开始我会这样写：
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
 public class ListTest {
     public static void main(String[] args) {
-        List&amp;lt;Integer&amp;gt; numbers = new ArrayList">
+        List">
     
     
     
@@ -81,7 +97,7 @@ public class ListTest {
     </p>
   <p class="article-time">
     <time datetime="2013-10-13T13:42:00.000Z" itemprop="datePublished">Oct 13 2013</time>
-    Updated:<time datetime="2013-12-13T14:59:31.000Z" itemprop="dateModified">Dec 13 2013</time>
+    Updated:<time datetime="2014-07-06T13:34:47.000Z" itemprop="dateModified">Jul 6 2014</time>
     
   </p>
 </header>
@@ -94,7 +110,23 @@ public class ListTest {
 		</div>
 		
 		<p>有时候我们需要删除list中的某个元素，最开始我会这样写：</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> ListTest {
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListTest</span> {</span>
     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
         List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) {
@@ -102,16 +134,33 @@ public class ListTest {
         }
 
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>; ++i) {
-            <span class="keyword">if</span>(numbers.<span class="keyword">get</span>(i) == <span class="number">5</span>) {
+            <span class="keyword">if</span>(numbers.get(i) == <span class="number">5</span>) {
                 numbers.remove(i);
             }
         }
 
-        System.<span class="keyword">out</span>.println(numbers);
+        System.out.println(numbers);
     }
 }
-</code></pre><p>这样写之后，会报错。因为list在循环中的时候是不可以删除它的元素的。<br>对上面的代码进行一点下改进就可以删除list中的元素了，就是在<code>remove</code>之后加个<code>break</code>就可以了。</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> ListTest {
+</pre></td></tr></table></figure><br>这样写之后，会报错。因为list在循环中的时候是不可以删除它的元素的。<br>对上面的代码进行一点下改进就可以删除list中的元素了，就是在<code>remove</code>之后加个<code>break</code>就可以了。</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListTest</span> {</span>
     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
         List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) {
@@ -119,17 +168,37 @@ public class ListTest {
         }
 
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>; ++i) {
-            <span class="keyword">if</span>(numbers.<span class="keyword">get</span>(i) == <span class="number">5</span>) {
+            <span class="keyword">if</span>(numbers.get(i) == <span class="number">5</span>) {
                 numbers.remove(i);
                 <span class="keyword">break</span>;
             }
         }
 
-        System.<span class="keyword">out</span>.println(numbers);
+        System.out.println(numbers);
     }
 }
-</code></pre><p>上面的方法适用于只删除一个元素，可有的时候我们需要删除多个元素，上面的方法虽可行，但需要为每个需要删除的元素写个for循环，这样效率太低了。<br>使用<code>Iterator</code>可以完成上面的操作。</p>
-<pre><code><span class="keyword">public</span> <span class="keyword">class</span> ListTest {
+</pre></td></tr></table></figure><br>上面的方法适用于只删除一个元素，可有的时候我们需要删除多个元素，上面的方法虽可行，但需要为每个需要删除的元素写个for循环，这样效率太低了。<br>使用<code>Iterator</code>可以完成上面的操作。</p>
+<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListTest</span> {</span>
     <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
         List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();
         <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) {
@@ -146,10 +215,10 @@ public class ListTest {
             }
         }
 
-        System.<span class="keyword">out</span>.println(numbers);
+        System.out.println(numbers);
     }
 }
-</code></pre><p>上面的方法虽都可以删除元素，但都需要for循环，效率不高，但没有找到更好的方法。感觉java的Iterator没有c++的那么只能，用起来没有c++顺手。</p>
+</pre></td></tr></table></figure><br>上面的方法虽都可以删除元素，但都需要for循环，效率不高，但没有找到更好的方法。感觉java的Iterator没有c++的那么只能，用起来没有c++顺手。</p>
 <blockquote>
 <p>对Java的基础知识了解越多，代码就会写得越简洁</p>
 </blockquote>
@@ -236,24 +305,8 @@ public class ListTest {
 
 
   
-<div class="tagslist">
-	<p class="asidetitle">Tags</p>
-		<ul class="clearfix">
-		
-			<li><a href="/tags/java/" title="java">java<sup>1</sup></a></li>
-		
-		</ul>
-</div>
-
 
   
-  <div class="tagcloudlist">
-    <p class="asidetitle">Tag Cloud</p>
-    <div class="tagcloudlist clearfix">
-       <a href="/tags/java/" style="font-size: NaNpx;">java</a>
-    </div>
-  </div>
-
 
   <div class="linkslist">
   <p class="asidetitle">Links</p>
