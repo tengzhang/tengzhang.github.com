@@ -4,12 +4,25 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>新博客的第一篇博文 | Zhang Teng&#39;Bolg</title>
+    <title>markdown语法简介 | Zhang Teng&#39;Bolg</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhang Teng">
     
-    <meta name="description" content="以前在github上用octopress挂了一个博客，但是用它还得装ruby，感觉比较麻烦（主要还是不懂ruby）。前段时间，看到有人用hexo搭建博客，我也试了试。hexo是基于node，比octopress方便多了，就转了过来。这是他的官网http://hexo.io/，关于具体怎么搭建，我就不">
+    <meta name="description" content="本文摘抄自http://wowubuntu.com/markdown/，旨在联系一下markdown的语法，同时也向大家介绍一下markdown的语法，方便大家和自己查阅。
+
+Markdown 语法说明（简体中文版）
+
+概述
+宗旨
+兼容 HTML
+特殊字符自动转换
+
+
+区块元素
+段落和换行
+标题
+区">
     
     
     
@@ -70,15 +83,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/07/06/new-blog-first-post/" title="新博客的第一篇博文" itemprop="url">新博客的第一篇博文</a>
+      <a href="/2014/07/07/markdown-grammar/" title="markdown语法简介" itemprop="url">markdown语法简介</a>
   </h1>
   <p class="article-author">By
     
       <a href="/" title="Zhang Teng">Zhang Teng</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-07-06T12:59:23.000Z" itemprop="datePublished">Jul 6 2014</time>
-    Updated:<time datetime="2014-07-06T13:08:55.000Z" itemprop="dateModified">Jul 6 2014</time>
+    <time datetime="2014-07-07T12:41:20.000Z" itemprop="datePublished">Jul 7 2014</time>
+    Updated:<time datetime="2014-07-07T14:43:17.000Z" itemprop="dateModified">Jul 7 2014</time>
     
   </p>
 </header>
@@ -87,19 +100,69 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">Contents</strong>
-		
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown_语法说明（简体中文版）"><span class="toc-number">1.</span> <span class="toc-text">Markdown 语法说明（简体中文版）</span></a></li><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#overview"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#philosophy"><span class="toc-number">1.1.1.</span> <span class="toc-text">宗旨</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html"><span class="toc-number">1.1.2.</span> <span class="toc-text">兼容 HTML</span></a></li></ol>
 		</div>
 		
-		<p>以前在github上用octopress挂了一个博客，但是用它还得装ruby，感觉比较麻烦（主要还是不懂ruby）。<br>前段时间，看到有人用hexo搭建博客，我也试了试。hexo是基于node，比octopress方便多了，就转了过来。<br>这是他的官网<a href="http://hexo.io/" target="_blank" rel="external">http://hexo.io/</a>，关于具体怎么搭建，我就不多说了，官网写得和详细，直接上官方文档的链接<a href="http://hexo.io/docs/index.html" target="_blank" rel="external">http://hexo.io/docs/index.html</a>。<br>说说我遇到的问题吧，按照官网说的做了，我用<code>hexo deploy</code>，一直deploy上去，也不知道为啥，可能主要还是我对node和git都不熟悉吧。<br>最后我是手动deploy的。具体命令如下：</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>$ hexo clean
-$ hexo deploy --generate
-$ <span class="built_in">cd</span> .deploy
-$ git push -u origin master
-</pre></td></tr></table></figure><br>命令都是在hexo博客的目录下执行的。<br>另外奉上我使用的主题地址:<a href="http://yangjian.me/pacman/hello/introducing-pacman-theme/" target="_blank" rel="external">http://yangjian.me/pacman/hello/introducing-pacman-theme/</a></p>
+		<p>本文摘抄自<a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">http://wowubuntu.com/markdown/</a>，旨在联系一下markdown的语法，同时也向大家介绍一下markdown的语法，方便大家和自己查阅。</p>
+<hr>
+<h1 id="Markdown_语法说明（简体中文版）">Markdown 语法说明（简体中文版）</h1>
+<ul>
+<li><a href="#overview">概述</a><ul>
+<li><a href="#philosophy">宗旨</a></li>
+<li><a href="#html">兼容 HTML</a></li>
+<li><a href="#autoescape">特殊字符自动转换</a></li>
+</ul>
+</li>
+<li><a href="#block">区块元素</a><ul>
+<li><a href="#p">段落和换行</a></li>
+<li><a href="#header">标题</a></li>
+<li><a href="#blockquote">区块引用</a></li>
+<li><a href="#list">列表</a></li>
+<li><a href="#precode">代码区块</a></li>
+<li><a href="#hr">分割线</a></li>
+</ul>
+</li>
+<li><a href="#span">区段元素</a><ul>
+<li><a href="#link">链接</a></li>
+<li><a href="#em">强调</a></li>
+<li><a href="#code">代码</a></li>
+<li><a href="#img">图片</a></li>
+</ul>
+</li>
+<li><a href="#misc">其它</a><ul>
+<li><a href="#backslash">反斜杠</a></li>
+<li><a href="#autolink">自动连接</a></li>
+</ul>
+</li>
+<li><a href="#editor">Markdown 免费编辑器</a></li>
+</ul>
+<hr>
+<h2 id="overview">概述</h2>
+
+<h3 id="philosophy">宗旨</h3>
+
+<p>Markdown的目标是实现「易读易写」。</p>
+<p>可读性，无论如何，都是最重要的。一份使用Markdown格式撰写的文件应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown语法受到一些既有text-to-HTML格式的影响，包括<a href="http://docutils.sourceforge.net/mirror/setext.html" target="_blank" rel="external">Setext</a>、<a href="http://www.aaronsw.com/2002/atx/" target="_blank" rel="external">atx</a>、<a href="http://textism.com/tools/textile/" target="_blank" rel="external">Textile</a>、<a href="http://docutils.sourceforge.net/rst.html" target="_blank" rel="external">reStructuredText</a>、<a href="http://www.triptico.com/software/grutatxt.html" target="_blank" rel="external">Grutatext</a>和<a href="http://ettext.taint.org/doc/" target="_blank" rel="external">EtText</a>，而最大灵感来源其实是纯文本电子邮件的格式。</p>
+<p>总之，Markdown的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。比如：在文字两旁加上星号，看起来就像*强调*。Markdown的列表看起来，嗯，就是列表。Markdown的区块引用看起来就真的像是引用一段文字，就像你曾在电子邮件中见过的那样。</p>
+<h3 id="html">兼容 HTML</h3>
+
+<p>Markdown语法的目标是：成为一种适用于网络的<em>书写</em>语言。</p>
+<p>Markdown不是想要取代HTML，甚至也没有要和它相近，他的语法种类很少，只对应HTML标记的一小部分。Markdown的构想<em>不是</em>要使得HTML文档更容易书写。在我看来，HTML已经很容易书写了。Markdown的理念是，能让文档更容易读、写和随意改。HTML是一种<em>发布</em>的格式，Markdown是一种<em>书写</em>的格式。就这样，Markdown的格式语法只涵盖纯文本可以涵盖的范围。</p>
+<p>不在Markdown涵盖范围之内的标签，都可以直接在文档里面用HTMl撰写。不需要额外标注这是HTML或是Markdown；只要直接加标签就可以了。</p>
+<p>要制约的只有一些HTML区块元素—比如<code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code>等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown的生成器有足够只能，不会在HTML区块标签外加上不必要的<code>&lt;p&gt;</code>标签。</p>
+<p>例子如下，在 Markdown 文件里加上一段 HTML 表格：</p>
+<pre><code>这是一个普通段落。
+
+<span class="tag">&lt;<span class="title">table</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>Foo<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">table</span>&gt;</span>
+
+这是另一个普通段落。
+</code></pre><p>请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的<code>*强调*</code>会没有效果。</p>
+<p>HTML的区段（行内）标签如<code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code>可以在Markdown的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用Markdown格式，而直接此阿勇HTML标签来格式化。举例说明：如果比较喜欢HTML的<code>&lt;a&gt;</code>或<code>&lt;img&gt;</code>标签，可以直接使用这些标签，而不用Markdown提供的链接或是图像标签语法。</p>
+<p>和处在HTML区块标签件不同，Markdown语法在HTML区段标签间是有效的。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -109,7 +172,7 @@ $ git push -u origin master
 
 <div class="article-share" id="share">
 
-  <div data-url="/2014/07/06/new-blog-first-post/" data-title="新博客的第一篇博文 | Zhang Teng&#39;Bolg" data-tsina="null" class="share clearfix">
+  <div data-url="/2014/07/07/markdown-grammar/" data-title="markdown语法简介 | Zhang Teng&#39;Bolg" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -119,18 +182,18 @@ $ git push -u origin master
 <nav class="article-nav clearfix">
  
  <div class="prev" >
- <a href="/2014/07/07/markdown-grammar/" title="markdown语法简介">
+ <a href="/2014/07/12/grub2-repair-windows/" title="grub2修复windows引导">
   <strong>PREVIOUS:</strong><br/>
   <span>
-  markdown语法简介</span>
+  grub2修复windows引导</span>
 </a>
 </div>
 
 
 <div class="next">
-<a href="/2013/11/01/2013-11-01-jquery-study/"  title="jquery使用笔记">
+<a href="/2014/07/06/new-blog-first-post/"  title="新博客的第一篇博文">
  <strong>NEXT:</strong><br/> 
- <span>jquery使用笔记
+ <span>新博客的第一篇博文
 </span>
 </a>
 </div>
@@ -147,7 +210,7 @@ $ git push -u origin master
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">Contents</strong>
-  
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Markdown_语法说明（简体中文版）"><span class="toc-number">1.</span> <span class="toc-text">Markdown 语法说明（简体中文版）</span></a></li><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#overview"><span class="toc-number">1.1.</span> <span class="toc-text">概述</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#philosophy"><span class="toc-number">1.1.1.</span> <span class="toc-text">宗旨</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#html"><span class="toc-number">1.1.2.</span> <span class="toc-text">兼容 HTML</span></a></li></ol>
   </div>
 
 <div id="asidepart">

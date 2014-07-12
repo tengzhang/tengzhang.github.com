@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2014-07-06T13:43:55.227Z</updated>
+  <updated>2014-07-12T04:42:32.724Z</updated>
   <id>//</id>
   
   <author>
@@ -13,6 +13,115 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[grub2修复windows引导]]></title>
+    <link href="/2014/07/12/grub2-repair-windows/"/>
+    <id>/2014/07/12/grub2-repair-windows/</id>
+    <published>2014-07-12T04:39:43.000Z</published>
+    <updated>2014-07-12T04:41:22.000Z</updated>
+    <content type="html"><![CDATA[<p>可参考网址<a href="http://blog.csdn.net/hengyunabc/article/details/6071683" target="_blank" rel="external">http://blog.csdn.net/hengyunabc/article/details/6071683</a></p>
+<p>今天装了个centos 7，进去之后发现没有windows引导了，centos 7开始用grub 2引导了。<br>首先可以试试:</p>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ gurb2<span class="attribute">-mkconfig</span> <span class="attribute">-o</span> /boot/grub/grub<span class="built_in">.</span>cfg
+</pre></td></tr></table></figure><br>它非常智能，能自动检测电脑上安装的操作系统，将它们加入到引导中去。<br>不过，有时候它也不好使，就像我今天这样。</p>
+<p>可以采用第二种方式，手动修改/boot/grub/grub.cfg</p>
+<p>首先查看分区的UUID</p>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">$ </span>blkid
+</pre></td></tr></table></figure><br>找到windows所在分区的UUID。一定要记住UUID，不要记住分区号，因为分区号有可能改变，但是UUID一定不会变。<br>然后修改grub.cfg</p>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">$ </span>vim /boot/grub/grub.cfg
+</pre></td></tr></table></figure><br>在该文件中加入如下内容:</p>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre>menuentry <span class="string">"windows 8"</span> {
+    insmod chain
+    insmod ntfs
+    search <span class="subst">--</span>fs<span class="attribute">-uuid</span> <span class="subst">--</span><span class="built_in">set</span> <span class="number">10</span>ac99d8ac99b8a4
+    chainloader <span class="subst">+</span><span class="number">1</span>
+}
+</pre></td></tr></table></figure><br>其中的“10ac99d8ac99b8a4”要替换为上一步记住的UUID。</p>
+<p>最后，重启电脑就可以看到windows 8的引导了，选择就可以进入系统了。</p>
+]]></content>
+    
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[markdown语法简介]]></title>
+    <link href="/2014/07/07/markdown-grammar/"/>
+    <id>/2014/07/07/markdown-grammar/</id>
+    <published>2014-07-07T12:41:20.000Z</published>
+    <updated>2014-07-07T14:43:17.000Z</updated>
+    <content type="html"><![CDATA[<p>本文摘抄自<a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">http://wowubuntu.com/markdown/</a>，旨在联系一下markdown的语法，同时也向大家介绍一下markdown的语法，方便大家和自己查阅。</p>
+<hr>
+<h1 id="Markdown_语法说明（简体中文版）">Markdown 语法说明（简体中文版）</h1>
+<ul>
+<li><a href="#overview">概述</a><ul>
+<li><a href="#philosophy">宗旨</a></li>
+<li><a href="#html">兼容 HTML</a></li>
+<li><a href="#autoescape">特殊字符自动转换</a></li>
+</ul>
+</li>
+<li><a href="#block">区块元素</a><ul>
+<li><a href="#p">段落和换行</a></li>
+<li><a href="#header">标题</a></li>
+<li><a href="#blockquote">区块引用</a></li>
+<li><a href="#list">列表</a></li>
+<li><a href="#precode">代码区块</a></li>
+<li><a href="#hr">分割线</a></li>
+</ul>
+</li>
+<li><a href="#span">区段元素</a><ul>
+<li><a href="#link">链接</a></li>
+<li><a href="#em">强调</a></li>
+<li><a href="#code">代码</a></li>
+<li><a href="#img">图片</a></li>
+</ul>
+</li>
+<li><a href="#misc">其它</a><ul>
+<li><a href="#backslash">反斜杠</a></li>
+<li><a href="#autolink">自动连接</a></li>
+</ul>
+</li>
+<li><a href="#editor">Markdown 免费编辑器</a></li>
+</ul>
+<hr>
+<h2 id="overview">概述</h2>
+
+<h3 id="philosophy">宗旨</h3>
+
+<p>Markdown的目标是实现「易读易写」。</p>
+<p>可读性，无论如何，都是最重要的。一份使用Markdown格式撰写的文件应该可以直接以纯文本发布，并且看起来不会像是由许多标签或是格式指令所构成。Markdown语法受到一些既有text-to-HTML格式的影响，包括<a href="http://docutils.sourceforge.net/mirror/setext.html" target="_blank" rel="external">Setext</a>、<a href="http://www.aaronsw.com/2002/atx/" target="_blank" rel="external">atx</a>、<a href="http://textism.com/tools/textile/" target="_blank" rel="external">Textile</a>、<a href="http://docutils.sourceforge.net/rst.html" target="_blank" rel="external">reStructuredText</a>、<a href="http://www.triptico.com/software/grutatxt.html" target="_blank" rel="external">Grutatext</a>和<a href="http://ettext.taint.org/doc/" target="_blank" rel="external">EtText</a>，而最大灵感来源其实是纯文本电子邮件的格式。</p>
+<p>总之，Markdown的语法全由一些符号所组成，这些符号经过精挑细选，其作用一目了然。比如：在文字两旁加上星号，看起来就像*强调*。Markdown的列表看起来，嗯，就是列表。Markdown的区块引用看起来就真的像是引用一段文字，就像你曾在电子邮件中见过的那样。</p>
+<h3 id="html">兼容 HTML</h3>
+
+<p>Markdown语法的目标是：成为一种适用于网络的<em>书写</em>语言。</p>
+<p>Markdown不是想要取代HTML，甚至也没有要和它相近，他的语法种类很少，只对应HTML标记的一小部分。Markdown的构想<em>不是</em>要使得HTML文档更容易书写。在我看来，HTML已经很容易书写了。Markdown的理念是，能让文档更容易读、写和随意改。HTML是一种<em>发布</em>的格式，Markdown是一种<em>书写</em>的格式。就这样，Markdown的格式语法只涵盖纯文本可以涵盖的范围。</p>
+<p>不在Markdown涵盖范围之内的标签，都可以直接在文档里面用HTMl撰写。不需要额外标注这是HTML或是Markdown；只要直接加标签就可以了。</p>
+<p>要制约的只有一些HTML区块元素—比如<code>&lt;div&gt;</code>、<code>&lt;table&gt;</code>、<code>&lt;pre&gt;</code>、<code>&lt;p&gt;</code>等标签，必须在前后加上空行与其它内容区隔开，还要求它们的开始标签与结尾标签不能用制表符或空格来缩进。Markdown的生成器有足够只能，不会在HTML区块标签外加上不必要的<code>&lt;p&gt;</code>标签。</p>
+<p>例子如下，在 Markdown 文件里加上一段 HTML 表格：</p>
+<pre><code>这是一个普通段落。
+
+<span class="tag">&lt;<span class="title">table</span>&gt;</span>
+    <span class="tag">&lt;<span class="title">tr</span>&gt;</span>
+        <span class="tag">&lt;<span class="title">td</span>&gt;</span>Foo<span class="tag">&lt;/<span class="title">td</span>&gt;</span>
+    <span class="tag">&lt;/<span class="title">tr</span>&gt;</span>
+<span class="tag">&lt;/<span class="title">table</span>&gt;</span>
+
+这是另一个普通段落。
+</code></pre><p>请注意，在 HTML 区块标签间的 Markdown 格式语法将不会被处理。比如，你在 HTML 区块内使用 Markdown 样式的<code>*强调*</code>会没有效果。</p>
+<p>HTML的区段（行内）标签如<code>&lt;span&gt;</code>、<code>&lt;cite&gt;</code>、<code>&lt;del&gt;</code>可以在Markdown的段落、列表或是标题里随意使用。依照个人习惯，甚至可以不用Markdown格式，而直接此阿勇HTML标签来格式化。举例说明：如果比较喜欢HTML的<code>&lt;a&gt;</code>或<code>&lt;img&gt;</code>标签，可以直接使用这些标签，而不用Markdown提供的链接或是图像标签语法。</p>
+<p>和处在HTML区块标签件不同，Markdown语法在HTML区段标签间是有效的。</p>
+]]></content>
+    
+    
+  </entry>
   
   <entry>
     <title><![CDATA[新博客的第一篇博文]]></title>

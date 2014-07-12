@@ -4,12 +4,15 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>新博客的第一篇博文 | Zhang Teng&#39;Bolg</title>
+    <title>grub2修复windows引导 | Zhang Teng&#39;Bolg</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="Zhang Teng">
     
-    <meta name="description" content="以前在github上用octopress挂了一个博客，但是用它还得装ruby，感觉比较麻烦（主要还是不懂ruby）。前段时间，看到有人用hexo搭建博客，我也试了试。hexo是基于node，比octopress方便多了，就转了过来。这是他的官网http://hexo.io/，关于具体怎么搭建，我就不">
+    <meta name="description" content="可参考网址http://blog.csdn.net/hengyunabc/article/details/6071683
+今天装了个centos 7，进去之后发现没有windows引导了，centos 7开始用grub 2引导了。首先可以试试:
+1
+$ gurb2-mkconfig -o /boot">
     
     
     
@@ -70,15 +73,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/07/06/new-blog-first-post/" title="新博客的第一篇博文" itemprop="url">新博客的第一篇博文</a>
+      <a href="/2014/07/12/grub2-repair-windows/" title="grub2修复windows引导" itemprop="url">grub2修复windows引导</a>
   </h1>
   <p class="article-author">By
     
       <a href="/" title="Zhang Teng">Zhang Teng</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-07-06T12:59:23.000Z" itemprop="datePublished">Jul 6 2014</time>
-    Updated:<time datetime="2014-07-06T13:08:55.000Z" itemprop="dateModified">Jul 6 2014</time>
+    <time datetime="2014-07-12T04:39:43.000Z" itemprop="datePublished">Jul 12 2014</time>
+    Updated:<time datetime="2014-07-12T04:41:22.000Z" itemprop="dateModified">Jul 12 2014</time>
     
   </p>
 </header>
@@ -90,16 +93,33 @@
 		
 		</div>
 		
-		<p>以前在github上用octopress挂了一个博客，但是用它还得装ruby，感觉比较麻烦（主要还是不懂ruby）。<br>前段时间，看到有人用hexo搭建博客，我也试了试。hexo是基于node，比octopress方便多了，就转了过来。<br>这是他的官网<a href="http://hexo.io/" target="_blank" rel="external">http://hexo.io/</a>，关于具体怎么搭建，我就不多说了，官网写得和详细，直接上官方文档的链接<a href="http://hexo.io/docs/index.html" target="_blank" rel="external">http://hexo.io/docs/index.html</a>。<br>说说我遇到的问题吧，按照官网说的做了，我用<code>hexo deploy</code>，一直deploy上去，也不知道为啥，可能主要还是我对node和git都不熟悉吧。<br>最后我是手动deploy的。具体命令如下：</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre>1
+		<p>可参考网址<a href="http://blog.csdn.net/hengyunabc/article/details/6071683" target="_blank" rel="external">http://blog.csdn.net/hengyunabc/article/details/6071683</a></p>
+<p>今天装了个centos 7，进去之后发现没有windows引导了，centos 7开始用grub 2引导了。<br>首先可以试试:</p>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>$ gurb2<span class="attribute">-mkconfig</span> <span class="attribute">-o</span> /boot/grub/grub<span class="built_in">.</span>cfg
+</pre></td></tr></table></figure><br>它非常智能，能自动检测电脑上安装的操作系统，将它们加入到引导中去。<br>不过，有时候它也不好使，就像我今天这样。</p>
+<p>可以采用第二种方式，手动修改/boot/grub/grub.cfg</p>
+<p>首先查看分区的UUID</p>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">$ </span>blkid
+</pre></td></tr></table></figure><br>找到windows所在分区的UUID。一定要记住UUID，不要记住分区号，因为分区号有可能改变，但是UUID一定不会变。<br>然后修改grub.cfg</p>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="variable">$ </span>vim /boot/grub/grub.cfg
+</pre></td></tr></table></figure><br>在该文件中加入如下内容:</p>
+<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 2
 3
 4
-</pre></td><td class="code"><pre>$ hexo clean
-$ hexo deploy --generate
-$ <span class="built_in">cd</span> .deploy
-$ git push -u origin master
-</pre></td></tr></table></figure><br>命令都是在hexo博客的目录下执行的。<br>另外奉上我使用的主题地址:<a href="http://yangjian.me/pacman/hello/introducing-pacman-theme/" target="_blank" rel="external">http://yangjian.me/pacman/hello/introducing-pacman-theme/</a></p>
+5
+6
+</pre></td><td class="code"><pre>menuentry <span class="string">"windows 8"</span> {
+    insmod chain
+    insmod ntfs
+    search <span class="subst">--</span>fs<span class="attribute">-uuid</span> <span class="subst">--</span><span class="built_in">set</span> <span class="number">10</span>ac99d8ac99b8a4
+    chainloader <span class="subst">+</span><span class="number">1</span>
+}
+</pre></td></tr></table></figure><br>其中的“10ac99d8ac99b8a4”要替换为上一步记住的UUID。</p>
+<p>最后，重启电脑就可以看到windows 8的引导了，选择就可以进入系统了。</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -109,7 +129,7 @@ $ git push -u origin master
 
 <div class="article-share" id="share">
 
-  <div data-url="/2014/07/06/new-blog-first-post/" data-title="新博客的第一篇博文 | Zhang Teng&#39;Bolg" data-tsina="null" class="share clearfix">
+  <div data-url="/2014/07/12/grub2-repair-windows/" data-title="grub2修复windows引导 | Zhang Teng&#39;Bolg" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -118,19 +138,11 @@ $ git push -u origin master
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/07/07/markdown-grammar/" title="markdown语法简介">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  markdown语法简介</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2013/11/01/2013-11-01-jquery-study/"  title="jquery使用笔记">
+<a href="/2014/07/07/markdown-grammar/"  title="markdown语法简介">
  <strong>NEXT:</strong><br/> 
- <span>jquery使用笔记
+ <span>markdown语法简介
 </span>
 </a>
 </div>
