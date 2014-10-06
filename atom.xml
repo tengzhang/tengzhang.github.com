@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2014-07-12T04:42:32.724Z</updated>
+  <updated>2014-09-24T07:38:28.972Z</updated>
   <id>//</id>
   
   <author>
@@ -13,6 +13,431 @@
   </author>
   
   <generator uri="http://zespia.tw/hexo/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Windows下安装Redmine]]></title>
+    <link href="/2014/09/09/2014-09-09-windows-install-redmine/"/>
+    <id>/2014/09/09/2014-09-09-windows-install-redmine/</id>
+    <published>2014-09-09T06:39:16.000Z</published>
+    <updated>2014-09-09T06:47:19.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="准备工作">准备工作</h3>
+<p>Redmine官网:<a href="http://www.redmine.org/" target="_blank" rel="external">http://www.redmine.org/</a><br>Ruby官网:<a href="http://rubyforge.org/" target="_blank" rel="external">http://rubyforge.org/</a></p>
+<ol>
+<li><p>下载railsinstaller-2.2.3.exe<br> 这是Ruby环境的一键安装包，安装上它就可以安装上全部的Ruby环境。<br> 官网:<a href="http://railsinstaller.org/en" target="_blank" rel="external">http://railsinstaller.org/en</a><br> 此安装包包含如下内容：<br> Ruby 1.9.3<br>Rails 3.2<br>Bundler<br>Git<br>Sqlite<br>TinyTDS<br>SQL Server Support<br>DevKit</p>
+</li>
+<li><p>下载ImageMagick，这个是图型生成工具，redmine用于生成pdf等内容，也可以不安装。安装说明在这里<br>我下载的是ImageMagick-6.8.4-0-Q16-x86-dll.exe<br>下载地址:<a href="http://download.csdn.net/detail/lqt0307/5184966" target="_blank" rel="external">http://download.csdn.net/detail/lqt0307/5184966</a><br>ps:我只找到了这个下载地址，需要1分，没有分的可以找我要。</p>
+</li>
+<li><p>redmine<br>这个就不用说了，上官网下就行，我用的版本是2.5.2。</p>
+</li>
+<li><p>mysql<br>redmine使用的数据库是mysql，所以需要安装mysql。</p>
+</li>
+</ol>
+<h3 id="安装">安装</h3>
+<ol>
+<li><p>安装railsinstaller<br> 如果不选择安装目录什么的，直接下一步就可以了。</p>
+</li>
+<li><p>解压redmine-2.5.2.zip</p>
+</li>
+<li><p>安装mysql<br> 这个就不多说了。</p>
+</li>
+<li><p>安装mysql2插件<br> 进入Railsinstaller安装目录下的DevKit，运行DevKit目录下的msys.bat<br> 输入:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>gem install mysql2 <span class="attribute">-v</span><span class="subst">=</span><span class="number">0.3</span><span class="number">.16</span> <span class="subst">--</span> <span class="subst">--</span><span class="keyword">with</span><span class="attribute">-mysql</span><span class="attribute">-dir</span><span class="subst">=</span><span class="string">"mysql安装目录"</span>
+</pre></td></tr></table></figure><br>命令中的”mysql安装目录”要替换掉，要不要引号都可以</p>
+</li>
+<li><p>安装rmagick<br> window下安装rmagick，需要手动安装，不能通过：gem install rmagick 进行安装。<br> 首先需要安装ImageMagick。安装方式可以参考<a href="http://www.redmine.org/projects/redmine/wiki/HowTo_install_rmagick_gem_on_Windows" target="_blank" rel="external">http://www.redmine.org/projects/redmine/wiki/HowTo_install_rmagick_gem_on_Windows</a>，上面讲得很详细。<br> 主要也是下一步、下一步就可以了，需要注意一下的是安装目录中最好不要有空格，我在这个地方被坑了好几次。</p>
+<p> 安装完ImageMagick之后，就可以安装rmagick了。进入Railsinstaller安装目录下的DevKit，运行DevKit目录下的msys.bat。<br> 输入:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>gem install <span class="subst">--</span> <span class="subst">--</span><span class="keyword">with</span><span class="attribute">-opt</span><span class="attribute">-lib</span><span class="subst">=</span><span class="string">"ImageMagick安装目录/lib"</span>  <span class="subst">--</span><span class="keyword">with</span><span class="attribute">-opt</span><span class="attribute">-include</span><span class="subst">=</span><span class="string">"
+ImageMagick安装目录/include"</span>
+</pre></td></tr></table></figure><br>命令中的”ImageMagick安装目录”要替换掉，要不要引号都可以。</p>
+</li>
+<li><p>数据库准备<br> 6.1. 把libmysql.dll复制到“RailsInstaller安装目录\Ruby1.9.3\bin”下面。<br> 6.2. 创建数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="operator"><span class="keyword">CREATE</span> <span class="keyword">DATABASE</span> db_redmine <span class="keyword">CHARACTER</span> <span class="keyword">SET</span> utf8;</span>
+</pre></td></tr></table></figure>
+
+<p> 6.3. 修改redmine连接数据库文件<br> redmine目录下的config/database.yml.example 改为config/database.yml<br> 第6行开始</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre><span class="label">production:</span>
+<span class="label">adapter:</span> mysql2
+<span class="label">database:</span> redmine
+<span class="label">host:</span> localhost
+<span class="label">username:</span> root
+<span class="label">password:</span> my_password
+</pre></td></tr></table></figure>
+</li>
+<li><p>目录下执行:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>bundle <span class="keyword">install</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>初始化Redmine数据库环境</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>bundle <span class="keyword">exec</span> rake db:migrate RAILS_ENV=production
+</pre></td></tr></table></figure>
+</li>
+<li><p>生成session存储密钥</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>bundle <span class="keyword">exec</span> rake generate_secret_token
+</pre></td></tr></table></figure>
+</li>
+<li><p>启动Redmine</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ruby script/rails server webrick <span class="operator">-e</span> production
+</pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h3 id="将Redmine安装为Windows服务，开机自动运行">将Redmine安装为Windows服务，开机自动运行</h3>
+<p>每次都用命令去启动Redmine还是很麻烦的，把Redmine安装成windows服务，让它能够开机自启动，还是很方便的。<br>Ruby提供一个安装Ruby程序为服务的包：mongrel_service。安装其实很简单，只要命令行下运行gem：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>gem <span class="keyword">install</span> mongrel_service
+</pre></td></tr></table></figure><br>过程中安装一些必须的其他包。<br>然后将RedMine使用mongrel_service安装成Windows服务：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>mongrel_rails service<span class="tag">::install</span> <span class="attribute">-N</span> Redmine <span class="attribute">-c</span> D:<span class="subst">\</span>WebRoot <span class="attribute">-p</span> <span class="number">3000</span> <span class="attribute">-e</span> production
+</pre></td></tr></table></figure><br>这里，我指定服务名为RedMine，我的Redmine在D:\WebRoot，你的要修改，注意指向Redmine的根目录。监听3000端口。<br>然后修改启动方式为自动启动，并添加MySQL服务为其依赖服务（如果你的MySQL服务器不是本机就不用麻烦了）：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="attribute">sc config Redmine start</span>=<span class="string"> auto depend= MySQL</span>
+</pre></td></tr></table></figure><br>注意，执行sc config系列指令，服务必须是未启动的才行，否则会出错。<br>将来如果想去掉这个服务，只要执行：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>mongrel_rails service<span class="tag">::remove</span> <span class="attribute">-N</span> Redmine
+</pre></td></tr></table></figure><br>也可以使用：<code>sc delete Redmine</code> 删除服务。<br><br>以上方式只适用于xp及xp以上系统，如果你的系统是server 2003，需要用下面这种方式：<a href="http://www.redmine.org/boards/1/topics/4123" target="_blank" rel="external">http://www.redmine.org/boards/1/topics/4123</a>。<br>上面说得很详细了，我就不在累述。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="attribute">rake redmine:plugins:migrate RAILS_ENV</span>=<span class="string">production</span>
+</pre></td></tr></table></figure>]]></content>
+    
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[CentOS下安装Redmine]]></title>
+    <link href="/2014/09/09/2014-09-09-centos-install-redmine/"/>
+    <id>/2014/09/09/2014-09-09-centos-install-redmine/</id>
+    <published>2014-09-09T06:37:15.000Z</published>
+    <updated>2014-09-09T06:44:51.000Z</updated>
+    <content type="html"><![CDATA[<p>Redmine的安装主要分为两部分：</p>
+<ol>
+<li>Ruby+Rails的安装</li>
+<li>Redmine的安装<br>先说一下系统环境，我安装的系统是CentOS 5，选择的Redmine版本是2.5.2，Ruby的版本是1.9.3，Rails的版本是3.2.19。<br>下面从以上两部分进行说明。</li>
+</ol>
+<h3 id="Ruby+Rails的安装">Ruby+Rails的安装</h3>
+<p>Ruby的安装有3中方式：</p>
+<ol>
+<li>直接<code>yum install ruby</code></li>
+<li>源码编译安装</li>
+<li><p>采用RVM安装<br>以上3种方式我都尝试了，最后采用了RVM安装这种方式，这种方式也是最简单的。</p>
+</li>
+<li><p>下载RVM并且安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>curl -L <span class="keyword">https</span>://<span class="built_in">get</span>.rvm.io | bash -s stable
+</pre></td></tr></table></figure>
+</li>
+<li><p>安装一些依赖库，编译安装其它软件或者库的时候会用到</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>yum install zlib zlib<span class="attribute">-devel</span> sqlite<span class="attribute">-devel</span>
+yum install <span class="attribute">-y</span> gcc<span class="attribute">-c</span><span class="subst">++</span> patch readline readline<span class="attribute">-devel</span> zlib zlib<span class="attribute">-devel</span> libyaml<span class="attribute">-devel</span> libffi<span class="attribute">-devel</span> openssl<span class="attribute">-devel</span> make bzip2 autoconf automake libtool bison iconv<span class="attribute">-devel</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>安装openssl，安装ruby的时候会使用到</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>rvm pkg <span class="keyword">install</span> openssl
+</pre></td></tr></table></figure>
+</li>
+<li><p>指定openssl的位置来安装ruby</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>rvm install <span class="number">1.9</span><span class="number">.3</span> <span class="subst">--</span><span class="keyword">with</span><span class="attribute">-openssl</span><span class="attribute">-dir</span><span class="subst">=</span>/usr/<span class="built_in">local</span>/rvm/usr
+</pre></td></tr></table></figure>
+</li>
+<li><p>指定使用Ruby版本</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>rvm <span class="keyword">use</span> <span class="number">1.9</span>.<span class="number">2</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>安装Rails</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>gem <span class="keyword">install</span> rails
+</pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p>经过以上步骤，Ruby和Rails就安装完毕了。<br>安装完Ruby之后，建议更改一下gem的镜像地址，原因你懂的。可以改到淘宝的gem镜像，参考一下网址：<a href="http://ruby.taobao.org" target="_blank" rel="external">http://ruby.taobao.org/</a>。上面有更改gem镜像的详细方法。</p>
+<h3 id="Redmine的安装">Redmine的安装</h3>
+<p>最推荐的做法是参考官方wiki（<a href="http://www.redmine.org/projects/redmine/wiki/RedmineInstall）" target="_blank" rel="external">http://www.redmine.org/projects/redmine/wiki/RedmineInstall）</a></p>
+<ol>
+<li><p>准备Redmine需要用到的数据库环境<br> 1.1. 修改Redmine数据库配置文件<br> 进入Redmine目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="keyword">cp</span> config/database<span class="preprocessor">.yml</span><span class="preprocessor">.example</span> config/database<span class="preprocessor">.yml</span>  
+vi database<span class="preprocessor">.yml</span>
+</pre></td></tr></table></figure><br>按照下面的内容进行修改<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="attribute">production</span>: <span class="string"> </span>
+<span class="attribute">adapter</span>: <span class="string">mysql2  </span>
+<span class="attribute">database</span>: <span class="string">db_redmine  </span>
+<span class="attribute">host</span>: <span class="string">localhost  </span>
+<span class="attribute">username</span>: <span class="string">root  </span>
+<span class="attribute">password</span>: <span class="string">&lt;你的mysql密码&gt;  </span>
+<span class="attribute">ps</span>: <span class="string">其中的一些值需要根据实际情况</span>
+</pre></td></tr></table></figure>
+
+<p> 1.2. 进入Mysql创建数据库</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> redmine <span class="keyword">character</span> <span class="keyword">set</span> utf8;</span>
+</pre></td></tr></table></figure>
+</li>
+<li><p>初始化Redmine数据库环境</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="attribute">rake db:migrate RAILS_ENV</span>=<span class="string">production</span>
+</pre></td></tr></table></figure><br>执行此命令的时候会出现以下错误：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre>Could <span class="operator">not</span> find gem <span class="string">'mocha (~&gt; 1.0.0) ruby'</span> <span class="operator">in</span> <span class="operator">the</span> gems available <span class="command"><span class="keyword">on</span> <span class="title">this</span> <span class="title">machine</span>.</span>
+Run `bundle install` <span class="built_in">to</span> install missing gems.
+</pre></td></tr></table></figure><br>报这个错误的原因是因为缺少<code>mocha</code>这个gem，类似的还有很多gem都缺失。解决方法就是根据提示一个一个安装（类似于<code>gem install mocha -v=1.0.0</code>这样的命令），另一种解决办法是使用<code>bundle install</code>自动安装所缺少的gem，推荐使用这种方式，这种方式会自动帮你下载所依赖的gem，并且还能解决它们之间的版本冲突问题。<br>通过<code>bundle install</code>命令基本可以安装上所有依赖的gem，除了一个，<code>rmagick</code>，这个gem还需要依赖<code>ImageMagick</code>，他是用于处理一些图片转换之类的工作的。由于<code>rmagick</code>需要依赖<code>ImageMagick</code>，所以使用<code>bundle install</code>会安装失败，需要现在系统中安装<code>ImageMagick</code>。<br>解决方法如下：<br> 2.1. 如果你的CentOS版本比较新，可直接采用yum安装<br> <figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>	yum <span class="keyword">install</span> ImageMagick-devel
+</pre></td></tr></table></figure>
+
+<p> 2.2. 源码编译安装<br> 去官网下载源码(<a href="http://www.imagemagick.org/script/install-source.php#unix" target="_blank" rel="external">http://www.imagemagick.org/script/install-source.php#unix</a>)<br> 上面有安装教程，建议安装上面的步骤进行安装。<br> 下面列出我安装时执行的命令：</p>
+ <figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+</pre></td><td class="code"><pre>	tar xvzf ImageMagick<span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
+    cd ImageMagick-<span class="number">6.8</span><span class="number">.9</span>
+    ./configure
+    make
+    make install
+</pre></td></tr></table></figure>
+
+<p> 经过上面的步骤将gem都安装完之后，还需要再次执行<code>rake db:migrate RAILS_ENV=production</code>，这一步的主要作用是在数据库中生成Redmine需要的数据库表。</p>
+</li>
+<li><p>生成Redmine的Session存储</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>rake generate_secret_token
+</pre></td></tr></table></figure>
+</li>
+<li><p>启动Redmine<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ruby script/rails server webrick <span class="operator">-e</span> production
+</pre></td></tr></table></figure><br>这条命令不是后台运行，建议使用如下命令，让redmie在后台运行<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ruby script/rails server <span class="attribute">-e</span> production <span class="attribute">-d</span> <span class="subst">&gt;</span> /dev/<span class="built_in">null</span> <span class="number">2</span><span class="subst">&gt;&</span><span class="number">1</span> <span class="subst">&</span>
+</pre></td></tr></table></figure><br>可将上述命令加入/etc/local中，使得Redmine可以在系统启动时就启动。</p>
+</li>
+</ol>
+<p>在使用过程中可能会遇到如下错误：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre>ActionView::Template::Error (incompatible <span class="typename">character</span> encodings: UTF-<span class="number">8</span> <span class="keyword">and</span> ASCII-<span class="number">8</span><span class="typename">BIT</span>)
+</pre></td></tr></table></figure><br>解决方法如下：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+2
+</pre></td><td class="code"><pre><span class="tag">rake</span> <span class="tag">assets</span><span class="pseudo">:precompile</span>
+然后重启<span class="tag">rails</span> <span class="tag">server</span>。
+</pre></td></tr></table></figure>
+
+<h3 id="插件安装">插件安装</h3>
+<p>Redmine还可以安装一些插件，来帮助我们进行项目管理。<br>我们现在安装的插件有crumpm、code review、scrum、Aginle。<br>code review下载地址:<a href="http://www.redmine.org/plugins/codereview" target="_blank" rel="external">http://www.redmine.org/plugins/codereview</a><br>scrum下载地址:<a href="https://redmine.ociotec.com/projects/redmine-plugin-scrum" target="_blank" rel="external">https://redmine.ociotec.com/projects/redmine-plugin-scrum</a><br>Aginle下载地址:<a href="http://www.redmine.org/plugins/redmine_agile" target="_blank" rel="external">http://www.redmine.org/plugins/redmine_agile</a></p>
+<p>插件安装步骤:</p>
+<ol>
+<li>下载插件，解压到Redmine安装目录下的plugins文件夹下</li>
+<li>在Redmine安装目录下执行:<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="attribute">rake redmine:plugins:migrate RAILS_ENV</span>=<span class="string">production</span>
+</pre></td></tr></table></figure></li>
+<li>重启Redmine</li>
+</ol>
+<p>安装过程的参考资料如下：</p>
+<ol>
+<li><a href="http://lxiaodao.iteye.com/blog/1579992" target="_blank" rel="external">http://lxiaodao.iteye.com/blog/1579992</a></li>
+<li><a href="http://note.youdao.com/share/?id=610d4aea90c5d7281b61dfcb1cd41906&amp;type=note" target="_blank" rel="external">http://note.youdao.com/share/?id=610d4aea90c5d7281b61dfcb1cd41906&amp;type=note</a></li>
+<li><a href="http://blog.sina.com.cn/s/blog_8254427901016z1l.html" target="_blank" rel="external">http://blog.sina.com.cn/s/blog_8254427901016z1l.html</a></li>
+</ol>
+]]></content>
+    
+    
+      <category term="linux redmine" scheme="/tags/linux-redmine/"/>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[code-standards]]></title>
+    <link href="/2014/07/19/code-standards/"/>
+    <id>/2014/07/19/code-standards/</id>
+    <published>2014-07-19T14:42:52.000Z</published>
+    <updated>2014-08-21T10:09:14.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="后端">后端</h1>
+<hr>
+<h2 id="工程结构">工程结构</h2>
+<p>分为<code>service</code>和<code>web</code></p>
+<h2 id="注释">注释</h2>
+<ol>
+<li>类头要写明该类的职责是什么。<br>for example:<figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="javadoc">/**
+ * 职责
+ *<span class="javadoctag"> @Description</span>
+ *
+ *<span class="javadoctag"> @author</span> zhangteng
+ *<span class="javadoctag"> @email</span> zhangt@pandawork.net
+ *<span class="javadoctag"> @time</span>: 2014/7/9 14:25
+ */</span>
+</pre></td></tr></table></figure></li>
+<li>方法要写明该方法的功能是什么。<figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="javadoc">/**
+ * 获取分页列表
+ *
+ *<span class="javadoctag"> @param</span> curPage
+ *<span class="javadoctag"> @param</span> code
+ *<span class="javadoctag"> @param</span> name
+ *<span class="javadoctag"> @param</span> startTime
+ *<span class="javadoctag"> @param</span> endTime
+ *<span class="javadoctag"> @return</span>
+ */</span>
+</pre></td></tr></table></figure></li>
+<li>方法里面要有适当的注释。不能写了一个方法100行，一个注释都没有。</li>
+<li>数据库表要有一个总的声明，每个字段有相关说明。</li>
+<li>实体或者业务修改，也要修改相关数据表中表对应的字段说明。保持一致。</li>
+</ol>
+<h2 id="后端规范">后端规范</h2>
+<h3 id="类名称">类名称</h3>
+<ol>
+<li>以大写字母开头。</li>
+<li>以驼峰方式命名。</li>
+</ol>
+<h3 id="属性名、方法名">属性名、方法名</h3>
+<ol>
+<li>以小写字母开头。</li>
+<li>以驼峰方式命名。</li>
+</ol>
+<h3 id="常量命名规范">常量命名规范</h3>
+<ol>
+<li>所有字母大写</li>
+<li>单词之间用’_’分隔</li>
+</ol>
+<h3 id="service,mapper方法名">service,mapper方法名</h3>
+<p>方法名，根据不同的功能，按照不同的前缀进行设计。如下表：</p>
+<table>
+<thead>
+<tr>
+<th>功能说明</th>
+<th>前缀</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算数量</td>
+<td>count</td>
+</tr>
+<tr>
+<td>获取列表</td>
+<td>list</td>
+</tr>
+<tr>
+<td>查询功能</td>
+<td>query</td>
+</tr>
+<tr>
+<td>创建</td>
+<td>add</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>del</td>
+</tr>
+<tr>
+<td>修改</td>
+<td>update</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controller命名规范">controller命名规范</h3>
+<table>
+<thead>
+<tr>
+<th>功能说明</th>
+<th>前缀</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算数量</td>
+<td>count</td>
+</tr>
+<tr>
+<td>获取列表</td>
+<td>list</td>
+</tr>
+<tr>
+<td>查询功能</td>
+<td>query</td>
+</tr>
+<tr>
+<td>创建</td>
+<td>add</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>del</td>
+</tr>
+<tr>
+<td>修改</td>
+<td>update</td>
+</tr>
+</tbody>
+</table>
+<p>如果是ajax，则需要在此前加上ajax。例如：<br>要通过ajax按照ID删除一个产品，方法名为ajaxDelProductById</p>
+<h3 id="URL规范">URL规范</h3>
+<h4 id="URL结构">URL结构</h4>
+<p>下面，我们以用户为例。</p>
+<ul>
+<li>CREATE<br>/user/new        GET              这个Url负责跳转到提交表单的页面，用Get方法<br>/user            POST             负责接收表单提交的数据，用POST方法</li>
+<li>DELETE<br>/user/{id}/del   GET              跳转到提交删除请求的页面，用GET方法（可选）<br>/user/{id}       DELETE           负责接收要删除的用户的数据，用DELETE方法</li>
+<li>UPDATE<br>/user/{id}/update     GET         跳转到用户修改的页面，用GET方法<br>/user/{id}       PUT              负责接收表单提交的数据，修改用户，用PUT方法</li>
+<li>READ<br>/user            GET              跳转到查看用户列表的页面，用GET方法<br>/user/{id}       GET              跳转到查看某个用户的页面，用GET方法</li>
+<li>OTHER<br>/user/{id}/lock  PUT                有些时候，为了表示某一动作对用户产生的变化，我们这样命名，比如用户的锁定</li>
+<li>分页<br>/user/{curPage} GET              大家可以用这个来进行获取分页列表</li>
+</ul>
+<h3 id="mapper层SQL语句书写规范">mapper层SQL语句书写规范</h3>
+<p>书写SQL语句时，SQL中的关键字全部采用大写，如下所示</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`t_quality_check_item`</span></span>
+</pre></td></tr></table></figure><br>SELECT、FROM、INSERT INTO、UPDATE、DELETE、AND、OR、LIKE、LIMIT、ORDER等关键字，在mapper中书写SQL语句时均采用大写。<br><br>### 后端开发注意事项<br>1. 职责单一化<br>要确保所写的程序职责单一，例如，有ProductService，和一个DiscountService，两者的区别在于一个是对产品的操作，另外一个是折扣的业务，在ProductService中，出现直接调去DiscountMapper的方法。<br>如上例，一个方法可以，多了，整个工程会出现轮乱局面，正确做法是走discountService进行相关的折扣计算。<br>2. 重复方法<br>此类问题最为严重，禁止在同一个Service中，或在mapper中出现多个名称不一样，但功能一样的方法。<br><br>## 数据库<br>### 数据库表名命名规则<br>1. 表名由前缀和实际名字组成，前缀和实际名字之间使用“<em>”连接。前缀使用“t”，实际名字都使用小写单词，多个单词之间使用“</em>”连接。例如：t<em>student_info<br>2. 如果要进行分表时，表的命名直接在表名的后面加上分表的标志。例如，t_user001,t_user002,t_user003<br>3. 表名的构成有t</em>模块名称<em>自己的表名。<br><br>### 字段命名规则<br>1. 每一个表都将有一个自动id作为主健,逻辑上的主健作为第一组候选主健来定义,如果是数据库自动生成的编码，统一命名为：id;如果是自定义的逻辑上的编码则用缩写 加“id”的方法命名。<br>2. 采用前缀命名。给每个表的列名都采用统一的前缀，后面的单词或则缩写都以大写字母开头<br><br>### 数据表的存储引擎和索引约定规则<br>1. 现在所有表的存储引擎都要选择InnoDB，如果需要设为其他存储引擎的时，要特别说明。<br>2. 在建立查询时候，务必要建立好数据库的索引，在确保查询语句使用正确高效可靠以后，养成马上建立对于索引的习惯。<br>3. 索引名称格式如下：<br>    * index\</em>索引类型_表名_按照索引顺序编写字段名，以_为分隔符。<br>    <em> index_t_books_isbn（普通索引）
+    </em> index_unique_t_books_isbn(构建唯一索引)<br><br>索引的类型一般有三种类型，分别是普通索引（数据库中的index）, 唯一索引（数据库中的index unique),全文索引，这个基本上我们不会使用。<br><br><figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>url:{
+    index:{
+        login:{
+            check: <span class="string">'${website}index/login/check'</span>
+        }
+    }
+}
+</pre></td></tr></table></figure>]]></content>
+    
+    
+  </entry>
   
   <entry>
     <title><![CDATA[grub2修复windows引导]]></title>

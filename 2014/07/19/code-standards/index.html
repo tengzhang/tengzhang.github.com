@@ -1,0 +1,540 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>code-standards | Zhang Teng&#39;Bolg</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="Zhang Teng">
+    
+    <meta name="description" content="后端
+
+工程结构
+分为service和web
+注释
+
+类头要写明该类的职责是什么。for example:1
+2
+3
+4
+5
+6
+7
+8
+/**
+ * 职责
+ * @Description
+ *
+ * @author zhangteng
+ * @email zhangt@pandawork.net
+">
+    
+    
+    
+    
+    <link rel="alternative" href="/atom.xml" title="Zhang Teng&#39;Bolg" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="Zhang Teng&#39;Bolg" title="Zhang Teng&#39;Bolg"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Zhang Teng&#39;Bolg">Zhang Teng&#39;Bolg</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/testpage">About me</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:/">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/07/19/code-standards/" title="code-standards" itemprop="url">code-standards</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="/" title="Zhang Teng">Zhang Teng</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-07-19T14:42:52.000Z" itemprop="datePublished">Jul 19 2014</time>
+    Updated:<time datetime="2014-08-21T10:09:14.000Z" itemprop="dateModified">Aug 21 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#后端"><span class="toc-number">1.</span> <span class="toc-text">后端</span></a></li><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#工程结构"><span class="toc-number">1.1.</span> <span class="toc-text">工程结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注释"><span class="toc-number">1.2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后端规范"><span class="toc-number">1.3.</span> <span class="toc-text">后端规范</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类名称"><span class="toc-number">1.3.1.</span> <span class="toc-text">类名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性名、方法名"><span class="toc-number">1.3.2.</span> <span class="toc-text">属性名、方法名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常量命名规范"><span class="toc-number">1.3.3.</span> <span class="toc-text">常量命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#service,mapper方法名"><span class="toc-number">1.3.4.</span> <span class="toc-text">service,mapper方法名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#controller命名规范"><span class="toc-number">1.3.5.</span> <span class="toc-text">controller命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URL规范"><span class="toc-number">1.3.6.</span> <span class="toc-text">URL规范</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#URL结构"><span class="toc-number">1.3.6.1.</span> <span class="toc-text">URL结构</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#mapper层SQL语句书写规范"><span class="toc-number">1.3.7.</span> <span class="toc-text">mapper层SQL语句书写规范</span></a></li></ol>
+		</div>
+		
+		<h1 id="后端">后端</h1>
+<hr>
+<h2 id="工程结构">工程结构</h2>
+<p>分为<code>service</code>和<code>web</code></p>
+<h2 id="注释">注释</h2>
+<ol>
+<li>类头要写明该类的职责是什么。<br>for example:<figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="javadoc">/**
+ * 职责
+ *<span class="javadoctag"> @Description</span>
+ *
+ *<span class="javadoctag"> @author</span> zhangteng
+ *<span class="javadoctag"> @email</span> zhangt@pandawork.net
+ *<span class="javadoctag"> @time</span>: 2014/7/9 14:25
+ */</span>
+</pre></td></tr></table></figure></li>
+<li>方法要写明该方法的功能是什么。<figure class="highlight java"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre><span class="javadoc">/**
+ * 获取分页列表
+ *
+ *<span class="javadoctag"> @param</span> curPage
+ *<span class="javadoctag"> @param</span> code
+ *<span class="javadoctag"> @param</span> name
+ *<span class="javadoctag"> @param</span> startTime
+ *<span class="javadoctag"> @param</span> endTime
+ *<span class="javadoctag"> @return</span>
+ */</span>
+</pre></td></tr></table></figure></li>
+<li>方法里面要有适当的注释。不能写了一个方法100行，一个注释都没有。</li>
+<li>数据库表要有一个总的声明，每个字段有相关说明。</li>
+<li>实体或者业务修改，也要修改相关数据表中表对应的字段说明。保持一致。</li>
+</ol>
+<h2 id="后端规范">后端规范</h2>
+<h3 id="类名称">类名称</h3>
+<ol>
+<li>以大写字母开头。</li>
+<li>以驼峰方式命名。</li>
+</ol>
+<h3 id="属性名、方法名">属性名、方法名</h3>
+<ol>
+<li>以小写字母开头。</li>
+<li>以驼峰方式命名。</li>
+</ol>
+<h3 id="常量命名规范">常量命名规范</h3>
+<ol>
+<li>所有字母大写</li>
+<li>单词之间用’_’分隔</li>
+</ol>
+<h3 id="service,mapper方法名">service,mapper方法名</h3>
+<p>方法名，根据不同的功能，按照不同的前缀进行设计。如下表：</p>
+<table>
+<thead>
+<tr>
+<th>功能说明</th>
+<th>前缀</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算数量</td>
+<td>count</td>
+</tr>
+<tr>
+<td>获取列表</td>
+<td>list</td>
+</tr>
+<tr>
+<td>查询功能</td>
+<td>query</td>
+</tr>
+<tr>
+<td>创建</td>
+<td>add</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>del</td>
+</tr>
+<tr>
+<td>修改</td>
+<td>update</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controller命名规范">controller命名规范</h3>
+<table>
+<thead>
+<tr>
+<th>功能说明</th>
+<th>前缀</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算数量</td>
+<td>count</td>
+</tr>
+<tr>
+<td>获取列表</td>
+<td>list</td>
+</tr>
+<tr>
+<td>查询功能</td>
+<td>query</td>
+</tr>
+<tr>
+<td>创建</td>
+<td>add</td>
+</tr>
+<tr>
+<td>删除</td>
+<td>del</td>
+</tr>
+<tr>
+<td>修改</td>
+<td>update</td>
+</tr>
+</tbody>
+</table>
+<p>如果是ajax，则需要在此前加上ajax。例如：<br>要通过ajax按照ID删除一个产品，方法名为ajaxDelProductById</p>
+<h3 id="URL规范">URL规范</h3>
+<h4 id="URL结构">URL结构</h4>
+<p>下面，我们以用户为例。</p>
+<ul>
+<li>CREATE<br>/user/new        GET              这个Url负责跳转到提交表单的页面，用Get方法<br>/user            POST             负责接收表单提交的数据，用POST方法</li>
+<li>DELETE<br>/user/{id}/del   GET              跳转到提交删除请求的页面，用GET方法（可选）<br>/user/{id}       DELETE           负责接收要删除的用户的数据，用DELETE方法</li>
+<li>UPDATE<br>/user/{id}/update     GET         跳转到用户修改的页面，用GET方法<br>/user/{id}       PUT              负责接收表单提交的数据，修改用户，用PUT方法</li>
+<li>READ<br>/user            GET              跳转到查看用户列表的页面，用GET方法<br>/user/{id}       GET              跳转到查看某个用户的页面，用GET方法</li>
+<li>OTHER<br>/user/{id}/lock  PUT                有些时候，为了表示某一动作对用户产生的变化，我们这样命名，比如用户的锁定</li>
+<li>分页<br>/user/{curPage} GET              大家可以用这个来进行获取分页列表</li>
+</ul>
+<h3 id="mapper层SQL语句书写规范">mapper层SQL语句书写规范</h3>
+<p>书写SQL语句时，SQL中的关键字全部采用大写，如下所示</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="operator"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="string">`t_quality_check_item`</span></span>
+</pre></td></tr></table></figure><br>SELECT、FROM、INSERT INTO、UPDATE、DELETE、AND、OR、LIKE、LIMIT、ORDER等关键字，在mapper中书写SQL语句时均采用大写。<br><br>### 后端开发注意事项<br>1. 职责单一化<br>要确保所写的程序职责单一，例如，有ProductService，和一个DiscountService，两者的区别在于一个是对产品的操作，另外一个是折扣的业务，在ProductService中，出现直接调去DiscountMapper的方法。<br>如上例，一个方法可以，多了，整个工程会出现轮乱局面，正确做法是走discountService进行相关的折扣计算。<br>2. 重复方法<br>此类问题最为严重，禁止在同一个Service中，或在mapper中出现多个名称不一样，但功能一样的方法。<br><br>## 数据库<br>### 数据库表名命名规则<br>1. 表名由前缀和实际名字组成，前缀和实际名字之间使用“<em>”连接。前缀使用“t”，实际名字都使用小写单词，多个单词之间使用“</em>”连接。例如：t<em>student_info<br>2. 如果要进行分表时，表的命名直接在表名的后面加上分表的标志。例如，t_user001,t_user002,t_user003<br>3. 表名的构成有t</em>模块名称<em>自己的表名。<br><br>### 字段命名规则<br>1. 每一个表都将有一个自动id作为主健,逻辑上的主健作为第一组候选主健来定义,如果是数据库自动生成的编码，统一命名为：id;如果是自定义的逻辑上的编码则用缩写 加“id”的方法命名。<br>2. 采用前缀命名。给每个表的列名都采用统一的前缀，后面的单词或则缩写都以大写字母开头<br><br>### 数据表的存储引擎和索引约定规则<br>1. 现在所有表的存储引擎都要选择InnoDB，如果需要设为其他存储引擎的时，要特别说明。<br>2. 在建立查询时候，务必要建立好数据库的索引，在确保查询语句使用正确高效可靠以后，养成马上建立对于索引的习惯。<br>3. 索引名称格式如下：<br>    * index\</em>索引类型_表名_按照索引顺序编写字段名，以_为分隔符。<br>    <em> index_t_books_isbn（普通索引）
+    </em> index_unique_t_books_isbn(构建唯一索引)<br><br>索引的类型一般有三种类型，分别是普通索引（数据库中的index）, 唯一索引（数据库中的index unique),全文索引，这个基本上我们不会使用。<br><br><figure class="highlight js"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre>url:{
+    index:{
+        login:{
+            check: <span class="string">'${website}index/login/check'</span>
+        }
+    }
+}
+</pre></td></tr></table></figure>  
+	</div>
+		<footer class="article-footer clearfix">
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="/2014/07/19/code-standards/" data-title="code-standards | Zhang Teng&#39;Bolg" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/09/09/2014-09-09-centos-install-redmine/" title="CentOS下安装Redmine">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  CentOS下安装Redmine</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2014/07/12/grub2-repair-windows/"  title="grub2修复windows引导">
+ <strong>NEXT:</strong><br/> 
+ <span>grub2修复windows引导
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+<section class="comment">
+	<div class="ds-thread"></div>
+</section>
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#后端"><span class="toc-number">1.</span> <span class="toc-text">后端</span></a></li><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#工程结构"><span class="toc-number">1.1.</span> <span class="toc-text">工程结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注释"><span class="toc-number">1.2.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后端规范"><span class="toc-number">1.3.</span> <span class="toc-text">后端规范</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#类名称"><span class="toc-number">1.3.1.</span> <span class="toc-text">类名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#属性名、方法名"><span class="toc-number">1.3.2.</span> <span class="toc-text">属性名、方法名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常量命名规范"><span class="toc-number">1.3.3.</span> <span class="toc-text">常量命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#service,mapper方法名"><span class="toc-number">1.3.4.</span> <span class="toc-text">service,mapper方法名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#controller命名规范"><span class="toc-number">1.3.5.</span> <span class="toc-text">controller命名规范</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#URL规范"><span class="toc-number">1.3.6.</span> <span class="toc-text">URL规范</span></a></li><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#URL结构"><span class="toc-number">1.3.6.1.</span> <span class="toc-text">URL结构</span></a></li></ol><li class="toc-item toc-level-3"><a class="toc-link" href="#mapper层SQL语句书写规范"><span class="toc-number">1.3.7.</span> <span class="toc-text">mapper层SQL语句书写规范</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  
+<div class="categorieslist">
+	<p class="asidetitle">Categories</p>
+		<ul>
+		
+			<li><a href="/categories/java/" title="java">java<sup>2</sup></a></li>
+		
+			<li><a href="/categories/jquery/" title="jquery">jquery<sup>1</sup></a></li>
+		
+			<li><a href="/categories/struts/" title="struts">struts<sup>1</sup></a></li>
+		
+			<li><a href="/categories/sublime/" title="sublime">sublime<sup>1</sup></a></li>
+		
+			<li><a href="/categories/面试题/" title="面试题">面试题<sup>2</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/linux-redmine/" title="linux redmine">linux redmine<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  
+  <div class="tagcloudlist">
+    <p class="asidetitle">Tag Cloud</p>
+    <div class="tagcloudlist clearfix">
+       <a href="/tags/linux-redmine/" style="font-size: NaNpx;">linux redmine</a>
+    </div>
+  </div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+      <li><a href="http://yangjian.me" target="_blank" title="YangJian">Alimon's Blog</a></li>
+      <li><a href="http://zespia.tw/hexo" target="_blank" title="Hexo">Hexo</a></li>
+    </ul>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello, I&#39;m zhangteng <br/>
+			This is my blog</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://zespia.tw/hexo/" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="/" target="_blank" title="Zhang Teng">Zhang Teng</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+<script type="text/javascript">
+  var duoshuoQuery = {short_name:"null"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+</script> 
+
+
+
+
+
+  </body>
+</html>
