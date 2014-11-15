@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2014-11-15T03:29:15.361Z</updated>
+  <updated>2014-11-15T05:09:04.645Z</updated>
   <id>//</id>
   
   <author>
@@ -19,8 +19,11 @@
     <link href="/2014/11/14/2014-11-13-MinStack/"/>
     <id>/2014/11/14/2014-11-13-MinStack/</id>
     <published>2014-11-14T15:55:37.000Z</published>
-    <updated>2014-11-15T03:29:02.000Z</updated>
-    <content type="html"><![CDATA[<p>先给出题目的地址吧:<a href="https://oj.leetcode.com/problems/min-stack/" target="_blank" rel="external">https://oj.leetcode.com/problems/min-stack/</a><br>昨天一个同学问了我这道题，回去就做了一下。<br>初看这道题，好像并不难，push、pop、top都是栈的基本操作，getMin好像不太好搞。<br>首先想到的是用一个变量min记录一下栈的最小值，每次压栈的时候比较压栈元素和min的大小，更新min值。<br>这个想法好像还不错，于是搞之，一交WA了。<br>仔细一想，如果当前的min值是栈顶的值，把栈顶的值pop之后，这个min值就不再是栈中最小的值了，此时最小值变成了栈中的次小值了。<br>自然就想到，能不能再记住次小值呢？当然是可以的。可是这样问题又来了，如果次小值再被弹出呢？那就不行了。<br>最后，想到的做法是，每次压栈的时候都去记住当前栈的最小值，把它记在栈顶上，这样栈顶就始终保存这当前栈的最小值。<br>于是，开开心心的去写代码，交之，TMD，居然告诉我MLE。<br>你大爷啊，这让我如何是好？<br>看了半天代码，实在没有内存需要优化的地方了。最后在内部类前面加了个<code>static</code>，然后就过了。<br>他就这么过了，加了个<code>static</code>为啥就过了呢？有点疑惑。</p>
+    <updated>2014-11-15T03:32:56.000Z</updated>
+    <content type="html"><![CDATA[<p>先给出题目的地址吧:<a href="https://oj.leetcode.com/problems/min-stack/" target="_blank" rel="external">https://oj.leetcode.com/problems/min-stack/</a></p>
+<a id="more"></a>
+
+<p>昨天一个同学问了我这道题，回去就做了一下。<br>初看这道题，好像并不难，push、pop、top都是栈的基本操作，getMin好像不太好搞。<br>首先想到的是用一个变量min记录一下栈的最小值，每次压栈的时候比较压栈元素和min的大小，更新min值。<br>这个想法好像还不错，于是搞之，一交WA了。<br>仔细一想，如果当前的min值是栈顶的值，把栈顶的值pop之后，这个min值就不再是栈中最小的值了，此时最小值变成了栈中的次小值了。<br>自然就想到，能不能再记住次小值呢？当然是可以的。可是这样问题又来了，如果次小值再被弹出呢？那就不行了。<br>最后，想到的做法是，每次压栈的时候都去记住当前栈的最小值，把它记在栈顶上，这样栈顶就始终保存这当前栈的最小值。<br>于是，开开心心的去写代码，交之，TMD，居然告诉我MLE。<br>你大爷啊，这让我如何是好？<br>看了半天代码，实在没有内存需要优化的地方了。最后在内部类前面加了个<code>static</code>，然后就过了。<br>他就这么过了，加了个<code>static</code>为啥就过了呢？有点疑惑。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre>1
 2
 3
@@ -113,7 +116,8 @@ class MinStack {
 }
 </pre></td></tr></table></figure>
 ]]></content>
-    
+    <summary type="html"><![CDATA[<p>先给出题目的地址吧:<a href="https://oj.leetcode.com/problems/min-stack/" target="_blank" rel="external">https://oj.leetcode.com/problems/min-stack/</a></p>
+]]></summary>
     
       <category term="leetcode" scheme="/tags/leetcode/"/>
     
