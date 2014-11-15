@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="//"/>
-  <updated>2014-11-15T05:31:02.206Z</updated>
+  <updated>2014-11-15T05:39:37.385Z</updated>
   <id>//</id>
   
   <author>
@@ -130,7 +130,7 @@ class MinStack {
     <link href="/2014/11/07/2014-11-07-cetos-install-muti-mysql/"/>
     <id>/2014/11/07/2014-11-07-cetos-install-muti-mysql/</id>
     <published>2014-11-07T12:57:05.000Z</published>
-    <updated>2014-11-15T03:07:21.000Z</updated>
+    <updated>2014-11-15T05:39:19.000Z</updated>
     <content type="html"><![CDATA[<p>安装的mysql占用端口分别为3306和3307</p>
 <p>下载mysql-5.6.20-linux-glibc2.5-x86_64.tar.gz，这个是编译完的二进制包</p>
 <p>可阅读文件夹下的INSTALL-BINARY进行安装</p>
@@ -386,7 +386,7 @@ $bindir/mysqld_safe --defaults-file=$conf --datadir=<span class="string">"$datad
     <link href="/2014/09/09/2014-09-09-windows-install-redmine/"/>
     <id>/2014/09/09/2014-09-09-windows-install-redmine/</id>
     <published>2014-09-09T06:39:16.000Z</published>
-    <updated>2014-11-14T15:35:39.000Z</updated>
+    <updated>2014-11-15T05:36:27.000Z</updated>
     <content type="html"><![CDATA[<h3 id="准备工作">准备工作</h3>
 <p>Redmine官网:<a href="http://www.redmine.org/" target="_blank" rel="external">http://www.redmine.org/</a><br>Ruby官网:<a href="http://rubyforge.org/" target="_blank" rel="external">http://rubyforge.org/</a></p>
 <ol>
@@ -475,7 +475,8 @@ ImageMagick安装目录/include"</span>
 </pre></td><td class="code"><pre>mongrel_rails service<span class="tag">::remove</span> <span class="attribute">-N</span> Redmine
 </pre></td></tr></table></figure><br>也可以使用：<code>sc delete Redmine</code> 删除服务。<br><br>以上方式只适用于xp及xp以上系统，如果你的系统是server 2003，需要用下面这种方式：<a href="http://www.redmine.org/boards/1/topics/4123" target="_blank" rel="external">http://www.redmine.org/boards/1/topics/4123</a>。<br>上面说得很详细了，我就不在累述。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="attribute">rake redmine:plugins:migrate RAILS_ENV</span>=<span class="string">production</span>
-</pre></td></tr></table></figure>]]></content>
+</pre></td></tr></table></figure>
+]]></content>
     <summary type="html"><![CDATA[<h3 id="准备工作">准备工作</h3>
 <p>Redmine官网:<a href="http://www.redmine.org/" target="_blank" rel="external">http://www.redmine.org/</a><br>Ruby官网:<a href="http://rubyforge.org/" target="_blank" rel="external">http://rubyforge.org/</a></p>
 <ol>
@@ -490,7 +491,7 @@ ImageMagick安装目录/include"</span>
     <link href="/2014/09/09/2014-09-09-centos-install-redmine/"/>
     <id>/2014/09/09/2014-09-09-centos-install-redmine/</id>
     <published>2014-09-09T06:37:15.000Z</published>
-    <updated>2014-11-15T03:03:31.000Z</updated>
+    <updated>2014-11-15T05:36:37.000Z</updated>
     <content type="html"><![CDATA[<p>Redmine的安装主要分为两部分：</p>
 <ol>
 <li>Ruby+Rails的安装</li>
@@ -1034,7 +1035,7 @@ $ git push -u origin master
     <link href="/2013/11/01/2013-11-01-jquery-study/"/>
     <id>/2013/11/01/2013-11-01-jquery-study/</id>
     <published>2013-11-01T02:43:00.000Z</published>
-    <updated>2014-11-14T15:35:25.000Z</updated>
+    <updated>2014-11-15T05:39:07.000Z</updated>
     <content type="html"><![CDATA[<ol>
 <li>ajax请求，注意最后一个值的地方没有逗号<figure class="highlight js"><table><tr><td class="gutter"><pre>1
 2
@@ -1121,7 +1122,8 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
         alert($(<span class="keyword">this</span>).val());
     }
 });
-</pre></td></tr></table></figure></li>
+</pre></td></tr></table></figure>
+</li>
 </ol>
 ]]></content>
     <summary type="html"><![CDATA[<ol>
@@ -1172,7 +1174,7 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
     <link href="/2013/10/30/2013-10-30-struts2-json/"/>
     <id>/2013/10/30/2013-10-30-struts2-json/</id>
     <published>2013-10-30T01:28:00.000Z</published>
-    <updated>2014-11-14T15:35:12.000Z</updated>
+    <updated>2014-11-15T05:38:58.000Z</updated>
     <content type="html"><![CDATA[<p>structs2返回本身支持返回json，只需要配置即可，我们也可以自己把json串写入servlet输出流中。</p>
 <a id="more"></a>
 
@@ -1269,7 +1271,7 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
     <link href="/2013/10/23/2013-10-23-sublime-snippet/"/>
     <id>/2013/10/23/2013-10-23-sublime-snippet/</id>
     <published>2013-10-23T06:20:00.000Z</published>
-    <updated>2013-11-01T03:04:38.000Z</updated>
+    <updated>2014-11-15T05:38:50.000Z</updated>
     <content type="html"><![CDATA[<p><code>tools-&gt;New Snippet</code>新建一个snippet，保存为**.sublime-snippet。<br>内容如下：  </p>
 <a id="more"></a>
 
@@ -1327,7 +1329,7 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
     <link href="/2013/10/23/2013-10-23-struts-uploadfile/"/>
     <id>/2013/10/23/2013-10-23-struts-uploadfile/</id>
     <published>2013-10-23T01:02:00.000Z</published>
-    <updated>2014-11-14T15:34:53.000Z</updated>
+    <updated>2014-11-15T05:38:38.000Z</updated>
     <content type="html"><![CDATA[<p>注意保持action中File的变量和jsp中input的name名相同。<br>action中定义变量：</p>
 <a id="more"></a>
 
@@ -1420,7 +1422,7 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
     <link href="/2013/10/21/2013-10-21-json-to-bean/"/>
     <id>/2013/10/21/2013-10-21-json-to-bean/</id>
     <published>2013-10-21T01:32:00.000Z</published>
-    <updated>2014-11-14T15:34:45.000Z</updated>
+    <updated>2014-11-15T05:38:32.000Z</updated>
     <content type="html"><![CDATA[<p>需要用到的类：</p>
 <pre><code>net<span class="preprocessor">.sf</span><span class="preprocessor">.json</span><span class="preprocessor">.JSONObject</span>  
 </code></pre><p>在包<code>json-lib-2.3-jdk15</code>中</p>
@@ -1458,7 +1460,7 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
     <link href="/2013/10/13/2013-10-13-remove-elemetns/"/>
     <id>/2013/10/13/2013-10-13-remove-elemetns/</id>
     <published>2013-10-13T13:42:00.000Z</published>
-    <updated>2014-11-14T15:34:24.000Z</updated>
+    <updated>2014-11-15T05:38:24.000Z</updated>
     <content type="html"><![CDATA[<p>有时候我们需要删除list中的某个元素，最开始我会这样写：</p>
 <a id="more"></a>
 
@@ -1587,7 +1589,7 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
     <link href="/2013/10/09/2013-10-09-minglinghangmbr/"/>
     <id>/2013/10/09/2013-10-09-minglinghangmbr/</id>
     <published>2013-10-09T08:22:00.000Z</published>
-    <updated>2014-07-06T13:37:06.000Z</updated>
+    <updated>2014-11-15T05:38:14.000Z</updated>
     <content type="html"><![CDATA[<p>命令行修复MBR  </p>
 <pre><code><span class="bullet">1. </span>shift+F10打开命令行
 <span class="bullet">2. </span>输入：diskpart
@@ -1608,7 +1610,7 @@ select disk 0
     <link href="/2013/10/09/2013-10-09-xiangmufabu/"/>
     <id>/2013/10/09/2013-10-09-xiangmufabu/</id>
     <published>2013-10-09T01:40:00.000Z</published>
-    <updated>2014-11-14T15:34:13.000Z</updated>
+    <updated>2014-11-15T05:38:07.000Z</updated>
     <content type="html"><![CDATA[<ol>
 <li>去发布目录下建立相应的文件夹  </li>
 <li>更改发布脚本  </li>
@@ -1716,7 +1718,8 @@ kill <span class="attribute">-HUP</span> pid
 2
 </pre></td><td class="code"><pre>system-view
 ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</span><span class="number">.1</span><span class="preprocessor">.xx</span>
-</pre></td></tr></table></figure>]]></content>
+</pre></td></tr></table></figure>
+]]></content>
     <summary type="html"><![CDATA[<ol>
 <li>去发布目录下建立相应的文件夹  </li>
 <li>更改发布脚本  </li>
@@ -1732,7 +1735,7 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
     <link href="/2013/10/07/2013-10-07-zhaoshuzi/"/>
     <id>/2013/10/07/2013-10-07-zhaoshuzi/</id>
     <published>2013-10-07T15:15:00.000Z</published>
-    <updated>2014-11-14T15:33:54.000Z</updated>
+    <updated>2014-11-15T05:37:50.000Z</updated>
     <content type="html"><![CDATA[<h2 id="原题">原题</h2>
 <p>数组A中，除了某一个数字X之外，其他数字都出现了三次，而X出现了一次。请给出最快的方法找到X。</p>
 <a id="more"></a>
@@ -1810,7 +1813,8 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
     <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);
     <span class="keyword">return</span> <span class="number">0</span>;
 }
-</pre></td></tr></table></figure>]]></content>
+</pre></td></tr></table></figure>
+]]></content>
     <summary type="html"><![CDATA[<h2 id="原题">原题</h2>
 <p>数组A中，除了某一个数字X之外，其他数字都出现了三次，而X出现了一次。请给出最快的方法找到X。</p>
 ]]></summary>
@@ -1824,7 +1828,7 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
     <link href="/2013/10/07/2013-10-07-kuohaopipei/"/>
     <id>/2013/10/07/2013-10-07-kuohaopipei/</id>
     <published>2013-10-07T08:36:00.000Z</published>
-    <updated>2013-10-12T12:44:32.000Z</updated>
+    <updated>2014-11-15T05:37:35.000Z</updated>
     <content type="html"><![CDATA[<h2 id="原题">原题</h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给定字符串，输出括号是否匹配，例如:  </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.”()” yes；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.”)(“ no；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.”(abcd(e)” no；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.”(a)(b)” yes。  </p>
@@ -1904,7 +1908,8 @@ ip host xxx<span class="preprocessor">.net</span> <span class="number">192.168</
     }
     <span class="keyword">return</span> <span class="number">0</span>;
 }
-</pre></td></tr></table></figure>]]></content>
+</pre></td></tr></table></figure>
+]]></content>
     <summary type="html"><![CDATA[<h2 id="原题">原题</h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给定字符串，输出括号是否匹配，例如:  </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.”()” yes；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.”)(“ no；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.”(abcd(e)” no；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.”(a)(b)” yes。  </p>

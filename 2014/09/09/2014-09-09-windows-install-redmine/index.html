@@ -60,6 +60,10 @@ Redmine官网:http://www.redmine.org/Ruby官网:http://rubyforge.org/
   <div class="post-content">
     <header>
       
+        <div class="alignright">
+          <a href="/2014/09/09/2014-09-09-windows-install-redmine/#disqus_thread" class="comment-link"></a>
+        </div>
+      
       
         <div class="icon"></div>
         <time datetime="2014-09-09T06:39:16.000Z"><a href="/2014/09/09/2014-09-09-windows-install-redmine/">Sep 9 2014</a></time>
@@ -75,6 +79,11 @@ Redmine官网:http://www.redmine.org/Ruby官网:http://rubyforge.org/
       
         
           
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Navigation</strong>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#将Redmine安装为Windows服务，开机自动运行"><span class="toc-number">3.</span> <span class="toc-text">将Redmine安装为Windows服务，开机自动运行</span></a></li></ol>
+    </div>
+
         
         <h3 id="准备工作">准备工作</h3>
 <p>Redmine官网:<a href="http://www.redmine.org/" target="_blank" rel="external">http://www.redmine.org/</a><br>Ruby官网:<a href="http://rubyforge.org/" target="_blank" rel="external">http://rubyforge.org/</a></p>
@@ -165,6 +174,7 @@ ImageMagick安装目录/include"</span>
 </pre></td></tr></table></figure><br>也可以使用：<code>sc delete Redmine</code> 删除服务。<br><br>以上方式只适用于xp及xp以上系统，如果你的系统是server 2003，需要用下面这种方式：<a href="http://www.redmine.org/boards/1/topics/4123" target="_blank" rel="external">http://www.redmine.org/boards/1/topics/4123</a>。<br>上面说得很详细了，我就不在累述。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
 </pre></td><td class="code"><pre><span class="attribute">rake redmine:plugins:migrate RAILS_ENV</span>=<span class="string">production</span>
 </pre></td></tr></table></figure>
+
       
     </div>
     <footer>
@@ -172,6 +182,12 @@ ImageMagick安装目录/include"</span>
       
       
         <div class="alignright share-box">
+  
+    
+      <a class="share-link share-weibo" href="http://v.t.sina.com.cn/share/share.php?url=/2014/09/09/2014-09-09-windows-install-redmine/&title=《Windows下安装Redmine》" title="weibo"></a>
+    
+      <a class="share-link share-google" href="https://plus.google.com/share?url=/2014/09/09/2014-09-09-windows-install-redmine/&title=《Windows下安装Redmine》" title="google"></a>
+    
   
 </div>
       
@@ -181,6 +197,111 @@ ImageMagick安装目录/include"</span>
 </article>
 
 
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Tue Sep 09 2014 14:39:16 GMT+0800" data-title="Windows下安装Redmine" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tcheung"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+  <div id="menu-nav" class="footer-btn">
+  <a title="Quick Nav"><img src="/img/list.png"/></a>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    var toc = $('#toc');
+    var nav = $('#menu-nav');
+    var toccopy;
+    var status = true;
+    if ($(window).width() <= 583)
+      status = false;
+    var first = true;
+    var position = toc.position();
+    var wid = toc.width();
+    $(window).scroll(onScroll);
+    $(nav).click(opennav);
+
+    function tocout() {
+      if (first && status) {
+        toccopy = $(toc).clone();
+        $(toccopy).insertAfter(toc);
+        toc.css('float','');
+        toc.css('position','fixed');
+        onResize();
+        toc.css('z-index','99');
+        toc.css('width',wid);
+        $(window).resize(onResize);
+        first = false;
+        toccopy.css('visibility', 'hidden');
+      }
+      
+    }
+
+    function onScroll() {
+      var top = $(window).scrollTop();
+      if(top >= position.top + 30){
+        tocout();
+        $(nav).stop().fadeTo(300, 1); // fade back in
+        $(nav).animate({bottom: "25px"}, { queue: false, duration: 10 });
+      }else{
+        hidNav();
+        $(window).off("resize", onResize);
+        $(nav).stop().fadeTo(300, 0); // fade out
+        $(nav).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+      }
+    }
+
+    function onResize() {
+      var width = $(window).width();
+      var left = $('#sidebar').position().left;
+      if (width > 883){
+        toc.css('top', '88px');
+        toc.css('left', left - 18);
+      } else{
+        var top = $('#nav-top').innerHeight();
+        toc.css('top', top);
+        var fix = $('#main-col').width() - toc.width() - 35;
+        toc.css('left', left + fix);
+        if($(window).scrollTop() >= position.top + 30){
+          $(nav).stop().fadeTo(300, 1); // fade back in
+          $(nav).animate({bottom: "25px"}, { queue: false, duration: 10 });
+        }
+      }
+    }
+
+    function hidNav() {
+      toc.css('position','');
+      toc.css('float','right');
+      $(toccopy).remove();
+      first = true;
+    }
+
+    function opennav() {
+      if (status) {
+        status = false;
+        hidNav();
+      } else {
+        status = true;
+        tocout();
+      }
+    }
+  });
+</script>
 </div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
