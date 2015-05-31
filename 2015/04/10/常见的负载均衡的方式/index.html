@@ -1,0 +1,509 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>常见的负载均衡的方式 | Zhang Teng&#39;Blog</title>
+  <meta name="author" content="Zhang Teng">
+  
+  <meta name="description" content="1 负载均衡
+1.1 场景引入
+Tomcat最大能承受的访问量是300，现在需要处理同时并发1000的访问量，应该怎么做？
+1.2 负载均衡的概念
+百度百科的解释。负载均衡 建立在现有网络结构之上，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加吞吐量、加强网络数据处理能力、提高网络的灵活性和可用性。负载均衡，英文名称为Load Balance，其意思就是分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="常见的负载均衡的方式"/>
+  <meta property="og:site_name" content="Zhang Teng&#39;Blog"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.ico" rel="shortcut icon">
+  <link rel="alternate" href="/atom.xml" title="Zhang Teng&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div id="nav-top">
+  <div class="alignleft main-title">
+    <a href="/">
+		<h1>Zhang Teng&#39;Blog</h1>
+	</a>
+    <h2></h2>
+  </div>
+  <nav id="main-nav" class="alignright">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+        <li><a href="/aboutme">About me</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="/2015/04/10/常见的负载均衡的方式/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2015-04-10T06:29:55.000Z"><a href="/2015/04/10/常见的负载均衡的方式/">Apr 10 2015</a></time>
+      
+      
+  
+    <h1 class="title">常见的负载均衡的方式</h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        
+          
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Navigation</strong>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1_负载均衡"><span class="toc-number">1.</span> <span class="toc-text">1 负载均衡</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1_场景引入"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 场景引入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2_负载均衡的概念"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 负载均衡的概念</span></a></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#2_常见的负载均衡的方式"><span class="toc-number">2.</span> <span class="toc-text">2 常见的负载均衡的方式</span></a></li><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1_基于DNS"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 基于DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2_基于反向代理服务器（Apache、Nginx）"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 基于反向代理服务器（Apache、Nginx）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3_基于NAT"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 基于NAT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4_基于LVS"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 基于LVS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5_基于NLB"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 基于NLB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-6_基于硬件"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 基于硬件</span></a></li></ol>
+    </div>
+
+        
+        <h2 id="1_负载均衡">1 负载均衡</h2>
+<h3 id="1-1_场景引入">1.1 场景引入</h3>
+<p>Tomcat最大能承受的访问量是300，现在需要处理同时并发1000的访问量，应该怎么做？</p>
+<h3 id="1-2_负载均衡的概念">1.2 负载均衡的概念</h3>
+<p>百度百科的解释。<br>负载均衡 建立在现有网络结构之上，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加吞吐量、加强网络数据处理能力、提高网络的灵活性和可用性。<br>负载均衡，英文名称为Load Balance，其意思就是分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。</p>
+<a id="more"></a>
+
+<h2 id="2_常见的负载均衡的方式">2 常见的负载均衡的方式</h2>
+<h3 id="2-1_基于DNS">2.1 基于DNS</h3>
+<p>在DNS上做负载均衡。</p>
+<h3 id="2-2_基于反向代理服务器（Apache、Nginx）">2.2 基于反向代理服务器（Apache、Nginx）</h3>
+<p>正向代理和反向代理的区别。<br>Nginx的配置如下：</p>
+<p><figure class="highlight"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+</pre></td><td class="code"><pre>upstream pandawork {
+    server <span class="number">192.168</span>.<span class="number">1.25</span>;
+    server <span class="number">192.168</span>.<span class="number">1.30</span>;
+}
+server {
+    listen       <span class="number">80</span>;
+    server_name  www.pandawork.net;
+
+    location / {
+        proxy_<span class="keyword">set</span>_header   Host             <span class="variable">$host</span>;
+        proxy_<span class="keyword">set</span>_header   X-Real-IP        <span class="variable">$remote_addr</span>;
+        proxy_<span class="keyword">set</span>_header  X-Forwarded-For  <span class="variable">$proxy_add_x_forwarded_for</span>;
+        client_max_body_size       <span class="number">12</span>m;
+        client_body_buffer_size    <span class="number">128</span>k;
+        client_body_temp_path      data/client_body_temp;
+        proxy_connect_timeout      <span class="number">90</span>;
+        proxy_send_timeout         <span class="number">90</span>;
+        proxy_<span class="built_in">read</span>_timeout         <span class="number">90</span>;
+        proxy_buffer_size          <span class="number">4</span>k;
+        proxy_buffers              <span class="number">4</span> <span class="number">32</span>k;
+        proxy_busy_buffers_size    <span class="number">64</span>k;
+        proxy_temp_file_write_size <span class="number">64</span>k;
+        proxy_temp_path            data/proxy_temp;
+
+        proxy_pass http://pandawork;
+    }
+}
+<span class="number">5</span>种方式的分配:
+<span class="number">1</span>、轮询（默认）
+每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。
+upstream pandawork {
+    server <span class="number">192.168</span>.<span class="number">1.25</span>;
+    server <span class="number">192.168</span>.<span class="number">1.30</span>;
+}
+
+<span class="number">2</span>、weight
+指定轮询几率，weight和访问比率成正比，用于后端服务器性能不均的情况。
+upstream pandawork {
+    server <span class="number">192.168</span>.<span class="number">1.25</span> weight=<span class="number">10</span>;
+    server <span class="number">192.168</span>.<span class="number">1.30</span> weight=<span class="number">10</span>;
+}
+
+<span class="number">3</span>、ip_<span class="built_in">hash</span>
+每个请求按访问ip的<span class="built_in">hash</span>结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。
+upstream pandawork {
+    ip_<span class="built_in">hash</span>;
+    server <span class="number">192.168</span>.<span class="number">1.25</span>
+    server <span class="number">192.168</span>.<span class="number">1.30</span>;
+}
+
+<span class="number">4</span>、fair（第三方）
+按后端服务器的响应时间来分配请求，响应时间短的优先分配。
+upstream pandawork {
+    server <span class="number">192.168</span>.<span class="number">1.25</span>;
+    server <span class="number">192.168</span>.<span class="number">1.30</span>;
+    fair;
+}
+
+<span class="number">5</span>、url_<span class="built_in">hash</span>（第三方）
+按访问url的<span class="built_in">hash</span>结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存时比较有效。
+upstream pandawork {
+    server <span class="number">192.168</span>.<span class="number">1.25</span>;
+    server <span class="number">192.168</span>.<span class="number">1.30</span>;
+    <span class="built_in">hash</span> <span class="variable">$request_uri</span>;
+    <span class="built_in">hash</span>_method crc32;
+}
+</pre></td></tr></table></figure></p>
+<h3 id="2-3_基于NAT">2.3 基于NAT</h3>
+<p>NAT（Network Address Translation 网络地址转换）简单地说就是将一个IP地址转换为另一个IP地址，一般用于未经注册的内部地址与合法的、已获注册的Internet IP地址间进行转换。适用于解决Internet IP地址紧张、不想让网络外部知道内部网络结构等的场合下。每次NAT转换势必会增加NAT设备的开销，但这种额外的开销对于大多数网络来说都是微不足道的，除非在高带宽有大量NAT请求的网络上。  NAT负载均衡将一个外部IP地址映射为多个内部IP地址，对每次连接请求动态地转换为一个内部服务器的地址，将外部连接请求引到转换得到地址的那个服务器上，从而达到负载均衡的目的。<br>NAT负载均衡是一种比较完善的负载均衡技术，起着NAT负载均衡功能的设备一般处于内部服务器到外部网间的网关位置，如<code>路由器、防火墙、四层交换机、专用负载均衡器</code>等，均衡算法也较灵活，如随机选择、最少连接数及响应时间等来分配负载。<br>NAT负载均衡可以通过软硬件方式来实现。软件的方式如Linux的iptables就可以实现。硬件方式就是集成了NAT服务的硬件，通常这样的硬件设备是第四层交换机和专用负载均衡器，第四层交换机的一项重要功能就是NAT负载均衡。<br>由于NAT是在第四层上做负载均衡，因此可用于出web外的多种服务，如ftp。</p>
+<h3 id="2-4_基于LVS">2.4 基于LVS</h3>
+<p>LVS是Linux Virtual Server的简写，意即Linux虚拟服务器，是一个虚拟的服务器集群系统。本项目在1998年5月由章文嵩博士成立，是中国国内最早出现的自由软件项目之一。<br>三种转发机制：<br>1 Virtual Server via NAT<br>2 Virtual Server via IP Tunneling<br>Virtual Server和响应服务器间建立IP隧道，响应服务器可以在远端，响应直接由响应服务器返回给客户端。<br>3 Virtual Server via Direct Routing<br>Virtual Server直接将请求转发给响应服务器，响应服务器和Virtual Server必须在一个物理局域网内，响应直接由响应服务器返回给客户端。<br>参考：<a href="http://www.360doc.com/content/12/1117/19/820209_248441825.shtml" target="_blank" rel="external">http://www.360doc.com/content/12/1117/19/820209_248441825.shtml</a></p>
+<h3 id="2-5_基于NLB">2.5 基于NLB</h3>
+<p>NLB(Network Load Balancing),网络负载平衡。<br>特点：<br>（1）NLB集群可以将两台或更多服务器结合起来使用<br>（2）一个NLB集群最多支持32台计算机<br>（3）NLB集群只能用于各节点的服务与数据完全相同的情况<br>（4）增强 Web、FTP、VPN等服务的可靠性和可伸缩性<br>NLB的工作原理<br>（1）集群中的每台服务器都有固定IP地址<br>（2）集群中的每台服务器还有一个共同的IP地址—NLB的集群IP地址<br>（3）NLB将客户端的访问信息发送给群集中的所有节点<br>（4）NLB算法决定提供服务的节点—其他不提供服务的节点丢弃访问请求<br>（4）NLB通过单播或多播来确保算法的特点</p>
+<h3 id="2-6_基于硬件">2.6 基于硬件</h3>
+<p>比较流行的是F5，价格相当高，最便宜的也要10几万。<br><a href="http://network.51cto.com/art/201004/196752.htm" target="_blank" rel="external">http://network.51cto.com/art/201004/196752.htm</a><br><a href="http://network.51cto.com/art/201004/196752.htm" target="_blank" rel="external">http://network.51cto.com/art/201004/196752.htm</a></p>
+
+      
+    </div>
+    <footer>
+      
+      
+      
+        <div class="alignright share-box">
+  
+    
+      <a class="share-link share-weibo" href="http://v.t.sina.com.cn/share/share.php?url=/2015/04/10/常见的负载均衡的方式/&title=《常见的负载均衡的方式》" title="weibo"></a>
+    
+      <a class="share-link share-google" href="https://plus.google.com/share?url=/2015/04/10/常见的负载均衡的方式/&title=《常见的负载均衡的方式》" title="google"></a>
+    
+  
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Fri Apr 10 2015 14:29:55 GMT+0800" data-title="常见的负载均衡的方式" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tcheung"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+  <div id="menu-nav" class="footer-btn">
+  <a title="Quick Nav"><img src="/img/list.png"/></a>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    var toc = $('#toc');
+    var nav = $('#menu-nav');
+    var toccopy;
+    var status = true;
+    if ($(window).width() <= 583)
+      status = false;
+    var first = true;
+    var position = toc.position();
+    var wid = toc.width();
+    $(window).scroll(onScroll);
+    $(nav).click(opennav);
+
+    function tocout() {
+      if (first && status) {
+        toccopy = $(toc).clone();
+        $(toccopy).insertAfter(toc);
+        toc.css('float','');
+        toc.css('position','fixed');
+        onResize();
+        toc.css('z-index','99');
+        toc.css('width',wid);
+        $(window).resize(onResize);
+        first = false;
+        toccopy.css('visibility', 'hidden');
+      }
+      
+    }
+
+    function onScroll() {
+      var top = $(window).scrollTop();
+      if(top >= position.top + 30){
+        tocout();
+        $(nav).stop().fadeTo(300, 1); // fade back in
+        $(nav).animate({bottom: "25px"}, { queue: false, duration: 10 });
+      }else{
+        hidNav();
+        $(window).off("resize", onResize);
+        $(nav).stop().fadeTo(300, 0); // fade out
+        $(nav).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+      }
+    }
+
+    function onResize() {
+      var width = $(window).width();
+      var left = $('#sidebar').position().left;
+      if (width > 883){
+        toc.css('top', '88px');
+        toc.css('left', left - 18);
+      } else{
+        var top = $('#nav-top').innerHeight();
+        toc.css('top', top);
+        var fix = $('#main-col').width() - toc.width() - 35;
+        toc.css('left', left + fix);
+        if($(window).scrollTop() >= position.top + 30){
+          $(nav).stop().fadeTo(300, 1); // fade back in
+          $(nav).animate({bottom: "25px"}, { queue: false, duration: 10 });
+        }
+      }
+    }
+
+    function hidNav() {
+      toc.css('position','');
+      toc.css('float','right');
+      $(toccopy).remove();
+      first = true;
+    }
+
+    function opennav() {
+      if (status) {
+        status = false;
+        hidNav();
+      } else {
+        status = true;
+        tocout();
+      }
+    }
+  });
+</script>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  
+    <form>
+      <input id="" type="search" placeholder="Search">
+    </form>
+    <div id="st-results-container"></div>
+  
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <div class="entry">
+    
+      <span><a href="/tags/centos/">centos<small>1</small></a></span>
+    
+      <span><a href="/tags/docker/">docker<small>2</small></a></span>
+    
+      <span><a href="/tags/gitlab/">gitlab<small>2</small></a></span>
+    
+      <span><a href="/tags/hadoop/">hadoop<small>2</small></a></span>
+    
+      <span><a href="/tags/hbase/">hbase<small>1</small></a></span>
+    
+      <span><a href="/tags/java/">java<small>3</small></a></span>
+    
+      <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
+    
+      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+    
+      <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
+    
+      <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+  </div>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+  </div>
+</div>
+
+
+
+
+  <script type="text/javascript">
+    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+      (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+      e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+    })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+    _st('install','');
+  </script>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div id="foot-nav">
+  <ul class="social">
+    
+      <li><a class="github" href="https://github.com/tengzhang" title="github">github</a></li>
+    
+      <li><a class="rss" href="/atom.xml" title="rss">rss</a></li>
+    
+  </ul>
+</div>
+<div>
+  
+    &copy; 2015 Zhang Teng
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script type="text/javascript">
+  function navbar() {
+    var top = $('#nav-top').innerHeight();
+    $('#header').css('min-height', top);
+  }
+  navbar();
+  $(window).resize(navbar);
+</script>
+<div id="totop" class="footer-btn">
+  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script type="text/javascript">
+  $(function(){ 
+	// When to show the scroll link
+	// higher number = scroll link appears further down the page   
+	var upperLimit = 800;
+	
+	// Our scroll link element
+	var scrollElem = $('#totop');
+   
+	// Scroll to top speed
+	var scrollSpeed = 500;
+   
+	// Show and hide the scroll to top link based on scroll position   
+	scrollElem.hide();
+	$(window).scroll(function () {            
+		var scrollTop = $(document).scrollTop();       
+		if ( scrollTop > upperLimit ) {
+		  $(scrollElem).stop().fadeTo(300, 1); // fade back in
+		  $(scrollElem).animate({bottom: "50px"}, { queue: false, duration: 10 });
+		} else {
+		  $(scrollElem).stop().fadeTo(300, 0); // fade out
+	      $(scrollElem).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+			
+		}
+	});
+
+	// Scroll to top animation on click
+	$(scrollElem).click(function(){
+	  $('html, body').animate({scrollTop:0}, scrollSpeed);
+	  $(scrollElem).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+	  return false;
+	});
+  });
+</script>
+</body>
+</html>

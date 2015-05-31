@@ -3,23 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>java | Zhang Teng&#39;Bolg</title>
+  <title>java | Zhang Teng&#39;Blog</title>
   <meta name="author" content="Zhang Teng">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="Zhang Teng&#39;Bolg"/>
+  <meta property="og:site_name" content="Zhang Teng&#39;Blog"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.ico" rel="shortcut icon">
-  <link rel="alternate" href="/atom.xml" title="Zhang Teng&#39;Bolg" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Zhang Teng&#39;Blog" type="application/atom+xml">
   <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
@@ -32,7 +33,9 @@
 <body>
   <header id="header" class="inner"><div id="nav-top">
   <div class="alignleft main-title">
-    <h1>Zhang Teng&#39;Bolg</h1>
+    <a href="/">
+		<h1>Zhang Teng&#39;Blog</h1>
+	</a>
     <h2></h2>
   </div>
   <nav id="main-nav" class="alignright">
@@ -52,6 +55,110 @@
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
 <h2 class="archive-title tag">java</h2>
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="/2015/05/19/基于Docker的Hadoop完全分布式环境搭建/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2015-05-19T15:55:37.000Z"><a href="/2015/05/19/基于Docker的Hadoop完全分布式环境搭建/">May 19 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/05/19/基于Docker的Hadoop完全分布式环境搭建/">基于Docker的Hadoop完全分布式环境搭建</a></h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="1_配置docker环境">1 配置docker环境</h3>
+<p>创建一个带有ssh的centos的docker images，命名为centos6-ssh（建议采用centos6）并且ssh能在容器启动是自启动，不是本部分的重点，不详细描述。</p>
+<h3 id="2_启动docker，配置java">2 启动docker，配置java</h3>
+
+      
+    </div>
+    <footer>
+      
+      
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>, <a href="/tags/hadoop/">hadoop</a>
+  </div>
+
+      
+        
+          <div class="alignright">
+            <a href="/2015/05/19/基于Docker的Hadoop完全分布式环境搭建/" class="more-link">Read More</a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="/2015/05/18/HBase环境搭建/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2015-05-18T15:55:37.000Z"><a href="/2015/05/18/HBase环境搭建/">May 18 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/05/18/HBase环境搭建/">基于Docker的Hadoop完全分布式环境搭建</a></h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        <p>HBase需要在Hadoop的基础上运行，使用了Hadoop的HDFS，所有在搭建HBase之前，需要先搭建Hadoop的环境。<br>Habse的运行模式主要有两种：</p>
+<ol>
+<li>单机模式</li>
+<li>分布式模式<br> 2.1. 伪分布式<br> 2.2. 完全分布式<br>主要介绍单击模式和完全分布式。</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+      
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>, <a href="/tags/hadoop/">hadoop</a>, <a href="/tags/hbase/">hbase</a>
+  </div>
+
+      
+        
+          <div class="alignright">
+            <a href="/2015/05/18/HBase环境搭建/" class="more-link">Read More</a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
 
 
   
@@ -128,11 +235,19 @@
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
     
-      <span><a href="/tags/java/">java<small>1</small></a></span>
+      <span><a href="/tags/docker/">docker<small>2</small></a></span>
+    
+      <span><a href="/tags/gitlab/">gitlab<small>2</small></a></span>
+    
+      <span><a href="/tags/hadoop/">hadoop<small>2</small></a></span>
+    
+      <span><a href="/tags/hbase/">hbase<small>1</small></a></span>
+    
+      <span><a href="/tags/java/">java<small>3</small></a></span>
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>1</small></a></span>
+      <span><a href="/tags/linux/">linux<small>3</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
@@ -146,7 +261,7 @@
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: NaNpx;">centos</a><a href="/tags/java/" style="font-size: NaNpx;">java</a><a href="/tags/leetcode/" style="font-size: NaNpx;">leetcode</a><a href="/tags/linux/" style="font-size: NaNpx;">linux</a><a href="/tags/mysql/" style="font-size: NaNpx;">mysql</a><a href="/tags/redmine/" style="font-size: NaNpx;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
   </div>
 </div>
 
@@ -175,7 +290,7 @@
 </div>
 <div>
   
-    &copy; 2014 Zhang Teng
+    &copy; 2015 Zhang Teng
   
 </div>
 <div class="clearfix"></div></footer>

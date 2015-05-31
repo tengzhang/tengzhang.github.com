@@ -3,23 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Zhang Teng&#39;Bolg</title>
+  <title>Zhang Teng&#39;Blog</title>
   <meta name="author" content="Zhang Teng">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-  <meta property="og:site_name" content="Zhang Teng&#39;Bolg"/>
+  <meta property="og:site_name" content="Zhang Teng&#39;Blog"/>
 
   
     <meta property="og:image" content="undefined"/>
   
 
   <link href="/favicon.ico" rel="shortcut icon">
-  <link rel="alternate" href="/atom.xml" title="Zhang Teng&#39;Bolg" type="application/atom+xml">
+  <link rel="alternate" href="/atom.xml" title="Zhang Teng&#39;Blog" type="application/atom+xml">
   <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/css/highlight.css" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   <script src="//ajax.useso.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 <script src="/js/jquery.imagesloaded.min.js"></script>
@@ -32,7 +33,9 @@
 <body>
   <header id="header" class="inner"><div id="nav-top">
   <div class="alignleft main-title">
-    <h1>Zhang Teng&#39;Bolg</h1>
+    <a href="/">
+		<h1>Zhang Teng&#39;Blog</h1>
+	</a>
     <h2></h2>
   </div>
   <nav id="main-nav" class="alignright">
@@ -51,6 +54,326 @@
 </div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="/2015/05/30/gitlab只使用https协议/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2015-05-30T14:25:04.000Z"><a href="/2015/05/30/gitlab只使用https协议/">May 30 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/05/30/gitlab只使用https协议/">gitlab只使用https协议</a></h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        <p>主要修改两个地方</p>
+
+      
+    </div>
+    <footer>
+      
+      
+  
+  <div class="tags">
+    <a href="/tags/gitlab/">gitlab</a>
+  </div>
+
+      
+        
+          <div class="alignright">
+            <a href="/2015/05/30/gitlab只使用https协议/" class="more-link">Read More</a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="/2015/05/19/基于Docker的Hadoop完全分布式环境搭建/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2015-05-19T15:55:37.000Z"><a href="/2015/05/19/基于Docker的Hadoop完全分布式环境搭建/">May 19 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/05/19/基于Docker的Hadoop完全分布式环境搭建/">基于Docker的Hadoop完全分布式环境搭建</a></h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        <h3 id="1_配置docker环境">1 配置docker环境</h3>
+<p>创建一个带有ssh的centos的docker images，命名为centos6-ssh（建议采用centos6）并且ssh能在容器启动是自启动，不是本部分的重点，不详细描述。</p>
+<h3 id="2_启动docker，配置java">2 启动docker，配置java</h3>
+
+      
+    </div>
+    <footer>
+      
+      
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>, <a href="/tags/hadoop/">hadoop</a>
+  </div>
+
+      
+        
+          <div class="alignright">
+            <a href="/2015/05/19/基于Docker的Hadoop完全分布式环境搭建/" class="more-link">Read More</a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="/2015/05/18/HBase环境搭建/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2015-05-18T15:55:37.000Z"><a href="/2015/05/18/HBase环境搭建/">May 18 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/05/18/HBase环境搭建/">基于Docker的Hadoop完全分布式环境搭建</a></h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        <p>HBase需要在Hadoop的基础上运行，使用了Hadoop的HDFS，所有在搭建HBase之前，需要先搭建Hadoop的环境。<br>Habse的运行模式主要有两种：</p>
+<ol>
+<li>单机模式</li>
+<li>分布式模式<br> 2.1. 伪分布式<br> 2.2. 完全分布式<br>主要介绍单击模式和完全分布式。</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+      
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>, <a href="/tags/hadoop/">hadoop</a>, <a href="/tags/hbase/">hbase</a>
+  </div>
+
+      
+        
+          <div class="alignright">
+            <a href="/2015/05/18/HBase环境搭建/" class="more-link">Read More</a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="/2015/05/03/基于docker的gitlab搭建/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2015-05-03T06:21:48.000Z"><a href="/2015/05/03/基于docker的gitlab搭建/">May 3 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/05/03/基于docker的gitlab搭建/">基于docker的gitlab搭建</a></h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        <p>﻿﻿﻿﻿﻿﻿﻿### 一、准备docker容器环境</p>
+<h4 id="1-&nbsp;下载docker_ubuntu镜像">1.&nbsp;下载docker ubuntu镜像</h4>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; docker pull ubuntu
+</pre></td></tr></table></figure><br>#### 2.&nbsp;启动ubuntu镜像并更新<br><br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+2
+3
+</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; docker run -<span class="keyword">it</span> docker.io/ubuntu
+<span class="comment"># 更新操作在ubuntu容器中进行</span>
+<span class="built_in">shell</span>&gt;&gt; apt-<span class="built_in">get</span> -y update
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+      
+  
+  <div class="tags">
+    <a href="/tags/linux/">linux</a>, <a href="/tags/docker/">docker</a>, <a href="/tags/gitlab/">gitlab</a>
+  </div>
+
+      
+        
+          <div class="alignright">
+            <a href="/2015/05/03/基于docker的gitlab搭建/" class="more-link">Read More</a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="/2015/04/24/docker使用自定义网桥/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2015-04-24T06:19:26.000Z"><a href="/2015/04/24/docker使用自定义网桥/">Apr 24 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/04/24/docker使用自定义网桥/">docker使用自定义网桥</a></h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        <p>参考网址：<a href="https://docs.docker.com/articles/networking/" target="_blank" rel="external">https://docs.docker.com/articles/networking/</a></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
+2
+3
+4
+</pre></td><td class="code"><pre>$ <span class="built_in">sudo</span> service docker stop
+$ <span class="built_in">sudo</span> ip link <span class="keyword">set</span> dev docker0 down
+$ <span class="built_in">sudo</span> brctl delbr docker0
+$ <span class="built_in">sudo</span> iptables -t nat -F POSTROUTING
+</pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer>
+      
+      
+  
+  <div class="tags">
+    <a href="/tags/linux/">linux</a>, <a href="/tags/docker/">docker</a>
+  </div>
+
+      
+        
+          <div class="alignright">
+            <a href="/2015/04/24/docker使用自定义网桥/" class="more-link">Read More</a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="/2015/04/10/常见的负载均衡的方式/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2015-04-10T06:29:55.000Z"><a href="/2015/04/10/常见的负载均衡的方式/">Apr 10 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/04/10/常见的负载均衡的方式/">常见的负载均衡的方式</a></h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        <h2 id="1_负载均衡">1 负载均衡</h2>
+<h3 id="1-1_场景引入">1.1 场景引入</h3>
+<p>Tomcat最大能承受的访问量是300，现在需要处理同时并发1000的访问量，应该怎么做？</p>
+<h3 id="1-2_负载均衡的概念">1.2 负载均衡的概念</h3>
+<p>百度百科的解释。<br>负载均衡 建立在现有网络结构之上，它提供了一种廉价有效透明的方法扩展网络设备和服务器的带宽、增加吞吐量、加强网络数据处理能力、提高网络的灵活性和可用性。<br>负载均衡，英文名称为Load Balance，其意思就是分摊到多个操作单元上进行执行，例如Web服务器、FTP服务器、企业关键应用服务器和其它关键任务服务器等，从而共同完成工作任务。</p>
+
+      
+    </div>
+    <footer>
+      
+      
+      
+        
+          <div class="alignright">
+            <a href="/2015/04/10/常见的负载均衡的方式/" class="more-link">Read More</a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -259,363 +582,6 @@
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-      
-        <div class="icon"></div>
-        <time datetime="2014-07-19T14:42:52.000Z"><a href="/2014/07/19/code-standards/">Jul 19 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/07/19/code-standards/">code-standards</a></h1>
-  
-
-      
-    </header>
-    <div class="entry">
-      
-        <h1 id="后端">后端</h1>
-<hr>
-<h2 id="工程结构">工程结构</h2>
-<p>分为<code>service</code>和<code>web</code></p>
-<h2 id="注释">注释</h2>
-<ol>
-<li><p>类头要写明该类的职责是什么。<br>for example:<br><figure class="highlight java"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre><span class="javadoc">/**
- * 职责
- *<span class="javadoctag"> @Description</span>
- *
- *<span class="javadoctag"> @author</span> zhangteng
- *<span class="javadoctag"> @email</span> zhangt@pandawork.net
- *<span class="javadoctag"> @time</span>: 2014/7/9 14:25
- */</span>
-</pre></td></tr></table></figure></p>
-
-      
-    </div>
-    <footer>
-      
-      
-      
-        
-          <div class="alignright">
-            <a href="/2014/07/19/code-standards/" class="more-link">Read More</a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-      
-        <div class="icon"></div>
-        <time datetime="2014-07-12T04:39:43.000Z"><a href="/2014/07/12/grub2-repair-windows/">Jul 12 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/07/12/grub2-repair-windows/">grub2修复windows引导</a></h1>
-  
-
-      
-    </header>
-    <div class="entry">
-      
-        <p>可参考网址<a href="http://blog.csdn.net/hengyunabc/article/details/6071683" target="_blank" rel="external">http://blog.csdn.net/hengyunabc/article/details/6071683</a></p>
-<p>今天装了个centos 7，进去之后发现没有windows引导了，centos 7开始用grub 2引导了。<br>首先可以试试:</p>
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ gurb2<span class="attribute">-mkconfig</span> <span class="attribute">-o</span> /boot/grub/grub<span class="built_in">.</span>cfg
-</pre></td></tr></table></figure><br>它非常智能，能自动检测电脑上安装的操作系统，将它们加入到引导中去。<br>不过，有时候它也不好使，就像我今天这样。</p>
-
-      
-    </div>
-    <footer>
-      
-      
-      
-        
-          <div class="alignright">
-            <a href="/2014/07/12/grub2-repair-windows/" class="more-link">Read More</a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-      
-        <div class="icon"></div>
-        <time datetime="2014-07-07T12:41:20.000Z"><a href="/2014/07/07/markdown-grammar/">Jul 7 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/07/07/markdown-grammar/">markdown语法简介</a></h1>
-  
-
-      
-    </header>
-    <div class="entry">
-      
-        <p>本文摘抄自<a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">http://wowubuntu.com/markdown/</a>，旨在联系一下markdown的语法，同时也向大家介绍一下markdown的语法，方便大家和自己查阅。</p>
-<hr>
-<h1 id="Markdown_语法说明（简体中文版）">Markdown 语法说明（简体中文版）</h1>
-<ul>
-<li><a href="#overview">概述</a><ul>
-<li><a href="#philosophy">宗旨</a></li>
-<li><a href="#html">兼容 HTML</a></li>
-<li><a href="#autoescape">特殊字符自动转换</a></li>
-</ul>
-</li>
-<li><a href="#block">区块元素</a><ul>
-<li><a href="#p">段落和换行</a></li>
-<li><a href="#header">标题</a></li>
-<li><a href="#blockquote">区块引用</a></li>
-<li><a href="#list">列表</a></li>
-<li><a href="#precode">代码区块</a></li>
-<li><a href="#hr">分割线</a></li>
-</ul>
-</li>
-<li><a href="#span">区段元素</a><ul>
-<li><a href="#link">链接</a></li>
-<li><a href="#em">强调</a></li>
-<li><a href="#code">代码</a></li>
-<li><a href="#img">图片</a></li>
-</ul>
-</li>
-<li><a href="#misc">其它</a><ul>
-<li><a href="#backslash">反斜杠</a></li>
-<li><a href="#autolink">自动连接</a></li>
-</ul>
-</li>
-<li><a href="#editor">Markdown 免费编辑器</a></li>
-</ul>
-
-      
-    </div>
-    <footer>
-      
-      
-      
-        
-          <div class="alignright">
-            <a href="/2014/07/07/markdown-grammar/" class="more-link">Read More</a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-      
-        <div class="icon"></div>
-        <time datetime="2014-07-06T12:59:23.000Z"><a href="/2014/07/06/new-blog-first-post/">Jul 6 2014</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2014/07/06/new-blog-first-post/">新博客的第一篇博文</a></h1>
-  
-
-      
-    </header>
-    <div class="entry">
-      
-        
-        <p>以前在github上用octopress挂了一个博客，但是用它还得装ruby，感觉比较麻烦（主要还是不懂ruby）。<br>前段时间，看到有人用hexo搭建博客，我也试了试。hexo是基于node，比octopress方便多了，就转了过来。<br>这是他的官网<a href="http://hexo.io/" target="_blank" rel="external">http://hexo.io/</a>，关于具体怎么搭建，我就不多说了，官网写得和详细，直接上官方文档的链接<a href="http://hexo.io/docs/index.html" target="_blank" rel="external">http://hexo.io/docs/index.html</a>。<br>说说我遇到的问题吧，按照官网说的做了，我用<code>hexo deploy</code>，一直deploy上去，也不知道为啥，可能主要还是我对node和git都不熟悉吧。<br>最后我是手动deploy的。具体命令如下：</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>$ hexo clean
-$ hexo deploy --generate
-$ <span class="built_in">cd</span> .deploy
-$ git push -u origin master
-</pre></td></tr></table></figure><br>命令都是在hexo博客的目录下执行的。<br>另外奉上我使用的主题地址:<a href="http://yangjian.me/pacman/hello/introducing-pacman-theme/" target="_blank" rel="external">http://yangjian.me/pacman/hello/introducing-pacman-theme/</a></p>
-
-      
-    </div>
-    <footer>
-      
-      
-      
-        
-          <div class="alignright share-box">
-  
-</div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="alignright">
-          <a href="/2013/11/01/2013-11-01-jquery-study/#ds-thread" class="comment-link"></a>
-        </div>
-      
-      
-        <div class="icon"></div>
-        <time datetime="2013-11-01T02:43:00.000Z"><a href="/2013/11/01/2013-11-01-jquery-study/">Nov 1 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/11/01/2013-11-01-jquery-study/">jquery使用笔记</a></h1>
-  
-
-      
-    </header>
-    <div class="entry">
-      
-        <ol>
-<li>ajax请求，注意最后一个值的地方没有逗号<figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="code"><pre>$.ajax({  
-    type: <span class="string">"POST"</span>,
-    url: <span class="string">"mystructs/hello_jsonTest.action"</span>,
-    data: {
-        number: $(<span class="string">"#number"</span>).val(),
-        userId: $(<span class="string">'#userId'</span>).val() 
-    },
-    dataType: <span class="string">"text"</span>,  <span class="comment">//ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）</span>
-    success: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
-        <span class="keyword">var</span> res = $.parseJSON(json);
-        alert(res.result);
-    },
-    error: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
-        alert(json);
-    }
-});
-</pre></td></tr></table></figure>
-
-</li>
-</ol>
-
-      
-    </div>
-    <footer>
-      
-  
-  <div class="categories">
-    <a href="/categories/jquery/">jquery</a>
-  </div>
-
-      
-      
-        
-          <div class="alignright">
-            <a href="/2013/11/01/2013-11-01-jquery-study/" class="more-link">Read More</a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="alignright">
-          <a href="/2013/10/30/2013-10-30-struts2-json/#ds-thread" class="comment-link"></a>
-        </div>
-      
-      
-        <div class="icon"></div>
-        <time datetime="2013-10-30T01:28:00.000Z"><a href="/2013/10/30/2013-10-30-struts2-json/">Oct 30 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/10/30/2013-10-30-struts2-json/">structs2返回json</a></h1>
-  
-
-      
-    </header>
-    <div class="entry">
-      
-        <p>structs2返回本身支持返回json，只需要配置即可，我们也可以自己把json串写入servlet输出流中。</p>
-
-      
-    </div>
-    <footer>
-      
-      
-      
-        
-          <div class="alignright">
-            <a href="/2013/10/30/2013-10-30-struts2-json/" class="more-link">Read More</a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
@@ -641,11 +607,19 @@ $ git push -u origin master
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
     
-      <span><a href="/tags/java/">java<small>1</small></a></span>
+      <span><a href="/tags/docker/">docker<small>2</small></a></span>
+    
+      <span><a href="/tags/gitlab/">gitlab<small>2</small></a></span>
+    
+      <span><a href="/tags/hadoop/">hadoop<small>2</small></a></span>
+    
+      <span><a href="/tags/hbase/">hbase<small>1</small></a></span>
+    
+      <span><a href="/tags/java/">java<small>3</small></a></span>
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>1</small></a></span>
+      <span><a href="/tags/linux/">linux<small>3</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
@@ -659,7 +633,7 @@ $ git push -u origin master
 <div class="widget tagcloud">
   <h3 class="title">Tag Cloud</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: NaNpx;">centos</a><a href="/tags/java/" style="font-size: NaNpx;">java</a><a href="/tags/leetcode/" style="font-size: NaNpx;">leetcode</a><a href="/tags/linux/" style="font-size: NaNpx;">linux</a><a href="/tags/mysql/" style="font-size: NaNpx;">mysql</a><a href="/tags/redmine/" style="font-size: NaNpx;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
   </div>
 </div>
 
@@ -688,7 +662,7 @@ $ git push -u origin master
 </div>
 <div>
   
-    &copy; 2014 Zhang Teng
+    &copy; 2015 Zhang Teng
   
 </div>
 <div class="clearfix"></div></footer>
