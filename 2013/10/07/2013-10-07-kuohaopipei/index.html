@@ -6,8 +6,7 @@
   <title>括号匹配 | Zhang Teng&#39;Blog</title>
   <meta name="author" content="Zhang Teng">
   
-  <meta name="description" content="原题
-&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;给定字符串，输出括号是否匹配，例如:  
+  <meta name="description" content="原题&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;给定字符串，输出括号是否匹配，例如:  
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;1.”()” yes；&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;2.”)(“ no；&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;3.”(abcd(e)” no；&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;4.”(a)(b)” yes。  
 &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;要求必须用递归写，整个实现不可以出现一个循环语句.">
   
@@ -83,86 +82,17 @@
         
           
         
-        <h2 id="原题">原题</h2>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给定字符串，输出括号是否匹配，例如:  </p>
+        <h2 id="原题">原题</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;给定字符串，输出括号是否匹配，例如:  </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.”()” yes；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.”)(“ no；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.”(abcd(e)” no；<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.”(a)(b)” yes。  </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要求必须用递归写，整个实现不可以出现一个循环语句.</p>
 <a id="more"></a>
-
-<h2 id="分析">分析</h2>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个题目很多同学都见过了，如果没有后面的条件，会张口就说就来用栈来实现，时间复杂度O(n)，空间复杂度O(n)。这个是很好的一个解答，没有 问题的。但是我们在做面试题，准备面试的过程中，每一个题目都不应该仅仅局限于某一个方法。应该尝试更多的思路，尽管有些思路的时间、空间复杂度并不是很 好，但是可以带来变化，举一反三，这才是真正的收获。  </p>
+<h2 id="分析">分析</h2><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个题目很多同学都见过了，如果没有后面的条件，会张口就说就来用栈来实现，时间复杂度O(n)，空间复杂度O(n)。这个是很好的一个解答，没有 问题的。但是我们在做面试题，准备面试的过程中，每一个题目都不应该仅仅局限于某一个方法。应该尝试更多的思路，尽管有些思路的时间、空间复杂度并不是很 好，但是可以带来变化，举一反三，这才是真正的收获。  </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这个题要求了，只目能使用递归并且不能出现循环语句。这个时候，我们应该如何处理呢？其实告诉了大家递归，就比较好想了：怎么定义好问题和子问题。  </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果字符串中的括号是匹配的，则’(‘的数量和’)’的数量是相等的，反之是不相等的。这样，在递归的过程中，可以保存一个变量，用来记录’(‘的 数量和’)’的数量是否匹配。这样定义递归问题f(p,count)，表示当前字符p之前的字符串中’(‘的数量和’)’的数量的匹配情况，p表示指向当 前字符的指针。初始的时候，f(p, 0)，递归的过程如下：  </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果p为空，则考察count是否为0，如果为0，则匹配；如果不为0，则不匹配；  </p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果不为空，则考察当前字符p，如果p=’(‘，则递归调用f(p++, count++);如果p=’)’，则递归调用f(p++, count—)。如果p是其他的字符，并不是’(‘和’)’，则递归调用f(p++, count)，count不变，继续考虑下一次字符。其中需要检查和保证count&gt;=0.  </p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果不为空，则考察当前字符p，如果p=’(‘，则递归调用f(p++, count++);如果p=’)’，则递归调用f(p++, count–)。如果p是其他的字符，并不是’(‘和’)’，则递归调用f(p++, count)，count不变，继续考虑下一次字符。其中需要检查和保证count&gt;=0.  </p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其实，递归的问题有的时候不是那么好像的，需要大家不断的练习。如果不采用count来记录括号匹配的情况，这个题目的递归也不好想。<br>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-</pre></td><td class="code"><pre><span class="preprocessor">#include &lt;stdio.h&gt;</span>
-<span class="preprocessor">#include &lt;string.h&gt;</span>
-<span class="preprocessor">#include &lt;iostream&gt;</span>
-<span class="preprocessor">#include &lt;string&gt;</span>
-<span class="preprocessor">#include &lt;algorithm&gt;</span>
-<span class="preprocessor">#include &lt;map&gt;</span>
-<span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;
-<span class="keyword">char</span> s[<span class="number">10000</span>];
-<span class="keyword">bool</span> match(<span class="keyword">char</span> *s,<span class="keyword">int</span> count) {
-    <span class="keyword">if</span>(!*s && count==<span class="number">0</span>)
-        <span class="keyword">return</span> <span class="keyword">true</span>;
-    <span class="keyword">else</span> <span class="keyword">if</span>(!*s && count!=<span class="number">0</span>)
-        <span class="keyword">return</span> <span class="keyword">false</span>;
-    <span class="keyword">if</span>(count &lt; <span class="number">0</span>)
-        <span class="keyword">return</span> <span class="keyword">false</span>;
-    <span class="keyword">if</span>(*s == <span class="string">'('</span>)
-        match(s+<span class="number">1</span>,count+<span class="number">1</span>);
-    <span class="keyword">else</span> <span class="keyword">if</span>(*s == <span class="string">')'</span>)
-        match(s+<span class="number">1</span>,count-<span class="number">1</span>);
-    <span class="keyword">else</span>
-        match(s+<span class="number">1</span>,count);
-}
-<span class="keyword">int</span> main() {
-    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s)) {
-        <span class="keyword">if</span>(match(s,<span class="number">0</span>)) {
-            <span class="built_in">printf</span>(<span class="string">"yes!\n"</span>);
-        }
-        <span class="keyword">else</span> {
-            <span class="built_in">printf</span>(<span class="string">"no!\n"</span>);
-        }
-    }
-    <span class="keyword">return</span> <span class="number">0</span>;
-}
-</pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">char</span> s[<span class="number">10000</span>];</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">match</span><span class="params">(<span class="keyword">char</span> *s,<span class="keyword">int</span> count)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!*s &amp;&amp; count==<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(!*s &amp;&amp; count!=<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(count &lt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span>(*s == <span class="string">'('</span>)</span><br><span class="line">        match(s+<span class="number">1</span>,count+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(*s == <span class="string">')'</span>)</span><br><span class="line">        match(s+<span class="number">1</span>,count-<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        match(s+<span class="number">1</span>,count);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%s"</span>,s)) &#123;</span><br><span class="line">        <span class="keyword">if</span>(match(s,<span class="number">0</span>)) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"yes!\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"no!\n"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -186,7 +116,8 @@
 
 
 <section id="comment">
-  <h1 class="title">Comments</h1>
+  <h1 class="title">留言</h1>
+  
   <!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="Mon Oct 07 2013 16:36:00 GMT+0800" data-title="括号匹配" data-url="请替换成文章的网址"></div>
 <!-- 多说评论框 end -->
@@ -210,7 +141,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -218,7 +149,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -235,11 +166,13 @@ var duoshuoQuery = {short_name:"tcheung"};
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -247,9 +180,9 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -303,7 +236,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">

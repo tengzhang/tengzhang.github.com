@@ -80,50 +80,15 @@
         
           
     <div id="toc" class="toc-article">
-        <strong class="toc-title">Navigation</strong>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1_修改app/views/shared/_clone_panel-html-haml"><span class="toc-number">1.</span> <span class="toc-text">app/views/shared/_clone_panel.html.haml</code></span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2_修改-/app/helpers/projects_helper-rb"><span class="toc-number">2.</span> <span class="toc-text">./app/helpers/projects_helper.rb</code></span></a></li></ol>
+        <strong class="toc-title">目錄導航</strong>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1_修改app/views/shared/_clone_panel-html-haml"><span class="toc-number">1.</span> <span class="toc-text">1 修改app/views/shared/_clone_panel.html.haml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2_修改-/app/helpers/projects_helper-rb"><span class="toc-number">2.</span> <span class="toc-text">2 修改./app/helpers/projects_helper.rb</span></a></li></ol>
     </div>
 
         
         <p>主要修改两个地方</p>
 <a id="more"></a>
-
-<h3 id="1_修改app/views/shared/_clone_panel-html-haml">1 修改<code>app/views/shared/_clone_panel.html.haml</code></h3>
-<p>删掉下面这段代码</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre>%button{ |
-      <span class="class"><span class="keyword">class</span>: "<span class="title">btn</span> <span class="comment">#{ 'active' if default_clone_protocol == 'ssh' }#{ ' has_tooltip' if current_user && current_user.require_ssh_key? }", |</span></span>
-      <span class="symbol">:<span class="string">"data-clone"</span></span> =&gt; project.ssh_url_to_repo, |
-      <span class="symbol">:<span class="string">"data-title"</span></span> =&gt; <span class="string">"Add an SSH key to your profile&lt;br&gt; to pull or push via SSH"</span>,
-      <span class="symbol">:<span class="string">"data-html"</span></span> =&gt; <span class="string">"true"</span>,
-      <span class="symbol">:<span class="string">"data-container"</span></span> =&gt; <span class="string">"body"</span>}
-      <span class="constant">SSH</span>
-</pre></td></tr></table></figure>
-
-<h3 id="2_修改-/app/helpers/projects_helper-rb">2 修改<code>./app/helpers/projects_helper.rb</code></h3>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre><span class="function"><span class="keyword">def</span> </span>default_url_to_repo(project = <span class="keyword">nil</span>)
-    project = project || <span class="variable">@project</span>
-    current_user ? project.http_url_to_repo <span class="symbol">:</span> project.url_to_repo
-  <span class="keyword">end</span>
-
-  <span class="function"><span class="keyword">def</span> </span>default_clone_protocol
-    current_user ? <span class="string">"http"</span> <span class="symbol">:</span> <span class="string">"ssh"</span>
-  <span class="keyword">end</span>
-</pre></td></tr></table></figure>
+<h3 id="1_修改app/views/shared/_clone_panel-html-haml">1 修改<code>app/views/shared/_clone_panel.html.haml</code></h3><p>删掉下面这段代码<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%button&#123; |</span><br><span class="line">      <span class="class"><span class="keyword">class</span>: "<span class="title">btn</span> <span class="comment">#&#123; 'active' if default_clone_protocol == 'ssh' &#125;#&#123; ' has_tooltip' if current_user &amp;&amp; current_user.require_ssh_key? &#125;", |</span></span></span><br><span class="line">      <span class="symbol">:<span class="string">"data-clone"</span></span> =&gt; project.ssh_url_to_repo, |</span><br><span class="line">      <span class="symbol">:<span class="string">"data-title"</span></span> =&gt; <span class="string">"Add an SSH key to your profile&lt;br&gt; to pull or push via SSH"</span>,</span><br><span class="line">      <span class="symbol">:<span class="string">"data-html"</span></span> =&gt; <span class="string">"true"</span>,</span><br><span class="line">      <span class="symbol">:<span class="string">"data-container"</span></span> =&gt; <span class="string">"body"</span>&#125;</span><br><span class="line">      <span class="constant">SSH</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2_修改-/app/helpers/projects_helper-rb">2 修改<code>./app/helpers/projects_helper.rb</code></h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">default_url_to_repo</span><span class="params">(project = <span class="keyword">nil</span>)</span></span></span><br><span class="line">    project = project || <span class="variable">@project</span></span><br><span class="line">    current_user ? project.http_url_to_repo <span class="symbol">:</span> project.url_to_repo</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">default_clone_protocol</span></span></span><br><span class="line">    current_user ? <span class="string">"http"</span> <span class="symbol">:</span> <span class="string">"ssh"</span></span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
       
     </div>
     <footer>
@@ -152,7 +117,8 @@
 
 
 <section id="comment">
-  <h1 class="title">Comments</h1>
+  <h1 class="title">留言</h1>
+  
   <!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="Sat May 30 2015 22:25:04 GMT+0800" data-title="gitlab只使用https协议" data-url="请替换成文章的网址"></div>
 <!-- 多说评论框 end -->
@@ -173,7 +139,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
 
   <div id="menu-nav" class="footer-btn">
-  <a title="Quick Nav"><img src="/img/list.png"/></a>
+  <a title="目錄導航"><img src="/img/list.png"/></a>
 </div>
 
 <script type="text/javascript">
@@ -261,7 +227,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -269,7 +235,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -286,11 +252,13 @@ var duoshuoQuery = {short_name:"tcheung"};
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -298,9 +266,9 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -354,7 +322,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">

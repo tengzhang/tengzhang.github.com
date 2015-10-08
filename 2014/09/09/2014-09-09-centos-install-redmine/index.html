@@ -11,8 +11,7 @@
 Ruby+Rails的安装
 Redmine的安装先说一下系统环境，我安装的系统是CentOS 5，选择的Redmine版本是2.5.2，Ruby的版本是1.9.3，Rails的版本是3.2.19。下面从以上两部分进行说明。
 
-Ruby+Rails的安装
-Ruby的安装有3中方式：
+Ruby+Rails的安装Ruby的安装有3中方式：
 
 直接yum install ruby
 源码编译安装
@@ -90,7 +89,7 @@ Ruby的安装有3中方式：
         
           
     <div id="toc" class="toc-article">
-        <strong class="toc-title">Navigation</strong>
+        <strong class="toc-title">目錄導航</strong>
         <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ruby+Rails的安装"><span class="toc-number">1.</span> <span class="toc-text">Ruby+Rails的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redmine的安装"><span class="toc-number">2.</span> <span class="toc-text">Redmine的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插件安装"><span class="toc-number">3.</span> <span class="toc-text">插件安装</span></a></li></ol>
     </div>
 
@@ -100,136 +99,76 @@ Ruby的安装有3中方式：
 <li>Ruby+Rails的安装</li>
 <li>Redmine的安装<br>先说一下系统环境，我安装的系统是CentOS 5，选择的Redmine版本是2.5.2，Ruby的版本是1.9.3，Rails的版本是3.2.19。<br>下面从以上两部分进行说明。</li>
 </ol>
-<h3 id="Ruby+Rails的安装">Ruby+Rails的安装</h3>
-<p>Ruby的安装有3中方式：</p>
+<h3 id="Ruby+Rails的安装">Ruby+Rails的安装</h3><p>Ruby的安装有3中方式：</p>
 <ol>
 <li>直接<code>yum install ruby</code></li>
 <li>源码编译安装</li>
 <li>采用RVM安装<br>以上3种方式我都尝试了，最后采用了RVM安装这种方式，这种方式也是最简单的。</li>
 </ol>
 <a id="more"></a>
-
 <ol>
 <li><p>下载RVM并且安装</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>curl -L <span class="keyword">https</span>://<span class="built_in">get</span>.rvm.io | bash -s stable
-</pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://get.rvm.io | bash <span class="operator">-s</span> stable</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装一些依赖库，编译安装其它软件或者库的时候会用到</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>yum install zlib zlib<span class="attribute">-devel</span> sqlite<span class="attribute">-devel</span>
-yum install <span class="attribute">-y</span> gcc<span class="attribute">-c</span><span class="subst">++</span> patch readline readline<span class="attribute">-devel</span> zlib zlib<span class="attribute">-devel</span> libyaml<span class="attribute">-devel</span> libffi<span class="attribute">-devel</span> openssl<span class="attribute">-devel</span> make bzip2 autoconf automake libtool bison iconv<span class="attribute">-devel</span>
-</pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib zlib-devel sqlite-devel</span><br><span class="line">yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison iconv-devel</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装openssl，安装ruby的时候会使用到</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>rvm pkg <span class="keyword">install</span> openssl
-</pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rvm pkg install openssl</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>指定openssl的位置来安装ruby</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>rvm install <span class="number">1.9</span><span class="number">.3</span> <span class="subst">--</span><span class="keyword">with</span><span class="attribute">-openssl</span><span class="attribute">-dir</span><span class="subst">=</span>/usr/<span class="built_in">local</span>/rvm/usr
-</pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rvm install <span class="number">1.9</span>.<span class="number">3</span> --with-openssl-dir=/usr/<span class="built_in">local</span>/rvm/usr</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>指定使用Ruby版本</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>rvm <span class="keyword">use</span> <span class="number">1.9</span>.<span class="number">2</span>
-</pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rvm use <span class="number">1.9</span>.<span class="number">2</span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>安装Rails</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>gem <span class="keyword">install</span> rails
-</pre></td></tr></table></figure>
-
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install rails</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p>经过以上步骤，Ruby和Rails就安装完毕了。<br>安装完Ruby之后，建议更改一下gem的镜像地址，原因你懂的。可以改到淘宝的gem镜像，参考一下网址：<a href="http://ruby.taobao.org" target="_blank" rel="external">http://ruby.taobao.org/</a>。上面有更改gem镜像的详细方法。</p>
-<h3 id="Redmine的安装">Redmine的安装</h3>
-<p>最推荐的做法是参考官方wiki（<a href="http://www.redmine.org/projects/redmine/wiki/RedmineInstall）" target="_blank" rel="external">http://www.redmine.org/projects/redmine/wiki/RedmineInstall）</a></p>
+<h3 id="Redmine的安装">Redmine的安装</h3><p>最推荐的做法是参考官方wiki（<a href="http://www.redmine.org/projects/redmine/wiki/RedmineInstall）" target="_blank" rel="external">http://www.redmine.org/projects/redmine/wiki/RedmineInstall）</a></p>
 <ol>
-<li><p>准备Redmine需要用到的数据库环境<br> 1.1. 修改Redmine数据库配置文件<br> 进入Redmine目录</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="keyword">cp</span> config/database<span class="preprocessor">.yml</span><span class="preprocessor">.example</span> config/database<span class="preprocessor">.yml</span>  
-vi database<span class="preprocessor">.yml</span>
-</pre></td></tr></table></figure><br>按照下面的内容进行修改<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre><span class="attribute">production</span>: <span class="string"> </span>
-<span class="attribute">adapter</span>: <span class="string">mysql2  </span>
-<span class="attribute">database</span>: <span class="string">db_redmine  </span>
-<span class="attribute">host</span>: <span class="string">localhost  </span>
-<span class="attribute">username</span>: <span class="string">root  </span>
-<span class="attribute">password</span>: <span class="string">&lt;你的mysql密码&gt;  </span>
-<span class="attribute">ps</span>: <span class="string">其中的一些值需要根据实际情况</span>
-</pre></td></tr></table></figure>
-
-<p> 1.2. 进入Mysql创建数据库</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> redmine <span class="keyword">character</span> <span class="keyword">set</span> utf8;</span>
-</pre></td></tr></table></figure>
-</li>
-<li><p>初始化Redmine数据库环境</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="attribute">rake db:migrate RAILS_ENV</span>=<span class="string">production</span>
-</pre></td></tr></table></figure><br>执行此命令的时候会出现以下错误：<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>Could <span class="operator">not</span> find gem <span class="string">'mocha (~&gt; 1.0.0) ruby'</span> <span class="operator">in</span> <span class="operator">the</span> gems available <span class="command"><span class="keyword">on</span> <span class="title">this</span> <span class="title">machine</span>.</span>
-Run `bundle install` <span class="built_in">to</span> install missing gems.
-</pre></td></tr></table></figure><br>报这个错误的原因是因为缺少<code>mocha</code>这个gem，类似的还有很多gem都缺失。解决方法就是根据提示一个一个安装（类似于<code>gem install mocha -v=1.0.0</code>这样的命令），另一种解决办法是使用<code>bundle install</code>自动安装所缺少的gem，推荐使用这种方式，这种方式会自动帮你下载所依赖的gem，并且还能解决它们之间的版本冲突问题。<br>通过<code>bundle install</code>命令基本可以安装上所有依赖的gem，除了一个，<code>rmagick</code>，这个gem还需要依赖<code>ImageMagick</code>，他是用于处理一些图片转换之类的工作的。由于<code>rmagick</code>需要依赖<code>ImageMagick</code>，所以使用<code>bundle install</code>会安装失败，需要现在系统中安装<code>ImageMagick</code>。<br>解决方法如下：<br> 2.1. 如果你的CentOS版本比较新，可直接采用yum安装<br> <figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>	yum <span class="keyword">install</span> ImageMagick-devel
-</pre></td></tr></table></figure>
-
-<p> 2.2. 源码编译安装<br> 去官网下载源码(<a href="http://www.imagemagick.org/script/install-source.php#unix" target="_blank" rel="external">http://www.imagemagick.org/script/install-source.php#unix</a>)<br> 上面有安装教程，建议安装上面的步骤进行安装。<br> 下面列出我安装时执行的命令：</p>
- <figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>	tar xvzf ImageMagick<span class="preprocessor">.tar</span><span class="preprocessor">.gz</span>
-    cd ImageMagick-<span class="number">6.8</span><span class="number">.9</span>
-    ./configure
-    make
-    make install
-</pre></td></tr></table></figure>
-
-<p> 经过上面的步骤将gem都安装完之后，还需要再次执行<code>rake db:migrate RAILS_ENV=production</code>，这一步的主要作用是在数据库中生成Redmine需要的数据库表。</p>
-</li>
-<li><p>生成Redmine的Session存储</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>rake generate_secret_token
-</pre></td></tr></table></figure>
-</li>
-<li><p>启动Redmine<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>ruby script/rails server webrick <span class="operator">-e</span> production
-</pre></td></tr></table></figure><br>这条命令不是后台运行，建议使用如下命令，让redmie在后台运行<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>ruby script/rails server <span class="attribute">-e</span> production <span class="attribute">-d</span> <span class="subst">&gt;</span> /dev/<span class="built_in">null</span> <span class="number">2</span><span class="subst">&gt;&</span><span class="number">1</span> <span class="subst">&</span>
-</pre></td></tr></table></figure><br>可将上述命令加入/etc/local中，使得Redmine可以在系统启动时就启动。</p>
+<li>准备Redmine需要用到的数据库环境<br> 1.1. 修改Redmine数据库配置文件<br> 进入Redmine目录<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cp config/database.yml.example config/database.yml  </span><br><span class="line">vi database.yml</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>在使用过程中可能会遇到如下错误：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>ActionView::Template::Error (incompatible <span class="typename">character</span> encodings: UTF-<span class="number">8</span> <span class="keyword">and</span> ASCII-<span class="number">8</span><span class="typename">BIT</span>)
-</pre></td></tr></table></figure><br>解决方法如下：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="tag">rake</span> <span class="tag">assets</span><span class="pseudo">:precompile</span>
-然后重启<span class="tag">rails</span> <span class="tag">server</span>。
-</pre></td></tr></table></figure>
+<p>按照下面的内容进行修改<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">production:  &#10;adapter: mysql2  &#10;database: db_redmine  &#10;host: localhost  &#10;username: root  &#10;password: &#60;&#20320;&#30340;mysql&#23494;&#30721;&#62;  &#10;ps: &#20854;&#20013;&#30340;&#19968;&#20123;&#20540;&#38656;&#35201;&#26681;&#25454;&#23454;&#38469;&#24773;&#20917;</span><br></pre></td></tr></table></figure></p>
+<pre><code><span class="number">1.2</span>. 进入Mysql创建数据库
+</code></pre><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator"><span class="keyword">create</span> <span class="keyword">database</span> redmine <span class="built_in">character</span> <span class="keyword">set</span> utf8;</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li>初始化Redmine数据库环境<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rake db:migrate RAILS_ENV=production</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>执行此命令的时候会出现以下错误：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Could not find gem &#39;mocha (~&#62; 1.0.0) ruby&#39; in the gems available on this machine.&#10;Run `bundle install` to install missing gems.</span><br></pre></td></tr></table></figure></p>
+<p>报这个错误的原因是因为缺少<code>mocha</code>这个gem，类似的还有很多gem都缺失。解决方法就是根据提示一个一个安装（类似于<code>gem install mocha -v=1.0.0</code>这样的命令），另一种解决办法是使用<code>bundle install</code>自动安装所缺少的gem，推荐使用这种方式，这种方式会自动帮你下载所依赖的gem，并且还能解决它们之间的版本冲突问题。<br>通过<code>bundle install</code>命令基本可以安装上所有依赖的gem，除了一个，<code>rmagick</code>，这个gem还需要依赖<code>ImageMagick</code>，他是用于处理一些图片转换之类的工作的。由于<code>rmagick</code>需要依赖<code>ImageMagick</code>，所以使用<code>bundle install</code>会安装失败，需要现在系统中安装<code>ImageMagick</code>。<br>解决方法如下：<br>    2.1. 如果你的CentOS版本比较新，可直接采用yum安装<br>    <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install ImageMagick-devel</span><br></pre></td></tr></table></figure></p>
+<pre><code>2.2. 源码编译安装
+去官网下载源码(http://www.imagemagick.org/script/install-source.php#unix)
+上面有安装教程，建议安装上面的步骤进行安装。
+下面列出我安装时执行的命令：
+<span class="comment"><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar xvzf ImageMagick.tar.gz</span><br><span class="line"><span class="built_in">cd</span> ImageMagick-<span class="number">6.8</span>.<span class="number">9</span></span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></span>
 
-<h3 id="插件安装">插件安装</h3>
-<p>Redmine还可以安装一些插件，来帮助我们进行项目管理。<br>我们现在安装的插件有crumpm、code review、scrum、Aginle。<br>code review下载地址:<a href="http://www.redmine.org/plugins/codereview" target="_blank" rel="external">http://www.redmine.org/plugins/codereview</a><br>scrum下载地址:<a href="https://redmine.ociotec.com/projects/redmine-plugin-scrum" target="_blank" rel="external">https://redmine.ociotec.com/projects/redmine-plugin-scrum</a><br>Aginle下载地址:<a href="http://www.redmine.org/plugins/redmine_agile" target="_blank" rel="external">http://www.redmine.org/plugins/redmine_agile</a></p>
+经过上面的步骤将gem都安装完之后，还需要再次执行`rake db:migrate RAILS_ENV=production`，这一步的主要作用是在数据库中生成Redmine需要的数据库表。
+</code></pre><ol>
+<li><p>生成Redmine的Session存储</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rake generate_secret_token</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动Redmine</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby script/rails server webrick <span class="operator">-e</span> production</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这条命令不是后台运行，建议使用如下命令，让redmie在后台运行<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby script/rails server <span class="operator">-e</span> production <span class="operator">-d</span> &gt; /dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span> &amp;</span><br></pre></td></tr></table></figure></p>
+<p>可将上述命令加入/etc/local中，使得Redmine可以在系统启动时就启动。</p>
+<p>在使用过程中可能会遇到如下错误：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ActionView::Template::Error (incompatible character encodings: UTF-<span class="number">8</span> and ASCII-<span class="number">8</span>BIT)</span><br></pre></td></tr></table></figure></p>
+<p>解决方法如下：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rake assets:precompile</span><br><span class="line">然后重启rails server。</span><br></pre></td></tr></table></figure></p>
+<h3 id="插件安装">插件安装</h3><p>Redmine还可以安装一些插件，来帮助我们进行项目管理。<br>我们现在安装的插件有crumpm、code review、scrum、Aginle。<br>code review下载地址:<a href="http://www.redmine.org/plugins/codereview" target="_blank" rel="external">http://www.redmine.org/plugins/codereview</a><br>scrum下载地址:<a href="https://redmine.ociotec.com/projects/redmine-plugin-scrum" target="_blank" rel="external">https://redmine.ociotec.com/projects/redmine-plugin-scrum</a><br>Aginle下载地址:<a href="http://www.redmine.org/plugins/redmine_agile" target="_blank" rel="external">http://www.redmine.org/plugins/redmine_agile</a></p>
 <p>插件安装步骤:</p>
 <ol>
 <li>下载插件，解压到Redmine安装目录下的plugins文件夹下</li>
-<li>在Redmine安装目录下执行:<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="attribute">rake redmine:plugins:migrate RAILS_ENV</span>=<span class="string">production</span>
-</pre></td></tr></table></figure></li>
-<li>重启Redmine</li>
+<li><p>在Redmine安装目录下执行:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rake redmine:plugins:migrate RAILS_ENV=production</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>重启Redmine</p>
+</li>
 </ol>
 <p>安装过程的参考资料如下：</p>
 <ol>
@@ -266,7 +205,8 @@ Run `bundle install` <span class="built_in">to</span> install missing gems.
 
 
 <section id="comment">
-  <h1 class="title">Comments</h1>
+  <h1 class="title">留言</h1>
+  
   <!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="Tue Sep 09 2014 14:37:15 GMT+0800" data-title="CentOS下安装Redmine" data-url="请替换成文章的网址"></div>
 <!-- 多说评论框 end -->
@@ -287,7 +227,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
 
   <div id="menu-nav" class="footer-btn">
-  <a title="Quick Nav"><img src="/img/list.png"/></a>
+  <a title="目錄導航"><img src="/img/list.png"/></a>
 </div>
 
 <script type="text/javascript">
@@ -375,7 +315,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -383,7 +323,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -400,11 +340,13 @@ var duoshuoQuery = {short_name:"tcheung"};
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -412,9 +354,9 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -468,7 +410,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">

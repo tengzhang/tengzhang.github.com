@@ -7,9 +7,7 @@
   <meta name="author" content="Zhang Teng">
   
   <meta name="description" content="可参考网址http://blog.csdn.net/hengyunabc/article/details/6071683
-今天装了个centos 7，进去之后发现没有windows引导了，centos 7开始用grub 2引导了。首先可以试试:
-1
-$ gurb2-mkconfig -o /boot/grub/grub.cfg
+今天装了个centos 7，进去之后发现没有windows引导了，centos 7开始用grub 2引导了。首先可以试试:1$ gurb2-mkconfig -o /boot/grub/grub.cfg
 它非常智能，能自动检测电脑上安装的操作系统，将它们加入到引导中去。不过，有时候它也不好使，就像我今天这样。">
   
   
@@ -81,33 +79,14 @@ $ gurb2-mkconfig -o /boot/grub/grub.cfg
           
         
         <p>可参考网址<a href="http://blog.csdn.net/hengyunabc/article/details/6071683" target="_blank" rel="external">http://blog.csdn.net/hengyunabc/article/details/6071683</a></p>
-<p>今天装了个centos 7，进去之后发现没有windows引导了，centos 7开始用grub 2引导了。<br>首先可以试试:</p>
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ gurb2<span class="attribute">-mkconfig</span> <span class="attribute">-o</span> /boot/grub/grub<span class="built_in">.</span>cfg
-</pre></td></tr></table></figure><br>它非常智能，能自动检测电脑上安装的操作系统，将它们加入到引导中去。<br>不过，有时候它也不好使，就像我今天这样。</p>
+<p>今天装了个centos 7，进去之后发现没有windows引导了，centos 7开始用grub 2引导了。<br>首先可以试试:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gurb2-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure></p>
+<p>它非常智能，能自动检测电脑上安装的操作系统，将它们加入到引导中去。<br>不过，有时候它也不好使，就像我今天这样。</p>
 <a id="more"></a>
-
 <p>可以采用第二种方式，手动修改/boot/grub/grub.cfg</p>
-<p>首先查看分区的UUID</p>
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="variable">$ </span>blkid
-</pre></td></tr></table></figure><br>找到windows所在分区的UUID。一定要记住UUID，不要记住分区号，因为分区号有可能改变，但是UUID一定不会变。<br>然后修改grub.cfg</p>
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="variable">$ </span>vim /boot/grub/grub.cfg
-</pre></td></tr></table></figure><br>在该文件中加入如下内容:</p>
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre>menuentry <span class="string">"windows 8"</span> {
-    insmod chain
-    insmod ntfs
-    search <span class="subst">--</span>fs<span class="attribute">-uuid</span> <span class="subst">--</span><span class="built_in">set</span> <span class="number">10</span>ac99d8ac99b8a4
-    chainloader <span class="subst">+</span><span class="number">1</span>
-}
-</pre></td></tr></table></figure><br>其中的“10ac99d8ac99b8a4”要替换为上一步记住的UUID。</p>
+<p>首先查看分区的UUID<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ blkid</span><br></pre></td></tr></table></figure></p>
+<p>找到windows所在分区的UUID。一定要记住UUID，不要记住分区号，因为分区号有可能改变，但是UUID一定不会变。<br>然后修改grub.cfg<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ vim /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure></p>
+<p>在该文件中加入如下内容:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">menuentry <span class="string">"windows 8"</span> &#123;</span><br><span class="line">    insmod chain</span><br><span class="line">    insmod ntfs</span><br><span class="line">    search --fs-uuid --set <span class="number">10</span>ac99d8ac99b8a4</span><br><span class="line">    chainloader +<span class="number">1</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其中的“10ac99d8ac99b8a4”要替换为上一步记住的UUID。</p>
 <p>最后，重启电脑就可以看到windows 8的引导了，选择就可以进入系统了。</p>
 
       
@@ -131,7 +110,7 @@ $ gurb2-mkconfig -o /boot/grub/grub.cfg
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -139,7 +118,7 @@ $ gurb2-mkconfig -o /boot/grub/grub.cfg
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -156,11 +135,13 @@ $ gurb2-mkconfig -o /boot/grub/grub.cfg
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -168,9 +149,9 @@ $ gurb2-mkconfig -o /boot/grub/grub.cfg
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -224,7 +205,7 @@ $ gurb2-mkconfig -o /boot/grub/grub.cfg
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">

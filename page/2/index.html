@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Page 2 | Zhang Teng&#39;Blog</title>
+  <title>第 2 頁 | Zhang Teng&#39;Blog</title>
   <meta name="author" content="Zhang Teng">
   
   
@@ -59,6 +59,64 @@
   <div class="post-content">
     <header>
       
+        <div class="alignright">
+          <a href="/2014/09/09/2014-09-09-centos-install-redmine/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-09T06:37:15.000Z"><a href="/2014/09/09/2014-09-09-centos-install-redmine/">Sep 9 2014</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2014/09/09/2014-09-09-centos-install-redmine/">CentOS下安装Redmine</a></h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        <p>Redmine的安装主要分为两部分：</p>
+<ol>
+<li>Ruby+Rails的安装</li>
+<li>Redmine的安装<br>先说一下系统环境，我安装的系统是CentOS 5，选择的Redmine版本是2.5.2，Ruby的版本是1.9.3，Rails的版本是3.2.19。<br>下面从以上两部分进行说明。</li>
+</ol>
+<h3 id="Ruby+Rails的安装">Ruby+Rails的安装</h3><p>Ruby的安装有3中方式：</p>
+<ol>
+<li>直接<code>yum install ruby</code></li>
+<li>源码编译安装</li>
+<li>采用RVM安装<br>以上3种方式我都尝试了，最后采用了RVM安装这种方式，这种方式也是最简单的。</li>
+</ol>
+      
+    </div>
+    <footer>
+      
+      
+  
+  <div class="tags">
+    <a href="/tags/linux/">linux</a>, <a href="/tags/redmine/">redmine</a>
+  </div>
+
+      
+        
+          <div class="alignright">
+            <a href="/2014/09/09/2014-09-09-centos-install-redmine/" class="more-link">Read More</a>
+          </div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
       
         <div class="icon"></div>
         <time datetime="2014-07-19T14:42:52.000Z"><a href="/2014/07/19/code-standards/">Jul 19 2014</a></time>
@@ -72,30 +130,12 @@
     </header>
     <div class="entry">
       
-        <h1 id="后端">后端</h1>
-<hr>
-<h2 id="工程结构">工程结构</h2>
-<p>分为<code>service</code>和<code>web</code></p>
-<h2 id="注释">注释</h2>
-<ol>
-<li><p>类头要写明该类的职责是什么。<br>for example:<br><figure class="highlight java"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre><span class="javadoc">/**
- * 职责
- *<span class="javadoctag"> @Description</span>
- *
- *<span class="javadoctag"> @author</span> zhangteng
- *<span class="javadoctag"> @email</span> zhangt@pandawork.net
- *<span class="javadoctag"> @time</span>: 2014/7/9 14:25
- */</span>
-</pre></td></tr></table></figure></p>
-
+        <h1 id="后端">后端</h1><hr>
+<h2 id="工程结构">工程结构</h2><p>分为<code>service</code>和<code>web</code></p>
+<h2 id="注释">注释</h2><ol>
+<li>类头要写明该类的职责是什么。<br>for example:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 职责</span><br><span class="line"> * <span class="doctag">@Description</span></span><br><span class="line"> *</span><br><span class="line"> * <span class="doctag">@author</span> zhangteng</span><br><span class="line"> * <span class="doctag">@email</span> zhangt<span class="doctag">@pandawork</span>.net</span><br><span class="line"> * <span class="doctag">@time</span>: 2014/7/9 14:25</span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
       
     </div>
     <footer>
@@ -134,12 +174,9 @@
     </header>
     <div class="entry">
       
-        <p>可参考网址<a href="http://blog.csdn.net/hengyunabc/article/details/6071683" target="_blank" rel="external">http://blog.csdn.net/hengyunabc/article/details/6071683</a></p>
-<p>今天装了个centos 7，进去之后发现没有windows引导了，centos 7开始用grub 2引导了。<br>首先可以试试:</p>
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ gurb2<span class="attribute">-mkconfig</span> <span class="attribute">-o</span> /boot/grub/grub<span class="built_in">.</span>cfg
-</pre></td></tr></table></figure><br>它非常智能，能自动检测电脑上安装的操作系统，将它们加入到引导中去。<br>不过，有时候它也不好使，就像我今天这样。</p>
-
+        <p>可参考网址<a href="http://blog.csdn.net/hengyunabc/article/details/6071683">http://blog.csdn.net/hengyunabc/article/details/6071683</a></p>
+<p>今天装了个centos 7，进去之后发现没有windows引导了，centos 7开始用grub 2引导了。<br>首先可以试试:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gurb2-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure></p>
+<p>它非常智能，能自动检测电脑上安装的操作系统，将它们加入到引导中去。<br>不过，有时候它也不好使，就像我今天这样。</p>
       
     </div>
     <footer>
@@ -178,10 +215,9 @@
     </header>
     <div class="entry">
       
-        <p>本文摘抄自<a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">http://wowubuntu.com/markdown/</a>，旨在联系一下markdown的语法，同时也向大家介绍一下markdown的语法，方便大家和自己查阅。</p>
+        <p>本文摘抄自<a href="http://wowubuntu.com/markdown/">http://wowubuntu.com/markdown/</a>，旨在联系一下markdown的语法，同时也向大家介绍一下markdown的语法，方便大家和自己查阅。</p>
 <hr>
-<h1 id="Markdown_语法说明（简体中文版）">Markdown 语法说明（简体中文版）</h1>
-<ul>
+<h1 id="Markdown_语法说明（简体中文版）">Markdown 语法说明（简体中文版）</h1><ul>
 <li><a href="#overview">概述</a><ul>
 <li><a href="#philosophy">宗旨</a></li>
 <li><a href="#html">兼容 HTML</a></li>
@@ -211,7 +247,6 @@
 </li>
 <li><a href="#editor">Markdown 免费编辑器</a></li>
 </ul>
-
       
     </div>
     <footer>
@@ -251,16 +286,8 @@
     <div class="entry">
       
         
-        <p>以前在github上用octopress挂了一个博客，但是用它还得装ruby，感觉比较麻烦（主要还是不懂ruby）。<br>前段时间，看到有人用hexo搭建博客，我也试了试。hexo是基于node，比octopress方便多了，就转了过来。<br>这是他的官网<a href="http://hexo.io/" target="_blank" rel="external">http://hexo.io/</a>，关于具体怎么搭建，我就不多说了，官网写得和详细，直接上官方文档的链接<a href="http://hexo.io/docs/index.html" target="_blank" rel="external">http://hexo.io/docs/index.html</a>。<br>说说我遇到的问题吧，按照官网说的做了，我用<code>hexo deploy</code>，一直deploy上去，也不知道为啥，可能主要还是我对node和git都不熟悉吧。<br>最后我是手动deploy的。具体命令如下：</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>$ hexo clean
-$ hexo deploy --generate
-$ <span class="built_in">cd</span> .deploy
-$ git push -u origin master
-</pre></td></tr></table></figure><br>命令都是在hexo博客的目录下执行的。<br>另外奉上我使用的主题地址:<a href="http://yangjian.me/pacman/hello/introducing-pacman-theme/" target="_blank" rel="external">http://yangjian.me/pacman/hello/introducing-pacman-theme/</a></p>
+        <p>以前在github上用octopress挂了一个博客，但是用它还得装ruby，感觉比较麻烦（主要还是不懂ruby）。<br>前段时间，看到有人用hexo搭建博客，我也试了试。hexo是基于node，比octopress方便多了，就转了过来。<br>这是他的官网<a href="http://hexo.io/" target="_blank" rel="external">http://hexo.io/</a>，关于具体怎么搭建，我就不多说了，官网写得和详细，直接上官方文档的链接<a href="http://hexo.io/docs/index.html" target="_blank" rel="external">http://hexo.io/docs/index.html</a>。<br>说说我遇到的问题吧，按照官网说的做了，我用<code>hexo deploy</code>，一直deploy上去，也不知道为啥，可能主要还是我对node和git都不熟悉吧。<br>最后我是手动deploy的。具体命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo deploy --generate</span><br><span class="line">$ <span class="built_in">cd</span> .deploy</span><br><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure></p>
+<p>命令都是在hexo博客的目录下执行的。<br>另外奉上我使用的主题地址:<a href="http://yangjian.me/pacman/hello/introducing-pacman-theme/" target="_blank" rel="external">http://yangjian.me/pacman/hello/introducing-pacman-theme/</a></p>
 
       
     </div>
@@ -305,43 +332,9 @@ $ git push -u origin master
     <div class="entry">
       
         <ol>
-<li>ajax请求，注意最后一个值的地方没有逗号<figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="code"><pre>$.ajax({  
-    type: <span class="string">"POST"</span>,
-    url: <span class="string">"mystructs/hello_jsonTest.action"</span>,
-    data: {
-        number: $(<span class="string">"#number"</span>).val(),
-        userId: $(<span class="string">'#userId'</span>).val() 
-    },
-    dataType: <span class="string">"text"</span>,  <span class="comment">//ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）</span>
-    success: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
-        <span class="keyword">var</span> res = $.parseJSON(json);
-        alert(res.result);
-    },
-    error: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
-        alert(json);
-    }
-});
-</pre></td></tr></table></figure>
-
+<li>ajax请求，注意最后一个值的地方没有逗号<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;  </span><br><span class="line">    type: <span class="string">"POST"</span>,</span><br><span class="line">    url: <span class="string">"mystructs/hello_jsonTest.action"</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        number: $(<span class="string">"#number"</span>).val(),</span><br><span class="line">        userId: $(<span class="string">'#userId'</span>).val() </span><br><span class="line">    &#125;,</span><br><span class="line">    dataType: <span class="string">"text"</span>,  <span class="comment">//ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）</span></span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> res = $.parseJSON(json);</span><br><span class="line">        alert(res.result);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>&#123;</span><br><span class="line">        alert(json);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-
       
     </div>
     <footer>
@@ -390,7 +383,6 @@ $ git push -u origin master
     <div class="entry">
       
         <p>structs2返回本身支持返回json，只需要配置即可，我们也可以自己把json串写入servlet输出流中。</p>
-
       
     </div>
     <footer>
@@ -434,7 +426,6 @@ $ git push -u origin master
     <div class="entry">
       
         <p><code>tools-&gt;New Snippet</code>新建一个snippet，保存为**.sublime-snippet。<br>内容如下：  </p>
-
       
     </div>
     <footer>
@@ -483,7 +474,6 @@ $ git push -u origin master
     <div class="entry">
       
         <p>注意保持action中File的变量和jsp中input的name名相同。<br>action中定义变量：</p>
-
       
     </div>
     <footer>
@@ -532,9 +522,8 @@ $ git push -u origin master
     <div class="entry">
       
         <p>需要用到的类：</p>
-<pre><code>net<span class="preprocessor">.sf</span><span class="preprocessor">.json</span><span class="preprocessor">.JSONObject</span>  
+<pre><code>net<span class="class">.sf</span><span class="class">.json</span><span class="class">.JSONObject</span>  
 </code></pre><p>在包<code>json-lib-2.3-jdk15</code>中</p>
-
       
     </div>
     <footer>
@@ -560,62 +549,13 @@ $ git push -u origin master
 
 
 
-  <article class="post">
-  
-  <div class="post-content">
-    <header>
-      
-        <div class="alignright">
-          <a href="/2013/10/13/2013-10-13-remove-elemetns/#ds-thread" class="comment-link"></a>
-        </div>
-      
-      
-        <div class="icon"></div>
-        <time datetime="2013-10-13T13:42:00.000Z"><a href="/2013/10/13/2013-10-13-remove-elemetns/">Oct 13 2013</a></time>
-      
-      
-  
-    <h1 class="title"><a href="/2013/10/13/2013-10-13-remove-elemetns/">删除Java集合中元素</a></h1>
-  
-
-      
-    </header>
-    <div class="entry">
-      
-        <p>有时候我们需要删除list中的某个元素，最开始我会这样写：</p>
-
-      
-    </div>
-    <footer>
-      
-  
-  <div class="categories">
-    <a href="/categories/java/">java</a>
-  </div>
-
-      
-      
-        
-          <div class="alignright">
-            <a href="/2013/10/13/2013-10-13-remove-elemetns/" class="more-link">Read More</a>
-          </div>
-        
-      
-      <div class="clearfix"></div>
-    </footer>
-  </div>
-</article>
-
-
-
-
 
 <nav id="pagination">
   
-    <a href="/" class="alignleft prev">Prev</a>
+    <a href="/" class="alignleft prev">上一頁</a>
   
   
-    <a href="/page/3/" class="alignright next">Next</a>
+    <a href="/page/3/" class="alignright next">下一頁</a>
   
   <div class="clearfix"></div>
 </nav></div></div>
@@ -623,7 +563,7 @@ $ git push -u origin master
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -631,7 +571,7 @@ $ git push -u origin master
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -648,11 +588,13 @@ $ git push -u origin master
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -660,9 +602,9 @@ $ git push -u origin master
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -716,7 +658,7 @@ $ git push -u origin master
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">

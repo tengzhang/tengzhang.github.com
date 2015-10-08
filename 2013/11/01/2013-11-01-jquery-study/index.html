@@ -6,38 +6,7 @@
   <title>jquery使用笔记 | Zhang Teng&#39;Blog</title>
   <meta name="author" content="Zhang Teng">
   
-  <meta name="description" content="ajax请求，注意最后一个值的地方没有逗号1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-$.ajax({  
-    type: &quot;POST&quot;,
-    url: &quot;mystructs/hello_jsonTest.action&quot;,
-    data: {
-        number: $(&quot;#number&quot;).val(),
-        userId: $(&#39;#userId&#39;).val() 
-    },
-    dataType: &quot;text&quot;,  //ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）
-    success: function(json) {
-        var res = $.parseJSON(json);
-        alert(res.result);
-    },
-    error: function(json) {
-        alert(json);
-    }
-});">
+  <meta name="description" content="ajax请求，注意最后一个值的地方没有逗号12345678910111213141516$.ajax(&amp;#123;      type: &quot;POST&quot;,    url: &quot;mystructs/hello_jsonTest.action&quot;,    data: &amp;#123;        number: $(&quot;#number&quot;).val(),        userId: $(&#39;#userId&#39;).val()     &amp;#125;,    dataType: &quot;text&quot;,  //ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）    success: function(json) &amp;#123;        var res = $.parseJSON(json);        alert(res.result);    &amp;#125;,    error: function(json) &amp;#123;        alert(json);    &amp;#125;&amp;#125;);">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -112,94 +81,24 @@ $.ajax({
           
         
         <ol>
-<li>ajax请求，注意最后一个值的地方没有逗号<figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="code"><pre>$.ajax({  
-    type: <span class="string">"POST"</span>,
-    url: <span class="string">"mystructs/hello_jsonTest.action"</span>,
-    data: {
-        number: $(<span class="string">"#number"</span>).val(),
-        userId: $(<span class="string">'#userId'</span>).val() 
-    },
-    dataType: <span class="string">"text"</span>,  <span class="comment">//ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）</span>
-    success: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
-        <span class="keyword">var</span> res = $.parseJSON(json);
-        alert(res.result);
-    },
-    error: <span class="function"><span class="keyword">function</span><span class="params">(json)</span> {</span>
-        alert(json);
-    }
-});
-</pre></td></tr></table></figure>
-
+<li>ajax请求，注意最后一个值的地方没有逗号<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$.ajax(&#123;  </span><br><span class="line">    type: <span class="string">"POST"</span>,</span><br><span class="line">    url: <span class="string">"mystructs/hello_jsonTest.action"</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        number: $(<span class="string">"#number"</span>).val(),</span><br><span class="line">        userId: $(<span class="string">'#userId'</span>).val() </span><br><span class="line">    &#125;,</span><br><span class="line">    dataType: <span class="string">"text"</span>,  <span class="comment">//ajax返回值设置为text（json格式也可用它返回，可打印出结果，也可设置成json）</span></span><br><span class="line">    success: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> res = $.parseJSON(json);</span><br><span class="line">        alert(res.result);</span><br><span class="line">    &#125;,</span><br><span class="line">    error: <span class="function"><span class="keyword">function</span>(<span class="params">json</span>) </span>&#123;</span><br><span class="line">        alert(json);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <a id="more"></a>
-
 <ol>
-<li>jquery改变值<figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>$(<span class="string">'#id'</span>).val(<span class="string">'value'</span>);
-$(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
-</pre></td></tr></table></figure></li>
-<li>jquery获取radio中被选中的那个元素<figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre><span class="keyword">var</span> val = $(<span class="string">'input:radio[name="ra"]:checked'</span>).val();
-<span class="keyword">if</span>(val != <span class="literal">null</span>) {
-    alert(val);
-} <span class="keyword">else</span> {        
-    ...
-}
-</pre></td></tr></table></figure><br>判读radio是否被选中<br><figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre>$(<span class="string">'input:radio[name="ra"]'</span>).each(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
-    <span class="comment">//alert($(this).val());</span>
-    <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) {
-        alert($(<span class="keyword">this</span>).val());
-    }
-});
-</pre></td></tr></table></figure></li>
-<li>获取选中的checkbox<figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>$(<span class="string">'input[name="chk"]:checked'</span>).each(<span class="function"><span class="keyword">function</span><span class="params">()</span>{</span>
-    alert($(<span class="keyword">this</span>).val());
-});
-</pre></td></tr></table></figure><br>判读checkbox是否被选中<br><figure class="highlight js"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>$(<span class="string">'input:checkbox[name="chk"]'</span>).each(<span class="function"><span class="keyword">function</span><span class="params">()</span> {</span>
-    <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) {
-        alert($(<span class="keyword">this</span>).val());
-    }
-});
-</pre></td></tr></table></figure>
+<li><p>jquery改变值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'#id'</span>).val(<span class="string">'value'</span>);</span><br><span class="line">$(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>jquery获取radio中被选中的那个元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> val = $(<span class="string">'input:radio[name="ra"]:checked'</span>).val();</span><br><span class="line"><span class="keyword">if</span>(val != <span class="literal">null</span>) &#123;</span><br><span class="line">    alert(val);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;        </span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
+<p>判读radio是否被选中<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'input:radio[name="ra"]'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//alert($(this).val());</span></span><br><span class="line">    <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) &#123;</span><br><span class="line">        alert($(<span class="keyword">this</span>).val());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<ol>
+<li>获取选中的checkbox<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'input[name="chk"]:checked'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert($(<span class="keyword">this</span>).val());</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>判读checkbox是否被选中<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">'input:checkbox[name="chk"]'</span>).each(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>($(<span class="keyword">this</span>).attr(<span class="string">"checked"</span>) == <span class="string">"checked"</span>) &#123;</span><br><span class="line">        alert($(<span class="keyword">this</span>).val());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -223,7 +122,8 @@ $(<span class="string">'#id'</span>).html(<span class="string">'value'</span>);
 
 
 <section id="comment">
-  <h1 class="title">Comments</h1>
+  <h1 class="title">留言</h1>
+  
   <!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="Fri Nov 01 2013 10:43:00 GMT+0800" data-title="jquery使用笔记" data-url="请替换成文章的网址"></div>
 <!-- 多说评论框 end -->
@@ -247,7 +147,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -255,7 +155,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -272,11 +172,13 @@ var duoshuoQuery = {short_name:"tcheung"};
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -284,9 +186,9 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -340,7 +242,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">

@@ -82,116 +82,10 @@
         
         <p>有时候我们需要删除list中的某个元素，最开始我会这样写：</p>
 <a id="more"></a>
-
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListTest</span> {</span>
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
-        List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) {
-            numbers.add(i);
-        }
-
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>; ++i) {
-            <span class="keyword">if</span>(numbers.get(i) == <span class="number">5</span>) {
-                numbers.remove(i);
-            }
-        }
-
-        System.out.println(numbers);
-    }
-}
-</pre></td></tr></table></figure><br>这样写之后，会报错。因为list在循环中的时候是不可以删除它的元素的。<br>对上面的代码进行一点下改进就可以删除list中的元素了，就是在<code>remove</code>之后加个<code>break</code>就可以了。</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListTest</span> {</span>
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
-        List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) {
-            numbers.add(i);
-        }
-
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>; ++i) {
-            <span class="keyword">if</span>(numbers.get(i) == <span class="number">5</span>) {
-                numbers.remove(i);
-                <span class="keyword">break</span>;
-            }
-        }
-
-        System.out.println(numbers);
-    }
-}
-</pre></td></tr></table></figure><br>上面的方法适用于只删除一个元素，可有的时候我们需要删除多个元素，上面的方法虽可行，但需要为每个需要删除的元素写个for循环，这样效率太低了。<br>使用<code>Iterator</code>可以完成上面的操作。</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-</pre></td><td class="code"><pre><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListTest</span> {</span>
-    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(String[] args) {
-        List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();
-        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) {
-            numbers.add(i);
-        }
-
-        <span class="keyword">for</span>(Iterator it=numbers.iterator() ;it.hasNext(); ) {
-            Integer tmp = (Integer) it.next();
-            <span class="keyword">if</span>(tmp == <span class="number">5</span>) {
-                it.remove();
-            }
-            <span class="keyword">if</span>(tmp == <span class="number">7</span>) {
-                it.remove();
-            }
-        }
-
-        System.out.println(numbers);
-    }
-}
-</pre></td></tr></table></figure><br>上面的方法虽都可以删除元素，但都需要for循环，效率不高，但没有找到更好的方法。感觉java的Iterator没有c++的那么只能，用起来没有c++顺手。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) &#123;</span><br><span class="line">            numbers.add(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span>(numbers.get(i) == <span class="number">5</span>) &#123;</span><br><span class="line">                numbers.remove(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(numbers);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样写之后，会报错。因为list在循环中的时候是不可以删除它的元素的。<br>对上面的代码进行一点下改进就可以删除list中的元素了，就是在<code>remove</code>之后加个<code>break</code>就可以了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) &#123;</span><br><span class="line">            numbers.add(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i &lt; <span class="number">10</span>; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span>(numbers.get(i) == <span class="number">5</span>) &#123;</span><br><span class="line">                numbers.remove(i);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(numbers);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的方法适用于只删除一个元素，可有的时候我们需要删除多个元素，上面的方法虽可行，但需要为每个需要删除的元素写个for循环，这样效率太低了。<br>使用<code>Iterator</code>可以完成上面的操作。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ListTest</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        List&lt;Integer&gt; numbers = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>;i &lt;= <span class="number">10</span>; ++i) &#123;</span><br><span class="line">            numbers.add(i);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(Iterator it=numbers.iterator() ;it.hasNext(); ) &#123;</span><br><span class="line">            Integer tmp = (Integer) it.next();</span><br><span class="line">            <span class="keyword">if</span>(tmp == <span class="number">5</span>) &#123;</span><br><span class="line">                it.remove();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(tmp == <span class="number">7</span>) &#123;</span><br><span class="line">                it.remove();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(numbers);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面的方法虽都可以删除元素，但都需要for循环，效率不高，但没有找到更好的方法。感觉java的Iterator没有c++的那么只能，用起来没有c++顺手。</p>
 <blockquote>
 <p>对Java的基础知识了解越多，代码就会写得越简洁</p>
 </blockquote>
@@ -218,7 +112,8 @@
 
 
 <section id="comment">
-  <h1 class="title">Comments</h1>
+  <h1 class="title">留言</h1>
+  
   <!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="Sun Oct 13 2013 21:42:00 GMT+0800" data-title="删除Java集合中元素" data-url="请替换成文章的网址"></div>
 <!-- 多说评论框 end -->
@@ -242,7 +137,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -250,7 +145,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -267,11 +162,13 @@ var duoshuoQuery = {short_name:"tcheung"};
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -279,9 +176,9 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -335,7 +232,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">

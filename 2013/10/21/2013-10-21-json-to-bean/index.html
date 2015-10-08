@@ -83,27 +83,14 @@ net.sf.json.JSONObject
           
         
         <p>需要用到的类：</p>
-<pre><code>net<span class="preprocessor">.sf</span><span class="preprocessor">.json</span><span class="preprocessor">.JSONObject</span>  
+<pre><code>net<span class="class">.sf</span><span class="class">.json</span><span class="class">.JSONObject</span>  
 </code></pre><p>在包<code>json-lib-2.3-jdk15</code>中</p>
 <a id="more"></a>
-
-<p>maven依赖：</p>
-<p><figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre><span class="tag">&lt;<span class="title">dependency</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">groupId</span>&gt;</span>net.sf.json-lib<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>json-lib<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="title">version</span>&gt;</span>
-    <span class="tag">&lt;<span class="title">classifier</span>&gt;</span>jdk15<span class="tag">&lt;/<span class="title">classifier</span>&gt;</span>
-<span class="tag">&lt;/<span class="title">dependency</span>&gt;</span>
-</pre></td></tr></table></figure><br>将bean转换成JSONObject，调用<code>JSONObject.fromObject(object)</code><br>如：</p>
-<pre><code><span class="attribute">JSONObject jsonObject </span>=<span class="string"> JSONObject.fromObject(user);</span>
+<p>maven依赖：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;dependency&#62;&#10;&#9;&#60;groupId&#62;net.sf.json-lib&#60;/groupId&#62;&#10;&#9;&#60;artifactId&#62;json-lib&#60;/artifactId&#62;&#10;&#9;&#60;version&#62;2.4&#60;/version&#62;&#10;&#9;&#60;classifier&#62;jdk15&#60;/classifier&#62;&#10;&#60;/dependency&#62;</span><br></pre></td></tr></table></figure></p>
+<p>将bean转换成JSONObject，调用<code>JSONObject.fromObject(object)</code><br>如：</p>
+<pre><code>JSONObject jsonObject = JSONObject.<span class="keyword">from</span>Object(<span class="keyword">user</span>);
 </code></pre><p>将JSONObject转换成bean，调用<code>JSONObject.toBean(jsonObject, beanClass)</code><br>如：</p>
-<pre><code>User user = (User) JSONObject<span class="preprocessor">.toBean</span>(jsonObject, User<span class="preprocessor">.class</span>)<span class="comment">;</span>
+<pre><code><span class="built_in">User</span> <span class="built_in">user</span> = (<span class="built_in">User</span>) JSONObject.toBean(jsonObject, <span class="built_in">User</span>.class);
 </code></pre>
       
     </div>
@@ -127,7 +114,8 @@ net.sf.json.JSONObject
 
 
 <section id="comment">
-  <h1 class="title">Comments</h1>
+  <h1 class="title">留言</h1>
+  
   <!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="Mon Oct 21 2013 09:32:00 GMT+0800" data-title="JSON和bean互转" data-url="请替换成文章的网址"></div>
 <!-- 多说评论框 end -->
@@ -151,7 +139,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -159,7 +147,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -176,11 +164,13 @@ var duoshuoQuery = {short_name:"tcheung"};
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -188,9 +178,9 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -244,7 +234,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">

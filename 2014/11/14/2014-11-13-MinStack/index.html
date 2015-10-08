@@ -80,106 +80,14 @@
         
           
     <div id="toc" class="toc-article">
-        <strong class="toc-title">Navigation</strong>
+        <strong class="toc-title">目錄導航</strong>
         
     </div>
 
         
         <p>先给出题目的地址吧:<a href="https://oj.leetcode.com/problems/min-stack/" target="_blank" rel="external">https://oj.leetcode.com/problems/min-stack/</a></p>
 <a id="more"></a>
-
-<p>昨天一个同学问了我这道题，回去就做了一下。<br>初看这道题，好像并不难，push、pop、top都是栈的基本操作，getMin好像不太好搞。<br>首先想到的是用一个变量min记录一下栈的最小值，每次压栈的时候比较压栈元素和min的大小，更新min值。<br>这个想法好像还不错，于是搞之，一交WA了。<br>仔细一想，如果当前的min值是栈顶的值，把栈顶的值pop之后，这个min值就不再是栈中最小的值了，此时最小值变成了栈中的次小值了。<br>自然就想到，能不能再记住次小值呢？当然是可以的。可是这样问题又来了，如果次小值再被弹出呢？那就不行了。<br>最后，想到的做法是，每次压栈的时候都去记住当前栈的最小值，把它记在栈顶上，这样栈顶就始终保存这当前栈的最小值。<br>于是，开开心心的去写代码，交之，TMD，居然告诉我MLE。<br>你大爷啊，这让我如何是好？<br>看了半天代码，实在没有内存需要优化的地方了。最后在内部类前面加了个<code>static</code>，然后就过了。<br>他就这么过了，加了个<code>static</code>为啥就过了呢？有点疑惑。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-</pre></td><td class="code"><pre><span class="keyword">package</span> com.tcheung;
-
-<span class="keyword">import</span> java.util.Stack;
-
-<span class="javadoc">/**
- * MinStack
- *
- *<span class="javadoctag"> @author</span>: zhangteng
- *<span class="javadoctag"> @time</span>: 2014/11/14 21:12
- */</span>
-class MinStack {
-
-    <span class="keyword">static</span> class Element {
-        <span class="keyword">int</span> val, min;
-        <span class="keyword">public</span> <span class="title">Element</span>(<span class="keyword">int</span> val, <span class="keyword">int</span> min) {
-            <span class="keyword">this</span>.val = val;
-            <span class="keyword">this</span>.min = min;
-        }
-    }
-
-    <span class="keyword">private</span> <span class="keyword">int</span> min;
-
-    <span class="keyword">private</span> Stack&lt;Element&gt; stack = <span class="keyword">new</span> Stack&lt;Element&gt;();
-
-    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span>(<span class="keyword">int</span> x) {
-        <span class="keyword">if</span> (stack.isEmpty()) {
-            min = x;
-        } <span class="keyword">else</span> {
-            min = Math.min(stack.peek().min, x);
-        }
-        stack.push(<span class="keyword">new</span> Element(x, min));
-    }
-
-    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span>() {
-        stack.pop();
-    }
-
-    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span>() {
-        <span class="keyword">return</span> stack.peek().val;
-    }
-
-    <span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span>() {
-        <span class="keyword">return</span> stack.peek().min;
-    }
-}
-</pre></td></tr></table></figure>
+<p>昨天一个同学问了我这道题，回去就做了一下。<br>初看这道题，好像并不难，push、pop、top都是栈的基本操作，getMin好像不太好搞。<br>首先想到的是用一个变量min记录一下栈的最小值，每次压栈的时候比较压栈元素和min的大小，更新min值。<br>这个想法好像还不错，于是搞之，一交WA了。<br>仔细一想，如果当前的min值是栈顶的值，把栈顶的值pop之后，这个min值就不再是栈中最小的值了，此时最小值变成了栈中的次小值了。<br>自然就想到，能不能再记住次小值呢？当然是可以的。可是这样问题又来了，如果次小值再被弹出呢？那就不行了。<br>最后，想到的做法是，每次压栈的时候都去记住当前栈的最小值，把它记在栈顶上，这样栈顶就始终保存这当前栈的最小值。<br>于是，开开心心的去写代码，交之，TMD，居然告诉我MLE。<br>你大爷啊，这让我如何是好？<br>看了半天代码，实在没有内存需要优化的地方了。最后在内部类前面加了个<code>static</code>，然后就过了。<br>他就这么过了，加了个<code>static</code>为啥就过了呢？有点疑惑。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.tcheung;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span><br><span class="line"> * MinStack</span><br><span class="line"> *</span><br><span class="line"> * <span class="doctag">@author</span>: zhangteng</span><br><span class="line"> * <span class="doctag">@time</span>: 2014/11/14 21:12</span><br><span class="line"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Element</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> val, min;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Element</span><span class="params">(<span class="keyword">int</span> val, <span class="keyword">int</span> min)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.val = val;</span><br><span class="line">            <span class="keyword">this</span>.min = min;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> min;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Stack&lt;Element&gt; stack = <span class="keyword">new</span> Stack&lt;Element&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (stack.isEmpty()) &#123;</span><br><span class="line">            min = x;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            min = Math.min(stack.peek().min, x);</span><br><span class="line">        &#125;</span><br><span class="line">        stack.push(<span class="keyword">new</span> Element(x, min));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stack.pop();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> stack.peek().val;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> stack.peek().min;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -188,7 +96,7 @@ class MinStack {
       
   
   <div class="tags">
-    <a href="/tags/leetcode/">leetcode</a>, <a href="/tags/java/">java</a>
+    <a href="/tags/java/">java</a>, <a href="/tags/leetcode/">leetcode</a>
   </div>
 
       
@@ -209,7 +117,8 @@ class MinStack {
 
 
 <section id="comment">
-  <h1 class="title">Comments</h1>
+  <h1 class="title">留言</h1>
+  
   <!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="Fri Nov 14 2014 23:55:37 GMT+0800" data-title="Leetcode-MinStack" data-url="请替换成文章的网址"></div>
 <!-- 多说评论框 end -->
@@ -230,7 +139,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
 
   <div id="menu-nav" class="footer-btn">
-  <a title="Quick Nav"><img src="/img/list.png"/></a>
+  <a title="目錄導航"><img src="/img/list.png"/></a>
 </div>
 
 <script type="text/javascript">
@@ -318,7 +227,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -326,7 +235,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -343,11 +252,13 @@ var duoshuoQuery = {short_name:"tcheung"};
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -355,9 +266,9 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -411,7 +322,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">

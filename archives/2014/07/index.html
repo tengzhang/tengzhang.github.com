@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2014/7 | Zhang Teng&#39;Blog</title>
+  <title>彙整：2014/7 | Zhang Teng&#39;Blog</title>
   <meta name="author" content="Zhang Teng">
   
   
@@ -76,30 +76,12 @@
     </header>
     <div class="entry">
       
-        <h1 id="后端">后端</h1>
-<hr>
-<h2 id="工程结构">工程结构</h2>
-<p>分为<code>service</code>和<code>web</code></p>
-<h2 id="注释">注释</h2>
-<ol>
-<li><p>类头要写明该类的职责是什么。<br>for example:<br><figure class="highlight java"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre><span class="javadoc">/**
- * 职责
- *<span class="javadoctag"> @Description</span>
- *
- *<span class="javadoctag"> @author</span> zhangteng
- *<span class="javadoctag"> @email</span> zhangt@pandawork.net
- *<span class="javadoctag"> @time</span>: 2014/7/9 14:25
- */</span>
-</pre></td></tr></table></figure></p>
-
+        <h1 id="后端">后端</h1><hr>
+<h2 id="工程结构">工程结构</h2><p>分为<code>service</code>和<code>web</code></p>
+<h2 id="注释">注释</h2><ol>
+<li>类头要写明该类的职责是什么。<br>for example:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span><br><span class="line"> * 职责</span><br><span class="line"> * <span class="doctag">@Description</span></span><br><span class="line"> *</span><br><span class="line"> * <span class="doctag">@author</span> zhangteng</span><br><span class="line"> * <span class="doctag">@email</span> zhangt<span class="doctag">@pandawork</span>.net</span><br><span class="line"> * <span class="doctag">@time</span>: 2014/7/9 14:25</span><br><span class="line"> */</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
       
     </div>
     <footer>
@@ -138,12 +120,9 @@
     </header>
     <div class="entry">
       
-        <p>可参考网址<a href="http://blog.csdn.net/hengyunabc/article/details/6071683" target="_blank" rel="external">http://blog.csdn.net/hengyunabc/article/details/6071683</a></p>
-<p>今天装了个centos 7，进去之后发现没有windows引导了，centos 7开始用grub 2引导了。<br>首先可以试试:</p>
-<p><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>$ gurb2<span class="attribute">-mkconfig</span> <span class="attribute">-o</span> /boot/grub/grub<span class="built_in">.</span>cfg
-</pre></td></tr></table></figure><br>它非常智能，能自动检测电脑上安装的操作系统，将它们加入到引导中去。<br>不过，有时候它也不好使，就像我今天这样。</p>
-
+        <p>可参考网址<a href="http://blog.csdn.net/hengyunabc/article/details/6071683">http://blog.csdn.net/hengyunabc/article/details/6071683</a></p>
+<p>今天装了个centos 7，进去之后发现没有windows引导了，centos 7开始用grub 2引导了。<br>首先可以试试:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gurb2-mkconfig -o /boot/grub/grub.cfg</span><br></pre></td></tr></table></figure></p>
+<p>它非常智能，能自动检测电脑上安装的操作系统，将它们加入到引导中去。<br>不过，有时候它也不好使，就像我今天这样。</p>
       
     </div>
     <footer>
@@ -182,10 +161,9 @@
     </header>
     <div class="entry">
       
-        <p>本文摘抄自<a href="http://wowubuntu.com/markdown/" target="_blank" rel="external">http://wowubuntu.com/markdown/</a>，旨在联系一下markdown的语法，同时也向大家介绍一下markdown的语法，方便大家和自己查阅。</p>
+        <p>本文摘抄自<a href="http://wowubuntu.com/markdown/">http://wowubuntu.com/markdown/</a>，旨在联系一下markdown的语法，同时也向大家介绍一下markdown的语法，方便大家和自己查阅。</p>
 <hr>
-<h1 id="Markdown_语法说明（简体中文版）">Markdown 语法说明（简体中文版）</h1>
-<ul>
+<h1 id="Markdown_语法说明（简体中文版）">Markdown 语法说明（简体中文版）</h1><ul>
 <li><a href="#overview">概述</a><ul>
 <li><a href="#philosophy">宗旨</a></li>
 <li><a href="#html">兼容 HTML</a></li>
@@ -215,7 +193,6 @@
 </li>
 <li><a href="#editor">Markdown 免费编辑器</a></li>
 </ul>
-
       
     </div>
     <footer>
@@ -255,16 +232,8 @@
     <div class="entry">
       
         
-        <p>以前在github上用octopress挂了一个博客，但是用它还得装ruby，感觉比较麻烦（主要还是不懂ruby）。<br>前段时间，看到有人用hexo搭建博客，我也试了试。hexo是基于node，比octopress方便多了，就转了过来。<br>这是他的官网<a href="http://hexo.io/" target="_blank" rel="external">http://hexo.io/</a>，关于具体怎么搭建，我就不多说了，官网写得和详细，直接上官方文档的链接<a href="http://hexo.io/docs/index.html" target="_blank" rel="external">http://hexo.io/docs/index.html</a>。<br>说说我遇到的问题吧，按照官网说的做了，我用<code>hexo deploy</code>，一直deploy上去，也不知道为啥，可能主要还是我对node和git都不熟悉吧。<br>最后我是手动deploy的。具体命令如下：</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>$ hexo clean
-$ hexo deploy --generate
-$ <span class="built_in">cd</span> .deploy
-$ git push -u origin master
-</pre></td></tr></table></figure><br>命令都是在hexo博客的目录下执行的。<br>另外奉上我使用的主题地址:<a href="http://yangjian.me/pacman/hello/introducing-pacman-theme/" target="_blank" rel="external">http://yangjian.me/pacman/hello/introducing-pacman-theme/</a></p>
+        <p>以前在github上用octopress挂了一个博客，但是用它还得装ruby，感觉比较麻烦（主要还是不懂ruby）。<br>前段时间，看到有人用hexo搭建博客，我也试了试。hexo是基于node，比octopress方便多了，就转了过来。<br>这是他的官网<a href="http://hexo.io/" target="_blank" rel="external">http://hexo.io/</a>，关于具体怎么搭建，我就不多说了，官网写得和详细，直接上官方文档的链接<a href="http://hexo.io/docs/index.html" target="_blank" rel="external">http://hexo.io/docs/index.html</a>。<br>说说我遇到的问题吧，按照官网说的做了，我用<code>hexo deploy</code>，一直deploy上去，也不知道为啥，可能主要还是我对node和git都不熟悉吧。<br>最后我是手动deploy的。具体命令如下：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ hexo clean</span><br><span class="line">$ hexo deploy --generate</span><br><span class="line">$ <span class="built_in">cd</span> .deploy</span><br><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure></p>
+<p>命令都是在hexo博客的目录下执行的。<br>另外奉上我使用的主题地址:<a href="http://yangjian.me/pacman/hello/introducing-pacman-theme/" target="_blank" rel="external">http://yangjian.me/pacman/hello/introducing-pacman-theme/</a></p>
 
       
     </div>
@@ -297,7 +266,7 @@ $ git push -u origin master
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -305,7 +274,7 @@ $ git push -u origin master
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -322,11 +291,13 @@ $ git push -u origin master
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -334,9 +305,9 @@ $ git push -u origin master
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -390,7 +361,7 @@ $ git push -u origin master
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">

@@ -7,15 +7,8 @@
   <meta name="author" content="Zhang Teng">
   
   <meta name="description" content="### 一、准备docker容器环境
-1.&amp;nbsp;下载docker ubuntu镜像
-1
-shell&amp;gt;&amp;gt; docker pull ubuntu
-#### 2.&amp;nbsp;启动ubuntu镜像并更新1
-2
-3
-shell&amp;gt;&amp;gt; docker run -it docker.io/ubuntu
-# 更新操作在ubuntu容器中进行
-shell&amp;gt;&amp;gt; apt-get -y update">
+1.&amp;nbsp;下载docker ubuntu镜像1shell&amp;gt;&amp;gt; docker pull ubuntu
+2.&amp;nbsp;启动ubuntu镜像并更新123shell&amp;gt;&amp;gt; docker run -it docker.io/ubuntu# 更新操作在ubuntu容器中进行shell&amp;gt;&amp;gt; apt-get -y update">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -89,619 +82,62 @@ shell&amp;gt;&amp;gt; apt-get -y update">
         
           
     <div id="toc" class="toc-article">
-        <strong class="toc-title">Navigation</strong>
-        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-&nbsp;下载docker_ubuntu镜像"><span class="toc-number">1.</span> <span class="toc-text">1.&nbsp;下载docker ubuntu镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-&nbsp;安装ssh"><span class="toc-number">2.</span> <span class="toc-text">3.&nbsp;安装ssh</span></a></li></ol>
+        <strong class="toc-title">目錄導航</strong>
+        <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#1- 下载docker_ubuntu镜像"><span class="toc-number">1.</span> <span class="toc-text">1. 下载docker ubuntu镜像</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2- 启动ubuntu镜像并更新"><span class="toc-number">2.</span> <span class="toc-text">2. 启动ubuntu镜像并更新</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3- 安装ssh"><span class="toc-number">3.</span> <span class="toc-text">3. 安装ssh</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4- commit_docker容器"><span class="toc-number">4.</span> <span class="toc-text">4. commit docker容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5- build_docker容器"><span class="toc-number">5.</span> <span class="toc-text">5. build docker容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6- 启动容器并进入容器"><span class="toc-number">6.</span> <span class="toc-text">6. 启动容器并进入容器</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、安装gtilab"><span class="toc-number"></span> <span class="toc-text">二、安装gtilab</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1- Packages/Dependencies"><span class="toc-number">1.</span> <span class="toc-text">1. Packages/Dependencies</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2- 安装Ruby"><span class="toc-number">2.</span> <span class="toc-text">2. 安装Ruby</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3- 添加系统用户"><span class="toc-number">3.</span> <span class="toc-text">3. 添加系统用户</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4- 安装数据库(MySql)"><span class="toc-number">4.</span> <span class="toc-text">4. 安装数据库(MySql)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5- 安装Redis"><span class="toc-number">5.</span> <span class="toc-text">5. 安装Redis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6- 安装Gitlab"><span class="toc-number">6.</span> <span class="toc-text">6. 安装Gitlab</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、将Gitlab容器做成docker镜像，配置静态ip"><span class="toc-number"></span> <span class="toc-text">三、将Gitlab容器做成docker镜像，配置静态ip</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1- commit_docker容器"><span class="toc-number">1.</span> <span class="toc-text">1. commit docker容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2- build_docker容器"><span class="toc-number">2.</span> <span class="toc-text">2. build docker容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3- 启动docker容器"><span class="toc-number">3.</span> <span class="toc-text">3. 启动docker容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4- 为docker容器配置静态ip"><span class="toc-number">4.</span> <span class="toc-text">4. 为docker容器配置静态ip</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5- 进入docker容器"><span class="toc-number">5.</span> <span class="toc-text">5. 进入docker容器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6- 在宿主主机中配置反向代理"><span class="toc-number">6.</span> <span class="toc-text">6. 在宿主主机中配置反向代理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2- 让git记住用户名和密码"><span class="toc-number">7.</span> <span class="toc-text">2. 让git记住用户名和密码</span></a></li></ol>
     </div>
 
         
         <p>﻿﻿﻿﻿﻿﻿﻿### 一、准备docker容器环境</p>
-<h4 id="1-&nbsp;下载docker_ubuntu镜像">1.&nbsp;下载docker ubuntu镜像</h4>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; docker pull ubuntu
-</pre></td></tr></table></figure><br>#### 2.&nbsp;启动ubuntu镜像并更新<br><br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; docker run -<span class="keyword">it</span> docker.io/ubuntu
-<span class="comment"># 更新操作在ubuntu容器中进行</span>
-<span class="built_in">shell</span>&gt;&gt; apt-<span class="built_in">get</span> -y update
-</pre></td></tr></table></figure>
-
+<h4 id="1-&nbsp;下载docker_ubuntu镜像">1.&nbsp;下载docker ubuntu镜像</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; docker pull ubuntu</span><br></pre></td></tr></table></figure>
+<h4 id="2-&nbsp;启动ubuntu镜像并更新">2.&nbsp;启动ubuntu镜像并更新</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; docker run -it docker.io/ubuntu</span><br><span class="line"><span class="comment"># 更新操作在ubuntu容器中进行</span></span><br><span class="line">shell&gt;&gt; apt-get -y update</span><br></pre></td></tr></table></figure>
 <a id="more"></a>
+<h4 id="3-&nbsp;安装ssh">3.&nbsp;安装ssh</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; apt-get install openssh-server vim</span><br><span class="line"><span class="comment"># 配置ssh</span></span><br><span class="line">shell&gt;&gt; vim /etc/ssh/sshd_config</span><br><span class="line"><span class="comment"># 启动ssh</span></span><br><span class="line">shell&gt;&gt; service ssh start</span><br><span class="line"><span class="comment"># 退出容器</span></span><br><span class="line">shell&gt;&gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure>
+<h4 id="4-&nbsp;commit_docker容器">4.&nbsp;commit docker容器</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; docker commit <span class="operator">-a</span> <span class="string">"zhangteng"</span> -m <span class="string">"add ssh"</span> <span class="number">876</span>f90b7a5769c04f3d9975369b3a1148e6c951d1f4f4217728b072b6ae6a50b ubuntu-ssh</span><br><span class="line">ps: <span class="string">"876f90b7a5769c04f3d9975369b3a1148e6c951d1f4f4217728b072b6ae6a50b"</span>为刚刚安装了ssh的ubuntu容器的id，需要替换，id可通过ps <span class="operator">-a</span>查到</span><br></pre></td></tr></table></figure>
+<h4 id="5-&nbsp;build_docker容器">5.&nbsp;build docker容器</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; mkdir ubuntu_ssh</span><br><span class="line">shell&gt;&gt; <span class="built_in">cd</span> ubuntu_ssh</span><br><span class="line">shell&gt;&gt; vim Dockerfile</span><br></pre></td></tr></table></figure>
+<p>在Dockerfile文件中输入如下内容:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Add ssh to ubuntu</span></span><br><span class="line"><span class="comment"># author: zhangteng</span></span><br><span class="line"><span class="comment"># VERSION 1.0</span></span><br><span class="line"></span><br><span class="line">FROM ubuntu-ssh:latest</span><br><span class="line">MAINTAINER zhangteng</span><br><span class="line"> </span><br><span class="line"><span class="comment"># change root passwd</span></span><br><span class="line">RUN <span class="built_in">echo</span> <span class="string">'root:123456'</span> | chpasswd</span><br><span class="line"> </span><br><span class="line"><span class="comment"># expose ssh port</span></span><br><span class="line">EXPOSE <span class="number">22</span></span><br><span class="line"> </span><br><span class="line">RUN mkdir /var/run/sshd                                                                                                                  </span><br><span class="line"> </span><br><span class="line"><span class="comment"># add run.sh</span></span><br><span class="line">ADD run.sh /run.sh</span><br><span class="line">RUN chmod <span class="number">755</span> /run.sh</span><br><span class="line"></span><br><span class="line">CMD [<span class="string">"/run.sh"</span>]</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; vim run.sh</span><br></pre></td></tr></table></figure>
+<p> 在run.sh文件中输入如下内容：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"> </span></span><br><span class="line"><span class="comment"># start sshd, let this at last</span></span><br><span class="line">/usr/sbin/sshd -D</span><br></pre></td></tr></table></figure></p>
+<p>build容器<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t ubuntu-ssh:v1 .</span><br></pre></td></tr></table></figure></p>
+<h4 id="6-&nbsp;启动容器并进入容器">6.&nbsp;启动容器并进入容器</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; docker run <span class="operator">-d</span> -p <span class="number">49170</span>:<span class="number">22</span> --name=ubuntu-ssh ubuntu-ssh:v1</span><br><span class="line">shell&gt;&gt; ssh root@<span class="number">127.0</span>.<span class="number">0.1</span> -p <span class="number">49170</span></span><br></pre></td></tr></table></figure>
+<h3 id="二、安装gtilab">二、安装gtilab</h3><p>在完成上一步，进入docker容器之后就可以开始安装gitlab了。<br>注意：以下操作都必须在<strong>docker容器</strong>中进行，不在容器中的操作会有说明，没有说明的都在容器中操作。<br>以下内容参考<a href="http://https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md" target="_blank" rel="external">gitlab官方安装说明</a>，根据我们这边要求进行了一些说明。</p>
+<h4 id="1-&nbsp;Packages/Dependencies">1.&nbsp;Packages/Dependencies</h4><p>1.1&nbsp;安装需要的依赖（用于编译Ruby和一些Ruby gems需要的原生依赖）<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; sudo apt-get install -y build-essential zlib1g-dev libyaml-dev libssl-dev libgdbm-dev libreadline-dev libncurses5-dev libffi-dev curl openssh-server redis-server checkinstall libxml2-dev libxslt-dev libcurl4-openssl-dev libicu-dev logrotate python-docutils pkg-config cmake libkrb5-dev nodejs</span><br></pre></td></tr></table></figure></p>
+<p>1.2&nbsp;检查git的版本是否正确<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Git</span></span><br><span class="line">shell&gt;&gt; sudo apt-get install -y git-core</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确保Git的版本是1.7.10或者更高</span></span><br><span class="line">shell&gt;&gt; git --version</span><br></pre></td></tr></table></figure></p>
+<p>如果git的版本太久，可以移除它并用源码安装的方式安装一个高版本。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 移除旧版本的Git</span></span><br><span class="line">shell&gt;&gt; sudo apt-get remove git-core</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装依赖</span></span><br><span class="line">shell&gt;&gt; sudo apt-get install -y libcurl4-openssl-dev libexpat1-dev gettext libz-dev libssl-dev build-essential</span><br><span class="line"></span><br><span class="line"><span class="comment"># 下载源码、编译</span></span><br><span class="line">shell&gt;&gt; <span class="built_in">cd</span> /tmp</span><br><span class="line">shell&gt;&gt; curl -L --progress https://www.kernel.org/pub/software/scm/git/git-<span class="number">2.1</span>.<span class="number">2</span>.tar.gz | tar xz</span><br><span class="line">shell&gt;&gt; <span class="built_in">cd</span> git-<span class="number">2.1</span>.<span class="number">2</span>/</span><br><span class="line">shell&gt;&gt; ./configure</span><br><span class="line">shell&gt;&gt; make prefix=/usr/<span class="built_in">local</span> all</span><br><span class="line"></span><br><span class="line"><span class="comment"># 安装到/usr/local/bin</span></span><br><span class="line">shell&gt;&gt; sudo make prefix=/usr/<span class="built_in">local</span> install</span><br><span class="line"></span><br><span class="line"><span class="comment"># When editing config/gitlab.yml (Step 5), change the git -&gt; bin_path to /usr/local/bin/git</span></span><br><span class="line"><span class="comment"># 当在第6步编辑config/gitlab.yml的时候，需要编辑bin_path=/usr/local/bin/git</span></span><br><span class="line">``` </span><br><span class="line"><span class="number">1.3</span>&amp;nbsp;安装postfix</span><br><span class="line">做邮件服务器用，但是现在没有调通</span><br><span class="line">``` sh</span><br><span class="line">shell&gt;&gt; sudo apt-get install -y postfix</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-&nbsp;安装Ruby">2.&nbsp;安装Ruby</h4><p>2.1&nbsp;移除旧版本的Ruby<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; sudo apt-get remove ruby1.<span class="number">8</span></span><br></pre></td></tr></table></figure></p>
+<p>2.2&nbsp;下载Ruby源码，编译并安装<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; mkdir /tmp/ruby &amp;&amp; <span class="built_in">cd</span> /tmp/ruby</span><br><span class="line">shell&gt;&gt; curl -L --progress http://cache.ruby-lang.org/pub/ruby/<span class="number">2.1</span>/ruby-<span class="number">2.1</span>.<span class="number">6</span>.tar.gz | tar xz</span><br><span class="line">shell&gt;&gt; <span class="built_in">cd</span> ruby-<span class="number">2.1</span>.<span class="number">6</span></span><br><span class="line">shell&gt;&gt; ./configure --disable-install-rdoc</span><br><span class="line">shell&gt;&gt; make</span><br><span class="line">shell&gt;&gt; sudo make install</span><br></pre></td></tr></table></figure></p>
+<p>2.3&nbsp;更改Gem源<br>由于国内网络原因（你懂的），导致 rubygems.org 存放在 Amazon S3 上面的资源文件间歇性连接失败。所以你会与遇到 gem install rack 或 bundle install 的时候半天没有响应，具体可以用 gem install rails -V 来查看执行过程。<br>详见<a href="http://ruby.taobao.org/" target="_blank" rel="external">http://ruby.taobao.org/</a>。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; gem sources --remove https://rubygems.org/</span><br><span class="line">shell&gt;&gt; gem sources <span class="operator">-a</span> https://ruby.taobao.org/</span><br><span class="line">shell&gt;&gt; gem sources <span class="operator">-l</span></span><br><span class="line">*** CURRENT SOURCES ***</span><br><span class="line"></span><br><span class="line">https://ruby.taobao.org</span><br><span class="line"><span class="comment"># 请确保只有 ruby.taobao.org</span></span><br></pre></td></tr></table></figure></p>
+<p>2.4&nbsp;安装Bundler Gem<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; sudo gem install bundler --no-ri --no-rdoc</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-&nbsp;添加系统用户">3.&nbsp;添加系统用户</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; sudo adduser --disabled-login --gecos <span class="string">'GitLab'</span> git</span><br></pre></td></tr></table></figure>
+<h4 id="4-&nbsp;安装数据库(MySql)">4.&nbsp;安装数据库(MySql)</h4><p>我们使用的数据库是宿主主机的数据库，这里安装只是为了用于后面安装Gem，不需要启动这个数据库。<br>数据库可以选择Mysql或者PostgreSQL，我们使用的是Mysql。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 安装Mysql</span></span><br><span class="line">sudo apt-get install -y mysql-client libmysqlclient-dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># Ensure you have MySQL version 5.5.14 or later</span></span><br><span class="line">mysql --version</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入mysql的密码</span></span><br><span class="line"><span class="comment"># 再次输入mysql的密码</span></span><br></pre></td></tr></table></figure></p>
+<p>安装完数据库之后，还需要在<strong>宿主主机</strong>的Mysql中创建gitlab需要用的账户和数据库。<br>以下操作在宿主主机中执行。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 登录Mysql</span></span><br><span class="line">shell&gt;&gt; mysql -h127.<span class="number">0.0</span>.<span class="number">1</span> -uroot -p</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入mysql密码</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建git账户</span></span><br><span class="line">mysql&gt; CREATE USER <span class="string">'git'</span>@<span class="string">'localhost'</span> IDENTIFIED BY <span class="string">'gitlab'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建Gitlab生产环境数据库</span></span><br><span class="line">mysql&gt; CREATE DATABASE IF NOT EXISTS `gitlabhq_production` DEFAULT CHARACTER SET `utf8` COLLATE `utf8_unicode_ci`;</span><br><span class="line"></span><br><span class="line">mysql&gt; GRANT SELECT, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES ON `gitlabhq_production`.* TO <span class="string">'git'</span>@<span class="string">'localhost'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 为git添加远程访问能力</span></span><br><span class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO git@<span class="string">"192.168.5.%"</span> IDENTIFIED BY <span class="string">"git"</span>; </span><br><span class="line">mysql&gt; GRANT ALL PRIVILEGES ON *.* TO git@<span class="string">"172.%.%.%"</span> IDENTIFIED BY <span class="string">"git"</span>; </span><br><span class="line"><span class="comment"># 更改git只能在192.168.5.*这个ip段访问</span></span><br><span class="line">mysql&gt; use mysql;</span><br><span class="line">mysql&gt; update user <span class="built_in">set</span> Host=<span class="string">"192.168.5.%"</span> <span class="built_in">where</span> user=<span class="string">"git"</span> and Host=<span class="string">"%"</span>;</span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">mysql&gt; \q;</span><br></pre></td></tr></table></figure></p>
+<h4 id="5-&nbsp;安装Redis">5.&nbsp;安装Redis</h4><p>以下操作在docker容器中进行。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; sudo apt-get install redis-server</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置redis使用socket访问</span></span><br><span class="line">shell&gt;&gt; sudo cp /etc/redis/redis.conf /etc/redis/redis.conf.orig</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将redis监听端口设为0，取消其对TCP请求的监听</span></span><br><span class="line">shell&gt;&gt; sed <span class="string">'s/^port .*/port 0/'</span> /etc/redis/redis.conf.orig | sudo tee /etc/redis/redis.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'unixsocket /var/run/redis/redis.sock'</span> | sudo tee <span class="operator">-a</span> /etc/redis/redis.conf</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'unixsocketperm 770'</span> | sudo tee <span class="operator">-a</span> /etc/redis/redis.conf</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建socket需要使用的目录</span></span><br><span class="line">shell&gt;&gt; mkdir /var/run/redis</span><br><span class="line">shell&gt;&gt; chown redis:redis /var/run/redis</span><br><span class="line">shell&gt;&gt; chmod <span class="number">755</span> /var/run/redis</span><br><span class="line"><span class="comment"># Persist the directory which contains the socket, if applicable</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="operator">-d</span> /etc/tmpfiles.d ]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">echo</span> <span class="string">'d  /var/run/redis  0755  redis  redis  10d  -'</span> | sudo tee <span class="operator">-a</span> /etc/tmpfiles.d/redis.conf</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重启以激活修改</span></span><br><span class="line">shell&gt;&gt; sudo service redis-server restart</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将git用户添加到redis组</span></span><br><span class="line">shell&gt;&gt; sudo usermod <span class="operator">-a</span>G redis git</span><br></pre></td></tr></table></figure></p>
+<h4 id="6-&nbsp;安装Gitlab">6.&nbsp;安装Gitlab</h4><p>6.1&nbsp;克隆Gitlab源码<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; <span class="built_in">cd</span> /home/git</span><br><span class="line">shell&gt;&gt; sudo -u git -H git <span class="built_in">clone</span> https://gitlab.com/gitlab-org/gitlab-ce.git -b <span class="number">7</span>-<span class="number">10</span>-stable gitlab</span><br><span class="line">ps: 我有下载好的，如果下载速度太慢，可以找我要，我也会传到gitlab上</span><br></pre></td></tr></table></figure></p>
+<p>6.2&nbsp;配置Gitlab<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; <span class="built_in">cd</span> /home/git/gitlab</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制一份gitlab的配置文件</span></span><br><span class="line">shell&gt;&gt; sudo -u git -H cp config/gitlab.yml.example config/gitlab.yml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 根据配置文件头部的说明进行修改，可以参考我修改之后的文件，在gitlab中</span></span><br><span class="line">shell&gt;&gt; sudo -u git -H vim config/gitlab.yml</span><br><span class="line"><span class="comment"># 这需要修改production这一块就可以了，列出几个需要修改的关键地方</span></span><br><span class="line">host: gitlab.b-m.net</span><br><span class="line">port: <span class="number">443</span></span><br><span class="line">https: <span class="literal">true</span></span><br><span class="line">email_from: gitlab@boman.net</span><br><span class="line">repos_path: /data/gitlab-data/repositories/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确保Gitlab对log/和tmp/这两个目录有写的权限</span></span><br><span class="line">shell&gt;&gt; sudo chown -R git <span class="built_in">log</span>/</span><br><span class="line">shell&gt;&gt; sudo chown -R git tmp/</span><br><span class="line">shell&gt;&gt; sudo chmod -R u+rwX,go-w <span class="built_in">log</span>/</span><br><span class="line">shell&gt;&gt; sudo chmod -R u+rwX tmp/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建satellites文件夹</span></span><br><span class="line">shell&gt;&gt; sudo -u git -H mkdir /home/git/gitlab-satellites</span><br><span class="line">shell&gt;&gt; sudo chmod u+rwx,g=rx,o-rwx /home/git/gitlab-satellites</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确保Gitlab对tmp/pids/和tmp/sockets/两个目录有写权限</span></span><br><span class="line">shell&gt;&gt; sudo chmod -R u+rwX tmp/pids/</span><br><span class="line">shell&gt;&gt; sudo chmod -R u+rwX tmp/sockets/</span><br><span class="line"></span><br><span class="line"><span class="comment"># 确保Gitlab对public/uploads/目录有写权限</span></span><br><span class="line">shell&gt;&gt; sudo chmod -R u+rwX  public/uploads</span><br><span class="line"></span><br><span class="line"><span class="comment"># 复制一份Unicorn配置文件</span></span><br><span class="line">shell&gt;&gt; sudo -u git -H cp config/unicorn.rb.example config/unicorn.rb</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查找cpu的核数</span></span><br><span class="line">nproc</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果你希望有一个高负荷的实例，可以开启集群模式</span></span><br><span class="line"><span class="comment"># 例如. 如果内存为2GB，设置workers为3</span></span><br><span class="line"><span class="comment"># workers的值至少是cpu的核数</span></span><br><span class="line">shell&gt;&gt; sudo -u git -H vim config/unicorn.rb</span><br><span class="line">列出需要修改的关键地方</span><br><span class="line">worker_processes <span class="number">4</span></span><br><span class="line">listen <span class="string">"/home/git/gitlab/tmp/sockets/gitlab.socket"</span>, :backlog =&gt; <span class="number">1024</span></span><br><span class="line">listen <span class="string">"8080"</span>, :tcp_nopush =&gt; <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Copy the example Rack attack config</span></span><br><span class="line">shell&gt;&gt; sudo -u git -H cp config/initializers/rack_attack.rb.example config/initializers/rack_attack.rb</span><br><span class="line"></span><br><span class="line"><span class="comment"># Configure Git global settings for git user, useful when editing via web</span></span><br><span class="line"><span class="comment"># Edit user.email according to what is set in gitlab.yml</span></span><br><span class="line">shell&gt;&gt; sudo -u git -H git config --global user.name <span class="string">"GitLab"</span></span><br><span class="line">shell&gt;&gt; sudo -u git -H git config --global user.email <span class="string">"gitlab@b-m.net"</span></span><br><span class="line">shell&gt;&gt; sudo -u git -H git config --global core.autocrlf input</span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置Redis连接设置</span></span><br><span class="line">shell&gt;&gt; sudo -u git -H cp config/resque.yml.example config/resque.yml</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果没有使用默认方式安装Redis，需要修改Redis的socket path</span></span><br><span class="line">shell&gt;&gt; sudo -u git -H editor config/resque.yml</span><br></pre></td></tr></table></figure></p>
+<p>6.3&nbsp;配置Gitlab的数据库设置<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; sudo -u git cp config/database.yml.mysql config/database.yml</span><br><span class="line">shell&gt;&gt; sudo -u git -H vim config/database.yml</span><br><span class="line">只需要修改production部分即可</span><br><span class="line">production:</span><br><span class="line">  adapter: mysql2</span><br><span class="line">  encoding: utf8</span><br><span class="line">  collation: utf8_general_ci</span><br><span class="line">  reconnect: <span class="literal">false</span></span><br><span class="line">  database: gitlabhq_production</span><br><span class="line">  pool: <span class="number">10</span></span><br><span class="line">  username: git</span><br><span class="line">  password: <span class="string">"gitlab"</span></span><br><span class="line">  host: <span class="number">192.168</span>.<span class="number">5.1</span></span><br><span class="line">  socket: /alidata1/data/db3306/mysql.sock</span><br></pre></td></tr></table></figure></p>
+<p>6.4&nbsp;安装Gems<br>6.4.1&nbsp;修改Gem源<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; sudo -u git -H vim Gemfile</span><br><span class="line">修改第一行</span><br><span class="line"><span class="comment"># source "https://rubygems.org"</span></span><br><span class="line"><span class="built_in">source</span> <span class="string">'https://ruby.taobao.org/'</span></span><br></pre></td></tr></table></figure></p>
+<p>6.4.2&nbsp;安装<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; sudo -u git -H bundle install --deployment --without development <span class="built_in">test</span> postgres aws</span><br></pre></td></tr></table></figure></p>
+<p>6.5&nbsp;安装Gitlab Shell<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; mkdir -p /data/gitlab-data/repositories/</span><br><span class="line">shell&gt;&gt; chown -R git:git /data/gitlab-data/</span><br><span class="line">shell&gt;&gt; sudo -u git -H bundle <span class="built_in">exec</span> rake gitlab:shell:install[v2.<span class="number">6.2</span>] REDIS_URL=unix:/var/run/redis/redis.sock RAILS_ENV=production</span><br><span class="line"><span class="comment"># 修改配置</span></span><br><span class="line">shell&gt;&gt; sudo -u git -H vim /home/git/gitlab-shell/config.yml</span><br><span class="line"><span class="comment"># 修改后的内容如下，也可参考我上传的文件</span></span><br><span class="line">user: git</span><br><span class="line">gitlab_url: https://gitlab.b-m.net/</span><br><span class="line">http_settings:</span><br><span class="line">  self_signed_cert: <span class="literal">true</span></span><br><span class="line">repos_path: <span class="string">"/data/gitlab-data/repositories/"</span></span><br><span class="line">auth_file: <span class="string">"/data/gitlab-data/.ssh/authorized_keys"</span></span><br><span class="line">redis:</span><br><span class="line">  bin: <span class="string">"/usr/bin/redis-cli"</span></span><br><span class="line">  namespace: resque:gitlab</span><br><span class="line">  socket: <span class="string">"/var/run/redis/redis.sock"</span></span><br><span class="line"><span class="built_in">log</span>_level: INFO</span><br><span class="line">audit_usernames: <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>6.6&nbsp;初始化数据库<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; sudo -u git -H bundle <span class="built_in">exec</span> rake gitlab:setup RAILS_ENV=production</span><br><span class="line"><span class="comment"># 输入"yes"去创建数据库表</span></span><br><span class="line"><span class="comment"># 初始化完成之后可以看见"Administrator account created:"</span></span><br></pre></td></tr></table></figure></p>
+<p>可以使用下面的语句设置管理员的密码，如果不设置将使用默认密码。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; sudo -u git -H bundle <span class="built_in">exec</span> rake gitlab:setup RAILS_ENV=production GITLAB_ROOT_PASSWORD=yourpassword</span><br></pre></td></tr></table></figure></p>
+<p>6.7&nbsp;安装服务脚本<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo cp lib/support/init.d/gitlab /etc/init.d/gitlab</span><br><span class="line"><span class="comment"># 设置开机自启动</span></span><br><span class="line">sudo update-rc.d gitlab defaults <span class="number">21</span></span><br></pre></td></tr></table></figure></p>
+<p>6.8&nbsp;安装日志管理工具<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; sudo cp lib/support/logrotate/gitlab /etc/logrotate.d/gitlab</span><br></pre></td></tr></table></figure></p>
+<p>6.9&nbsp;检查程序状态<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u git -H bundle <span class="built_in">exec</span> rake gitlab:env:info RAILS_ENV=production</span><br></pre></td></tr></table></figure></p>
+<p>6.10&nbsp;预编译<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo -u git -H bundle <span class="built_in">exec</span> rake assets:precompile RAILS_ENV=production</span><br></pre></td></tr></table></figure></p>
+<p>6.11&nbsp;启动Gitlab<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service gitlab start</span><br></pre></td></tr></table></figure></p>
+<p>7.&nbsp;退出docker容器<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; <span class="built_in">exit</span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>到这里，gitlab已经可以投入使用了，后面的操作只是对docker进行一些更多的操作，保存镜像，配置静态ip。</strong></p>
+<h3 id="三、将Gitlab容器做成docker镜像，配置静态ip">三、将Gitlab容器做成docker镜像，配置静态ip</h3><h4 id="1-&nbsp;commit_docker容器">1.&nbsp;commit docker容器</h4><p>这里commit的是刚刚安装了Gitlab的容器。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker commit <span class="operator">-a</span> <span class="string">"zhangteng"</span> -m<span class="string">"add gitlab"</span> <span class="number">26</span>d8f1393450e6743e2f6becfb2ca4574e04cbb101234bb95f04d157fa9af6c2 ubuntu-gitlab</span><br><span class="line">ps: <span class="string">"26d8f1393450e6743e2f6becfb2ca4574e04cbb101234bb95f04d157fa9af6c2"</span>为刚刚安装了Gitlab的ubuntu-ssh容器的id，需要替换，id可通过ps <span class="operator">-a</span>查到</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-&nbsp;build_docker容器">2.&nbsp;build docker容器</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; mkdir ubuntu_gitlab</span><br><span class="line">shell&gt;&gt; <span class="built_in">cd</span> ubuntu_gitlab</span><br><span class="line">shell&gt;&gt; vim Dockerfile</span><br></pre></td></tr></table></figure>
+<p>在Dockerfile文件中输入如下内容:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># Add gitlab to ubuntu&#10;# author: zhangteng&#10;# VERSION 1.0&#10;&#10;FROM ubuntu-gitlab:latest&#10;MAINTAINER zhangteng&#10;&#10;# expose port 80&#10;EXPOSE 80&#10;&#10;# expose port 443&#10;EXPOSE 443&#10;&#10;# add run.sh&#10;ADD run.sh /run.sh&#10;RUN chmod 755 /run.sh&#10;&#10;CMD [&#34;/run.sh&#34;]</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; vim run.sh</span><br></pre></td></tr></table></figure>
+<p>在run.sh文件中输入如下内容：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="shebang">#!/bin/bash</span><br><span class="line"></span></span><br><span class="line"><span class="comment"># start redis</span></span><br><span class="line">/etc/init.d/redis-server stop &gt;/dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line">/etc/init.d/redis-server start &gt;/dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line"><span class="comment"># start gitlab</span></span><br><span class="line">/etc/init.d/gitlab stop &gt;/dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span> </span><br><span class="line">/etc/init.d/gitlab start &gt;/dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># start sshd, let this at last</span></span><br><span class="line">/usr/sbin/sshd -D &gt;/dev/null <span class="number">2</span>&gt;&amp;<span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>最后，build容器<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t ubuntu-gitlab:v1 .</span><br></pre></td></tr></table></figure></p>
+<h4 id="3-&nbsp;启动docker容器">3.&nbsp;启动docker容器</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker run <span class="operator">-d</span> -v /alidata1/docker-gitlab:/data/gitlab-data --net=none --name=gitlabv1 ubuntu-gitlab:v1</span><br><span class="line">-v参数需要根据实际情况修改</span><br><span class="line">/alidata1/docker-gitlab文件夹需要先创建好</span><br></pre></td></tr></table></figure>
+<h4 id="4-&nbsp;为docker容器配置静态ip">4.&nbsp;为docker容器配置静态ip</h4><p>可以使用我提供的脚本docker_static_ip.sh为docker设置静态ip<br>使用方法如下为：<code>sh  docker_static_ip.sh 容器id/容器name ip</code><br>容器id可以通过<code>docker ps</code>得到<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sh docker_static_ip.sh <span class="number">69</span>ead0a0e1ba266f97232f4f51940e9dd2da21952ce8517b99c699b66ad10a24 <span class="number">192.168</span>.<span class="number">5.5</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="5-&nbsp;进入docker容器">5.&nbsp;进入docker容器</h4><p>由于第3步启动docker容器的时候，docker容器还没有ip，在第4步的时候才设置，Gitlab在启动的时候会去连接Mysql，这个时候是连不上的，所以启动不起来，需要进入手动启动<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; ssh root@<span class="number">192.168</span>.<span class="number">5.5</span></span><br><span class="line"><span class="comment"># 输入docker容器的root密码</span></span><br><span class="line">shell&gt;&gt; service gitlab restart</span><br><span class="line">shell&gt;&gt; chown -R git:git /data/gitlab-data</span><br><span class="line">shell&gt;&gt; <span class="built_in">exit</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="6-&nbsp;在宿主主机中配置反向代理">6.&nbsp;在宿主主机中配置反向代理</h4><p>配置反向代理到docker容器中，具体配置参考gitlab.b-m.net.conf文件。<br>我们使用的是https，但是没有证书，所以需要自己生成一个，可以用下面的命令：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; openssl req -newkey rsa:<span class="number">2048</span> -x509 -nodes -days <span class="number">3560</span> -out gitlab.crt -keyout gitlab.key</span><br><span class="line">``` </span><br><span class="line"><span class="comment">#### 7.&amp;nbsp;访问</span></span><br><span class="line">在浏览器中输入地址访问即可</span><br><span class="line"><span class="comment">### 四、使用中的一些问题</span></span><br><span class="line"><span class="comment">#### 1.&amp;nbsp;设置git忽略对https的检测</span></span><br><span class="line">由于我们使用的是自签名证书，git会对https进行检测，所以需要设置git对它忽略</span><br><span class="line">``` sh</span><br><span class="line">shell&gt;&gt; git config --global http.sslVerify <span class="string">"false"</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="2-&nbsp;让git记住用户名和密码">2.&nbsp;让git记住用户名和密码</h4><p>编辑工程目录下的.git/config，在最后增加<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[credential]</span><br><span class="line">helper = store</span><br></pre></td></tr></table></figure></p>
 
-<h4 id="3-&nbsp;安装ssh">3.&nbsp;安装ssh</h4>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; apt-<span class="built_in">get</span> install openssh-server vim
-<span class="comment"># 配置ssh</span>
-<span class="built_in">shell</span>&gt;&gt; vim /etc/ssh/sshd_config
-<span class="comment"># 启动ssh</span>
-<span class="built_in">shell</span>&gt;&gt; service ssh start
-<span class="comment"># 退出容器</span>
-<span class="built_in">shell</span>&gt;&gt; exit
-</pre></td></tr></table></figure><br>#### 4.&nbsp;commit docker容器<br><br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>shell<span class="subst">&gt;&gt;</span> docker commit <span class="attribute">-a</span> <span class="string">"zhangteng"</span> <span class="attribute">-m</span> <span class="string">"add ssh"</span> <span class="number">876</span>f90b7a5769c04f3d9975369b3a1148e6c951d1f4f4217728b072b6ae6a50b ubuntu<span class="attribute">-ssh</span>
-ps: <span class="string">"876f90b7a5769c04f3d9975369b3a1148e6c951d1f4f4217728b072b6ae6a50b"</span>为刚刚安装了ssh的ubuntu容器的id，需要替换，id可通过ps <span class="attribute">-a</span>查到
-</pre></td></tr></table></figure><br>#### 5.&nbsp;build docker容器<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; mkdir ubuntu_ssh
-<span class="built_in">shell</span>&gt;&gt; cd ubuntu_ssh
-<span class="built_in">shell</span>&gt;&gt; vim Dockerfile
-</pre></td></tr></table></figure><br>在Dockerfile文件中输入如下内容:<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-</pre></td><td class="code"><pre><span class="preprocessor"># Add ssh to ubuntu</span>
-<span class="preprocessor"># author: zhangteng</span>
-<span class="preprocessor"># VERSION 1.0</span>
-
-FROM ubuntu-ssh:latest
-MAINTAINER zhangteng
- 
-<span class="preprocessor"># change root passwd</span>
-RUN echo <span class="string">'root:123456'</span> | chpasswd
- 
-<span class="preprocessor"># expose ssh port</span>
-EXPOSE <span class="number">22</span>
- 
-RUN mkdir /<span class="keyword">var</span>/run/sshd                                                                                                                  
- 
-<span class="preprocessor"># add run.sh</span>
-ADD run.sh /run.sh
-RUN chmod <span class="number">755</span> /run.sh
-
-CMD [<span class="string">"/run.sh"</span>]
-</pre></td></tr></table></figure><br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; vim run.sh
-</pre></td></tr></table></figure><br> 在run.sh文件中输入如下内容：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre><span class="shebang">#!/bin/bash
- </span>
-<span class="comment"># start sshd, let this at last</span>
-/usr/sbin/sshd -D
-</pre></td></tr></table></figure><br>build容器<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>docker build <span class="attribute">-t</span> ubuntu<span class="attribute">-ssh</span>:v1 <span class="built_in">.</span>
-</pre></td></tr></table></figure><br>#### 6.&nbsp;启动容器并进入容器<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>shell<span class="subst">&gt;&gt;</span> docker run <span class="attribute">-d</span> <span class="attribute">-p</span> <span class="number">49170</span>:<span class="number">22</span> <span class="subst">--</span>name<span class="subst">=</span>ubuntu<span class="attribute">-ssh</span> ubuntu<span class="attribute">-ssh</span>:v1
-shell<span class="subst">&gt;&gt;</span> ssh root@<span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span> <span class="attribute">-p</span> <span class="number">49170</span>
-</pre></td></tr></table></figure><br>### 二、安装gtilab<br>在完成上一步，进入docker容器之后就可以开始安装gitlab了。<br>注意：以下操作都必须在<strong>docker容器</strong>中进行，不在容器中的操作会有说明，没有说明的都在容器中操作。<br>以下内容参考<a href="http://https://gitlab.com/gitlab-org/gitlab-ce/blob/master/doc/install/installation.md" target="_blank" rel="external">gitlab官方安装说明</a>，根据我们这边要求进行了一些说明。<br>#### 1.&nbsp;Packages/Dependencies<br>1.1&nbsp;安装需要的依赖（用于编译Ruby和一些Ruby gems需要的原生依赖）<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>shell<span class="subst">&gt;&gt;</span> sudo apt<span class="attribute">-get</span> install <span class="attribute">-y</span> build<span class="attribute">-essential</span> zlib1g<span class="attribute">-dev</span> libyaml<span class="attribute">-dev</span> libssl<span class="attribute">-dev</span> libgdbm<span class="attribute">-dev</span> libreadline<span class="attribute">-dev</span> libncurses5<span class="attribute">-dev</span> libffi<span class="attribute">-dev</span> curl openssh<span class="attribute">-server</span> redis<span class="attribute">-server</span> checkinstall libxml2<span class="attribute">-dev</span> libxslt<span class="attribute">-dev</span> libcurl4<span class="attribute">-openssl</span><span class="attribute">-dev</span> libicu<span class="attribute">-dev</span> logrotate python<span class="attribute">-docutils</span> pkg<span class="attribute">-config</span> cmake libkrb5<span class="attribute">-dev</span> nodejs
-</pre></td></tr></table></figure><br>1.2&nbsp;检查git的版本是否正确<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre><span class="comment"># 安装Git</span>
-<span class="built_in">shell</span>&gt;&gt; sudo apt-<span class="built_in">get</span> install -y git-core
-
-<span class="comment"># 确保Git的版本是1.7.10或者更高</span>
-<span class="built_in">shell</span>&gt;&gt; git <span class="comment">--version</span>
-</pre></td></tr></table></figure><br>如果git的版本太久，可以移除它并用源码安装的方式安装一个高版本。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-</pre></td><td class="code"><pre><span class="comment"># 移除旧版本的Git</span>
-<span class="built_in">shell</span>&gt;&gt; sudo apt-<span class="built_in">get</span> remove git-core
-
-<span class="comment"># 安装依赖</span>
-<span class="built_in">shell</span>&gt;&gt; sudo apt-<span class="built_in">get</span> install -y libcurl4-openssl-dev libexpat1-dev gettext libz-dev libssl-dev build-essential
-
-<span class="comment"># 下载源码、编译</span>
-<span class="built_in">shell</span>&gt;&gt; cd /tmp
-<span class="built_in">shell</span>&gt;&gt; curl -L <span class="comment">--progress https://www.kernel.org/pub/software/scm/git/git-2.1.2.tar.gz | tar xz</span>
-<span class="built_in">shell</span>&gt;&gt; cd git-<span class="number">2.1</span><span class="number">.2</span>/
-<span class="built_in">shell</span>&gt;&gt; ./configure
-<span class="built_in">shell</span>&gt;&gt; make prefix=/usr/<span class="built_in">local</span> all
-
-<span class="comment"># 安装到/usr/local/bin</span>
-<span class="built_in">shell</span>&gt;&gt; sudo make prefix=/usr/<span class="built_in">local</span> install
-
-<span class="comment"># When editing config/gitlab.yml (Step 5), change the git -&gt; bin_path to /usr/local/bin/git</span>
-<span class="comment"># 当在第6步编辑config/gitlab.yml的时候，需要编辑bin_path=/usr/local/bin/git</span>
-</pre></td></tr></table></figure><br>1.3&nbsp;安装postfix<br>做邮件服务器用，但是现在没有调通<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; sudo apt-<span class="built_in">get</span> install -y postfix
-</pre></td></tr></table></figure><br>#### 2.&nbsp;安装Ruby<br>2.1&nbsp;移除旧版本的Ruby<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; sudo apt-<span class="built_in">get</span> remove ruby1<span class="number">.8</span>
-</pre></td></tr></table></figure><br>2.2&nbsp;下载Ruby源码，编译并安装<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; mkdir /tmp/ruby && cd /tmp/ruby
-<span class="built_in">shell</span>&gt;&gt; curl -L <span class="comment">--progress http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.6.tar.gz | tar xz</span>
-<span class="built_in">shell</span>&gt;&gt; cd ruby-<span class="number">2.1</span><span class="number">.6</span>
-<span class="built_in">shell</span>&gt;&gt; ./configure <span class="comment">--disable-install-rdoc</span>
-<span class="built_in">shell</span>&gt;&gt; make
-<span class="built_in">shell</span>&gt;&gt; sudo make install
-</pre></td></tr></table></figure><br>2.3&nbsp;更改Gem源<br>由于国内网络原因（你懂的），导致 rubygems.org 存放在 Amazon S3 上面的资源文件间歇性连接失败。所以你会与遇到 gem install rack 或 bundle install 的时候半天没有响应，具体可以用 gem install rails -V 来查看执行过程。<br>详见<a href="http://ruby.taobao.org/" target="_blank" rel="external">http://ruby.taobao.org/</a>。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; gem sources <span class="comment">--remove https://rubygems.org/</span>
-<span class="built_in">shell</span>&gt;&gt; gem sources -<span class="operator">a</span> <span class="keyword">https</span>://ruby.taobao.org/
-<span class="built_in">shell</span>&gt;&gt; gem sources -l
-*** CURRENT SOURCES ***
-
-<span class="keyword">https</span>://ruby.taobao.org
-<span class="comment"># 请确保只有 ruby.taobao.org</span>
-</pre></td></tr></table></figure><br>2.4&nbsp;安装Bundler Gem<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="comment">shell</span>&gt;&gt; <span class="comment">sudo</span> <span class="comment">gem</span> <span class="comment">install</span> <span class="comment">bundler</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">ri</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">rdoc</span>
-</pre></td></tr></table></figure><br>#### 3.&nbsp;添加系统用户<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>shell&gt;&gt; <span class="built_in">sudo</span> adduser --disabled-login --gecos <span class="string">'GitLab'</span> git
-</pre></td></tr></table></figure><br>#### 4.&nbsp;安装数据库(MySql)<br>我们使用的数据库是宿主主机的数据库，这里安装只是为了用于后面安装Gem，不需要启动这个数据库。<br>数据库可以选择Mysql或者PostgreSQL，我们使用的是Mysql。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-</pre></td><td class="code"><pre><span class="preprocessor"># 安装Mysql</span>
-sudo apt-<span class="keyword">get</span> install -y mysql-client libmysqlclient-dev
-
-<span class="preprocessor"># Ensure you have MySQL version 5.5.14 or later</span>
-mysql --version
-
-<span class="preprocessor"># 输入mysql的密码</span>
-<span class="preprocessor"># 再次输入mysql的密码</span>
-</pre></td></tr></table></figure><br>安装完数据库之后，还需要在<strong>宿主主机</strong>的Mysql中创建gitlab需要用的账户和数据库。<br>以下操作在宿主主机中执行。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-</pre></td><td class="code"><pre><span class="preprocessor"># 登录Mysql</span>
-shell&gt;&gt; mysql -h127<span class="number">.0</span><span class="number">.0</span><span class="number">.1</span> -uroot -p
-
-<span class="preprocessor"># 输入mysql密码</span>
-
-<span class="preprocessor"># 创建git账户</span>
-mysql&gt; CREATE USER <span class="comment">'git'@'localhost' IDENTIFIED BY 'gitlab';</span>
-
-<span class="preprocessor"># 创建Gitlab生产环境数据库</span>
-mysql&gt; CREATE DATABASE <span class="keyword">IF</span> <span class="keyword">NOT</span> EXISTS `gitlabhq_production` <span class="keyword">DEFAULT</span> CHARACTER <span class="keyword">SET</span> `utf8` COLLATE `utf8_unicode_ci`;
-
-mysql&gt; GRANT <span class="keyword">SELECT</span>, INSERT, UPDATE, DELETE, CREATE, DROP, INDEX, ALTER, LOCK TABLES <span class="keyword">ON</span> `gitlabhq_production`.* <span class="keyword">TO</span> <span class="comment">'git'@'localhost';</span>
-
-<span class="preprocessor"># 为git添加远程访问能力</span>
-mysql&gt; GRANT ALL PRIVILEGES <span class="keyword">ON</span> *.* <span class="keyword">TO</span> git@<span class="string">"192.168.5.%"</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">"git"</span>; 
-mysql&gt; GRANT ALL PRIVILEGES <span class="keyword">ON</span> *.* <span class="keyword">TO</span> git@<span class="string">"172.%.%.%"</span> IDENTIFIED <span class="keyword">BY</span> <span class="string">"git"</span>; 
-<span class="preprocessor"># 更改git只能在192.168.5.*这个ip段访问</span>
-mysql&gt; use mysql;
-mysql&gt; update user <span class="keyword">set</span> Host=<span class="string">"192.168.5.%"</span> <span class="keyword">where</span> user=<span class="string">"git"</span> <span class="keyword">and</span> Host=<span class="string">"%"</span>;
-mysql&gt; flush privileges;
-mysql&gt; \q;
-</pre></td></tr></table></figure><br>#### 5.&nbsp;安装Redis<br>以下操作在docker容器中进行。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-</pre></td><td class="code"><pre>shell&gt;&gt; <span class="built_in">sudo</span> apt-get install redis-server
-
-<span class="comment"># 配置redis使用socket访问</span>
-shell&gt;&gt; <span class="built_in">sudo</span> cp /etc/redis/redis.conf /etc/redis/redis.conf.orig
-
-<span class="comment"># 将redis监听端口设为0，取消其对TCP请求的监听</span>
-shell&gt;&gt; sed <span class="string">'s/^port .*/port 0/'</span> /etc/redis/redis.conf.orig | <span class="built_in">sudo</span> tee /etc/redis/redis.conf
-<span class="built_in">echo</span> <span class="string">'unixsocket /var/run/redis/redis.sock'</span> | <span class="built_in">sudo</span> tee <span class="operator">-a</span> /etc/redis/redis.conf
-<span class="built_in">echo</span> <span class="string">'unixsocketperm 770'</span> | <span class="built_in">sudo</span> tee <span class="operator">-a</span> /etc/redis/redis.conf
-
-
-<span class="comment"># 创建socket需要使用的目录</span>
-shell&gt;&gt; mkdir /var/run/redis
-shell&gt;&gt; chown redis:redis /var/run/redis
-shell&gt;&gt; chmod <span class="number">755</span> /var/run/redis
-<span class="comment"># Persist the directory which contains the socket, if applicable</span>
-<span class="keyword">if</span> [ <span class="operator">-d</span> /etc/tmpfiles.d ]; <span class="keyword">then</span>
-  <span class="built_in">echo</span> <span class="string">'d  /var/run/redis  0755  redis  redis  10d  -'</span> | <span class="built_in">sudo</span> tee <span class="operator">-a</span> /etc/tmpfiles.d/redis.conf
-<span class="keyword">fi</span>
-
-<span class="comment"># 重启以激活修改</span>
-shell&gt;&gt; <span class="built_in">sudo</span> service redis-server restart
-
-<span class="comment"># 将git用户添加到redis组</span>
-shell&gt;&gt; <span class="built_in">sudo</span> usermod <span class="operator">-a</span>G redis git
-</pre></td></tr></table></figure><br>#### 6.&nbsp;安装Gitlab<br>6.1&nbsp;克隆Gitlab源码<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; cd /home/git
-<span class="built_in">shell</span>&gt;&gt; sudo -u git -H git clone <span class="keyword">https</span>://gitlab.com/gitlab-org/gitlab-ce.git -b <span class="number">7</span>-<span class="number">10</span>-stable gitlab
-ps: 我有下载好的，如果下载速度太慢，可以找我要，我也会传到gitlab上
-</pre></td></tr></table></figure><br>6.2&nbsp;配置Gitlab<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-33
-34
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
-47
-48
-49
-50
-51
-52
-53
-54
-55
-56
-57
-58
-59
-60
-</pre></td><td class="code"><pre>shell&gt;&gt; cd /home/git/gitlab
-
-<span class="preprocessor"># 复制一份gitlab的配置文件</span>
-shell&gt;&gt; sudo -u git -H <span class="keyword">cp</span> config/gitlab<span class="preprocessor">.yml</span><span class="preprocessor">.example</span> config/gitlab<span class="preprocessor">.yml</span>
-
-<span class="preprocessor"># 根据配置文件头部的说明进行修改，可以参考我修改之后的文件，在gitlab中</span>
-shell&gt;&gt; sudo -u git -H vim config/gitlab<span class="preprocessor">.yml</span>
-<span class="preprocessor"># 这需要修改production这一块就可以了，列出几个需要修改的关键地方</span>
-<span class="label">host:</span> gitlab<span class="preprocessor">.b</span>-m<span class="preprocessor">.net</span>
-<span class="label">port:</span> <span class="number">443</span>
-<span class="label">https:</span> true
-<span class="label">email_from:</span> gitlab@boman<span class="preprocessor">.net</span>
-<span class="label">repos_path:</span> /data/gitlab-data/repositories/
-
-<span class="preprocessor"># 确保Gitlab对log/和tmp/这两个目录有写的权限</span>
-shell&gt;&gt; sudo chown -R git log/
-shell&gt;&gt; sudo chown -R git tmp/
-shell&gt;&gt; sudo chmod -R u+rwX,go-w log/
-shell&gt;&gt; sudo chmod -R u+rwX tmp/
-
-<span class="preprocessor"># 创建satellites文件夹</span>
-shell&gt;&gt; sudo -u git -H mkdir /home/git/gitlab-satellites
-shell&gt;&gt; sudo chmod u+rwx,g=rx,o-rwx /home/git/gitlab-satellites
-
-<span class="preprocessor"># 确保Gitlab对tmp/pids/和tmp/sockets/两个目录有写权限</span>
-shell&gt;&gt; sudo chmod -R u+rwX tmp/pids/
-shell&gt;&gt; sudo chmod -R u+rwX tmp/sockets/
-
-<span class="preprocessor"># 确保Gitlab对public/uploads/目录有写权限</span>
-shell&gt;&gt; sudo chmod -R u+rwX  public/uploads
-
-<span class="preprocessor"># 复制一份Unicorn配置文件</span>
-shell&gt;&gt; sudo -u git -H <span class="keyword">cp</span> config/unicorn<span class="preprocessor">.rb</span><span class="preprocessor">.example</span> config/unicorn<span class="preprocessor">.rb</span>
-
-<span class="preprocessor"># 查找cpu的核数</span>
-nproc
-
-<span class="preprocessor"># 如果你希望有一个高负荷的实例，可以开启集群模式</span>
-<span class="preprocessor"># 例如. 如果内存为2GB，设置workers为3</span>
-<span class="preprocessor"># workers的值至少是cpu的核数</span>
-shell&gt;&gt; sudo -u git -H vim config/unicorn<span class="preprocessor">.rb</span>
-列出需要修改的关键地方
-worker_processes <span class="number">4</span>
-listen <span class="string">"/home/git/gitlab/tmp/sockets/gitlab.socket"</span>, :backlog =&gt; <span class="number">1024</span>
-listen <span class="string">"8080"</span>, :tcp_nopush =&gt; true
-
-<span class="preprocessor"># Copy the example Rack attack config</span>
-shell&gt;&gt; sudo -u git -H <span class="keyword">cp</span> config/initializers/rack_attack<span class="preprocessor">.rb</span><span class="preprocessor">.example</span> config/initializers/rack_attack<span class="preprocessor">.rb</span>
-
-<span class="preprocessor"># Configure Git global settings for git user, useful when editing via web</span>
-<span class="preprocessor"># Edit user.email according to what is set in gitlab.yml</span>
-shell&gt;&gt; sudo -u git -H git config --global user<span class="preprocessor">.name</span> <span class="string">"GitLab"</span>
-shell&gt;&gt; sudo -u git -H git config --global user<span class="preprocessor">.email</span> <span class="string">"gitlab@b-m.net"</span>
-shell&gt;&gt; sudo -u git -H git config --global core<span class="preprocessor">.autocrlf</span> input
-
-<span class="preprocessor"># 配置Redis连接设置</span>
-shell&gt;&gt; sudo -u git -H <span class="keyword">cp</span> config/resque<span class="preprocessor">.yml</span><span class="preprocessor">.example</span> config/resque<span class="preprocessor">.yml</span>
-
-<span class="preprocessor"># 如果没有使用默认方式安装Redis，需要修改Redis的socket path</span>
-shell&gt;&gt; sudo -u git -H editor config/resque<span class="preprocessor">.yml</span>
-</pre></td></tr></table></figure><br>6.3&nbsp;配置Gitlab的数据库设置<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-</pre></td><td class="code"><pre>shell&gt;&gt; sudo -u git <span class="keyword">cp</span> config/database<span class="preprocessor">.yml</span><span class="preprocessor">.mysql</span> config/database<span class="preprocessor">.yml</span>
-shell&gt;&gt; sudo -u git -H vim config/database<span class="preprocessor">.yml</span>
-只需要修改production部分即可
-<span class="label">production:</span>
-  adapter: mysql2
-  encoding: utf8
-  collation: utf8_general_ci
-  reconnect: false
-  database: gitlabhq_production
-  pool: <span class="number">10</span>
-  username: git
-  password: <span class="string">"gitlab"</span>
-  host: <span class="number">192.168</span><span class="number">.5</span><span class="number">.1</span>
-  socket: /alidata1/data/db3306/mysql<span class="preprocessor">.sock</span>
-</pre></td></tr></table></figure><br>6.4&nbsp;安装Gems<br>6.4.1&nbsp;修改Gem源<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>shell&gt;&gt; <span class="built_in">sudo</span> -u git -H vim Gemfile
-修改第一行
-<span class="comment"># source "https://rubygems.org"</span>
-<span class="built_in">source</span> <span class="string">'https://ruby.taobao.org/'</span>
-</pre></td></tr></table></figure><br>6.4.2&nbsp;安装<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="comment">shell</span>&gt;&gt; <span class="comment">sudo</span> <span class="literal">-</span><span class="comment">u</span> <span class="comment">git</span> <span class="literal">-</span><span class="comment">H</span> <span class="comment">bundle</span> <span class="comment">install</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">deployment</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">without</span> <span class="comment">development</span> <span class="comment">test</span> <span class="comment">postgres</span> <span class="comment">aws</span>
-</pre></td></tr></table></figure><br>6.5&nbsp;安装Gitlab Shell<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-</pre></td><td class="code"><pre>shell&gt;&gt; mkdir -p /data/gitlab-data/repositories/
-shell&gt;&gt; chown -R git:git /data/gitlab-data/
-shell&gt;&gt; sudo -u git -H bundle exec rake gitlab:shell:install[v2<span class="number">.6</span><span class="number">.2</span>] REDIS_URL=unix:/var/run/redis/redis<span class="preprocessor">.sock</span> RAILS_ENV=production
-<span class="preprocessor"># 修改配置</span>
-shell&gt;&gt; sudo -u git -H vim /home/git/gitlab-shell/config<span class="preprocessor">.yml</span>
-<span class="preprocessor"># 修改后的内容如下，也可参考我上传的文件</span>
-<span class="label">user:</span> git
-<span class="label">gitlab_url:</span> https://gitlab<span class="preprocessor">.b</span>-m<span class="preprocessor">.net</span>/
-<span class="label">http_settings:</span>
-  self_signed_cert: true
-<span class="label">repos_path:</span> <span class="string">"/data/gitlab-data/repositories/"</span>
-<span class="label">auth_file:</span> <span class="string">"/data/gitlab-data/.ssh/authorized_keys"</span>
-<span class="label">redis:</span>
-  bin: <span class="string">"/usr/bin/redis-cli"</span>
-  namespace: resque:gitlab
-  socket: <span class="string">"/var/run/redis/redis.sock"</span>
-<span class="label">log_level:</span> INFO
-<span class="label">audit_usernames:</span> false
-</pre></td></tr></table></figure><br>6.6&nbsp;初始化数据库<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>shell&gt;&gt; <span class="built_in">sudo</span> -u git -H bundle <span class="keyword">exec</span> rake gitlab:setup RAILS_ENV=production
-<span class="comment"># 输入"yes"去创建数据库表</span>
-<span class="comment"># 初始化完成之后可以看见"Administrator account created:"</span>
-</pre></td></tr></table></figure><br>可以使用下面的语句设置管理员的密码，如果不设置将使用默认密码。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>shell&gt;&gt; <span class="built_in">sudo</span> -u git -H bundle <span class="keyword">exec</span> rake gitlab:setup RAILS_ENV=production GITLAB_ROOT_PASSWORD=yourpassword
-</pre></td></tr></table></figure><br>6.7&nbsp;安装服务脚本<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>sudo <span class="keyword">cp</span> lib/support/init<span class="preprocessor">.d</span>/gitlab /etc/init<span class="preprocessor">.d</span>/gitlab
-<span class="preprocessor"># 设置开机自启动</span>
-sudo update-rc<span class="preprocessor">.d</span> gitlab defaults <span class="number">21</span>
-</pre></td></tr></table></figure><br>6.8&nbsp;安装日志管理工具<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>shell&gt;&gt; sudo <span class="keyword">cp</span> lib/support/logrotate/gitlab /etc/logrotate<span class="preprocessor">.d</span>/gitlab
-</pre></td></tr></table></figure><br>6.9&nbsp;检查程序状态<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="built_in">sudo</span> -u git -H bundle <span class="keyword">exec</span> rake gitlab:env:info RAILS_ENV=production
-</pre></td></tr></table></figure><br>6.10&nbsp;预编译<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="built_in">sudo</span> -u git -H bundle <span class="keyword">exec</span> rake assets:precompile RAILS_ENV=production
-</pre></td></tr></table></figure><br>6.11&nbsp;启动Gitlab<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="built_in">sudo</span> service gitlab start
-</pre></td></tr></table></figure><br>7.&nbsp;退出docker容器<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>shell&gt;&gt; <span class="keyword">exit</span>;
-</pre></td></tr></table></figure><br><strong>到这里，gitlab已经可以投入使用了，后面的操作只是对docker进行一些更多的操作，保存镜像，配置静态ip。</strong><br>### 三、将Gitlab容器做成docker镜像，配置静态ip<br>#### 1.&nbsp;commit docker容器<br>这里commit的是刚刚安装了Gitlab的容器。<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre>docker commit <span class="attribute">-a</span> <span class="string">"zhangteng"</span> <span class="attribute">-m</span><span class="string">"add gitlab"</span> <span class="number">26</span>d8f1393450e6743e2f6becfb2ca4574e04cbb101234bb95f04d157fa9af6c2 ubuntu<span class="attribute">-gitlab</span>
-ps: <span class="string">"26d8f1393450e6743e2f6becfb2ca4574e04cbb101234bb95f04d157fa9af6c2"</span>为刚刚安装了Gitlab的ubuntu<span class="attribute">-ssh</span>容器的id，需要替换，id可通过ps <span class="attribute">-a</span>查到
-</pre></td></tr></table></figure><br>#### 2.&nbsp;build docker容器<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; mkdir ubuntu_gitlab
-<span class="built_in">shell</span>&gt;&gt; cd ubuntu_gitlab
-<span class="built_in">shell</span>&gt;&gt; vim Dockerfile
-</pre></td></tr></table></figure><br>在Dockerfile文件中输入如下内容:<br><figure class="highlight"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-</pre></td><td class="code"><pre><span class="preprocessor"># Add gitlab to ubuntu</span>
-<span class="preprocessor"># author: zhangteng</span>
-<span class="preprocessor"># VERSION 1.0</span>
-
-FROM ubuntu-gitlab:latest
-MAINTAINER zhangteng
-
-<span class="preprocessor"># expose port 80</span>
-EXPOSE <span class="number">80</span>
-
-<span class="preprocessor"># expose port 443</span>
-EXPOSE <span class="number">443</span>
-
-<span class="preprocessor"># add run.sh</span>
-ADD run.sh /run.sh
-RUN chmod <span class="number">755</span> /run.sh
-
-CMD [<span class="string">"/run.sh"</span>]
-</pre></td></tr></table></figure><br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; vim run.sh
-</pre></td></tr></table></figure><br>在run.sh文件中输入如下内容：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td><td class="code"><pre><span class="shebang">#!/bin/bash
-</span>
-<span class="comment"># start redis</span>
-/etc/init.d/redis-server stop &gt;/dev/null <span class="number">2</span>&gt;&<span class="number">1</span>
-/etc/init.d/redis-server start &gt;/dev/null <span class="number">2</span>&gt;&<span class="number">1</span>
-<span class="comment"># start gitlab</span>
-/etc/init.d/gitlab stop &gt;/dev/null <span class="number">2</span>&gt;&<span class="number">1</span> 
-/etc/init.d/gitlab start &gt;/dev/null <span class="number">2</span>&gt;&<span class="number">1</span>
-
-<span class="comment"># start sshd, let this at last</span>
-/usr/sbin/sshd -D &gt;/dev/null <span class="number">2</span>&gt;&<span class="number">1</span>
-</pre></td></tr></table></figure><br>最后，build容器<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>docker build <span class="attribute">-t</span> ubuntu<span class="attribute">-gitlab</span>:v1 <span class="built_in">.</span>
-</pre></td></tr></table></figure><br>#### 3.&nbsp;启动docker容器<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre>docker run <span class="attribute">-d</span> <span class="attribute">-v</span> /alidata1/docker<span class="attribute">-gitlab</span>:/<span class="built_in">data</span>/gitlab<span class="attribute">-data</span> <span class="subst">--</span>net<span class="subst">=</span><span class="literal">none</span> <span class="subst">--</span>name<span class="subst">=</span>gitlabv1 ubuntu<span class="attribute">-gitlab</span>:v1
-<span class="attribute">-v</span>参数需要根据实际情况修改
-/alidata1/docker<span class="attribute">-gitlab</span>文件夹需要先创建好
-</pre></td></tr></table></figure><br>#### 4.&nbsp;为docker容器配置静态ip<br>可以使用我提供的脚本docker_static_ip.sh为docker设置静态ip<br>使用方法如下为：<code>sh  docker_static_ip.sh 容器id/容器name ip</code><br>容器id可以通过<code>docker ps</code>得到<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>sh docker_static_ip<span class="preprocessor">.sh</span> <span class="number">69</span>ead0a0e1ba266f97232f4f51940e9dd2da21952ce8517b99c699b66ad10a24 <span class="number">192.168</span><span class="number">.5</span><span class="number">.5</span>
-</pre></td></tr></table></figure><br>#### 5.&nbsp;进入docker容器<br>由于第3步启动docker容器的时候，docker容器还没有ip，在第4步的时候才设置，Gitlab在启动的时候会去连接Mysql，这个时候是连不上的，所以启动不起来，需要进入手动启动<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; ssh root@<span class="number">192.168</span><span class="number">.5</span><span class="number">.5</span>
-<span class="comment"># 输入docker容器的root密码</span>
-<span class="built_in">shell</span>&gt;&gt; service gitlab restart
-<span class="built_in">shell</span>&gt;&gt; chown -R git:git /data/gitlab-data
-<span class="built_in">shell</span>&gt;&gt; exit
-</pre></td></tr></table></figure><br>#### 6.&nbsp;在宿主主机中配置反向代理<br>配置反向代理到docker容器中，具体配置参考gitlab.b-m.net.conf文件。<br>我们使用的是https，但是没有证书，所以需要自己生成一个，可以用下面的命令：<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>shell<span class="subst">&gt;&gt;</span> openssl req <span class="attribute">-newkey</span> rsa:<span class="number">2048</span> <span class="attribute">-x509</span> <span class="attribute">-nodes</span> <span class="attribute">-days</span> <span class="number">3560</span> <span class="attribute">-out</span> gitlab<span class="built_in">.</span>crt <span class="attribute">-keyout</span> gitlab<span class="built_in">.</span>key
-</pre></td></tr></table></figure><br>#### 7.&nbsp;访问<br>在浏览器中输入地址访问即可<br>### 四、使用中的一些问题<br>#### 1.&nbsp;设置git忽略对https的检测<br>由于我们使用的是自签名证书，git会对https进行检测，所以需要设置git对它忽略<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre>shell&gt;&gt; git config --<span class="keyword">global</span> http.sslVerify <span class="string">"false"</span>
-</pre></td></tr></table></figure><br>#### 2.&nbsp;让git记住用户名和密码<br>编辑工程目录下的.git/config，在最后增加<br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-</pre></td><td class="code"><pre><span class="title">[credential]</span>
-<span class="setting">helper = <span class="value">store</span></span>
-</pre></td></tr></table></figure>
       
     </div>
     <footer>
@@ -709,7 +145,7 @@ CMD [<span class="string">"/run.sh"</span>]
       
   
   <div class="tags">
-    <a href="/tags/linux/">linux</a>, <a href="/tags/docker/">docker</a>, <a href="/tags/gitlab/">gitlab</a>
+    <a href="/tags/docker/">docker</a>, <a href="/tags/gitlab/">gitlab</a>, <a href="/tags/linux/">linux</a>
   </div>
 
       
@@ -730,7 +166,8 @@ CMD [<span class="string">"/run.sh"</span>]
 
 
 <section id="comment">
-  <h1 class="title">Comments</h1>
+  <h1 class="title">留言</h1>
+  
   <!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="Sun May 03 2015 14:21:48 GMT+0800" data-title="基于docker的gitlab搭建" data-url="请替换成文章的网址"></div>
 <!-- 多说评论框 end -->
@@ -751,7 +188,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
 
   <div id="menu-nav" class="footer-btn">
-  <a title="Quick Nav"><img src="/img/list.png"/></a>
+  <a title="目錄導航"><img src="/img/list.png"/></a>
 </div>
 
 <script type="text/javascript">
@@ -839,7 +276,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -847,7 +284,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -864,11 +301,13 @@ var duoshuoQuery = {short_name:"tcheung"};
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -876,9 +315,9 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -932,7 +371,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">

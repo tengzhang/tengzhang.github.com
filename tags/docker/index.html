@@ -81,18 +81,8 @@
     <div class="entry">
       
         <p>﻿﻿﻿﻿﻿﻿﻿### 一、准备docker容器环境</p>
-<h4 id="1-&nbsp;下载docker_ubuntu镜像">1.&nbsp;下载docker ubuntu镜像</h4>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; docker pull ubuntu
-</pre></td></tr></table></figure><br>#### 2.&nbsp;启动ubuntu镜像并更新<br><br><figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-</pre></td><td class="code"><pre><span class="built_in">shell</span>&gt;&gt; docker run -<span class="keyword">it</span> docker.io/ubuntu
-<span class="comment"># 更新操作在ubuntu容器中进行</span>
-<span class="built_in">shell</span>&gt;&gt; apt-<span class="built_in">get</span> -y update
-</pre></td></tr></table></figure>
-
-
+<h4 id="1-&nbsp;下载docker_ubuntu镜像">1.&nbsp;下载docker ubuntu镜像</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; docker pull ubuntu</span><br></pre></td></tr></table></figure>
+<h4 id="2-&nbsp;启动ubuntu镜像并更新">2.&nbsp;启动ubuntu镜像并更新</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;&gt; docker run -it docker.io/ubuntu</span><br><span class="line"><span class="comment"># 更新操作在ubuntu容器中进行</span></span><br><span class="line">shell&gt;&gt; apt-get -y update</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer>
@@ -100,7 +90,7 @@
       
   
   <div class="tags">
-    <a href="/tags/linux/">linux</a>, <a href="/tags/docker/">docker</a>, <a href="/tags/gitlab/">gitlab</a>
+    <a href="/tags/docker/">docker</a>, <a href="/tags/gitlab/">gitlab</a>, <a href="/tags/linux/">linux</a>
   </div>
 
       
@@ -140,18 +130,7 @@
     </header>
     <div class="entry">
       
-        <p>参考网址：<a href="https://docs.docker.com/articles/networking/" target="_blank" rel="external">https://docs.docker.com/articles/networking/</a></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-</pre></td><td class="code"><pre>$ <span class="built_in">sudo</span> service docker stop
-$ <span class="built_in">sudo</span> ip link <span class="keyword">set</span> dev docker0 down
-$ <span class="built_in">sudo</span> brctl delbr docker0
-$ <span class="built_in">sudo</span> iptables -t nat -F POSTROUTING
-</pre></td></tr></table></figure>
-
-
+        <p>参考网址：<a href="https://docs.docker.com/articles/networking/">https://docs.docker.com/articles/networking/</a><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo service docker stop</span><br><span class="line">$ sudo ip link <span class="built_in">set</span> dev docker0 down</span><br><span class="line">$ sudo brctl delbr docker0</span><br><span class="line">$ sudo iptables -t nat -F POSTROUTING</span><br></pre></td></tr></table></figure></p>
       
     </div>
     <footer>
@@ -159,7 +138,7 @@ $ <span class="built_in">sudo</span> iptables -t nat -F POSTROUTING
       
   
   <div class="tags">
-    <a href="/tags/linux/">linux</a>, <a href="/tags/docker/">docker</a>
+    <a href="/tags/docker/">docker</a>, <a href="/tags/linux/">linux</a>
   </div>
 
       
@@ -188,7 +167,7 @@ $ <span class="built_in">sudo</span> iptables -t nat -F POSTROUTING
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -196,7 +175,7 @@ $ <span class="built_in">sudo</span> iptables -t nat -F POSTROUTING
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -213,11 +192,13 @@ $ <span class="built_in">sudo</span> iptables -t nat -F POSTROUTING
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -225,9 +206,9 @@ $ <span class="built_in">sudo</span> iptables -t nat -F POSTROUTING
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -281,7 +262,7 @@ $ <span class="built_in">sudo</span> iptables -t nat -F POSTROUTING
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">

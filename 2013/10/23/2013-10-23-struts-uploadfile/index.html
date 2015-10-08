@@ -82,83 +82,10 @@
         
         <p>注意保持action中File的变量和jsp中input的name名相同。<br>action中定义变量：</p>
 <a id="more"></a>
-
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
-27
-28
-29
-30
-31
-32
-</pre></td><td class="code"><pre><span class="keyword">package</span> action;
-<span class="keyword">import</span> java.io.File;
-<span class="keyword">import</span> java.io.FileInputStream;
-<span class="keyword">import</span> java.io.FileOutputStream;
-<span class="keyword">import</span> com.opensymphony.xwork2.ActionSupport;
-<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UploadFileAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> {</span>
-    
-    <span class="comment">// 上传的文件</span>
-    <span class="keyword">private</span> File upload;
-    
-    <span class="comment">// 上传的文件名</span>
-    <span class="keyword">private</span> String uploadFileName;
-    
-    <span class="comment">// 上传的文件类型</span>
-    <span class="keyword">private</span> String uploadContentType;
-    
-    <span class="keyword">public</span> String <span class="title">execute</span>() <span class="keyword">throws</span> Exception {
-        FileInputStream fis = <span class="keyword">new</span> FileInputStream(upload);
-        File file = <span class="keyword">new</span> File(<span class="string">"E:/dsideal/upload/"</span> +  uploadFileName);
-        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(file);
-        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8912</span>];
-        <span class="keyword">int</span> count = <span class="number">0</span>;
-        <span class="keyword">while</span>((count = fis.read(buffer)) != -<span class="number">1</span>) {
-            fos.write(buffer, <span class="number">0</span>, count);
-        }
-        fos.close();
-        fis.close();
-        <span class="keyword">return</span> SUCCESS;
-    }
-    
-    <span class="comment">/* set、get method */</span>
-}
-</pre></td></tr></table></figure><br>jsp页面:</p>
-<p><figure class="highlight java"><table><tr><td class="gutter"><pre>1
-2
-3
-4
-5
-</pre></td><td class="code"><pre>&lt;s:form action="mystruts/uploadFile.action" enctype="multipart/form-data"&gt;
-    &lt;s:file name="upload" label="输入要上传的文件名字" /&gt;
-    &lt;s:submit value="上传" /&gt;
-    &lt;/s:form&gt;
-&lt;/body&gt;
-</pre></td></tr></table></figure><br>使用了struts标签，也可以直接使用html表单标签form、input</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> action;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.FileOutputStream;</span><br><span class="line"><span class="keyword">import</span> com.opensymphony.xwork2.ActionSupport;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UploadFileAction</span> <span class="keyword">extends</span> <span class="title">ActionSupport</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 上传的文件</span></span><br><span class="line">    <span class="keyword">private</span> File upload;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 上传的文件名</span></span><br><span class="line">    <span class="keyword">private</span> String uploadFileName;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 上传的文件类型</span></span><br><span class="line">    <span class="keyword">private</span> String uploadContentType;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">execute</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        FileInputStream fis = <span class="keyword">new</span> FileInputStream(upload);</span><br><span class="line">        File file = <span class="keyword">new</span> File(<span class="string">"E:/dsideal/upload/"</span> +  uploadFileName);</span><br><span class="line">        FileOutputStream fos = <span class="keyword">new</span> FileOutputStream(file);</span><br><span class="line">        <span class="keyword">byte</span>[] buffer = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">8912</span>];</span><br><span class="line">        <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>((count = fis.read(buffer)) != -<span class="number">1</span>) &#123;</span><br><span class="line">            fos.write(buffer, <span class="number">0</span>, count);</span><br><span class="line">        &#125;</span><br><span class="line">        fos.close();</span><br><span class="line">        fis.close();</span><br><span class="line">        <span class="keyword">return</span> SUCCESS;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/* set、get method */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>jsp页面:</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;s:form action="mystruts/uploadFile.action" enctype="multipart/form-data"&gt;</span><br><span class="line">    &lt;s:file name="upload" label="输入要上传的文件名字" /&gt;</span><br><span class="line">    &lt;s:submit value="上传" /&gt;</span><br><span class="line">    &lt;/s:form&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+<p>使用了struts标签，也可以直接使用html表单标签form、input</p>
 
       
     </div>
@@ -182,7 +109,8 @@
 
 
 <section id="comment">
-  <h1 class="title">Comments</h1>
+  <h1 class="title">留言</h1>
+  
   <!-- 多说评论框 start -->
 	<div class="ds-thread" data-thread-key="Wed Oct 23 2013 09:02:00 GMT+0800" data-title="struts2文件上传" data-url="请替换成文章的网址"></div>
 <!-- 多说评论框 end -->
@@ -206,7 +134,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   <div class="search">
   
     <form>
-      <input id="" type="search" placeholder="Search">
+      <input id="" type="search" placeholder="搜尋">
     </form>
     <div id="st-results-container"></div>
   
@@ -214,7 +142,7 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tag">
-  <h3 class="title">Tags</h3>
+  <h3 class="title">標籤</h3>
   <div class="entry">
     
       <span><a href="/tags/centos/">centos<small>1</small></a></span>
@@ -231,11 +159,13 @@ var duoshuoQuery = {short_name:"tcheung"};
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>3</small></a></span>
+      <span><a href="/tags/linux/">linux<small>4</small></a></span>
     
       <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>1</small></a></span>
     
   </div>
 </div>
@@ -243,9 +173,9 @@ var duoshuoQuery = {short_name:"tcheung"};
 
   
 <div class="widget tagcloud">
-  <h3 class="title">Tag Cloud</h3>
+  <h3 class="title">標籤雲</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10.00px;">centos</a><a href="/tags/docker/" style="font-size: 15.00px;">docker</a><a href="/tags/gitlab/" style="font-size: 15.00px;">gitlab</a><a href="/tags/hadoop/" style="font-size: 15.00px;">hadoop</a><a href="/tags/hbase/" style="font-size: 10.00px;">hbase</a><a href="/tags/java/" style="font-size: 20.00px;">java</a><a href="/tags/leetcode/" style="font-size: 10.00px;">leetcode</a><a href="/tags/linux/" style="font-size: 20.00px;">linux</a><a href="/tags/mysql/" style="font-size: 10.00px;">mysql</a><a href="/tags/redmine/" style="font-size: 10.00px;">redmine</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 10px;">vim</a>
   </div>
 </div>
 
@@ -299,7 +229,7 @@ var duoshuoQuery = {short_name:"tcheung"};
   $(window).resize(navbar);
 </script>
 <div id="totop" class="footer-btn">
-  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+  <a title="返回頂部"><img src="/img/scrollup.png"/></a>
 </div>
 
 <script type="text/javascript">
