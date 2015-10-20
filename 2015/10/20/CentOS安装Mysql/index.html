@@ -3,15 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>gitlab只使用https协议 | Zhang Teng&#39;Blog</title>
+  <title>CentOS安装Mysql | Zhang Teng&#39;Blog</title>
   <meta name="author" content="Zhang Teng">
   
-  <meta name="description" content="主要修改两个地方">
+  <meta name="description" content="不多说废话了，直接上教程开始安装吧。
+
+下载Mysql
+直接上Mysql的官网下载，http://dev.mysql.com/downloads/mysql/。建议下载Linux-Generic下面的Compressed TAR版本，此版本为Linux下的通用版本，是编译好之后的，不建议直接下载源码">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="gitlab只使用https协议"/>
+  <meta property="og:title" content="CentOS安装Mysql"/>
   <meta property="og:site_name" content="Zhang Teng&#39;Blog"/>
 
   
@@ -62,16 +65,16 @@
     <header>
       
         <div class="alignright">
-          <a href="/2015/05/30/gitlab只使用https协议/#ds-thread" class="comment-link"></a>
+          <a href="/2015/10/20/CentOS安装Mysql/#ds-thread" class="comment-link"></a>
         </div>
       
       
         <div class="icon"></div>
-        <time datetime="2015-05-30T14:25:04.000Z"><a href="/2015/05/30/gitlab只使用https协议/">May 30 2015</a></time>
+        <time datetime="2015-10-20T13:54:24.000Z"><a href="/2015/10/20/CentOS安装Mysql/">Oct 20 2015</a></time>
       
       
   
-    <h1 class="title">gitlab只使用https协议</h1>
+    <h1 class="title">CentOS安装Mysql</h1>
   
 
       
@@ -82,14 +85,37 @@
           
     <div id="toc" class="toc-article">
         <strong class="toc-title">目录导航</strong>
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1_修改app/views/shared/_clone_panel-html-haml"><span class="toc-number">1.</span> <span class="toc-text">1 修改app/views/shared/_clone_panel.html.haml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2_修改-/app/helpers/projects_helper-rb"><span class="toc-number">2.</span> <span class="toc-text">2 修改./app/helpers/projects_helper.rb</span></a></li></ol>
+        
     </div>
 
         
-        <p>主要修改两个地方</p>
-<a id="more"></a>
-<h3 id="1_修改app/views/shared/_clone_panel-html-haml">1 修改<code>app/views/shared/_clone_panel.html.haml</code></h3><p>删掉下面这段代码<br><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%button&#123; |</span><br><span class="line">      <span class="class"><span class="keyword">class</span>: "<span class="title">btn</span> <span class="comment">#&#123; 'active' if default_clone_protocol == 'ssh' &#125;#&#123; ' has_tooltip' if current_user &amp;&amp; current_user.require_ssh_key? &#125;", |</span></span></span><br><span class="line">      <span class="symbol">:<span class="string">"data-clone"</span></span> =&gt; project.ssh_url_to_repo, |</span><br><span class="line">      <span class="symbol">:<span class="string">"data-title"</span></span> =&gt; <span class="string">"Add an SSH key to your profile&lt;br&gt; to pull or push via SSH"</span>,</span><br><span class="line">      <span class="symbol">:<span class="string">"data-html"</span></span> =&gt; <span class="string">"true"</span>,</span><br><span class="line">      <span class="symbol">:<span class="string">"data-container"</span></span> =&gt; <span class="string">"body"</span>&#125;</span><br><span class="line">      <span class="constant">SSH</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="2_修改-/app/helpers/projects_helper-rb">2 修改<code>./app/helpers/projects_helper.rb</code></h3><figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">default_url_to_repo</span><span class="params">(project = <span class="keyword">nil</span>)</span></span></span><br><span class="line">    project = project || <span class="variable">@project</span></span><br><span class="line">    current_user ? project.http_url_to_repo <span class="symbol">:</span> project.url_to_repo</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">def</span> <span class="title">default_clone_protocol</span></span></span><br><span class="line">    current_user ? <span class="string">"http"</span> <span class="symbol">:</span> <span class="string">"ssh"</span></span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+        <p>   不多说废话了，直接上教程开始安装吧。</p>
+<ol>
+<li><p>下载Mysql</p>
+<p>直接上Mysql的官网下载，<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a>。<br>建议下载<code>Linux-Generic</code>下面的<code>Compressed TAR</code>版本，此版本为Linux下的通用版本，是编译好之后的，不建议直接下载源码，然后进行编译安装，以为Mysql比较大，编译需要的时间比较长。<br>本文使用的版本为<code>mysql-5.6.27-linux-glibc2.5-x86_64.tar.gz</code>，如下图：<br><img src="http://7xjta1.com1.z0.glb.clouddn.com/mysql.png" alt="http://7xjta1.com1.z0.glb.clouddn.com/mysql.png"></p>
+</li>
+<li><p>安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cp mysql-<span class="number">5.6</span>.<span class="number">27</span>-linux-glibc2.<span class="number">5</span>-x86_64.tar.gz /opt/</span><br><span class="line">$ <span class="built_in">cd</span> /opt/</span><br><span class="line">$ tar -zxvf mysql-<span class="number">5.6</span>.<span class="number">27</span>-linux-glibc2.<span class="number">5</span>-x86_64.tar.gz </span><br><span class="line">$ mv mysql-<span class="number">5.6</span>.<span class="number">27</span>-linux-glibc2.<span class="number">5</span>-x86_64 mysql3306</span><br><span class="line">$ <span class="built_in">cd</span> mysql3306</span><br></pre></td></tr></table></figure>
+<p>在mysql目录下有一个名为<code>INSTALL-BINARY</code>的文件，这个文件是官方的安装说明，里面对如何安装mysql进行了详细的说明，大家可参考这个文件进行安装。<br>本文的安装也是基于这个文件，然后结合实际情况进行改变而来。<br>以下命令都是在mysql目录下进行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ groupadd mysql</span><br><span class="line">$ useradd -r -g mysql mysql</span><br><span class="line">$ chown -R mysql .</span><br><span class="line">$ chgrp -R mysql .</span><br><span class="line">$ mkdir -p /data/db/db3306/data</span><br><span class="line">$ scripts/mysql_install_db --basedir=/opt/mysql3306 --datadir=/data/db/db3306/data --no-defaults --user=mysql</span><br></pre></td></tr></table></figure>
+<p>接下来拷贝一份25上的mysql配置文件my.cnf到mysql目录下。<br>my.cnf的内容在这里就不贴了，大家需要的可以找我要一份。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p /data/db/db3306/<span class="built_in">log</span></span><br><span class="line">$ mkdir -p /data/db/db3306/binlog</span><br><span class="line">$ chown -R mysql /data/db/db3306/</span><br></pre></td></tr></table></figure>
+<p>最后执行如下命令，启动一下mysql就行了：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bin/mysqld_safe --defaults-file=/opt/mysql3306/my.cn</span><br></pre></td></tr></table></figure>
+<p>使用<code>ps aux | grep mysql</code>检查一下mysql是否启动。</p>
+<p>如果没有成功启动，可以使用<code>tail -f -n 2000 /data/db/db3306/log/mysqld.err</code>查看错误日志进行修改。</p>
+</li>
+<li><p>将Mysql添加成服务</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp support-files/mysql.server /etc/init.d/mysqld3306</span><br><span class="line">$ vim /etc/init.d/mysqld3306</span><br></pre></td></tr></table></figure>
+<p>主要修改如下几个地方</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">basedir=/opt/mysql3306</span><br><span class="line">datadir=/data/db/db3306/data</span><br><span class="line">conf=/opt/mysql3306/my.cnf</span><br></pre></td></tr></table></figure>
+<p>将<code>$bindir/mysqld_safe --datadir=&quot;$datadir&quot; --pid-file=&quot;$mysqld_pid_file_path&quot; $other_args &gt;/dev/null 2&gt;&amp;1</code>改成下面这一句:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$bindir/mysqld_safe --defaults-file=$conf --datadir=&#34;$datadir&#34; --pid-file=&#34;$mysqld_pid_file_path&#34; $other_args &#62;/dev/null 2&#62;&#38;</span><br></pre></td></tr></table></figure>
+<p>接下来就可以使用如下<code>service</code>命令对mysql进行启动、停止、重启了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ service mysqld3306 start       <span class="comment"># 启动</span></span><br><span class="line">$ service mysqld3306 stop        <span class="comment"># 停止</span></span><br><span class="line">$ service mysqld3306 restart     <span class="comment"># 重启</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
       
     </div>
     <footer>
@@ -97,16 +123,16 @@
       
   
   <div class="tags">
-    <a href="/tags/gitlab/">gitlab</a>
+    <a href="/tags/linux/">linux</a>, <a href="/tags/mysql/">mysql</a>
   </div>
 
       
         <div class="alignright share-box">
   
     
-      <a class="share-link share-weibo" href="http://v.t.sina.com.cn/share/share.php?url=/2015/05/30/gitlab只使用https协议/&title=《gitlab只使用https协议》" title="weibo"></a>
+      <a class="share-link share-weibo" href="http://v.t.sina.com.cn/share/share.php?url=/2015/10/20/CentOS安装Mysql/&title=《CentOS安装Mysql》" title="weibo"></a>
     
-      <a class="share-link share-google" href="https://plus.google.com/share?url=/2015/05/30/gitlab只使用https协议/&title=《gitlab只使用https协议》" title="google"></a>
+      <a class="share-link share-google" href="https://plus.google.com/share?url=/2015/10/20/CentOS安装Mysql/&title=《CentOS安装Mysql》" title="google"></a>
     
   
 </div>
@@ -121,7 +147,7 @@
   <h1 class="title">留言</h1>
   
   <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="Sat May 30 2015 22:25:04 GMT+0800" data-title="gitlab只使用https协议" data-url="请替换成文章的网址"></div>
+	<div class="ds-thread" data-thread-key="Tue Oct 20 2015 21:54:24 GMT+0800" data-title="CentOS安装Mysql" data-url="请替换成文章的网址"></div>
 <!-- 多说评论框 end -->
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

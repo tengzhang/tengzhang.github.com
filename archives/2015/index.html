@@ -65,6 +65,87 @@
     <header>
       
         <div class="alignright">
+          <a href="/2015/10/20/CentOS安装Mysql/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2015-10-20T13:54:24.000Z"><a href="/2015/10/20/CentOS安装Mysql/">Oct 20 2015</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/10/20/CentOS安装Mysql/">CentOS安装Mysql</a></h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        
+        <p>   不多说废话了，直接上教程开始安装吧。</p>
+<ol>
+<li><p>下载Mysql</p>
+<p>直接上Mysql的官网下载，<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a>。<br>建议下载<code>Linux-Generic</code>下面的<code>Compressed TAR</code>版本，此版本为Linux下的通用版本，是编译好之后的，不建议直接下载源码，然后进行编译安装，以为Mysql比较大，编译需要的时间比较长。<br>本文使用的版本为<code>mysql-5.6.27-linux-glibc2.5-x86_64.tar.gz</code>，如下图：<br><img src="http://7xjta1.com1.z0.glb.clouddn.com/mysql.png" alt="http://7xjta1.com1.z0.glb.clouddn.com/mysql.png"></p>
+</li>
+<li><p>安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cp mysql-<span class="number">5.6</span>.<span class="number">27</span>-linux-glibc2.<span class="number">5</span>-x86_64.tar.gz /opt/</span><br><span class="line">$ <span class="built_in">cd</span> /opt/</span><br><span class="line">$ tar -zxvf mysql-<span class="number">5.6</span>.<span class="number">27</span>-linux-glibc2.<span class="number">5</span>-x86_64.tar.gz </span><br><span class="line">$ mv mysql-<span class="number">5.6</span>.<span class="number">27</span>-linux-glibc2.<span class="number">5</span>-x86_64 mysql3306</span><br><span class="line">$ <span class="built_in">cd</span> mysql3306</span><br></pre></td></tr></table></figure>
+<p>在mysql目录下有一个名为<code>INSTALL-BINARY</code>的文件，这个文件是官方的安装说明，里面对如何安装mysql进行了详细的说明，大家可参考这个文件进行安装。<br>本文的安装也是基于这个文件，然后结合实际情况进行改变而来。<br>以下命令都是在mysql目录下进行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ groupadd mysql</span><br><span class="line">$ useradd -r -g mysql mysql</span><br><span class="line">$ chown -R mysql .</span><br><span class="line">$ chgrp -R mysql .</span><br><span class="line">$ mkdir -p /data/db/db3306/data</span><br><span class="line">$ scripts/mysql_install_db --basedir=/opt/mysql3306 --datadir=/data/db/db3306/data --no-defaults --user=mysql</span><br></pre></td></tr></table></figure>
+<p>接下来拷贝一份25上的mysql配置文件my.cnf到mysql目录下。<br>my.cnf的内容在这里就不贴了，大家需要的可以找我要一份。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir -p /data/db/db3306/<span class="built_in">log</span></span><br><span class="line">$ mkdir -p /data/db/db3306/binlog</span><br><span class="line">$ chown -R mysql /data/db/db3306/</span><br></pre></td></tr></table></figure>
+<p>最后执行如下命令，启动一下mysql就行了：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ bin/mysqld_safe --defaults-file=/opt/mysql3306/my.cn</span><br></pre></td></tr></table></figure>
+<p>使用<code>ps aux | grep mysql</code>检查一下mysql是否启动。</p>
+<p>如果没有成功启动，可以使用<code>tail -f -n 2000 /data/db/db3306/log/mysqld.err</code>查看错误日志进行修改。</p>
+</li>
+<li><p>将Mysql添加成服务</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cp support-files/mysql.server /etc/init.d/mysqld3306</span><br><span class="line">$ vim /etc/init.d/mysqld3306</span><br></pre></td></tr></table></figure>
+<p>主要修改如下几个地方</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">basedir=/opt/mysql3306</span><br><span class="line">datadir=/data/db/db3306/data</span><br><span class="line">conf=/opt/mysql3306/my.cnf</span><br></pre></td></tr></table></figure>
+<p>将<code>$bindir/mysqld_safe --datadir=&quot;$datadir&quot; --pid-file=&quot;$mysqld_pid_file_path&quot; $other_args &gt;/dev/null 2&gt;&amp;1</code>改成下面这一句:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$bindir/mysqld_safe --defaults-file=$conf --datadir=&#34;$datadir&#34; --pid-file=&#34;$mysqld_pid_file_path&#34; $other_args &#62;/dev/null 2&#62;&#38;</span><br></pre></td></tr></table></figure>
+<p>接下来就可以使用如下<code>service</code>命令对mysql进行启动、停止、重启了。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ service mysqld3306 start       <span class="comment"># 启动</span></span><br><span class="line">$ service mysqld3306 stop        <span class="comment"># 停止</span></span><br><span class="line">$ service mysqld3306 restart     <span class="comment"># 重启</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+      
+  
+  <div class="tags">
+    <a href="/tags/linux/">linux</a>, <a href="/tags/mysql/">mysql</a>
+  </div>
+
+      
+        
+          <div class="alignright share-box">
+  
+    
+      <a class="share-link share-weibo" href="http://v.t.sina.com.cn/share/share.php?url=/2015/10/20/CentOS安装Mysql/&title=《CentOS安装Mysql》" title="weibo"></a>
+    
+      <a class="share-link share-google" href="https://plus.google.com/share?url=/2015/10/20/CentOS安装Mysql/&title=《CentOS安装Mysql》" title="google"></a>
+    
+  
+</div>
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+  
+    <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
           <a href="/2015/10/13/CentOS下Java-Web环境搭建/#ds-thread" class="comment-link"></a>
         </div>
       
@@ -534,9 +615,9 @@
     
       <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
     
-      <span><a href="/tags/linux/">linux<small>5</small></a></span>
+      <span><a href="/tags/linux/">linux<small>6</small></a></span>
     
-      <span><a href="/tags/mysql/">mysql<small>1</small></a></span>
+      <span><a href="/tags/mysql/">mysql<small>2</small></a></span>
     
       <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
     
@@ -550,7 +631,7 @@
 <div class="widget tagcloud">
   <h3 class="title">标签云</h3>
   <div class="entry">
-    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 13.33px;">vim</a>
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 13.33px;">vim</a>
   </div>
 </div>
 
