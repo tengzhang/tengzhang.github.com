@@ -9,7 +9,7 @@
   <meta name="description" content="不多说废话了，直接上教程开始安装吧。
 
 下载Mysql
-直接上Mysql的官网下载，http://dev.mysql.com/downloads/mysql/。建议下载Linux-Generic下面的Compressed TAR版本，此版本为Linux下的通用版本，是编译好之后的，不建议直接下载源码">
+直接上Mysql的官网下载，http://dev.mysql.com/downloads/mysql/。建议下载Linux-Generic下面的Compressed TAR版本，此版本为Linux下的通用版本，是编译好之后的，不建议直接下载源码，然后进行编译安装，以为Mysql比较大，编译需要的时间比较长。本文使用的版本为mysql-5.6.27-linux-glibc2.5-x86_64.tar.gz，如下图：">
   
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -94,6 +94,9 @@
 <li><p>下载Mysql</p>
 <p>直接上Mysql的官网下载，<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a>。<br>建议下载<code>Linux-Generic</code>下面的<code>Compressed TAR</code>版本，此版本为Linux下的通用版本，是编译好之后的，不建议直接下载源码，然后进行编译安装，以为Mysql比较大，编译需要的时间比较长。<br>本文使用的版本为<code>mysql-5.6.27-linux-glibc2.5-x86_64.tar.gz</code>，如下图：<br><img src="http://7xjta1.com1.z0.glb.clouddn.com/mysql.png" alt="http://7xjta1.com1.z0.glb.clouddn.com/mysql.png"></p>
 </li>
+</ol>
+<a id="more"></a>
+<ol>
 <li><p>安装</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cp mysql-<span class="number">5.6</span>.<span class="number">27</span>-linux-glibc2.<span class="number">5</span>-x86_64.tar.gz /opt/</span><br><span class="line">$ <span class="built_in">cd</span> /opt/</span><br><span class="line">$ tar -zxvf mysql-<span class="number">5.6</span>.<span class="number">27</span>-linux-glibc2.<span class="number">5</span>-x86_64.tar.gz </span><br><span class="line">$ mv mysql-<span class="number">5.6</span>.<span class="number">27</span>-linux-glibc2.<span class="number">5</span>-x86_64 mysql3306</span><br><span class="line">$ <span class="built_in">cd</span> mysql3306</span><br></pre></td></tr></table></figure>
 <p>在mysql目录下有一个名为<code>INSTALL-BINARY</code>的文件，这个文件是官方的安装说明，里面对如何安装mysql进行了详细的说明，大家可参考这个文件进行安装。<br>本文的安装也是基于这个文件，然后结合实际情况进行改变而来。<br>以下命令都是在mysql目录下进行</p>
