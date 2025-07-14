@@ -1,0 +1,454 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>基于Docker的Hadoop完全分布式环境搭建 | Zhang Teng&#39;Blog</title>
+  <meta name="author" content="Zhang Teng">
+  
+  <meta name="description" content="1 配置docker环境创建一个带有ssh的centos的docker images，命名为centos6-ssh（建议采用centos6）并且ssh能在容器启动是自启动，不是本部分的重点，不详细描述。
+2 启动docker，配置java">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="基于Docker的Hadoop完全分布式环境搭建"/>
+  <meta property="og:site_name" content="Zhang Teng&#39;Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/favicon.ico" rel="shortcut icon">
+  <link rel="alternate" href="/atom.xml" title="Zhang Teng&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="https://code.bdstatic.com/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+  
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div id="nav-top">
+  <div class="alignleft main-title">
+    <a href="/">
+		<h1>Zhang Teng&#39;Blog</h1>
+	</a>
+    <h2></h2>
+  </div>
+  <nav id="main-nav" class="alignright">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+        <li><a href="/aboutme">About me</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="https://zhangtengz.cn/2015/05/19/%E5%9F%BA%E4%BA%8EDocker%E7%9A%84Hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2015-05-19T15:55:37.000Z"><a href="/2015/05/19/基于Docker的Hadoop完全分布式环境搭建/">2015-05-19</a></time>
+      
+      
+  
+    <h1 class="title">基于Docker的Hadoop完全分布式环境搭建</h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        
+          
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Navigation</strong>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%85%8D%E7%BD%AEdocker%E7%8E%AF%E5%A2%83"><span class="toc-number">1.</span> <span class="toc-text">1 配置docker环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%90%AF%E5%8A%A8docker%EF%BC%8C%E9%85%8D%E7%BD%AEjava"><span class="toc-number">2.</span> <span class="toc-text">2 启动docker，配置java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85Hadoop"><span class="toc-number">3.</span> <span class="toc-text">3 安装Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-1-%E4%B8%8B%E8%BD%BDHadoop"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 下载Hadoop</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 配置环境变量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-3-%E9%85%8D%E7%BD%AEHadoop"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 配置Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3-1-core-site-xml%E9%85%8D%E7%BD%AE"><span class="toc-number">3.3.1.</span> <span class="toc-text">3.3.1 core-site.xml配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3-2-hdfs-site-xml%E9%85%8D%E7%BD%AE"><span class="toc-number">3.3.2.</span> <span class="toc-text">3.3.2 hdfs-site.xml配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3-3-mapred-site-xml%E9%85%8D%E7%BD%AE"><span class="toc-number">3.3.3.</span> <span class="toc-text">3.3.3 mapred-site.xml配置</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-3-3-4-%E4%BF%AE%E6%94%B9JAVA-HOME%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="toc-number">3.3.4.</span> <span class="toc-text">3.3.3.4 修改JAVA_HOME环境变量</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%A0%BC%E5%BC%8F%E5%8C%96namenode"><span class="toc-number">3.4.</span> <span class="toc-text">4 格式化namenode</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%E9%85%8D%E7%BD%AESSH%EF%BC%8C%E7%94%9F%E6%88%90%E8%AE%BF%E9%97%AE%E7%A7%98%E9%92%A5"><span class="toc-number">3.5.</span> <span class="toc-text">5 配置SSH，生成访问秘钥</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-%E5%88%9B%E5%BB%BAHadoop-images"><span class="toc-number">3.6.</span> <span class="toc-text">6 创建Hadoop images</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Hadoop%E5%88%86%E5%B8%83%E5%BC%8F%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA"><span class="toc-number">4.</span> <span class="toc-text">3 Hadoop分布式集群搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8master%E5%AE%B9%E5%99%A8"><span class="toc-number">4.0.1.</span> <span class="toc-text">启动master容器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8slave1%E5%AE%B9%E5%99%A8"><span class="toc-number">4.0.2.</span> <span class="toc-text">启动slave1容器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8slave2%E5%AE%B9%E5%99%A8"><span class="toc-number">4.0.3.</span> <span class="toc-text">启动slave2容器</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%993%E4%B8%AA%E5%AE%B9%E5%99%A8%E9%85%8D%E7%BD%AEip"><span class="toc-number">4.1.</span> <span class="toc-text">给3个容器配置ip</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B93%E4%B8%AA%E5%AE%B9%E5%99%A8%E7%9A%84hosts"><span class="toc-number">4.2.</span> <span class="toc-text">修改3个容器的hosts</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEslaves"><span class="toc-number">4.3.</span> <span class="toc-text">配置slaves</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%90%AF%E5%8A%A8Hadoop"><span class="toc-number">4.4.</span> <span class="toc-text">启动Hadoop</span></a></li></ol></li></ol>
+    </div>
+
+        
+        <h3 id="1-配置docker环境"><a href="#1-配置docker环境" class="headerlink" title="1 配置docker环境"></a>1 配置docker环境</h3><p>创建一个带有ssh的centos的docker images，命名为centos6-ssh（建议采用centos6）并且ssh能在容器启动是自启动，不是本部分的重点，不详细描述。</p>
+<h3 id="2-启动docker，配置java"><a href="#2-启动docker，配置java" class="headerlink" title="2 启动docker，配置java"></a>2 启动docker，配置java</h3><span id="more"></span>
+
+<p>2.1 启动第1步中创建的容器。</p>
+<p>docker run -it centos6-ssh &#x2F;bin&#x2F;bash</p>
+<p>2.2 安装Java</p>
+<p>不是本文重点，不具体描述。Java的安装目录是<code>/opt/java8</code></p>
+<h3 id="3-安装Hadoop"><a href="#3-安装Hadoop" class="headerlink" title="3 安装Hadoop"></a>3 安装Hadoop</h3><h4 id="3-1-下载Hadoop"><a href="#3-1-下载Hadoop" class="headerlink" title="3.1 下载Hadoop"></a>3.1 下载Hadoop</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">shell&gt;&gt; <span class="built_in">cd</span> /opt</span><br><span class="line"></span><br><span class="line">shell&gt;&gt; wget http://mirrors.cnnic.cn/apache/hadoop/common/hadoop-2.6.0/hadoop-2.6.0.tar.gz</span><br><span class="line"></span><br><span class="line">shell&gt;&gt; tar -zxvf hadoop-2.6.0.tar.gz</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-配置环境变量"><a href="#3-2-配置环境变量" class="headerlink" title="3.2 配置环境变量"></a>3.2 配置环境变量</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">shell&gt;&gt; vim /etc/profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入一下内容</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> HADOOP_HOME=/opt/hadoop-2.6.0/</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> HADOOP_CONFIG_HOME=<span class="variable">$HADOOP_HOME</span>/etc/hadoop</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$HADOOP_HOME</span>/bin</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$PATH</span>:<span class="variable">$HADOOP_HOME</span>/sbin</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-3-配置Hadoop"><a href="#3-3-配置Hadoop" class="headerlink" title="3.3 配置Hadoop"></a>3.3 配置Hadoop</h4><p>下面，我们开始修改Hadoop的配置文件。主要配置core-site.xml、hdfs-site.xml、mapred-site.xml这三个文件。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">shell&gt;&gt; <span class="built_in">cd</span> <span class="variable">$HADOOP_HOME</span>/</span><br><span class="line"></span><br><span class="line">shell&gt;&gt; <span class="built_in">mkdir</span> tmp</span><br><span class="line"></span><br><span class="line">shell&gt;&gt; <span class="built_in">mkdir</span> namenode</span><br><span class="line"></span><br><span class="line">shell&gt;&gt; <span class="built_in">mkdir</span> datanode</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里创建了三个目录，后续配置的时候会用到：</p>
+<pre><code>1. tmp：作为Hadoop的临时目录
+
+2. namenode：作为NameNode的存放目录
+
+3. datanode：作为DataNode的存放目录
+</code></pre>
+<p>接下来进入配置文件夹，开始配置</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">shell&gt;&gt; <span class="built_in">cd</span> <span class="variable">$HADOOP_CONFIG_HOME</span>/</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="3-3-1-core-site-xml配置"><a href="#3-3-1-core-site-xml配置" class="headerlink" title="3.3.1 core-site.xml配置"></a>3.3.1 core-site.xml配置</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--</span><br><span class="line"></span><br><span class="line">  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span><br><span class="line"></span><br><span class="line">  you may not use this file except in compliance with the License.</span><br><span class="line"></span><br><span class="line">  You may obtain a copy of the License at</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Unless required by applicable law or agreed to in writing, software</span><br><span class="line"></span><br><span class="line">  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line"></span><br><span class="line">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line"></span><br><span class="line">  See the License for the specific language governing permissions and</span><br><span class="line"></span><br><span class="line">  limitations under the License. See accompanying LICENSE file.</span><br><span class="line"></span><br><span class="line">--&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!-- Put site-specific property overrides in this file. --&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line"></span><br><span class="line">    &lt;property&gt;</span><br><span class="line"></span><br><span class="line">            &lt;name&gt;hadoop.tmp.dir&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">            &lt;value&gt;/opt/hadoop-2.6.0/tmp&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">            &lt;description&gt;A base for other temporary directories.&lt;/description&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/property&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;property&gt;</span><br><span class="line"></span><br><span class="line">            &lt;name&gt;fs.default.name&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">            &lt;value&gt;hdfs://master.hadoop.com:9000&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">            &lt;final&gt;true&lt;/final&gt;</span><br><span class="line"></span><br><span class="line">            &lt;description&gt;The name of the default file system.  A URI whose</span><br><span class="line"></span><br><span class="line">            scheme and authority determine the FileSystem implementation.  The</span><br><span class="line"></span><br><span class="line">            uri&#x27;s scheme determines the config property (fs.SCHEME.impl) naming</span><br><span class="line"></span><br><span class="line">            the FileSystem implementation class.  The uri&#x27;s authority is used to</span><br><span class="line"></span><br><span class="line">            determine the host, port, etc. for a filesystem.&lt;/description&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<pre><code>* hadoop.tmp.dir配置项值即为此前命令中创建的临时目录路径。
+
+* fs.default.name配置为hdfs://master:9000，指向的是一个Master节点的主机（后续我们做集群配置的时候，自然会配置这个节点，先写在这里）
+</code></pre>
+<h5 id="3-3-2-hdfs-site-xml配置"><a href="#3-3-2-hdfs-site-xml配置" class="headerlink" title="3.3.2 hdfs-site.xml配置"></a>3.3.2 hdfs-site.xml配置</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--</span><br><span class="line"></span><br><span class="line">  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span><br><span class="line"></span><br><span class="line">  you may not use this file except in compliance with the License.</span><br><span class="line"></span><br><span class="line">  You may obtain a copy of the License at</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Unless required by applicable law or agreed to in writing, software</span><br><span class="line"></span><br><span class="line">  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line"></span><br><span class="line">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line"></span><br><span class="line">  See the License for the specific language governing permissions and</span><br><span class="line"></span><br><span class="line">  limitations under the License. See accompanying LICENSE file.</span><br><span class="line"></span><br><span class="line">--&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!-- Put site-specific property overrides in this file. --&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line"></span><br><span class="line">    &lt;property&gt;</span><br><span class="line"></span><br><span class="line">        &lt;name&gt;dfs.replication&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">        &lt;value&gt;2&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">        &lt;final&gt;true&lt;/final&gt;</span><br><span class="line"></span><br><span class="line">        &lt;description&gt;Default block replication.</span><br><span class="line"></span><br><span class="line">        The actual number of replications can be specified when the file is created.</span><br><span class="line"></span><br><span class="line">        The default is used if replication is not specified in create time.</span><br><span class="line"></span><br><span class="line">        &lt;/description&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/property&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;property&gt;</span><br><span class="line"></span><br><span class="line">        &lt;name&gt;dfs.namenode.name.dir&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">        &lt;value&gt;/opt/hadoop-2.6.0/namenode&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">        &lt;final&gt;true&lt;/final&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/property&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &lt;property&gt;</span><br><span class="line"></span><br><span class="line">        &lt;name&gt;dfs.datanode.data.dir&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">        &lt;value&gt;/opt/hadoop-2.6.0/datanode&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">        &lt;final&gt;true&lt;/final&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注意：</p>
+<ul>
+<li><p>我们后续搭建集群环境时，将配置一个Master节点和两个Slave节点。所以dfs.replication配置为2。</p>
+</li>
+<li><p>dfs.namenode.name.dir和dfs.datanode.data.dir分别配置为之前创建的NameNode和DataNode的目录路径</p>
+</li>
+</ul>
+<h5 id="3-3-3-mapred-site-xml配置"><a href="#3-3-3-mapred-site-xml配置" class="headerlink" title="3.3.3 mapred-site.xml配置"></a>3.3.3 mapred-site.xml配置</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">shell&gt;&gt; <span class="built_in">cp</span> mapred-site.xml.template mapred-site.xml</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;?xml-stylesheet type=&quot;text/xsl&quot; href=&quot;configuration.xsl&quot;?&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--</span><br><span class="line"></span><br><span class="line">  Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);</span><br><span class="line"></span><br><span class="line">  you may not use this file except in compliance with the License.</span><br><span class="line"></span><br><span class="line">  You may obtain a copy of the License at</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    http://www.apache.org/licenses/LICENSE-2.0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Unless required by applicable law or agreed to in writing, software</span><br><span class="line"></span><br><span class="line">  distributed under the License is distributed on an &quot;AS IS&quot; BASIS,</span><br><span class="line"></span><br><span class="line">  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</span><br><span class="line"></span><br><span class="line">  See the License for the specific language governing permissions and</span><br><span class="line"></span><br><span class="line">  limitations under the License. See accompanying LICENSE file.</span><br><span class="line"></span><br><span class="line">--&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;!-- Put site-specific property overrides in this file. --&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&lt;configuration&gt;</span><br><span class="line"></span><br><span class="line">    &lt;property&gt;</span><br><span class="line"></span><br><span class="line">        &lt;name&gt;mapred.job.tracker&lt;/name&gt;</span><br><span class="line"></span><br><span class="line">        &lt;value&gt;master.hadoop.com:9001&lt;/value&gt;</span><br><span class="line"></span><br><span class="line">        &lt;description&gt;The host and port that the MapReduce job tracker runs</span><br><span class="line"></span><br><span class="line">        at.  If &quot;local&quot;, then jobs are run in-process as a single map</span><br><span class="line"></span><br><span class="line">        and reduce task.</span><br><span class="line"></span><br><span class="line">        &lt;/description&gt;</span><br><span class="line"></span><br><span class="line">    &lt;/property&gt;</span><br><span class="line"></span><br><span class="line">&lt;/configuration&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这里只有一个配置项<code>mapred.job.tracker</code>，我们指向master节点机器。</p>
+<h5 id="3-3-3-4-修改JAVA-HOME环境变量"><a href="#3-3-3-4-修改JAVA-HOME环境变量" class="headerlink" title="3.3.3.4 修改JAVA_HOME环境变量"></a>3.3.3.4 修改JAVA_HOME环境变量</h5><p>使用命令<code>vim hadoop-env.sh</code>打开配置文件，修改配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># The java implementation to use.</span><br><span class="line"></span><br><span class="line">export JAVA_HOME=/opt/java8</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-格式化namenode"><a href="#4-格式化namenode" class="headerlink" title="4 格式化namenode"></a>4 格式化namenode</h4><p>这是很重要的一步，执行命令<code>hadoop namenode -format</code></p>
+<h4 id="5-配置SSH，生成访问秘钥"><a href="#5-配置SSH，生成访问秘钥" class="headerlink" title="5 配置SSH，生成访问秘钥"></a>5 配置SSH，生成访问秘钥</h4><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">shell&gt;&gt; <span class="built_in">cd</span> ~/</span><br><span class="line"></span><br><span class="line">shell&gt;&gt; ssh-keygen -t rsa -P <span class="string">&#x27;&#x27;</span> -f ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line">shell&gt;&gt; <span class="built_in">cd</span> .ssh</span><br><span class="line"></span><br><span class="line">shell&gt;&gt; <span class="built_in">cat</span> id_rsa.pub &gt;&gt; authorized_keys</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>注意： 这里，我的思路是直接将密钥生成后写入镜像，免得在买个容器里面再单独生成一次，还要相互拷贝公钥，比较麻烦。当然这只是学习使用，实际操作时，应该不会这么搞，因为这样所有容器的密钥都是一样的！</p>
+<h4 id="6-创建Hadoop-images"><a href="#6-创建Hadoop-images" class="headerlink" title="6 创建Hadoop images"></a>6 创建Hadoop images</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"># 退出docker容器</span><br><span class="line"></span><br><span class="line">shell&gt;&gt; exit</span><br><span class="line"></span><br><span class="line"># commit容器</span><br><span class="line"></span><br><span class="line">shell&gt;&gt; docker commit -a &quot;zhangteng&quot; -m &quot;add hadoop&quot; b7227b0d59fe02d22ad823a5c4a478ec8de3e7882488259191984995791da953 tcheung/hadoop</span><br><span class="line"></span><br><span class="line">得到# 容器的id需要替换，可以通过docker ps -a </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-Hadoop分布式集群搭建"><a href="#3-Hadoop分布式集群搭建" class="headerlink" title="3 Hadoop分布式集群搭建"></a>3 Hadoop分布式集群搭建</h3><p>重点来了！</p>
+<p>按照 hadoop 集群的基本要求,其 中一个是 master 结点,主要是用于运行 hadoop 程序中的 namenode、secondorynamenode 和 jobtracker（新版本名字变了） 任务。用外两个结点均为 slave 结点,其中一个是用于冗余目的,如果没有冗 余,就不能称之为 hadoop 了,所以模拟 hadoop 集群至少要有 3 个结点。</p>
+<p>我们搭建集群环境的时候，需要指定节点的hostname，以及配置hosts。hostname可以使用docker run命令的h参数直接指定，但hosts解析有点麻烦，需要每次重启之后重新配置</p>
+<h5 id="启动master容器"><a href="#启动master容器" class="headerlink" title="启动master容器"></a>启动master容器</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">shell&gt;&gt; docker run -d -h master.hadoop.com  --net=none --name=master.hadoop.com tcheung/hadoop</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="启动slave1容器"><a href="#启动slave1容器" class="headerlink" title="启动slave1容器"></a>启动slave1容器</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">shell&gt;&gt; docker run -d -h slave1.hadoop.com  --net=none --name=slave1.hadoop.com tcheung/hadoop</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="启动slave2容器"><a href="#启动slave2容器" class="headerlink" title="启动slave2容器"></a>启动slave2容器</h5><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">shell&gt;&gt; docker run -d -h slave2.hadoop.com  --net=none --name=slave2.hadoop.com tcheung/hadoop</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="给3个容器配置ip"><a href="#给3个容器配置ip" class="headerlink" title="给3个容器配置ip"></a>给3个容器配置ip</h4><p>配置ip的方式有很多，如pipework（我使用的是这个），具体可以百度。</p>
+<p>master	192.168.5.10</p>
+<p>slave1	192.168.5.20</p>
+<p>slave2 192.168.5.30</p>
+<h4 id="修改3个容器的hosts"><a href="#修改3个容器的hosts" class="headerlink" title="修改3个容器的hosts"></a>修改3个容器的hosts</h4><p>通过ssh分别进入3个容器，使用<code>vim /etc/hosts</code>修改各自的hosts，添加内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">192.168.5.10    master.hadoop.com</span><br><span class="line"></span><br><span class="line">192.168.5.20    slave1.hadoop.com</span><br><span class="line"></span><br><span class="line">192.168.5.30    slave2.hadoop.com</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="配置slaves"><a href="#配置slaves" class="headerlink" title="配置slaves"></a>配置slaves</h4><p>下面我们来配置哪些节点是slave。在较老的Hadoop版本中有一个masters文件和一个slaves文件，但新版本中只有slaves文件了。</p>
+<p>在master节点容器中执行如下命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">shell&gt;&gt; <span class="built_in">cd</span> <span class="variable">$HADOOP_CONFIG_HOME</span>/</span><br><span class="line"></span><br><span class="line">shell&gt;&gt; vim slaves</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>将如下slave节点的hostname信息写入该文件： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">slave1.hadoop.com</span><br><span class="line"></span><br><span class="line">slave2.hadoop.com</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="启动Hadoop"><a href="#启动Hadoop" class="headerlink" title="启动Hadoop"></a>启动Hadoop</h4><p>在master节点上执行<code>start-all.sh</code>命令，启动Hadoop。</p>
+<p>如果没有报错，就代表启动成功，如果有错，那就慢慢调吧。</p>
+<p>在3个节点上执行jps命令，会得到类似的结果：</p>
+<p>master节点</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">516 ResourceManager</span><br><span class="line"></span><br><span class="line">358 SecondaryNameNode</span><br><span class="line"></span><br><span class="line">775 Jps</span><br><span class="line"></span><br><span class="line">169 NameNode</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>slave1节点</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">292 Jps</span><br><span class="line"></span><br><span class="line">52 DataNode</span><br><span class="line"></span><br><span class="line">153 NodeManager</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>slave1节点</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">465 Jps</span><br><span class="line"></span><br><span class="line">52 DataNode</span><br><span class="line"></span><br><span class="line">153 NodeManager</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在master节点上通过命令<code>hdfs dfsadmin -report</code>查看DataNode是否正常启动。</p>
+<p>也可以通过在浏览器中输入<code>http://master.hadoop.com:50070</code>查看Hadoop的运行状态。</p>
+
+      
+    </div>
+    <footer>
+      
+      
+  
+  <div class="tags">
+    <a href="/tags/java/">java</a>, <a href="/tags/hadoop/">hadoop</a>
+  </div>
+
+      
+        <div class="alignright share-box">
+  
+    
+      <a class="share-link share-weibo" target="_blank" rel="noopener" href="http://v.t.sina.com.cn/share/share.php?url=https://zhangtengz.cn/2015/05/19/%E5%9F%BA%E4%BA%8EDocker%E7%9A%84Hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/&title=《基于Docker的Hadoop完全分布式环境搭建》" title="weibo"></a>
+    
+      <a class="share-link share-google" target="_blank" rel="noopener" href="https://plus.google.com/share?url=https://zhangtengz.cn/2015/05/19/%E5%9F%BA%E4%BA%8EDocker%E7%9A%84Hadoop%E5%AE%8C%E5%85%A8%E5%88%86%E5%B8%83%E5%BC%8F%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/&title=《基于Docker的Hadoop完全分布式环境搭建》" title="google"></a>
+    
+  
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Tue May 19 2015 23:55:37 GMT+0800" data-title="基于Docker的Hadoop完全分布式环境搭建" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tcheung"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+  <div id="menu-nav" class="footer-btn">
+  <a title="Quick Nav"><img src="/img/list.png"/></a>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    var toc = $('#toc');
+    var nav = $('#menu-nav');
+    var toccopy;
+    var status = true;
+    if ($(window).width() <= 583)
+      status = false;
+    var first = true;
+    var position = toc.position();
+    var wid = toc.width();
+    $(window).scroll(onScroll);
+    $(nav).click(opennav);
+
+    function tocout() {
+      if (first && status) {
+        toccopy = $(toc).clone();
+        $(toccopy).insertAfter(toc);
+        toc.css('float','');
+        toc.css('position','fixed');
+        onResize();
+        toc.css('z-index','99');
+        toc.css('width',wid);
+        $(window).resize(onResize);
+        first = false;
+        toccopy.css('visibility', 'hidden');
+      }
+      
+    }
+
+    function onScroll() {
+      var top = $(window).scrollTop();
+      if(top >= position.top + 30){
+        tocout();
+        $(nav).stop().fadeTo(300, 1); // fade back in
+        $(nav).animate({bottom: "25px"}, { queue: false, duration: 10 });
+      }else{
+        hidNav();
+        $(window).off("resize", onResize);
+        $(nav).stop().fadeTo(300, 0); // fade out
+        $(nav).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+      }
+    }
+
+    function onResize() {
+      var width = $(window).width();
+      var left = $('#sidebar').position().left;
+      if (width > 883){
+        toc.css('top', '88px');
+        toc.css('left', left - 18);
+      } else{
+        var top = $('#nav-top').innerHeight();
+        toc.css('top', top);
+        var fix = $('#main-col').width() - toc.width() - 35;
+        toc.css('left', left + fix);
+        if($(window).scrollTop() >= position.top + 30){
+          $(nav).stop().fadeTo(300, 1); // fade back in
+          $(nav).animate({bottom: "25px"}, { queue: false, duration: 10 });
+        }
+      }
+    }
+
+    function hidNav() {
+      toc.css('position','');
+      toc.css('float','right');
+      $(toccopy).remove();
+      first = true;
+    }
+
+    function opennav() {
+      if (status) {
+        status = false;
+        hidNav();
+      } else {
+        status = true;
+        tocout();
+      }
+    }
+  });
+</script>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  
+    <form>
+      <input id="" type="search" placeholder="Search">
+    </form>
+    <div id="st-results-container"></div>
+  
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <div class="entry">
+    
+      <span><a href="/tags/centos/">centos<small>1</small></a></span>
+    
+      <span><a href="/tags/docker/">docker<small>2</small></a></span>
+    
+      <span><a href="/tags/gitlab/">gitlab<small>2</small></a></span>
+    
+      <span><a href="/tags/hadoop/">hadoop<small>2</small></a></span>
+    
+      <span><a href="/tags/hbase/">hbase<small>1</small></a></span>
+    
+      <span><a href="/tags/java/">java<small>4</small></a></span>
+    
+      <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
+    
+      <span><a href="/tags/linux/">linux<small>7</small></a></span>
+    
+      <span><a href="/tags/mysql/">mysql<small>2</small></a></span>
+    
+      <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>2</small></a></span>
+    
+  </div>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 13.33px;">vim</a>
+  </div>
+</div>
+
+
+
+
+  <script type="text/javascript">
+    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+      (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+      e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+    })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+    _st('install','');
+  </script>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div id="foot-nav">
+  <ul class="social">
+    
+      <li><a class="github" target="_blank" rel="noopener" href="https://github.com/tengzhang" title="github">github</a></li>
+    
+      <li><a class="rss" href="/atom.xml" title="rss">rss</a></li>
+    
+  </ul>
+</div>
+<div>
+  
+    &copy; 2025 Zhang Teng
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script type="text/javascript">
+  function navbar() {
+    var top = $('#nav-top').innerHeight();
+    $('#header').css('min-height', top);
+  }
+  navbar();
+  $(window).resize(navbar);
+</script>
+<div id="totop" class="footer-btn">
+  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script type="text/javascript">
+  $(function(){ 
+	// When to show the scroll link
+	// higher number = scroll link appears further down the page   
+	var upperLimit = 800;
+	
+	// Our scroll link element
+	var scrollElem = $('#totop');
+   
+	// Scroll to top speed
+	var scrollSpeed = 500;
+   
+	// Show and hide the scroll to top link based on scroll position   
+	scrollElem.hide();
+	$(window).scroll(function () {            
+		var scrollTop = $(document).scrollTop();       
+		if ( scrollTop > upperLimit ) {
+		  $(scrollElem).stop().fadeTo(300, 1); // fade back in
+		  $(scrollElem).animate({bottom: "50px"}, { queue: false, duration: 10 });
+		} else {
+		  $(scrollElem).stop().fadeTo(300, 0); // fade out
+	      $(scrollElem).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+			
+		}
+	});
+
+	// Scroll to top animation on click
+	$(scrollElem).click(function(){
+	  $('html, body').animate({scrollTop:0}, scrollSpeed);
+	  $(scrollElem).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+	  return false;
+	});
+  });
+</script>
+</body>
+</html>

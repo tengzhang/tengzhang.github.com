@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>找数字分析（出现一次的数字） | Zhang Teng&#39;Blog</title>
+  <meta name="author" content="Zhang Teng">
+  
+  <meta name="description" content="原题数组A中，除了某一个数字X之外，其他数字都出现了三次，而X出现了一次。请给出最快的方法找到X。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="找数字分析（出现一次的数字）"/>
+  <meta property="og:site_name" content="Zhang Teng&#39;Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/favicon.ico" rel="shortcut icon">
+  <link rel="alternate" href="/atom.xml" title="Zhang Teng&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="https://code.bdstatic.com/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+  
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div id="nav-top">
+  <div class="alignleft main-title">
+    <a href="/">
+		<h1>Zhang Teng&#39;Blog</h1>
+	</a>
+    <h2></h2>
+  </div>
+  <nav id="main-nav" class="alignright">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+        <li><a href="/aboutme">About me</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="https://zhangtengz.cn/2013/10/07/zhaoshuzi/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2013-10-07T15:15:00.000Z"><a href="/2013/10/07/zhaoshuzi/">2013-10-07</a></time>
+      
+      
+  
+    <h1 class="title">找数字分析（出现一次的数字）</h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        
+          
+        
+        <h2 id="原题"><a href="#原题" class="headerlink" title="原题"></a>原题</h2><p>数组A中，除了某一个数字X之外，其他数字都出现了三次，而X出现了一次。请给出最快的方法找到X。</p>
+<span id="more"></span>
+
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>乍一看这个题目，不少同学立马给出了答案：异或。但举个例子，就会发现，异或是行不通的，一般的方法是利用异或的的如下特性：  </p>
+<p>A xor A &#x3D; 0<br>A xor 0 &#x3D; A</p>
+<p>但是这个题目中，数字都是奇数个的，直接采用之前类似题目的异或方法，已经不合适了。<br>除此之外，我们还可能想到如下的方法：  </p>
+<p>采用hashmap，时间复杂度O(n)，空间复杂度O(n)  </p>
+<p>对数组A进行排序，然后在遍历一次，时间复杂度O(nlogn)，空间复杂度O(1)  </p>
+<p>是否还有一些效果更好的方法呢？这一类的题目，即使简单的异或不能解决，也可以从二进制位、位操作方面去考虑，总之这样的大方向是不会错的。  </p>
+<p>题目中，如果数组中的元素都是三个三个出现的，那么从二进制表示的角度，每个位上的1加起来，应该可以整除3。如果有一个数x只出现一次，会是什么情况呢？  </p>
+<p>如果某个特定位上的1加起来，可以被3整除，说明对应x的那位是0，因为如果是1，不可能被3整除<br>如果某个特定位上的1加起来，不可以被3整除，说明对应x的那位是1  </p>
+<p>根据上面的描述，我们可以开辟一个大小为32的数组，第0个元素表示，A中所有元素的二进制表示的最低位的和，依次类推。最后，再转换为十进制数即可。这里要说明的是，用一个大小为32的整数数组表示，同样空间是O(1)的。<br>不过这里申请了一个数组的空间，如果这个是不被允许的呢？请大家开动脑筋，我们会在后续的文章中分享。  </p>
+<p>代码：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="type">int</span> a[<span class="number">1000</span>];</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n,i,j,k,cnt,ans;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">long</span> tmp = <span class="number">1</span>;</span><br><span class="line">    ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i = <span class="number">0</span>;i &lt; <span class="number">32</span>; ++i) &#123;</span><br><span class="line">        cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(j = <span class="number">0</span>;j &lt; n; ++j) &#123;</span><br><span class="line">            cnt += a[j] &amp; tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt % <span class="number">3</span> == <span class="number">0</span>) &#123;</span><br><span class="line">            ans = ans | (<span class="number">0</span>&lt;&lt;i);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ans = ans | (<span class="number">1</span>&lt;&lt;i);</span><br><span class="line">        &#125;</span><br><span class="line">        tmp = tmp &lt;&lt; <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+  
+  <div class="categories">
+    <a href="/categories/面试题/">面试题</a>
+  </div>
+
+      
+      
+        <div class="alignright share-box">
+  
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Mon Oct 07 2013 23:15:00 GMT+0800" data-title="找数字分析（出现一次的数字）" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tcheung"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  
+    <form>
+      <input id="" type="search" placeholder="Search">
+    </form>
+    <div id="st-results-container"></div>
+  
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <div class="entry">
+    
+      <span><a href="/tags/centos/">centos<small>1</small></a></span>
+    
+      <span><a href="/tags/docker/">docker<small>2</small></a></span>
+    
+      <span><a href="/tags/gitlab/">gitlab<small>2</small></a></span>
+    
+      <span><a href="/tags/hadoop/">hadoop<small>2</small></a></span>
+    
+      <span><a href="/tags/hbase/">hbase<small>1</small></a></span>
+    
+      <span><a href="/tags/java/">java<small>4</small></a></span>
+    
+      <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
+    
+      <span><a href="/tags/linux/">linux<small>7</small></a></span>
+    
+      <span><a href="/tags/mysql/">mysql<small>2</small></a></span>
+    
+      <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>2</small></a></span>
+    
+  </div>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 13.33px;">vim</a>
+  </div>
+</div>
+
+
+
+
+  <script type="text/javascript">
+    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+      (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+      e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+    })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+    _st('install','');
+  </script>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div id="foot-nav">
+  <ul class="social">
+    
+      <li><a class="github" target="_blank" rel="noopener" href="https://github.com/tengzhang" title="github">github</a></li>
+    
+      <li><a class="rss" href="/atom.xml" title="rss">rss</a></li>
+    
+  </ul>
+</div>
+<div>
+  
+    &copy; 2025 Zhang Teng
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script type="text/javascript">
+  function navbar() {
+    var top = $('#nav-top').innerHeight();
+    $('#header').css('min-height', top);
+  }
+  navbar();
+  $(window).resize(navbar);
+</script>
+<div id="totop" class="footer-btn">
+  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script type="text/javascript">
+  $(function(){ 
+	// When to show the scroll link
+	// higher number = scroll link appears further down the page   
+	var upperLimit = 800;
+	
+	// Our scroll link element
+	var scrollElem = $('#totop');
+   
+	// Scroll to top speed
+	var scrollSpeed = 500;
+   
+	// Show and hide the scroll to top link based on scroll position   
+	scrollElem.hide();
+	$(window).scroll(function () {            
+		var scrollTop = $(document).scrollTop();       
+		if ( scrollTop > upperLimit ) {
+		  $(scrollElem).stop().fadeTo(300, 1); // fade back in
+		  $(scrollElem).animate({bottom: "50px"}, { queue: false, duration: 10 });
+		} else {
+		  $(scrollElem).stop().fadeTo(300, 0); // fade out
+	      $(scrollElem).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+			
+		}
+	});
+
+	// Scroll to top animation on click
+	$(scrollElem).click(function(){
+	  $('html, body').animate({scrollTop:0}, scrollSpeed);
+	  $(scrollElem).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+	  return false;
+	});
+  });
+</script>
+</body>
+</html>

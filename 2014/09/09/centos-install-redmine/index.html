@@ -1,0 +1,475 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CentOS下安装Redmine | Zhang Teng&#39;Blog</title>
+  <meta name="author" content="Zhang Teng">
+  
+  <meta name="description" content="Redmine的安装主要分为两部分：
+
+Ruby+Rails的安装
+Redmine的安装先说一下系统环境，我安装的系统是CentOS 5，选择的Redmine版本是2.5.2，Ruby的版本是1.9.3，Rails的版本是3.2.19。下面从以上两部分进行说明。
+
+Ruby+Rails的安装Ruby的安装有3中方式：
+
+直接yum install ruby
+源码编译安装
+采用RVM安装以上3种方式我都尝试了，最后采用了RVM安装这种方式，这种方式也是最简单的。">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="CentOS下安装Redmine"/>
+  <meta property="og:site_name" content="Zhang Teng&#39;Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/favicon.ico" rel="shortcut icon">
+  <link rel="alternate" href="/atom.xml" title="Zhang Teng&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="https://code.bdstatic.com/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+  
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div id="nav-top">
+  <div class="alignleft main-title">
+    <a href="/">
+		<h1>Zhang Teng&#39;Blog</h1>
+	</a>
+    <h2></h2>
+  </div>
+  <nav id="main-nav" class="alignright">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+        <li><a href="/aboutme">About me</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="https://zhangtengz.cn/2014/09/09/centos-install-redmine/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-09T06:37:15.000Z"><a href="/2014/09/09/centos-install-redmine/">2014-09-09</a></time>
+      
+      
+  
+    <h1 class="title">CentOS下安装Redmine</h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        
+          
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Navigation</strong>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ruby-Rails%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">1.</span> <span class="toc-text">Ruby+Rails的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redmine%E7%9A%84%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">Redmine的安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%92%E4%BB%B6%E5%AE%89%E8%A3%85"><span class="toc-number">3.</span> <span class="toc-text">插件安装</span></a></li></ol>
+    </div>
+
+        
+        <p>Redmine的安装主要分为两部分：</p>
+<ol>
+<li>Ruby+Rails的安装</li>
+<li>Redmine的安装<br>先说一下系统环境，我安装的系统是CentOS 5，选择的Redmine版本是2.5.2，Ruby的版本是1.9.3，Rails的版本是3.2.19。<br>下面从以上两部分进行说明。</li>
+</ol>
+<h3 id="Ruby-Rails的安装"><a href="#Ruby-Rails的安装" class="headerlink" title="Ruby+Rails的安装"></a>Ruby+Rails的安装</h3><p>Ruby的安装有3中方式：</p>
+<ol>
+<li>直接<code>yum install ruby</code></li>
+<li>源码编译安装</li>
+<li>采用RVM安装<br>以上3种方式我都尝试了，最后采用了RVM安装这种方式，这种方式也是最简单的。</li>
+</ol>
+<span id="more"></span>
+
+<ol>
+<li>下载RVM并且安装</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://get.rvm.io | bash -s stable</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>安装一些依赖库，编译安装其它软件或者库的时候会用到</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install zlib zlib-devel sqlite-devel</span><br><span class="line">yum install -y gcc-c++ patch readline readline-devel zlib zlib-devel libyaml-devel libffi-devel openssl-devel make bzip2 autoconf automake libtool bison iconv-devel</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>安装openssl，安装ruby的时候会使用到</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rvm pkg install openssl </span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>指定openssl的位置来安装ruby</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rvm install 1.9.3 --with-openssl-dir=/usr/local/rvm/usr</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>指定使用Ruby版本</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rvm use 1.9.2</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>安装Rails</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install rails</span><br></pre></td></tr></table></figure>
+
+<p>经过以上步骤，Ruby和Rails就安装完毕了。<br>安装完Ruby之后，建议更改一下gem的镜像地址，原因你懂的。可以改到淘宝的gem镜像，参考一下网址：<a target="_blank" rel="noopener" href="http://ruby.taobao.org/">http://ruby.taobao.org/</a>。上面有更改gem镜像的详细方法。</p>
+<h3 id="Redmine的安装"><a href="#Redmine的安装" class="headerlink" title="Redmine的安装"></a>Redmine的安装</h3><p>最推荐的做法是参考官方wiki（<a target="_blank" rel="noopener" href="http://www.redmine.org/projects/redmine/wiki/RedmineInstall%EF%BC%89">http://www.redmine.org/projects/redmine/wiki/RedmineInstall）</a></p>
+<ol>
+<li>准备Redmine需要用到的数据库环境<br> 1.1. 修改Redmine数据库配置文件<br> 进入Redmine目录</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> config/database.yml.example config/database.yml  </span><br><span class="line">vi database.yml  </span><br></pre></td></tr></table></figure>
+<p>按照下面的内容进行修改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">production:  </span><br><span class="line">adapter: mysql2  </span><br><span class="line">database: db_redmine  </span><br><span class="line">host: localhost  </span><br><span class="line">username: root  </span><br><span class="line">password: &lt;你的mysql密码&gt;  </span><br><span class="line">ps: 其中的一些值需要根据实际情况</span><br></pre></td></tr></table></figure>
+
+<pre><code>1.2. 进入Mysql创建数据库
+</code></pre>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> database redmine <span class="keyword">character set</span> utf8;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>初始化Redmine数据库环境</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rake db:migrate RAILS_ENV=production</span><br></pre></td></tr></table></figure>
+<p>执行此命令的时候会出现以下错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Could not find gem &#x27;mocha (~&gt; 1.0.0) ruby&#x27; in the gems available on this machine.</span><br><span class="line">Run `bundle install` to install missing gems.</span><br></pre></td></tr></table></figure>
+<p>报这个错误的原因是因为缺少<code>mocha</code>这个gem，类似的还有很多gem都缺失。解决方法就是根据提示一个一个安装（类似于<code>gem install mocha -v=1.0.0</code>这样的命令），另一种解决办法是使用<code>bundle install</code>自动安装所缺少的gem，推荐使用这种方式，这种方式会自动帮你下载所依赖的gem，并且还能解决它们之间的版本冲突问题。<br>通过<code>bundle install</code>命令基本可以安装上所有依赖的gem，除了一个，<code>rmagick</code>，这个gem还需要依赖<code>ImageMagick</code>，他是用于处理一些图片转换之类的工作的。由于<code>rmagick</code>需要依赖<code>ImageMagick</code>，所以使用<code>bundle install</code>会安装失败，需要现在系统中安装<code>ImageMagick</code>。<br>解决方法如下：<br>	2.1. 如果你的CentOS版本比较新，可直接采用yum安装<br>	<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install ImageMagick-devel</span><br></pre></td></tr></table></figure></p>
+<pre><code>2.2. 源码编译安装
+去官网下载源码(http://www.imagemagick.org/script/install-source.php#unix)
+上面有安装教程，建议安装上面的步骤进行安装。
+下面列出我安装时执行的命令：
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">tar xvzf ImageMagick.tar.gz</span><br><span class="line"><span class="built_in">cd</span> ImageMagick-6.8.9</span><br><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+
+经过上面的步骤将gem都安装完之后，还需要再次执行`rake db:migrate RAILS_ENV=production`，这一步的主要作用是在数据库中生成Redmine需要的数据库表。
+</code></pre>
+<ol start="3">
+<li>生成Redmine的Session存储</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rake generate_secret_token</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>启动Redmine</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby script/rails server webrick -e production</span><br></pre></td></tr></table></figure>
+<p>这条命令不是后台运行，建议使用如下命令，让redmie在后台运行</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby script/rails server -e production -d &gt; /dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
+<p>可将上述命令加入&#x2F;etc&#x2F;local中，使得Redmine可以在系统启动时就启动。</p>
+<p>在使用过程中可能会遇到如下错误：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ActionView::Template::Error (incompatible character encodings: UTF-8 and ASCII-8BIT)</span><br></pre></td></tr></table></figure>
+<p>解决方法如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rake assets:precompile</span><br><span class="line">然后重启rails server。</span><br></pre></td></tr></table></figure>
+
+<h3 id="插件安装"><a href="#插件安装" class="headerlink" title="插件安装"></a>插件安装</h3><p>Redmine还可以安装一些插件，来帮助我们进行项目管理。<br>我们现在安装的插件有crumpm、code review、scrum、Aginle。<br>code review下载地址:<a target="_blank" rel="noopener" href="http://www.redmine.org/plugins/codereview">http://www.redmine.org/plugins/codereview</a><br>scrum下载地址:<a target="_blank" rel="noopener" href="https://redmine.ociotec.com/projects/redmine-plugin-scrum">https://redmine.ociotec.com/projects/redmine-plugin-scrum</a><br>Aginle下载地址:<a target="_blank" rel="noopener" href="http://www.redmine.org/plugins/redmine_agile">http://www.redmine.org/plugins/redmine_agile</a></p>
+<p>插件安装步骤:</p>
+<ol>
+<li>下载插件，解压到Redmine安装目录下的plugins文件夹下</li>
+<li>在Redmine安装目录下执行:</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rake redmine:plugins:migrate RAILS_ENV=production</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>重启Redmine</li>
+</ol>
+<p>安装过程的参考资料如下：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="http://lxiaodao.iteye.com/blog/1579992">http://lxiaodao.iteye.com/blog/1579992</a></li>
+<li><a target="_blank" rel="noopener" href="http://note.youdao.com/share/?id=610d4aea90c5d7281b61dfcb1cd41906&type=note">http://note.youdao.com/share/?id=610d4aea90c5d7281b61dfcb1cd41906&amp;type=note</a></li>
+<li><a target="_blank" rel="noopener" href="http://blog.sina.com.cn/s/blog_8254427901016z1l.html">http://blog.sina.com.cn/s/blog_8254427901016z1l.html</a></li>
+</ol>
+
+      
+    </div>
+    <footer>
+      
+      
+  
+  <div class="tags">
+    <a href="/tags/linux/">linux</a>, <a href="/tags/redmine/">redmine</a>
+  </div>
+
+      
+        <div class="alignright share-box">
+  
+    
+      <a class="share-link share-weibo" target="_blank" rel="noopener" href="http://v.t.sina.com.cn/share/share.php?url=https://zhangtengz.cn/2014/09/09/centos-install-redmine/&title=《CentOS下安装Redmine》" title="weibo"></a>
+    
+      <a class="share-link share-google" target="_blank" rel="noopener" href="https://plus.google.com/share?url=https://zhangtengz.cn/2014/09/09/centos-install-redmine/&title=《CentOS下安装Redmine》" title="google"></a>
+    
+  
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Tue Sep 09 2014 14:37:15 GMT+0800" data-title="CentOS下安装Redmine" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tcheung"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+  <div id="menu-nav" class="footer-btn">
+  <a title="Quick Nav"><img src="/img/list.png"/></a>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    var toc = $('#toc');
+    var nav = $('#menu-nav');
+    var toccopy;
+    var status = true;
+    if ($(window).width() <= 583)
+      status = false;
+    var first = true;
+    var position = toc.position();
+    var wid = toc.width();
+    $(window).scroll(onScroll);
+    $(nav).click(opennav);
+
+    function tocout() {
+      if (first && status) {
+        toccopy = $(toc).clone();
+        $(toccopy).insertAfter(toc);
+        toc.css('float','');
+        toc.css('position','fixed');
+        onResize();
+        toc.css('z-index','99');
+        toc.css('width',wid);
+        $(window).resize(onResize);
+        first = false;
+        toccopy.css('visibility', 'hidden');
+      }
+      
+    }
+
+    function onScroll() {
+      var top = $(window).scrollTop();
+      if(top >= position.top + 30){
+        tocout();
+        $(nav).stop().fadeTo(300, 1); // fade back in
+        $(nav).animate({bottom: "25px"}, { queue: false, duration: 10 });
+      }else{
+        hidNav();
+        $(window).off("resize", onResize);
+        $(nav).stop().fadeTo(300, 0); // fade out
+        $(nav).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+      }
+    }
+
+    function onResize() {
+      var width = $(window).width();
+      var left = $('#sidebar').position().left;
+      if (width > 883){
+        toc.css('top', '88px');
+        toc.css('left', left - 18);
+      } else{
+        var top = $('#nav-top').innerHeight();
+        toc.css('top', top);
+        var fix = $('#main-col').width() - toc.width() - 35;
+        toc.css('left', left + fix);
+        if($(window).scrollTop() >= position.top + 30){
+          $(nav).stop().fadeTo(300, 1); // fade back in
+          $(nav).animate({bottom: "25px"}, { queue: false, duration: 10 });
+        }
+      }
+    }
+
+    function hidNav() {
+      toc.css('position','');
+      toc.css('float','right');
+      $(toccopy).remove();
+      first = true;
+    }
+
+    function opennav() {
+      if (status) {
+        status = false;
+        hidNav();
+      } else {
+        status = true;
+        tocout();
+      }
+    }
+  });
+</script>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  
+    <form>
+      <input id="" type="search" placeholder="Search">
+    </form>
+    <div id="st-results-container"></div>
+  
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <div class="entry">
+    
+      <span><a href="/tags/centos/">centos<small>1</small></a></span>
+    
+      <span><a href="/tags/docker/">docker<small>2</small></a></span>
+    
+      <span><a href="/tags/gitlab/">gitlab<small>2</small></a></span>
+    
+      <span><a href="/tags/hadoop/">hadoop<small>2</small></a></span>
+    
+      <span><a href="/tags/hbase/">hbase<small>1</small></a></span>
+    
+      <span><a href="/tags/java/">java<small>4</small></a></span>
+    
+      <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
+    
+      <span><a href="/tags/linux/">linux<small>7</small></a></span>
+    
+      <span><a href="/tags/mysql/">mysql<small>2</small></a></span>
+    
+      <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>2</small></a></span>
+    
+  </div>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 13.33px;">vim</a>
+  </div>
+</div>
+
+
+
+
+  <script type="text/javascript">
+    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+      (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+      e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+    })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+    _st('install','');
+  </script>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div id="foot-nav">
+  <ul class="social">
+    
+      <li><a class="github" target="_blank" rel="noopener" href="https://github.com/tengzhang" title="github">github</a></li>
+    
+      <li><a class="rss" href="/atom.xml" title="rss">rss</a></li>
+    
+  </ul>
+</div>
+<div>
+  
+    &copy; 2025 Zhang Teng
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script type="text/javascript">
+  function navbar() {
+    var top = $('#nav-top').innerHeight();
+    $('#header').css('min-height', top);
+  }
+  navbar();
+  $(window).resize(navbar);
+</script>
+<div id="totop" class="footer-btn">
+  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script type="text/javascript">
+  $(function(){ 
+	// When to show the scroll link
+	// higher number = scroll link appears further down the page   
+	var upperLimit = 800;
+	
+	// Our scroll link element
+	var scrollElem = $('#totop');
+   
+	// Scroll to top speed
+	var scrollSpeed = 500;
+   
+	// Show and hide the scroll to top link based on scroll position   
+	scrollElem.hide();
+	$(window).scroll(function () {            
+		var scrollTop = $(document).scrollTop();       
+		if ( scrollTop > upperLimit ) {
+		  $(scrollElem).stop().fadeTo(300, 1); // fade back in
+		  $(scrollElem).animate({bottom: "50px"}, { queue: false, duration: 10 });
+		} else {
+		  $(scrollElem).stop().fadeTo(300, 0); // fade out
+	      $(scrollElem).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+			
+		}
+	});
+
+	// Scroll to top animation on click
+	$(scrollElem).click(function(){
+	  $('html, body').animate({scrollTop:0}, scrollSpeed);
+	  $(scrollElem).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+	  return false;
+	});
+  });
+</script>
+</body>
+</html>

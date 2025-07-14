@@ -1,0 +1,434 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Windows下安装Redmine | Zhang Teng&#39;Blog</title>
+  <meta name="author" content="Zhang Teng">
+  
+  <meta name="description" content="准备工作Redmine官网:http://www.redmine.org/Ruby官网:http://rubyforge.org/
+
+下载railsinstaller-2.2.3.exe 这是Ruby环境的一键安装包，安装上它就可以安装上全部的Ruby环境。 官网:http://railsinstaller.org/en 此安装包包含如下内容： Ruby 1.9.3Rails 3.2BundlerGitSqliteTinyTDSSQL Server SupportDevKit">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="Windows下安装Redmine"/>
+  <meta property="og:site_name" content="Zhang Teng&#39;Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/favicon.ico" rel="shortcut icon">
+  <link rel="alternate" href="/atom.xml" title="Zhang Teng&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="https://code.bdstatic.com/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+  
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div id="nav-top">
+  <div class="alignleft main-title">
+    <a href="/">
+		<h1>Zhang Teng&#39;Blog</h1>
+	</a>
+    <h2></h2>
+  </div>
+  <nav id="main-nav" class="alignright">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+        <li><a href="/aboutme">About me</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="https://zhangtengz.cn/2014/09/09/windows-install-redmine/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2014-09-09T06:39:16.000Z"><a href="/2014/09/09/windows-install-redmine/">2014-09-09</a></time>
+      
+      
+  
+    <h1 class="title">Windows下安装Redmine</h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        
+          
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Navigation</strong>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-number">2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%86Redmine%E5%AE%89%E8%A3%85%E4%B8%BAWindows%E6%9C%8D%E5%8A%A1%EF%BC%8C%E5%BC%80%E6%9C%BA%E8%87%AA%E5%8A%A8%E8%BF%90%E8%A1%8C"><span class="toc-number">3.</span> <span class="toc-text">将Redmine安装为Windows服务，开机自动运行</span></a></li></ol>
+    </div>
+
+        
+        <h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>Redmine官网:<a target="_blank" rel="noopener" href="http://www.redmine.org/">http://www.redmine.org/</a><br>Ruby官网:<a target="_blank" rel="noopener" href="http://rubyforge.org/">http://rubyforge.org/</a></p>
+<ol>
+<li>下载railsinstaller-2.2.3.exe<br> 这是Ruby环境的一键安装包，安装上它就可以安装上全部的Ruby环境。<br> 官网:<a target="_blank" rel="noopener" href="http://railsinstaller.org/en">http://railsinstaller.org/en</a><br> 此安装包包含如下内容：<br> Ruby 1.9.3<br>Rails 3.2<br>Bundler<br>Git<br>Sqlite<br>TinyTDS<br>SQL Server Support<br>DevKit</li>
+</ol>
+<span id="more"></span>
+
+<ol start="2">
+<li><p>下载ImageMagick，这个是图型生成工具，redmine用于生成pdf等内容，也可以不安装。安装说明在这里<br>我下载的是ImageMagick-6.8.4-0-Q16-x86-dll.exe<br>下载地址:<a target="_blank" rel="noopener" href="http://download.csdn.net/detail/lqt0307/5184966">http://download.csdn.net/detail/lqt0307/5184966</a><br>ps:我只找到了这个下载地址，需要1分，没有分的可以找我要。</p>
+</li>
+<li><p>redmine<br>这个就不用说了，上官网下就行，我用的版本是2.5.2。</p>
+</li>
+<li><p>mysql<br>redmine使用的数据库是mysql，所以需要安装mysql。</p>
+</li>
+</ol>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ol>
+<li><p>安装railsinstaller<br> 如果不选择安装目录什么的，直接下一步就可以了。</p>
+</li>
+<li><p>解压redmine-2.5.2.zip</p>
+</li>
+<li><p>安装mysql<br> 这个就不多说了。</p>
+</li>
+<li><p>安装mysql2插件<br> 进入Railsinstaller安装目录下的DevKit，运行DevKit目录下的msys.bat<br> 输入:</p>
+</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install mysql2 -v=0.3.16 -- --with-mysql-dir=<span class="string">&quot;mysql安装目录&quot;</span></span><br></pre></td></tr></table></figure>
+<p>命令中的”mysql安装目录”要替换掉，要不要引号都可以</p>
+<ol start="5">
+<li><p>安装rmagick<br> window下安装rmagick，需要手动安装，不能通过：gem install rmagick 进行安装。<br> 首先需要安装ImageMagick。安装方式可以参考<a target="_blank" rel="noopener" href="http://www.redmine.org/projects/redmine/wiki/HowTo_install_rmagick_gem_on_Windows">http://www.redmine.org/projects/redmine/wiki/HowTo_install_rmagick_gem_on_Windows</a>，上面讲得很详细。<br> 主要也是下一步、下一步就可以了，需要注意一下的是安装目录中最好不要有空格，我在这个地方被坑了好几次。</p>
+<p> 安装完ImageMagick之后，就可以安装rmagick了。进入Railsinstaller安装目录下的DevKit，运行DevKit目录下的msys.bat。<br> 输入:</p>
+</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gem install -- --with-opt-lib=<span class="string">&quot;ImageMagick安装目录/lib&quot;</span>  --with-opt-include=<span class="string">&quot;</span></span><br><span class="line"><span class="string">ImageMagick安装目录/include&quot;</span></span><br></pre></td></tr></table></figure>
+<p>命令中的”ImageMagick安装目录”要替换掉，要不要引号都可以。</p>
+<ol start="6">
+<li>数据库准备<br> 6.1. 把libmysql.dll复制到“RailsInstaller安装目录\Ruby1.9.3\bin”下面。<br> 6.2. 创建数据库</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE db_redmine <span class="keyword">CHARACTER SET</span> utf8;</span><br></pre></td></tr></table></figure>
+
+<pre><code>6.3. 修改redmine连接数据库文件
+redmine目录下的config/database.yml.example 改为config/database.yml
+第6行开始
+</code></pre>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">production:</span><br><span class="line">adapter: mysql2</span><br><span class="line">database: redmine</span><br><span class="line">host: localhost</span><br><span class="line">username: root</span><br><span class="line">password: my_password</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>目录下执行:</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundle install </span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>初始化Redmine数据库环境</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> rake db:migrate RAILS_ENV=production</span><br></pre></td></tr></table></figure>
+
+<ol start="9">
+<li>生成session存储密钥</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bundle <span class="built_in">exec</span> rake generate_secret_token</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>启动Redmine</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ruby script/rails server webrick -e production</span><br></pre></td></tr></table></figure>
+
+<h3 id="将Redmine安装为Windows服务，开机自动运行"><a href="#将Redmine安装为Windows服务，开机自动运行" class="headerlink" title="将Redmine安装为Windows服务，开机自动运行"></a>将Redmine安装为Windows服务，开机自动运行</h3><p>每次都用命令去启动Redmine还是很麻烦的，把Redmine安装成windows服务，让它能够开机自启动，还是很方便的。<br>Ruby提供一个安装Ruby程序为服务的包：mongrel_service。安装其实很简单，只要命令行下运行gem：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gem install mongrel_service </span><br></pre></td></tr></table></figure>
+<p>过程中安装一些必须的其他包。<br>然后将RedMine使用mongrel_service安装成Windows服务：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongrel_rails service::install -N Redmine -c D:\WebRoot -p 3000 -e production  </span><br></pre></td></tr></table></figure>
+<p>这里，我指定服务名为RedMine，我的Redmine在D:\WebRoot，你的要修改，注意指向Redmine的根目录。监听3000端口。<br>然后修改启动方式为自动启动，并添加MySQL服务为其依赖服务（如果你的MySQL服务器不是本机就不用麻烦了）：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc config Redmine start= auto depend= MySQL  </span><br></pre></td></tr></table></figure>
+<p>注意，执行sc config系列指令，服务必须是未启动的才行，否则会出错。<br>将来如果想去掉这个服务，只要执行：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongrel_rails service::remove -N Redmine  </span><br></pre></td></tr></table></figure>
+<p>也可以使用：<code>sc delete Redmine</code> 删除服务。</p>
+<p>以上方式只适用于xp及xp以上系统，如果你的系统是server 2003，需要用下面这种方式：<a target="_blank" rel="noopener" href="http://www.redmine.org/boards/1/topics/4123">http://www.redmine.org/boards/1/topics/4123</a>。<br>上面说得很详细了，我就不在累述。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rake redmine:plugins:migrate RAILS_ENV=production</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+      
+      
+        <div class="alignright share-box">
+  
+    
+      <a class="share-link share-weibo" target="_blank" rel="noopener" href="http://v.t.sina.com.cn/share/share.php?url=https://zhangtengz.cn/2014/09/09/windows-install-redmine/&title=《Windows下安装Redmine》" title="weibo"></a>
+    
+      <a class="share-link share-google" target="_blank" rel="noopener" href="https://plus.google.com/share?url=https://zhangtengz.cn/2014/09/09/windows-install-redmine/&title=《Windows下安装Redmine》" title="google"></a>
+    
+  
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Tue Sep 09 2014 14:39:16 GMT+0800" data-title="Windows下安装Redmine" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tcheung"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+  <div id="menu-nav" class="footer-btn">
+  <a title="Quick Nav"><img src="/img/list.png"/></a>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    var toc = $('#toc');
+    var nav = $('#menu-nav');
+    var toccopy;
+    var status = true;
+    if ($(window).width() <= 583)
+      status = false;
+    var first = true;
+    var position = toc.position();
+    var wid = toc.width();
+    $(window).scroll(onScroll);
+    $(nav).click(opennav);
+
+    function tocout() {
+      if (first && status) {
+        toccopy = $(toc).clone();
+        $(toccopy).insertAfter(toc);
+        toc.css('float','');
+        toc.css('position','fixed');
+        onResize();
+        toc.css('z-index','99');
+        toc.css('width',wid);
+        $(window).resize(onResize);
+        first = false;
+        toccopy.css('visibility', 'hidden');
+      }
+      
+    }
+
+    function onScroll() {
+      var top = $(window).scrollTop();
+      if(top >= position.top + 30){
+        tocout();
+        $(nav).stop().fadeTo(300, 1); // fade back in
+        $(nav).animate({bottom: "25px"}, { queue: false, duration: 10 });
+      }else{
+        hidNav();
+        $(window).off("resize", onResize);
+        $(nav).stop().fadeTo(300, 0); // fade out
+        $(nav).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+      }
+    }
+
+    function onResize() {
+      var width = $(window).width();
+      var left = $('#sidebar').position().left;
+      if (width > 883){
+        toc.css('top', '88px');
+        toc.css('left', left - 18);
+      } else{
+        var top = $('#nav-top').innerHeight();
+        toc.css('top', top);
+        var fix = $('#main-col').width() - toc.width() - 35;
+        toc.css('left', left + fix);
+        if($(window).scrollTop() >= position.top + 30){
+          $(nav).stop().fadeTo(300, 1); // fade back in
+          $(nav).animate({bottom: "25px"}, { queue: false, duration: 10 });
+        }
+      }
+    }
+
+    function hidNav() {
+      toc.css('position','');
+      toc.css('float','right');
+      $(toccopy).remove();
+      first = true;
+    }
+
+    function opennav() {
+      if (status) {
+        status = false;
+        hidNav();
+      } else {
+        status = true;
+        tocout();
+      }
+    }
+  });
+</script>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  
+    <form>
+      <input id="" type="search" placeholder="Search">
+    </form>
+    <div id="st-results-container"></div>
+  
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <div class="entry">
+    
+      <span><a href="/tags/centos/">centos<small>1</small></a></span>
+    
+      <span><a href="/tags/docker/">docker<small>2</small></a></span>
+    
+      <span><a href="/tags/gitlab/">gitlab<small>2</small></a></span>
+    
+      <span><a href="/tags/hadoop/">hadoop<small>2</small></a></span>
+    
+      <span><a href="/tags/hbase/">hbase<small>1</small></a></span>
+    
+      <span><a href="/tags/java/">java<small>4</small></a></span>
+    
+      <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
+    
+      <span><a href="/tags/linux/">linux<small>7</small></a></span>
+    
+      <span><a href="/tags/mysql/">mysql<small>2</small></a></span>
+    
+      <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>2</small></a></span>
+    
+  </div>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 13.33px;">vim</a>
+  </div>
+</div>
+
+
+
+
+  <script type="text/javascript">
+    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+      (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+      e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+    })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+    _st('install','');
+  </script>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div id="foot-nav">
+  <ul class="social">
+    
+      <li><a class="github" target="_blank" rel="noopener" href="https://github.com/tengzhang" title="github">github</a></li>
+    
+      <li><a class="rss" href="/atom.xml" title="rss">rss</a></li>
+    
+  </ul>
+</div>
+<div>
+  
+    &copy; 2025 Zhang Teng
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script type="text/javascript">
+  function navbar() {
+    var top = $('#nav-top').innerHeight();
+    $('#header').css('min-height', top);
+  }
+  navbar();
+  $(window).resize(navbar);
+</script>
+<div id="totop" class="footer-btn">
+  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script type="text/javascript">
+  $(function(){ 
+	// When to show the scroll link
+	// higher number = scroll link appears further down the page   
+	var upperLimit = 800;
+	
+	// Our scroll link element
+	var scrollElem = $('#totop');
+   
+	// Scroll to top speed
+	var scrollSpeed = 500;
+   
+	// Show and hide the scroll to top link based on scroll position   
+	scrollElem.hide();
+	$(window).scroll(function () {            
+		var scrollTop = $(document).scrollTop();       
+		if ( scrollTop > upperLimit ) {
+		  $(scrollElem).stop().fadeTo(300, 1); // fade back in
+		  $(scrollElem).animate({bottom: "50px"}, { queue: false, duration: 10 });
+		} else {
+		  $(scrollElem).stop().fadeTo(300, 0); // fade out
+	      $(scrollElem).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+			
+		}
+	});
+
+	// Scroll to top animation on click
+	$(scrollElem).click(function(){
+	  $('html, body').animate({scrollTop:0}, scrollSpeed);
+	  $(scrollElem).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+	  return false;
+	});
+  });
+</script>
+</body>
+</html>

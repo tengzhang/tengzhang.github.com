@@ -1,0 +1,385 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CentOS安装多个Mysql | Zhang Teng&#39;Blog</title>
+  <meta name="author" content="Zhang Teng">
+  
+  <meta name="description" content="安装的mysql占用端口分别为3306和3307
+下载mysql-5.6.20-linux-glibc2.5-x86_64.tar.gz，这个是编译完的二进制包
+可阅读文件夹下的INSTALL-BINARY进行安装">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <meta property="og:title" content="CentOS安装多个Mysql"/>
+  <meta property="og:site_name" content="Zhang Teng&#39;Blog"/>
+
+  
+    <meta property="og:image" content=""/>
+  
+
+  <link href="/favicon.ico" rel="shortcut icon">
+  <link rel="alternate" href="/atom.xml" title="Zhang Teng&#39;Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+
+  <link rel="stylesheet" href="/css/highlight.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <script src="https://code.bdstatic.com/npm/jquery@2.2.4/dist/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+  
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  <header id="header" class="inner"><div id="nav-top">
+  <div class="alignleft main-title">
+    <a href="/">
+		<h1>Zhang Teng&#39;Blog</h1>
+	</a>
+    <h2></h2>
+  </div>
+  <nav id="main-nav" class="alignright">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+        <li><a href="/aboutme">About me</a></li>
+      
+    </ul>
+    <div class="clearfix"></div>
+  </nav>
+  <div class="clearfix"></div>
+</div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="alignright">
+          <a href="https://zhangtengz.cn/2014/11/07/cetos-install-muti-mysql/#ds-thread" class="comment-link"></a>
+        </div>
+      
+      
+        <div class="icon"></div>
+        <time datetime="2014-11-07T12:57:05.000Z"><a href="/2014/11/07/cetos-install-muti-mysql/">2014-11-07</a></time>
+      
+      
+  
+    <h1 class="title">CentOS安装多个Mysql</h1>
+  
+
+      
+    </header>
+    <div class="entry">
+      
+        
+          
+    <div id="toc" class="toc-article">
+        <strong class="toc-title">Navigation</strong>
+        
+    </div>
+
+        
+        <p>安装的mysql占用端口分别为3306和3307</p>
+<p>下载mysql-5.6.20-linux-glibc2.5-x86_64.tar.gz，这个是编译完的二进制包</p>
+<p>可阅读文件夹下的INSTALL-BINARY进行安装</p>
+<span id="more"></span>
+
+<p>两个mysql都安装在opt下面</p>
+<p>3306安装命令如下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; groupadd mysql</span><br><span class="line"></span><br><span class="line">shell&gt; useradd -r -g mysql mysql</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">cd</span> /opt</span><br><span class="line"></span><br><span class="line">shell&gt; tar zxvf mysql-5.6.20-linux-glibc2.5-x86_64.tar.gz</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">mv</span> mysql-5.6.20-linux-glibc2.5-x86_64 mysql3306</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">cd</span> mysql3306</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">mkdir</span> <span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">mkdir</span> tmp</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">chown</span> -R mysql .</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">chgrp</span> -R mysql .</span><br><span class="line"></span><br><span class="line">shell&gt; scripts/mysql_install_db --user=mysql</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">chown</span> -R root .</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">chown</span> -R mysql data</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">cp</span> support-files/my-default.cnf my.cnf</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">cp</span> support-files/mysql.server /etc/init.d/mysqld3306</span><br></pre></td></tr></table></figure>
+<p>修改my.cnf,内容如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"># For advice on how to change settings please see</span><br><span class="line"># http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html</span><br><span class="line"># *** DO NOT EDIT THIS FILE. It&#x27;s a template which will be copied to the</span><br><span class="line"># *** default location during install, and will be replaced if you</span><br><span class="line"># *** upgrade to a newer version of MySQL.</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line"></span><br><span class="line"># Remove leading # and set to the amount of RAM for the most important data</span><br><span class="line"># cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.</span><br><span class="line"># innodb_buffer_pool_size = 128M</span><br><span class="line"></span><br><span class="line"># Remove leading # to turn on a very important data integrity option: logging</span><br><span class="line"># changes to the binary log between backups.</span><br><span class="line"># log_bin</span><br><span class="line"></span><br><span class="line"># These are commonly set, remove the # and set as required.</span><br><span class="line"> basedir = /opt/mysql3306 </span><br><span class="line"> datadir = /opt/mysql3306/data </span><br><span class="line"> port = 3306 </span><br><span class="line"># server_id = </span><br><span class="line"> socket = /tmp/mysql3306.sock</span><br><span class="line"> pid-file=/opt/mysql3306/tmp/mysql.pid</span><br><span class="line"></span><br><span class="line"># Remove leading # to set options mainly useful for reporting servers.</span><br><span class="line"># The server defaults are faster for transactions and fast SELECTs.</span><br><span class="line"># Adjust sizes as needed, experiment to find the optimal values.</span><br><span class="line"># join_buffer_size = 128M</span><br><span class="line"># sort_buffer_size = 2M</span><br><span class="line"># read_rnd_buffer_size = 2M </span><br><span class="line"></span><br><span class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES </span><br><span class="line"></span><br><span class="line">#log</span><br><span class="line">log-error=/opt/mysql3306/log/error.log</span><br><span class="line">general_log=ON</span><br><span class="line">general_log_file=/opt/mysql3306/log/mysql.log</span><br><span class="line">long_query_time=2</span><br><span class="line">#log-show-queries=/opt/mysql3306/log/showquery.log</span><br><span class="line">log-bin=/opt/mysql3306/log/bin.log</span><br><span class="line">expire_logs_days=15</span><br><span class="line">sync_binlog=1</span><br><span class="line">#max_binlog_cache_size = 4294967295</span><br><span class="line">local-infile=0</span><br><span class="line">[mysqld_safe]</span><br><span class="line">log-error=/opt/mysql3306/mysqld3306.log</span><br><span class="line">pid-file=/opt/mysql3306/mysqld.pid</span><br></pre></td></tr></table></figure>
+<p>修改&#x2F;etc&#x2F;init.d&#x2F;mysqld3306<br>主要修改如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">basedir=/opt/mysql3306</span><br><span class="line">datadir=/opt/mysql3306/data</span><br><span class="line">conf=/opt/mysql3306/my.cnf</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">$bindir/mysqld_safe --defaults-file=$conf --datadir=&quot;$datadir&quot; --pid-file=&quot;$mysqld_pid_file_path&quot; $other_args &gt;/dev/null 2&gt;&amp;1 &amp;</span><br><span class="line">      wait_for_pid created &quot;$!&quot; &quot;$mysqld_pid_file_path&quot;; return_value=$?</span><br></pre></td></tr></table></figure>
+
+<p>3307安装步骤如下</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; tar zxvf mysql-5.6.20-linux-glibc2.5-x86_64.tar.gz</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">mv</span> mysql-5.6.20-linux-glibc2.5-x86_64 mysql3307</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">cd</span> mysql3307</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">mkdir</span> <span class="built_in">log</span></span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">mkdir</span> tmp</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">chown</span> -R mysql .</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">chgrp</span> -R mysql .</span><br><span class="line"></span><br><span class="line">shell&gt; scripts/mysql_install_db --basedir=/opt/mysql2012 --datadur=/opt/mysql2012 --user=mysql</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">chown</span> -R root .</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">chown</span> -R mysql data</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">cp</span> support-files/my-default.cnf my.cnf</span><br><span class="line"></span><br><span class="line">shell&gt; <span class="built_in">cp</span> support-files/mysql.server /etc/init.d/mysqld3307</span><br></pre></td></tr></table></figure>
+<p>修改my.cnf和&#x2F;etc&#x2F;init.d&#x2F;mysqld3307,修改方式与3306的一样,只是将其中的3306改成3307即可。</p>
+<p>最后，启动mysql</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; service mysqld3306 start</span><br><span class="line">shell&gt; service mysqld3307 start</span><br><span class="line">看见SUCCESS就成功了</span><br></pre></td></tr></table></figure>
+
+<p>开机自启动</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; chkconfig --add mysqld3306</span><br><span class="line">shell&gt; chkconfig --add mysqld3307</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer>
+      
+      
+  
+  <div class="tags">
+    <a href="/tags/centos/">centos</a>, <a href="/tags/mysql/">mysql</a>
+  </div>
+
+      
+        <div class="alignright share-box">
+  
+    
+      <a class="share-link share-weibo" target="_blank" rel="noopener" href="http://v.t.sina.com.cn/share/share.php?url=https://zhangtengz.cn/2014/11/07/cetos-install-muti-mysql/&title=《CentOS安装多个Mysql》" title="weibo"></a>
+    
+      <a class="share-link share-google" target="_blank" rel="noopener" href="https://plus.google.com/share?url=https://zhangtengz.cn/2014/11/07/cetos-install-muti-mysql/&title=《CentOS安装多个Mysql》" title="google"></a>
+    
+  
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="Fri Nov 07 2014 20:57:05 GMT+0800" data-title="CentOS安装多个Mysql" data-url="请替换成文章的网址"></div>
+<!-- 多说评论框 end -->
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"tcheung"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+<!-- 多说公共JS代码 end -->
+</section>
+
+
+  <div id="menu-nav" class="footer-btn">
+  <a title="Quick Nav"><img src="/img/list.png"/></a>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    var toc = $('#toc');
+    var nav = $('#menu-nav');
+    var toccopy;
+    var status = true;
+    if ($(window).width() <= 583)
+      status = false;
+    var first = true;
+    var position = toc.position();
+    var wid = toc.width();
+    $(window).scroll(onScroll);
+    $(nav).click(opennav);
+
+    function tocout() {
+      if (first && status) {
+        toccopy = $(toc).clone();
+        $(toccopy).insertAfter(toc);
+        toc.css('float','');
+        toc.css('position','fixed');
+        onResize();
+        toc.css('z-index','99');
+        toc.css('width',wid);
+        $(window).resize(onResize);
+        first = false;
+        toccopy.css('visibility', 'hidden');
+      }
+      
+    }
+
+    function onScroll() {
+      var top = $(window).scrollTop();
+      if(top >= position.top + 30){
+        tocout();
+        $(nav).stop().fadeTo(300, 1); // fade back in
+        $(nav).animate({bottom: "25px"}, { queue: false, duration: 10 });
+      }else{
+        hidNav();
+        $(window).off("resize", onResize);
+        $(nav).stop().fadeTo(300, 0); // fade out
+        $(nav).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+      }
+    }
+
+    function onResize() {
+      var width = $(window).width();
+      var left = $('#sidebar').position().left;
+      if (width > 883){
+        toc.css('top', '88px');
+        toc.css('left', left - 18);
+      } else{
+        var top = $('#nav-top').innerHeight();
+        toc.css('top', top);
+        var fix = $('#main-col').width() - toc.width() - 35;
+        toc.css('left', left + fix);
+        if($(window).scrollTop() >= position.top + 30){
+          $(nav).stop().fadeTo(300, 1); // fade back in
+          $(nav).animate({bottom: "25px"}, { queue: false, duration: 10 });
+        }
+      }
+    }
+
+    function hidNav() {
+      toc.css('position','');
+      toc.css('float','right');
+      $(toccopy).remove();
+      first = true;
+    }
+
+    function opennav() {
+      if (status) {
+        status = false;
+        hidNav();
+      } else {
+        status = true;
+        tocout();
+      }
+    }
+  });
+</script>
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  
+    <form>
+      <input id="" type="search" placeholder="Search">
+    </form>
+    <div id="st-results-container"></div>
+  
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <div class="entry">
+    
+      <span><a href="/tags/centos/">centos<small>1</small></a></span>
+    
+      <span><a href="/tags/docker/">docker<small>2</small></a></span>
+    
+      <span><a href="/tags/gitlab/">gitlab<small>2</small></a></span>
+    
+      <span><a href="/tags/hadoop/">hadoop<small>2</small></a></span>
+    
+      <span><a href="/tags/hbase/">hbase<small>1</small></a></span>
+    
+      <span><a href="/tags/java/">java<small>4</small></a></span>
+    
+      <span><a href="/tags/leetcode/">leetcode<small>1</small></a></span>
+    
+      <span><a href="/tags/linux/">linux<small>7</small></a></span>
+    
+      <span><a href="/tags/mysql/">mysql<small>2</small></a></span>
+    
+      <span><a href="/tags/redmine/">redmine<small>1</small></a></span>
+    
+      <span><a href="/tags/vim/">vim<small>2</small></a></span>
+    
+  </div>
+</div>
+
+
+  
+<div class="widget tagcloud">
+  <h3 class="title">Tag Cloud</h3>
+  <div class="entry">
+    <a href="/tags/centos/" style="font-size: 10px;">centos</a> <a href="/tags/docker/" style="font-size: 13.33px;">docker</a> <a href="/tags/gitlab/" style="font-size: 13.33px;">gitlab</a> <a href="/tags/hadoop/" style="font-size: 13.33px;">hadoop</a> <a href="/tags/hbase/" style="font-size: 10px;">hbase</a> <a href="/tags/java/" style="font-size: 16.67px;">java</a> <a href="/tags/leetcode/" style="font-size: 10px;">leetcode</a> <a href="/tags/linux/" style="font-size: 20px;">linux</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/redmine/" style="font-size: 10px;">redmine</a> <a href="/tags/vim/" style="font-size: 13.33px;">vim</a>
+  </div>
+</div>
+
+
+
+
+  <script type="text/javascript">
+    (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+      (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+      e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+    })(window,document,'script','//s.swiftypecdn.com/install/v1/st.js','_st');
+
+    _st('install','');
+  </script>
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div id="foot-nav">
+  <ul class="social">
+    
+      <li><a class="github" target="_blank" rel="noopener" href="https://github.com/tengzhang" title="github">github</a></li>
+    
+      <li><a class="rss" href="/atom.xml" title="rss">rss</a></li>
+    
+  </ul>
+</div>
+<div>
+  
+    &copy; 2025 Zhang Teng
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+
+<script type="text/javascript">
+  function navbar() {
+    var top = $('#nav-top').innerHeight();
+    $('#header').css('min-height', top);
+  }
+  navbar();
+  $(window).resize(navbar);
+</script>
+<div id="totop" class="footer-btn">
+  <a title="Return to Top"><img src="/img/scrollup.png"/></a>
+</div>
+
+<script type="text/javascript">
+  $(function(){ 
+	// When to show the scroll link
+	// higher number = scroll link appears further down the page   
+	var upperLimit = 800;
+	
+	// Our scroll link element
+	var scrollElem = $('#totop');
+   
+	// Scroll to top speed
+	var scrollSpeed = 500;
+   
+	// Show and hide the scroll to top link based on scroll position   
+	scrollElem.hide();
+	$(window).scroll(function () {            
+		var scrollTop = $(document).scrollTop();       
+		if ( scrollTop > upperLimit ) {
+		  $(scrollElem).stop().fadeTo(300, 1); // fade back in
+		  $(scrollElem).animate({bottom: "50px"}, { queue: false, duration: 10 });
+		} else {
+		  $(scrollElem).stop().fadeTo(300, 0); // fade out
+	      $(scrollElem).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+			
+		}
+	});
+
+	// Scroll to top animation on click
+	$(scrollElem).click(function(){
+	  $('html, body').animate({scrollTop:0}, scrollSpeed);
+	  $(scrollElem).animate({bottom: "-200px"}, { queue: false, duration: 10 });
+	  return false;
+	});
+  });
+</script>
+</body>
+</html>
