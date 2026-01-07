@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>张腾 ❤️ XXX | 生日快乐</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      height: 100vh;
+      overflow: hidden;
+      color: #fff;
+    }
+
+    .container {
+      position: relative;
+      z-index: 2;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 { font-size: 2.8rem; margin-bottom: 10px; }
+    h2 { font-size: 1.4rem; font-weight: normal; margin-bottom: 20px; }
+
+    .countdown {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 420px;
+      display: none;
+    }
+
+    .card p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    .tap {
+      margin-top: 30px;
+      font-size: 1.2rem;
+      opacity: 0.9;
+      animation: blink 1.5s infinite;
+    }
+
+    .heart { font-size: 3rem; margin-top: 20px; animation: heartbeat 1.5s infinite; }
+
+    canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      25% { transform: scale(1.2); }
+      50% { transform: scale(1); }
+      75% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg"></canvas>
+
+  <div class="container" id="main">
+    <h1>张腾 ❤️ XXX</h1>
+    <h2>距离生日到来还有</h2>
+    <div class="countdown" id="countdown">00:00:00</div>
+    <div class="tap">轻点屏幕，有惊喜 ✨</div>
+
+    <div class="card" id="card">
+      <p>
+        生日快乐，我最爱的人 🎂<br />
+        谢谢你走进我的生命，<br />
+        让每一天都变得值得期待。<br /><br />
+        往后余生，<br />
+        风雨是你，浪漫是你，<br />
+        永远都是你 ❤️
+      </p>
+      <div class="heart">💖</div>
+    </div>
+  </div>
+
+  <script>
+    /* ================= 基础初始化 ================= */
+    const canvas = document.getElementById('bg');
+    const ctx = canvas.getContext('2d');
+    const fireworks = [];
+    const textFireworks = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    /* ================= 倒计时到 0 点 ================= */
+    function nextMidnight() {
+      const now = new Date();
+      const next = new Date();
+      next.setHours(24, 0, 0, 0);
+      return next - now;
+    }
+
+    const countdownEl = document.getElementById('countdown');
+    const card = document.getElementById('card');
+    let fireworkStarted = false;
+
+    function updateCountdown() {
+      const diff = nextMidnight();
+      if (diff <= 0) {
+        countdownEl.innerText = '生日快乐 🎉';
+        card.style.display = 'block';
+        if (!fireworkStarted) {
+          fireworkStarted = true;
+          launchFireworks();
+        }
+        return;
+      }
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      countdownEl.innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 页面加载即开始放烟花
+    launchFireworks();
+
+    /* ================= 点击显示祝福 ================= */
+    document.getElementById('main').addEventListener('click', () => {
+      card.style.display = 'block';
+    });
+
+    /* ================= 烟花逻辑 ================= */
+    function launchFireworks() {
+      const duration = 10000;
+      const interval = 400;
+      const start = Date.now();
+
+      const timer = setInterval(() => {
+        createFirework();
+        if (Date.now() - start >= duration) {
+          clearInterval(timer);
+        }
+      }, interval);
+    }
+
+    function createFirework() {
+      const x = Math.random() * canvas.width * 0.8 + canvas.width * 0.1;
+      const y = Math.random() * canvas.height * 0.4 + canvas.height * 0.1;
+      const colors = ['#ff4d4f', '#ffd666', '#69c0ff', '#b37feb', '#95de64'];
+      const particles = [];
+
+      for (let i = 0; i < 40; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = Math.random() * 4 + 2;
+        particles.push({
+          x, y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 60,
+          color: colors[Math.floor(Math.random() * colors.length)]
+        });
+      }
+      fireworks.push(particles);
+
+      if (Math.random() < 0.3) {
+        textFireworks.push({
+          text: Math.random() < 0.5 ? '我爱你' : 'XXX',
+          x,
+          y,
+          life: 90,
+          size: 36
+        });
+      }
+    }
+
+    function updateFireworks() {
+      fireworks.forEach((fw, i) => {
+        fw.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.05;
+          p.life--;
+          ctx.globalAlpha = Math.max(p.life / 60, 0);
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        fireworks[i] = fw.filter(p => p.life > 0);
+      });
+
+      textFireworks.forEach((t, i) => {
+        t.life--;
+        ctx.globalAlpha = Math.max(t.life / 90, 0);
+        ctx.font = `${t.size}px PingFang SC, Microsoft YaHei`;
+        ctx.fillStyle = '#fff';
+        ctx.fillText(t.text, t.x, t.y);
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      updateFireworks();
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>
