@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <title>张腾 ❤️ XXX | 生日快乐</title>
+  <title>腾腾 ❤️ 小胖 | 生日快乐</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     * { box-sizing: border-box; }
@@ -80,7 +80,7 @@
   <canvas id="bg"></canvas>
 
   <div class="container" id="main">
-    <h1>张腾 ❤️ XXX</h1>
+    <h1>腾腾 ❤️ 小胖</h1>
     <h2>距离生日到来还有</h2>
     <div class="countdown" id="countdown">00:00:00</div>
     <div class="tap">轻点屏幕，有惊喜 ✨</div>
@@ -112,20 +112,17 @@
     resize();
     window.addEventListener('resize', resize);
 
-    /* ================= 倒计时到 0 点 ================= */
-    function nextMidnight() {
-      const now = new Date();
-      const next = new Date();
-      next.setHours(24, 0, 0, 0);
-      return next - now;
-    }
+    /* ================= 指定公历生日倒计时 ================= */
+    // 生日时间：2026-02-05 00:00:00（本地时区）
+    const targetSolar = new Date(2026, 1, 5, 0, 0, 0);
 
     const countdownEl = document.getElementById('countdown');
     const card = document.getElementById('card');
     let fireworkStarted = false;
 
     function updateCountdown() {
-      const diff = nextMidnight();
+      const now = new Date();
+      const diff = targetSolar - now;
       if (diff <= 0) {
         countdownEl.innerText = '生日快乐 🎉';
         card.style.display = 'block';
@@ -135,10 +132,12 @@
         }
         return;
       }
-      const h = Math.floor(diff / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      countdownEl.innerText = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+            const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / (24 * 3600));
+      const hours = Math.floor((totalSeconds % (24 * 3600)) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+      countdownEl.innerText = `${days}天 ${hours}小时 ${minutes}分 ${seconds}秒`;
     }
 
     setInterval(updateCountdown, 1000);
@@ -187,7 +186,7 @@
 
       if (Math.random() < 0.3) {
         textFireworks.push({
-          text: Math.random() < 0.5 ? '我爱你' : 'XXX',
+          text: Math.random() < 0.5 ? '我爱你' : '小胖',
           x,
           y,
           life: 90,
