@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Luxury Cake - Perfect Photo Position</title>
+    <title>xuer's cake</title>
     
     <style>
         /* @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Ma+Shan+Zheng&display=swap'); */
@@ -117,17 +117,21 @@
             }
         }
     </script>
+    <script src="./custom_cake.js"></script>
 </head>
 
 <body>
     <!-- Birthday Greetings -->
     <div style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); z-index: 1000; text-align: center; pointer-events: none; width: 90%;">
-        <h1 style="font-size: clamp(1rem, 3.5vw, 1.8rem); font-weight: bold; font-family: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; background: linear-gradient(45deg, #ff80ab, #e040fb, #7c4dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 10px rgba(255, 128, 171, 0.5); margin-bottom: 5px; line-height: 1.2;">
+        <h1 style="font-size: clamp(1rem, 3.5vw, 1.8rem); font-weight: bold; font-family: inherit; background: linear-gradient(45deg, #ff80ab, #e040fb, #7c4dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 10px rgba(255, 128, 171, 0.5); margin-bottom: 5px; line-height: 1.2;">
             生日快乐！🎉<br>
             Happy Birthday to You
         </h1>
-        <div style="font-size: clamp(1rem, 3.5vw, 1.8rem); color: #ffffff; text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);">
-            <span class="emoji-cake">🎂</span> <span class="emoji-balloon">🎈</span> <span class="emoji-gift">🎁</span> <span class="emoji-confetti">🎊</span>
+        <div style="font-size: clamp(1rem, 3.5vw, 1.8rem); font-family: inherit;">
+            <span class="emoji-cake" style="background: linear-gradient(45deg, #ff80ab, #e040fb, #7c4dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 10px rgba(255, 128, 171, 0.5);">🎂</span>
+            <span class="emoji-balloon" style="background: linear-gradient(45deg, #ff80ab, #e040fb, #7c4dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 10px rgba(255, 128, 171, 0.5);">🎈</span>
+            <span class="emoji-gift" style="background: linear-gradient(45deg, #ff80ab, #e040fb, #7c4dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 10px rgba(255, 128, 171, 0.5);">🎁</span>
+            <span class="emoji-confetti" style="background: linear-gradient(45deg, #ff80ab, #e040fb, #7c4dff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 10px rgba(255, 128, 171, 0.5);">🎊</span>
         </div>
     </div>
 
@@ -235,7 +239,7 @@
             rotation: { x: 0, y: 0 }, spinVel: { x: 0, y: 0 }, time: 0,
             wasPointing: false, palmCenter: { x: 0.5, y: 0.5 }, hasPalmCenter: false,
             candleMesh: null, candleLight: null, 
-            letterContent: "祝你生日快乐！\n愿你所有的愿望都能实现。\n\n(请点击右上角上传书信修改此内容)", 
+            letterContent: "生日快乐！\n愿你所有的愿望都能实现。\n工作没有烦恼。\n小胖崽！小胖崽！小胖崽！", 
             letterTyper: null, letterStartTimer: null, letterLastTriggerTime: 0,
             musicData: null 
         };
@@ -297,6 +301,8 @@
             setTimeout(() => loader.remove(), 1200);
 
             animate(); 
+
+            initPhotos();
         }
 
         function initThree() {
@@ -1222,6 +1228,13 @@
                     reader.readAsText(e.target.files[0]);
                 }
             };
+        }
+
+        function initPhotos() {
+            const loader = new THREE.TextureLoader();
+            g_pre_load_photos.forEach(src => {
+                loader.load(src, t => { t.colorSpace = THREE.SRGBColorSpace; addPhotoToScene(t); });
+            });
         }
 
         init();
